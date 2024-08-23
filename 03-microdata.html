@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.545">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Handbook on Statistical Disclosure Control - 3&nbsp; Microdata</title>
+<title>3&nbsp; Microdata – Handbook on Statistical Disclosure Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -107,13 +107,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-microdata.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microdata</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -127,7 +127,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Handbook on Statistical Disclosure Control</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/julienjamme/handbook_sdc_from_doc_to_md" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://sdcTools.github.io/HandbookSDC" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -296,7 +296,7 @@ window.Quarto = {
 <li>assessment of disclosure risk and utility (ex post)</li>
 </ol>
 <p>Specifying, for each stage, the peculiarities of microdata release. In <a href="#tbl-roadmap" class="quarto-xref">Table&nbsp;<span>3.1</span></a> we present an overview of the process.</p>
-<div id="tbl-roadmap" class="quarto-float anchored">
+<div id="tbl-roadmap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -833,7 +833,7 @@ Expert level
 \]</span></p>
 <p>where <span class="math inline">\(\mathbf{A}\)</span> is a record-transforming mask, <span class="math inline">\(\mathbf{B}\)</span> is a variable-transforming mask and <span class="math inline">\(\mathbf{C}\)</span> is a displacing mask or noise (Duncan and Pearson, 1991).</p>
 <p><a href="#tbl-perturbative-methods" class="quarto-xref">Table&nbsp;<span>3.2</span></a> lists the perturbative methods described below. For each method, the table indicates whether it is suitable for continuous and/or categorical data.</p>
-<div id="tbl-perturbative-methods" class="quarto-float anchored">
+<div id="tbl-perturbative-methods" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-perturbative-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1178,7 +1178,7 @@ Table&nbsp;3.3: Example of rank swapping.
 <section id="sec-nonperturbative-masking" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="sec-nonperturbative-masking"><span class="header-section-number">3.4.3</span> Non-perturbative masking</h3>
 <p>Non-perturbative masking does not rely on distortion of the original data but on partial suppressions or reductions of detail. Some of the methods are usable on both categorical and continuous data, but others are not suitable for continuous data. <a href="#tbl-non-perturbative-methods" class="quarto-xref">Table&nbsp;<span>3.4</span></a> lists the non-perturbative methods described below. For each method, the <a href="#tbl-non-perturbative-methods" class="quarto-xref">Table&nbsp;<span>3.4</span></a> indicates whether it is suitable for continuous and/or categorical data.</p>
-<div id="tbl-non-perturbative-methods" class="quarto-float anchored">
+<div id="tbl-non-perturbative-methods" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-non-perturbative-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1499,7 +1499,7 @@ Expert level
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="tbl-ex-sme-dataset" class="quarto-float anchored">
+<div id="tbl-ex-sme-dataset" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-ex-sme-dataset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1605,7 +1605,7 @@ Table&nbsp;3.5: Example - SME dataset. “Company name” is an identifier to be
 </figcaption>
 </figure>
 </div>
-<div id="tbl-ex-three-anonym-sme" class="quarto-float anchored">
+<div id="tbl-ex-three-anonym-sme" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-ex-three-anonym-sme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1705,7 +1705,7 @@ Table&nbsp;3.6: Example - 3-anonymous version of the SME dataset after optimal m
 <h4 data-number="3.4.5.1" class="anchored" data-anchor-id="fixed-vs.-variable-group-size"><span class="header-section-number">3.4.5.1</span> Fixed vs.&nbsp;variable group size</h4>
 <p>Classical microaggregation algorithms (Defays and Nanopoulos, 1993) required that all groups except perhaps one be of size <span class="math inline">\(k\)</span>; allowing groups to be of size <span class="math inline">\(k\)</span> depending on the structure of data was termed <em>data-oriented microaggregation</em> (Mateo-Sanz and Domingo-Ferrer, 1999), (Domingo-Ferrer and Mateo-Sanz, 2002). <a href="#fig-fixed-vs-variable-sized-group" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> illustrates the advantages of variable-sized groups. If classical fixed-size microaggregation with <span class="math inline">\(k = 3\)</span> is used, we obtain a partition of the data into three groups, which looks rather unnatural for the data distribution given. On the other hand, if variable-sized groups are allowed then the five data on the left can be kept in a single group and the four data on the right in another group; such a variable-size grouping yields more homogeneous groups, which implies lower information loss.</p>
 <p>However, except for specific cases such as the one depicted in <a href="#fig-fixed-vs-variable-sized-group" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, the small gain in within-group homogeneity obtained with variable-sized groups hardly justifies the higher computational overhead of this option with respect to fixed-sized groups. This is particularly evident for multivariate data, as noted by&nbsp;Sande (2002).</p>
-<div id="fig-fixed-vs-variable-sized-group" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-fixed-vs-variable-sized-group" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fixed-vs-variable-sized-group-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Images/media/image66.png" style="width:3.8in;height:2.4in" class="figure-img">
@@ -1864,7 +1864,7 @@ The exact choice of transition probabilities influences both the amount of infor
 </div>
 </div>
 </div>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;When <span class="math inline">\(X\)</span> has <span class="math inline">\(K\)</span> categories and <span class="math inline">\(Y\)</span> has <span class="math inline">\(L\)</span> categories, the 2-dimensional frequency table <span class="math inline">\(T_{XY}\)</span> is a <span class="math inline">\(K\times L\)</span> matrix.</p></div></section>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;When <span class="math inline">\(X\)</span> has <span class="math inline">\(K\)</span> categories and <span class="math inline">\(Y\)</span> has <span class="math inline">\(L\)</span> categories, the 2-dimensional frequency table <span class="math inline">\(T_{XY}\)</span> is a <span class="math inline">\(K\times L\)</span> matrix.</p></div></div></section>
 <section id="when-to-use-pram" class="level4" data-number="3.4.6.2">
 <h4 data-number="3.4.6.2" class="anchored" data-anchor-id="when-to-use-pram"><span class="header-section-number">3.4.6.2</span> When to use PRAM</h4>
 <p>In certain situations methods like global recoding, local suppression and top-coding would yield too much loss of detail in order to produce a safe microdata file. In these circumstances, PRAM is an alternative. Using PRAM, the amount of detail is preserved whereas the level of disclosure control is achieved by introducing uncertainty in the scores on identifying variables.</p>
@@ -2344,7 +2344,7 @@ EBIL\left( \mathbf{P}_{V,V'},G \right) = \sum\limits_{r \in G}^{}{H\left( V \mid
 <p><strong>Mean absolute error</strong> Sum of absolute componentwise differences between pairs of matrices, divided by the number of cells in either matrix.</p>
 <p><strong>Mean variation</strong> Sum of absolute percent variation of components in the matrix computed on protected data with respect to components in the matrix computed on original data, divided by the number of cells in either matrix. This approach has the advantage of not being affected by scale changes of variables.</p>
 <p><a href="#tbl-loss-information" class="quarto-xref">Table&nbsp;<span>3.7</span></a> summarizes the measures proposed in Domingo-Ferrer, Mateo-Sanz and Torra (2001) and Domingo-Ferrer and V. Torra (2001). In this table, <span class="math inline">\(p\)</span> is the number of variables, <span class="math inline">\(n\)</span> the number of records, and components of matrices are represented by the corresponding lowercase letters (<em>e.g.</em> <span class="math inline">\(x_{\text{ij}}\)</span> is a component of matrix <span class="math inline">\(X\)</span>). Regarding <span class="math inline">\(X - X^{'}\)</span> measures, it makes also sense to compute those on the averages of variables rather than on all data (call this variant <span class="math inline">\(\overline{X^{\phantom{'}}} - \overline{X^{'}}\)</span>). Similarly, for <span class="math inline">\(V - V^{'}\)</span>measures, it would also be sensible to use them to compare only the variances of the variables, <em>i.e.</em> to compare the diagonals of the covariance matrices rather than the whole matrices (call this variant <span class="math inline">\(S - S^{'}\)</span>).</p>
-<div id="tbl-loss-information" class="quarto-float anchored">
+<div id="tbl-loss-information" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-loss-information-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -2480,7 +2480,7 @@ x_{ij}^{\prime}:=\begin{cases}
 <section id="example" class="level3 page-columns page-full" data-number="3.5.6">
 <h3 data-number="3.5.6" class="anchored" data-anchor-id="example"><span class="header-section-number">3.5.6</span> Example</h3>
 <p>The manner of assessing disclosure risk and information loss owing to the application of SDC methods was demonstrated using data from a case study published on the website of International Household Survey Network (IHSN)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Statistical Disclosure Control for Microdata: A Practice Guide - Case Study Data and R Script, being a supplement to the book by Benschop, Machingauta and Welch (2022). Use was made of part of the code from the first study of this type, in which the authors applied SDC measures to a set of farms using the sdcMicro package.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;<a href="https://www.ihsn.org/software/disclosure-control-toolbox">https://www.ihsn.org/software/disclosure-control-toolbox</a></p></div><p>The following categorical variables were selected as key variables: REGION, URBRUR (area of residence), HHSIZE (household size), OWNAGLAND (agricultural land ownership), RELIG (religion of household head). The authors of the case study applied local data suppression to these variables.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;<a href="https://www.ihsn.org/software/disclosure-control-toolbox">https://www.ihsn.org/software/disclosure-control-toolbox</a></p></div></div><p>The following categorical variables were selected as key variables: REGION, URBRUR (area of residence), HHSIZE (household size), OWNAGLAND (agricultural land ownership), RELIG (religion of household head). The authors of the case study applied local data suppression to these variables.</p>
 <p>SDC was also applied to quantitative variables concerning 1) expenditure: TFOODEXP (total food expenditure), TALCHEXP (total alcohol expenditure), TCLTHEXP (total expenditure on clothing and footwear), THOUSEXP (total expenditure on housing), TFURNEXP (total expenditure on furnishing ), THLTHEXP (total expenditure on health), TTRANSEXP (total expenditure on transport), TCOMMEXP (total expenditure on communications), TRECEXP (total expenditure on recreation), TEDUEXP (total expenditure on education), TRESTHOTEXP (total expenditure on restaurants and hotel ), TMISCEXP (total miscellaneous expenditure); 2) income: INCTOTGROSSHH (total gross household income – annual), INCRMT (total amount of remittances received from remittance sending members), INCWAGE (wage and salaries – annual), INCFARMBSN (gross income from household farm businesses – annual), INCNFARMBSN (gross income from household non-farm businesses – annual), INCRENT (rental income – annual), INCFIN (financial income from savings, loans, tax refunds, maturity payments on insurance), INCPENSN (pension and other social assistance – annual), INCOTHER (other income – annual), and 3) land size: LANDSIZEHA (land size owned by household in ha). 1% noise was added to the variables relating to all components of expenditure and income; 5% noise was added to outliers. Values of the LANDSIZEHA variable were rounded (1 digit for plots smaller than 1 and to no digits for plots larger than 1) and grouped (values in intervals 5-19 to 13, and values in intervals 20-39 to 30, values larger than 40 to 40).</p>
 <p>In the case study, the PRAM method was applied to variables describing apartment equipment: ROOF (roof type), WATER (main source of water), TOILET (main toilet facility), ELECTCON (electricity), FUELCOOK (main cooking fuel), OWNMOTORCYCLE (ownership of motorcycle), CAR (ownership of car), TV (ownership of television), LIVESTOCK (number of large-sized livestock owned). The data were stratified by REGION variable making sure that variants of the transformed variables were not modified in 80% of cases.</p>
 <p>The set of data anonymised in the manner described above was used as the starting point for the assessment of the risk of disclosure and information loss. Tables <a href="#tbl-example-individual-risk" class="quarto-xref">Table&nbsp;<span>3.8</span></a> and <a href="#tbl-example-global-risk" class="quarto-xref">Table&nbsp;<span>3.9</span></a> shows descriptive statistics for the risk of disclosure in the case of key variables before and after applying local suppression. While the risk was significantly reduced, one must bear in mind that the risk of disclosure was already relatively low in the original dataset. The maximum value of individual risk dropped from 5.5% in the original dataset to 0.3% after applying local suppression. The global risk in the original set was on average equal to 0.05%, which means that the expected number of disclosed units was 0.99; after applying local suppression, the global risk dropped to less than 0.02, which means that the expected number of disclosed units was 0.35.</p>
@@ -2488,7 +2488,7 @@ x_{ij}^{\prime}:=\begin{cases}
 <p>Several of the measures mentioned above have been developed to assess the loss of information. Based on distances between values of variables that were to be anonymised in the original set and the their values in the anonymised set, <span class="math inline">\(\lambda\)</span> measures were calculated. Table <a href="#tbl-example-information-loss" class="quarto-xref">Table&nbsp;<span>3.10</span></a> shows the general value of <span class="math inline">\(\lambda\)</span> and its values for individual variables (<span class="math inline">\(\lambda_k\)</span>). The overall loss of information for the anonymised variables is 14.3%. The greatest loss is observed for quantitative variables to which noise was added; in the case of INCTOTGROSSHH, the loss of information measured by <span class="math inline">\(\lambda\)</span> reaches 83.4%. The loss of information was much lower in the case of key variables subjected to local suppression and those modified with the PRAM method: the maximum loss was 9.7% and 9.4%, respectively.</p>
 <p>Overall information loss was determined using two measures described above: <span class="math inline">\(IL1\)</span> and <span class="math inline">\(\lambda\)</span>. <span class="math inline">\(IL1\)</span> was equal to 79.4, which indicates relatively large standard deviations of anonymised values of quantitative variables from standard deviations of the original variables. The value of the second measure, which is based on correlation coefficients, is 0.6%, which indicates a slight loss of information regarding correlations between the quantitative variables. Nevertheless, it should be stressed that as a result of to numerous cases of non-response in the quantitative variables, the value of <span class="math inline">\(\lambda\)</span> was calculated on the basis of only 111 observations, <em>i.e.</em> less than 6% of all units.</p>
 <p>The above assessment was conducted using the R sdcMicro package. Because some of the information loss measures described above are not implemented in this package, they were not used in the assessment.</p>
-<div id="tbl-example-individual-risk" class="quarto-float anchored">
+<div id="tbl-example-individual-risk" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-example-individual-risk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -2543,7 +2543,7 @@ Table&nbsp;3.8: Descriptive statistics of individual risk measures for quantitat
 </figcaption>
 </figure>
 </div>
-<div id="tbl-example-global-risk" class="quarto-float anchored">
+<div id="tbl-example-global-risk" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-example-global-risk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -2578,7 +2578,7 @@ Table&nbsp;3.9: Global risk measures for quantitative variables
 </figcaption>
 </figure>
 </div>
-<div id="tbl-example-information-loss" class="quarto-float anchored">
+<div id="tbl-example-information-loss" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-example-information-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -2773,7 +2773,7 @@ Table&nbsp;3.10: Loss of information due to anonymisation, overall and for indiv
 <p>In this section we will just a short overview of <span class="math inline">\(\mu\)</span>-ARGUS, as an extensive manual is available, fully describing the software.</p>
 <p>The starting point of <span class="math inline">\(\mu\)</span>-ARGUS has been implementation of the threshold rules for identifying unsafe records and procedures for global recoding and local suppression.</p>
 <p><strong>Data:</strong> <span class="math inline">\(\mu\)</span>-ARGUS can both protect fixed and free format ASCII files.</p>
-<div id="fig-mu-argus-overview" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-mu-argus-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mu-argus-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Images/media/mu_argus_overview.png" class="img-fluid figure-img">
@@ -2867,7 +2867,7 @@ The software package <span class="math inline">\(\mu\)</span>-ARGUS (see <em>e.g
 <section id="labour-force-survey" class="level3 page-columns page-full" data-number="3.8.1">
 <h3 data-number="3.8.1" class="anchored" data-anchor-id="labour-force-survey"><span class="header-section-number">3.8.1</span> Labour Force Survey</h3>
 <p>The Labour Force Survey<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> is one of the surveys subject to Regulation EC 831/2002 on access to microdata for scientific purposes. The Labour Force Survey (LFS) is the main data source for the analysis of the labour market, employment, unemployment as well as the conditions and the level of involvement at the labour market. Some of the main observed variables are:</p>
-<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;The European Union Labour Force Survey (EU LFS)? is conducted in the 25 Member States of the European Union and 3 countries of the European Free Trade Association (EFTA) in accordance with Council Regulation (EEC) No.&nbsp;577/98 of 9 March 98: <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=celex%3A31998R0577">https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=celex%3A31998R0577</a></p></div><ol type="1">
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;The European Union Labour Force Survey (EU LFS)? is conducted in the 25 Member States of the European Union and 3 countries of the European Free Trade Association (EFTA) in accordance with Council Regulation (EEC) No.&nbsp;577/98 of 9 March 98: <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=celex%3A31998R0577">https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=celex%3A31998R0577</a></p></div></div><ol type="1">
 <li>demographic variable: (gender, year of birth, marital status, relationship to reference person, place of residence);</li>
 <li>labour status: (labour status during the reference week, etc.);</li>
 <li>employment characteristics of the main job: (professional status, economic activity of local unit, country of place of work, etc.);</li>
@@ -2890,7 +2890,7 @@ The risk assessment procedure will show the keys at risk and based on this infor
 <p>The Community Innovation Survey is one of the surveys subject to Regulation CE 831/2002 on access to microdata for scientific purpose. A lot of effort has been put in anonymising this microdata set, see for example Eurostat (2006).</p>
 <p>In this section we propose a study of disclosure scenarios to define identifying variables and a risk assessment analysis to single out the records at risk for the Community Innovation Survey (CIS) based on Ichim (2006). A protection stage is then outlined giving different choices. The interested reader is referred to that paper for more information on the whole process.</p>
 <p>CIS provides information on the characteristics of innovation activity at enterprise level<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The CIS statistical population is determined by the size of the enterprise (all enterprises with 10 or more employees) and its principal economic activity.</p>
-<div class="no-row-height column-margin column-container"><p><sup>4</sup>&nbsp;Some of the main observed variables in the CIS3 are : principal economic activity, geographical information, number of employees in 1998 and 2000, turnover in 1998 and 2000, exports in 1998 and 2000, gross investment in tangible goods: 2000, number of valid patents at end of 2000, number of employees with higher education (in line with the number of employees in 2000), expenditure in intramural RD (in line with the turnover in 2000), expenditure in extramural RD (in line with the turnover in 2000), expenditure in acquisition of machinery (in line with the turnover in 2000), expenditure in other external knowledge (in line with the turnover in 2000), expenditure in training, market (in line with the turnover in 2000), total innovation expenditure (in line with the turnover in 2000), number of persons involved in intra RD (in line with the number of employees in 2000).</p></div><p><em>Disclosure scenario</em><br>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Some of the main observed variables in the CIS3 are : principal economic activity, geographical information, number of employees in 1998 and 2000, turnover in 1998 and 2000, exports in 1998 and 2000, gross investment in tangible goods: 2000, number of valid patents at end of 2000, number of employees with higher education (in line with the number of employees in 2000), expenditure in intramural RD (in line with the turnover in 2000), expenditure in extramural RD (in line with the turnover in 2000), expenditure in acquisition of machinery (in line with the turnover in 2000), expenditure in other external knowledge (in line with the turnover in 2000), expenditure in training, market (in line with the turnover in 2000), total innovation expenditure (in line with the turnover in 2000), number of persons involved in intra RD (in line with the number of employees in 2000).</p></div></div><p><em>Disclosure scenario</em><br>
 Since generally business registers are publicly available, it is supposed that an intruder could use such information to identify an enterprise. Public business registers report general information on name, address, turnover (TURN), number of employees (EMP), principal activity of an enterprise (NACE), region (NUTS). Therefore, the identifying variables of the hypothesized disclosure scenario are: economic classification (NACE), region (NUTS), number of employees (EMP) and turnover (TURN). The information content of these variables must be somehow reduced in order to increase the intruder uncertainty. An initial coding performed on such variables was: NACE at 2 digits, Nuts recoded at national level (no regional breakdown) and three enterprise size classes.</p>
 <p>Additionally, in the CIS data set there are several confidential variables that may be subject to spontaneous identification. Some examples are total expenditure on innovation (RTOT), exports, number of persons involved in intra RD, etc. Such variables are never published in an external register, but they can assume extremely particular values on some units. Mere additional information would then clearly identify an enterprise. Special attention must be paid on these variables. A check performed by the <em>survey experts</em> is generally suggested. These assessments must be performed with respect to each combination of categorical identifying variables to be released. The analysis by the survey expert suggested to remove from the data to be released the variable Country of head office. With the given details on NACE, size class and NUTS all the other continuous variables were not deemed sufficiently spread to lead to a spontaneous identification of a unit. For this reason it maybe suggested to let them unchanged.</p>
 <p><em>Risk assessment</em><br>
@@ -2947,18 +2947,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2990,7 +2979,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -3025,7 +3054,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -3301,12 +3334,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02-regulations.html" class="pagination-link  aria-label=" &lt;span="" in="" legal="" acts="" and="" ethical="" codes&lt;="" span&gt;"="">
+      <a href="./02-regulations.html" class="pagination-link" aria-label="Confidentiality in legal acts and ethical codes">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Confidentiality in legal acts and ethical codes</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04-magnitude-tabular-data.html" class="pagination-link" aria-label="<span class='chapter-number'>4</span>&nbsp; <span class='chapter-title'>Magnitude tabular data</span>">
+      <a href="./04-magnitude-tabular-data.html" class="pagination-link" aria-label="Magnitude tabular data">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Magnitude tabular data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

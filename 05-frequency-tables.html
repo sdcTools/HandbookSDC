@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.545">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Handbook on Statistical Disclosure Control - 5&nbsp; Frequency tables</title>
+<title>5&nbsp; Frequency tables – Handbook on Statistical Disclosure Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -107,13 +107,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-frequency-tables.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency tables</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -127,7 +127,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Handbook on Statistical Disclosure Control</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/julienjamme/handbook_sdc_from_doc_to_md" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://sdcTools.github.io/HandbookSDC" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -264,7 +264,7 @@ window.Quarto = {
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> Identification or self-identification may occur from any cells with a count of 1, <em>i.e.</em> representing one statistical unit. <a href="#tbl-mar-by-sex" class="quarto-xref">Table&nbsp;<span>5.1</span></a> presents an example of a low-dimensional table in a particular area where identification may occur.</p>
-<div id="tbl-mar-by-sex" class="quarto-float anchored">
+<div id="tbl-mar-by-sex" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-mar-by-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -323,7 +323,7 @@ Table&nbsp;5.1: Marital status by sex
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong></p>
-<div id="tbl-mar-sex-hours" class="quarto-float anchored">
+<div id="tbl-mar-sex-hours" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-mar-sex-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -424,7 +424,7 @@ Table&nbsp;5.2: Marital status and sex by hours worked
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> <a href="#tbl-mar-hours" class="quarto-xref">Table&nbsp;<span>5.3</span></a> shows respondents in a particular area broken down by hours worked and marital status.</p>
-<div id="tbl-mar-hours" class="quarto-float anchored">
+<div id="tbl-mar-hours" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-mar-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -491,7 +491,7 @@ Table&nbsp;5.3: Marital status by hours worked
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> A fictitious example of differencing is presented below in <a href="#tbl-single-hh-hours" class="quarto-xref">Table&nbsp;<span>5.4</span></a>, <a href="#tbl-single-hh-income" class="quarto-xref">Table&nbsp;<span>5.5</span></a> and <a href="#tbl-differenced-table" class="quarto-xref">Table&nbsp;<span>5.6</span></a>.</p>
-<div id="tbl-single-hh-hours" class="quarto-float anchored">
+<div id="tbl-single-hh-hours" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-single-hh-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -526,7 +526,7 @@ Table&nbsp;5.4: Single Person households and hours worked in Area A (2001 OA def
 </figcaption>
 </figure>
 </div>
-<div id="tbl-single-hh-income" class="quarto-float anchored">
+<div id="tbl-single-hh-income" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-single-hh-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -561,7 +561,7 @@ Table&nbsp;5.5: Single Person households and hours worked in Area A (1991 ED def
 </figcaption>
 </figure>
 </div>
-<div id="tbl-differenced-table" class="quarto-float anchored">
+<div id="tbl-differenced-table" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-differenced-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -608,7 +608,7 @@ Table&nbsp;5.6: New differenced table (via geographical differencing)
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> A fictitious example of disclosure by linking is provided below in <a href="#tbl-employment-status" class="quarto-xref">Table&nbsp;<span>5.7</span></a> to <a href="#tbl-differenced-table-linking" class="quarto-xref">Table&nbsp;<span>5.10</span></a>, which are linked by employment status and whether or not the respondents live in the area.</p>
-<div id="tbl-employment-status" class="quarto-float anchored">
+<div id="tbl-employment-status" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-employment-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -641,7 +641,7 @@ Table&nbsp;5.7: Employment status in Area A
 </div>
 <p><br>
 </p>
-<div id="tbl-residence-workplace" class="quarto-float anchored">
+<div id="tbl-residence-workplace" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-residence-workplace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -676,7 +676,7 @@ Table&nbsp;5.8: Area of Residence or Workplace
 </div>
 <p><br>
 </p>
-<div id="tbl-males-work-live-A" class="quarto-float anchored">
+<div id="tbl-males-work-live-A" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-males-work-live-A-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -711,7 +711,7 @@ Table&nbsp;5.9: Males working and living in Area A
 </div>
 <p><br>
 <a href="#tbl-differenced-table-linking" class="quarto-xref">Table&nbsp;<span>5.10</span></a> shows the new data which can be derived by combining and differencing the totals from the existing tables. The linked table discloses the female living and working in Area A as a unique.</p>
-<div id="tbl-differenced-table-linking" class="quarto-float anchored">
+<div id="tbl-differenced-table-linking" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-differenced-table-linking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -769,7 +769,7 @@ Table&nbsp;5.10: New differenced table (via linking)
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> An example using the number of hours worked is shown below in Tables <a href="#tbl-hours-sex-A" class="quarto-xref">Table&nbsp;<span>5.11</span></a> to <a href="#tbl-differenced-table-subpop" class="quarto-xref">Table&nbsp;<span>5.13</span></a>.</p>
-<div id="tbl-hours-sex-A" class="quarto-float anchored">
+<div id="tbl-hours-sex-A" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-hours-sex-A-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -810,7 +810,7 @@ Table&nbsp;5.11: Hours worked by sex in Area A
 </div>
 <p><br>
 </p>
-<div id="tbl-hours-sex-A-2" class="quarto-float anchored">
+<div id="tbl-hours-sex-A-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-hours-sex-A-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -851,7 +851,7 @@ Table&nbsp;5.12: Hours worked by sex in Area A
 </div>
 <p><br>
 </p>
-<div id="tbl-differenced-table-subpop" class="quarto-float anchored">
+<div id="tbl-differenced-table-subpop" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-differenced-table-subpop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -902,7 +902,7 @@ Table&nbsp;5.13: New differenced table (via sub-populations)
 <p>More information on disclosure by differencing can be obtained from Brown (2003) and Duke-Williams and Rees (1998).</p>
 <!-- Niet geneste hierarchieen -->
 <p>In addition to providing actual disclosure control protection for sensitive information, NSIs need to be seen to be providing this protection. The public may have a different understanding of disclosure control risks and their perception is likely to be influenced by what they see in tables. If many small cells appear in frequency tables users may perceive that either no SDC, or insufficient SDC methods have been applied to the data. Section 5.3 discusses SDC methods, but generally some methods are more obvious in the output tables than others. To protect against negative perceptions, NSIs should be transparent about the SDC methods applied. Managing perceptions is important to maintain credibility and responsibility towards respondents. Negative perceptions may impact response rates for censuses and surveys if respondents perceive that there is little concern about protecting their confidentiality. More emphasis has been placed on this type of disclosure risk in recent years due to declining response rates and data quality considerations. It is important to provide clear explanations to the public about the protection afforded by the SDC method, as well as guidance on the impact of the SDC methods on the quality and utility of the outputs. Explanations should provide details of the methods used but avoid stating the exact parameters as this may allow intruders to unpick the protection.</p>
-<div id="tbl-summary-risks-freq-table" class="quarto-float anchored">
+<div id="tbl-summary-risks-freq-table" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-summary-risks-freq-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -960,7 +960,7 @@ Table redesign is recommended as a simple method that can minimise the number of
 <p>The advantages of table redesign methods are that original counts in the data are not damaged and the tables are additive with consistent totals. In addition, the method is simple to implement and easy to explain to users. However, the detail in the table will be greatly reduced, and if many tables do not pass the release criteria it may lead to user discontent.</p>
 <p><strong><em>Post-tabular</em></strong><br>
 Statistical disclosure control methods that modify cell values within tabular outputs are referred to as post-tabular methods. Such methods are generally clear and transparent to users, and are easier to understand and account for in analyses, than pre-tabular methods. However, post-tabular methods suffer the problem that each table must be individually protected, and it is necessary to ensure that the new protected table cannot be compared against any other existing outputs in such a way which may undo the protection that has been applied. In addition post-tabular methods can be cumbersome to apply to large tables. The main post-tabular methods include cell suppression, the cell key method, and rounding.</p>
-<div id="tbl-summary-sdc-freq-table" class="quarto-float anchored">
+<div id="tbl-summary-sdc-freq-table" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-summary-sdc-freq-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1040,7 +1040,7 @@ Table&nbsp;5.15: Summary of Tabular Disclosure Control Methods
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> To illustrate how the Cell Key Method is used, <a href="#tbl-ckm_p_table" class="quarto-xref">Table&nbsp;<span>5.16</span></a> shows a purely fictional manually created perturbation table with a maximum deviation of 1 and without ones in the results after perturbation.</p>
-<div id="tbl-ckm_p_table" class="quarto-float anchored">
+<div id="tbl-ckm_p_table" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-ckm_p_table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1145,7 +1145,7 @@ Table&nbsp;5.16: Fictional example of a p-table
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="tbl-ckm_respondents" class="quarto-float anchored">
+<div id="tbl-ckm_respondents" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-ckm_respondents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1203,7 +1203,7 @@ When using conventional rounding, each cell is rounded to the nearest multiple o
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> <a href="#tbl-counts-sex-area" class="quarto-xref">Table&nbsp;<span>5.18</span></a> shows counts of males and females in different areas, while <a href="#tbl-counts-sex-area-round" class="quarto-xref">Table&nbsp;<span>5.19</span></a> shows the same information rounded to a base of 5.</p>
-<div id="tbl-counts-sex-area" class="quarto-float anchored">
+<div id="tbl-counts-sex-area" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-counts-sex-area-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1250,7 +1250,7 @@ Table&nbsp;5.18: Population counts by sex
 </div>
 <p><br>
 </p>
-<div id="tbl-counts-sex-area-round" class="quarto-float anchored">
+<div id="tbl-counts-sex-area-round" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-counts-sex-area-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1362,7 +1362,7 @@ Random rounding shifts each cell to one of the two nearest base values in a rand
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> As another example, <a href="#tbl-counts-sex-round" class="quarto-xref">Table&nbsp;<span>5.20</span></a> shows a possible solution for <a href="#tbl-counts-sex-area" class="quarto-xref">Table&nbsp;<span>5.18</span></a> using random rounding to base 5.</p>
-<div id="tbl-counts-sex-round" class="quarto-float anchored">
+<div id="tbl-counts-sex-round" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-counts-sex-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1421,7 +1421,7 @@ Unlike other rounding methods, controlled rounding yields additive rounded table
 </div>
 <div class="callout-body-container">
 <p><strong>Example</strong> <a href="#tbl-counts-sex-control-round" class="quarto-xref">Table&nbsp;<span>5.21</span></a> shows a possible rounding solution for <a href="#tbl-counts-sex-area" class="quarto-xref">Table&nbsp;<span>5.18</span></a>, using controlled rounding to base 5.</p>
-<div id="tbl-counts-sex-control-round" class="quarto-float anchored">
+<div id="tbl-counts-sex-control-round" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-counts-sex-control-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1472,7 +1472,7 @@ Table&nbsp;5.21: Population counts by sex (controlled rounding)
 <p>The disadvantages of controlled rounding are that it is a complicated method to implement, and it has difficulty coping with the size, scope and magnitude of the census tabular outputs. Controlled rounding is implemented in the software package <span class="math inline">\(\tau\)</span>‑ARGUS, see <a href="#sec-Software-Controlled-Rounding" class="quarto-xref"><span>Section 5.5.1</span></a> below for detailed information. Nevertheless, it is hard to find control-rounded solutions for sets of linked tables, and in order to find a solution cells may be rounded beyond the nearest rounding base. In this case users will know less about exactly how the table was rounded and it is also likely to result in differing values for the same internal cells across different tables.</p>
 <p><strong><em>Semi-controlled rounding</em></strong><br>
 Semi-controlled rounding also uses linear programming to round table entries up or down but in this case it controls for the overall total in the table, or it controls for each separate output area total. Other marginal and sub totals will not necessarily be additive. This ensures that either the overall total of the table is preserved (or the output area totals are all preserved), and the utility of this method is increased compared with conventional and random rounding. Consistent totals are provided across linked tables, and therefore the method can be used to protect flexible tables, although the time it takes to implement may make it unsuitable. Disadvantages of semi-controlled rounding relate to the fact that tables are not fully additive, and finding an optimal solution can prove difficult.</p>
-<div id="tbl-summary-rounding-methods" class="quarto-float anchored">
+<div id="tbl-summary-rounding-methods" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-summary-rounding-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1709,7 +1709,7 @@ r_{i,k} = \max_{j \text{ living in same dwelling as }i}r_{j,k}
 <p>In this section, we will explain why original means should rather not be published when the Cell Key Method (or any other non-additive, perturbative SDC method, such as, <em>e.g.</em> Rounding) is applied to frequency counts. We will illustrate this with an example and show ways to publish the mean values in a safer variant. For this purpose we consider a certain population group of size <span class="math inline">\(n\)</span> and for every person <span class="math inline">\(i\in {1,\ldots ,n}\)</span> of this population we denote their corresponding age with <span class="math inline">\(x_i\)</span>. So the average age of this population group can be written as <span class="math inline">\((\sum_{i=1\ldots n} x_i)/n\)</span>. We now consider the following example scenario, in which both (perturbed) frequencies and (original) mean values are published. <a href="#tbl-ckm_mean" class="quarto-xref">Table&nbsp;<span>5.23</span></a> shows both the perturbed and the original frequency counts, as well as information about the age.</p>
 <div class="callout-not" data-appearance="simple">
 <p><strong>Example</strong></p>
-<div id="tbl-ckm_mean" class="quarto-float anchored">
+<div id="tbl-ckm_mean" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-ckm_mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1776,7 +1776,7 @@ Table&nbsp;5.23: An example table with (perturbed) ages and counts
 <p>The attackers can now multiply the original mean values of the table cells known to them with the thus calculated candidates for the associated frequencies. In this way, they obtain estimates for the original magnitude value for each cell. If now for each of those estimates, they sum up those values for the inner cells, they obtain another estimated value for the marginal value. This can now be used to identify the correct combination of frequency values, since for the correct ones the sum over the inner cell values is identical to the marginal value, as shown in <a href="#tbl-ckm_attacker" class="quarto-xref">Table&nbsp;<span>5.24</span></a>.</p>
 <div class="callout-not" data-appearance="simple">
 <p><strong>Example</strong></p>
-<div id="tbl-ckm_attacker" class="quarto-float anchored">
+<div id="tbl-ckm_attacker" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-ckm_attacker-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1935,18 +1935,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1978,7 +1967,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -2013,7 +2042,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -2289,12 +2322,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04-magnitude-tabular-data.html" class="pagination-link  aria-label=" &lt;span="" tabular="" data&lt;="" span&gt;"="">
+      <a href="./04-magnitude-tabular-data.html" class="pagination-link" aria-label="Magnitude tabular data">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Magnitude tabular data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06-remote-access-issues.html" class="pagination-link" aria-label="<span class='chapter-number'>6</span>&nbsp; <span class='chapter-title'>Remote access issues</span>">
+      <a href="./06-remote-access-issues.html" class="pagination-link" aria-label="Remote access issues">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Remote access issues</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

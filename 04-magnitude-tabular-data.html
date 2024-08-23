@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.545">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Handbook on Statistical Disclosure Control - 4&nbsp; Magnitude tabular data</title>
+<title>4&nbsp; Magnitude tabular data – Handbook on Statistical Disclosure Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -107,13 +107,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-magnitude-tabular-data.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Magnitude tabular data</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -127,7 +127,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Handbook on Statistical Disclosure Control</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/julienjamme/handbook_sdc_from_doc_to_md" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://sdcTools.github.io/HandbookSDC" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -255,7 +255,7 @@ window.Quarto = {
 <p>Statistical magnitude tables display sums of observations of a quantitative variable where each sum relates to a group of observations defined by categorical variables observed for a set of respondents.</p>
 <p>Respondents are typically companies but can also be individuals or households, etc. Grouping variables typically give information on geography or economic activity or size, etc. of the respondents. The <em>“cells”</em> of a table are defined by cross-combinations of the grouping variables.</p>
 <p>Each <em>“table cell”</em> presents a sum of a quantitative variable such as income, turnover, expenditure, sales, number of employees, number of animals owned by farms, etc. These sums are the <em>“cell values”</em> (sometimes also referred to as <em>“cell totals”</em>) of a magnitude table. The individual observations of the variable (for each individual respondent) are the <em>“contributions”</em> to the cell value.</p>
-<div id="tbl-example-intro-4" class="quarto-float anchored">
+<div id="tbl-example-intro-4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-example-intro-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -421,7 +421,7 @@ The presumption of the sensitivity of a variable often matters in the choice of 
 <p><br>
 <strong><em>Sensitivity rules</em></strong><br>
 <a href="#tbl-sensitivity-rules" class="quarto-xref">Table&nbsp;<span>4.2</span></a> briefly presents the most common sensitivity rules. Throughout this chapter we denote <span class="math inline">\(x_{1} \geq x_{2} \geq \cdots \geq x_{N}\)</span> the ordered contributions by respondents <span class="math inline">\(1,2,\ldots,N\)</span>, respectively, to a cell with cell total (or cell value) <span class="math inline">\(X = \sum_{i=1}^N x_{i}\)</span></p>
-<div id="tbl-sensitivity-rules" class="quarto-float anchored page-columns page-full">
+<div id="tbl-sensitivity-rules" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-tbl figure page-columns page-full">
 <div aria-describedby="tbl-sensitivity-rules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <table class="table">
@@ -452,7 +452,7 @@ The presumption of the sensitivity of a variable often matters in the choice of 
 </tr>
 </tbody>
 </table>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;<span class="math inline">\(X − x_{n} − \cdots − x_{2} − x_{1} &lt; \frac{p}{100} x_{1}\)</span> for the case of coalitions of <span class="math inline">\(n-1\)</span> respondents, where <span class="math inline">\(n&gt;2\)</span></p></div></div>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<span class="math inline">\(X − x_{n} − \cdots − x_{2} − x_{1} &lt; \frac{p}{100} x_{1}\)</span> for the case of coalitions of <span class="math inline">\(n-1\)</span> respondents, where <span class="math inline">\(n&gt;2\)</span></p></div></div></div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-sensitivity-rules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4.2: Sensitivity rules
 </figcaption>
@@ -645,7 +645,7 @@ Expert level
 </div>
 <div class="callout-body-container">
 <p><strong>Example 3</strong> This example (Geurts, 1992, Table 10, p 20) illustrates the computation of the feasibility interval in the case of a simple two-dimensional table where all cells may only assume non-negative values:</p>
-<div id="tbl-example-3" class="quarto-float anchored">
+<div id="tbl-example-3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-example-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -704,7 +704,7 @@ X_{12} + X_{22} &amp;= 4 \quad \text{(C2)} \\
 </div>
 <p>A general mathematical statement for the linear programming problem to compute upper and lower bounds for the suppressed entries of a table is given in Fischetti and Salazar (2000).</p>
 <p>In principle, a set of suppressions (the <em>‘suppression pattern’</em>) should only be considered valid, if the bounds for the feasibility interval of any sensitive cell cannot be used to deduce bounds on an individual respondent contribution contributing to that cell that are too close according to the sensitivity rule employed. For a mathematical statement of that condition, we determine safety bounds for primary suppressions. We call the deviation between those safety bounds and the true cell value <em>‘upper and lower protection levels’</em>. The formulas of <a href="#tbl-upper-protection-levels" class="quarto-xref">Table&nbsp;<span>4.4</span></a> can be used to compute upper protection levels. Out of symmetry considerations the lower protection level is often set identical to the upper protection level.</p>
-<div id="tbl-upper-protection-levels" class="quarto-float anchored">
+<div id="tbl-upper-protection-levels" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-upper-protection-levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -779,7 +779,7 @@ Table&nbsp;4.4: Upper protection levels
 <section id="sec-tau-argus-suppression" class="level2 page-columns page-full" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="sec-tau-argus-suppression"><span class="header-section-number">4.3</span> The <span class="math inline">\(\tau\)</span>‑ARGUS Implementation of Cell Suppression</h2>
 <p>The software package <span class="math inline">\(\tau\)</span>‑ARGUS provides software tools for disclosure protection methods for tabular data. This can be achieved by modifying the table so that it contains less, or less detailed, information. <span class="math inline">\(\tau\)</span>‑ARGUS allows for several modifications of a table: a table can be redesigned, meaning that rows and columns can be combined; sensitive cells can be suppressed and additional cells to protect these can be found in some optimal way (secondary cell suppression). Several alternative algorithms for the selection of secondary suppressions are available in <span class="math inline">\(\tau\)</span>‑ARGUS, <em>e.g.</em> the Hypercube/GHMiter method, a Modular and a Full optimal solution, and a method based on a network flow algorithm. Instead of cell suppression one could also use other methods for disclosure control of tables. One of these alternative methods is Controlled Rounding. However, use of Controlled Rounding is more common for frequency tables.</p>
-<div id="fig-tau-argus-overview" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tau-argus-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tau-argus-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Images/media/tau_argus_overview.png" class="img-fluid figure-img">
@@ -812,7 +812,7 @@ Data collected within government statistical systems must meet the requirements 
 </div>
 <div class="callout-body-container">
 <p><strong>Example 6</strong> Assume the categories A, AA, AB, AB1, AB2, and AB3 of some variable EXP resemble a hierarchical structure as depicted in <a href="#fig-hierarchical-structure" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> below:</p>
-<div id="fig-hierarchical-structure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hierarchical-structure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hierarchical-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Images/media/chap4_hierarchical_structure.png" class="img-fluid figure-img">
@@ -906,7 +906,7 @@ The challenge of tabular data protection is to preserve as much information in t
 </p>
 <p><strong><em>Cost function</em></strong><br>
 The cost function indicates the relative importance of a cell. In principle the user could attach a separate cost to each individual cell, but that will become a rather cumbersome operation. Therefore in <span class="math inline">\(\tau\)</span>‑ARGUS a few standard cost functions are available<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;One of the secondary cell suppression methods of <span class="math inline">\(\tau\)</span>-ARGUS, the hypercube method, uses an elaborate internal weighting scheme in order to avoid to some extent the suppression of totals and subtotals which is essential for the performance of the method. In order to avoid that this internal weighting scheme is thrown out of balance, it has been decided to make the cost function facilities of t-ARGUS inoperational for this method.</p></div><ul>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;One of the secondary cell suppression methods of <span class="math inline">\(\tau\)</span>-ARGUS, the hypercube method, uses an elaborate internal weighting scheme in order to avoid to some extent the suppression of totals and subtotals which is essential for the performance of the method. In order to avoid that this internal weighting scheme is thrown out of balance, it has been decided to make the cost function facilities of t-ARGUS inoperational for this method.</p></div></div><ul>
 <li>Unity, <em>i.e.</em> all cells have equal weight (just minimising the number of suppressions)</li>
 <li>The number of contributors (minimising the number of contributors to be hidden)</li>
 <li>The cell value itself (preserving as much as possible the largest – usually most important – cells)</li>
@@ -949,7 +949,7 @@ x^{\lambda} \quad &amp;\text{for }\lambda\neq0 \\
 <p><br>
 <strong><em>Minimum protection standards</em></strong><br>
 For a table with hierarchical substructure, feasibility intervals computed on basis of the set of equations for the full table normally tend to be much closer than those computed on basis of separate sets of equations corresponding to sub-tables without any substructure. Moreover, making use of the additional knowledge of a respondent, who is the single respondent to a cell (a so called <em>‘singleton’</em>), it is possible to derive intervals that are much closer than without this knowledge<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;Consider for instance the table of example 3 in <a href="#sec-secondary-protection-methods" class="quarto-xref"><span>Section 4.2.2</span></a>. Without additional knowledge the bounds for cell (1,1) are <span class="math inline">\(X_{11}^\text{min} = 3\)</span> and <span class="math inline">\(X_{11}\text{max} = 6\)</span>. However, if cell (1,2) were a singleton-cell (a cell with only a single contributor) then this single contributor could of course exactly compute the cell value of cell (1,1) by subtracting her own contribution from the row total of row 1.</p></div><p>Based on the assumption of a simple but probably more realistic disclosure scenario where intruders will deduce feasibility intervals separately for each sub-table, rather than taking the effort to consider the full table, and that single respondents, using their special additional knowledge, are more likely attempting to reveal other suppressed cell values when they are within the same row or column (more general: relation), the following minimum protection standards (PS) make sense:</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Consider for instance the table of example 3 in <a href="#sec-secondary-protection-methods" class="quarto-xref"><span>Section 4.2.2</span></a>. Without additional knowledge the bounds for cell (1,1) are <span class="math inline">\(X_{11}^\text{min} = 3\)</span> and <span class="math inline">\(X_{11}\text{max} = 6\)</span>. However, if cell (1,2) were a singleton-cell (a cell with only a single contributor) then this single contributor could of course exactly compute the cell value of cell (1,1) by subtracting her own contribution from the row total of row 1.</p></div></div><p>Based on the assumption of a simple but probably more realistic disclosure scenario where intruders will deduce feasibility intervals separately for each sub-table, rather than taking the effort to consider the full table, and that single respondents, using their special additional knowledge, are more likely attempting to reveal other suppressed cell values when they are within the same row or column (more general: relation), the following minimum protection standards (PS) make sense:</p>
 <blockquote class="blockquote">
 <p>(PS1) <em>Protection against exact external disclosure</em>:<br>
 With a valid suppression pattern, it is not possible to disclose the value of a sensitive cell exactly, if no additional knowledge (like that of a singleton) is considered, and if subsets of table equations are considered separately, <em>i.e.</em> when feasibility intervals are computed separately for each sub-table.</p>
@@ -963,7 +963,7 @@ A suppression pattern, with only two suppressed cells within a row (or column) o
 <p>The Hypercube is based on a hypercube heuristic implemented by Repsilber (2002). See also the descriptions of this method in <a href="#sec-hypercube" class="quarto-xref"><span>Section 4.4.4</span></a>.</p>
 <p>Note that in the current implementation of <span class="math inline">\(\tau\)</span>-ARGUS, use of the optimization tools requires a license for additional commercial software (LP-solver), whereas use of the hypercube method is free. While Modular is only available for the Windows platform, of Hypercube there are also versions for Unix, IBM (OS 390) and SNI (BS2000).</p>
 <p>Both Modular and Hypercube provide sufficient protection according to standards PS1* (protection against inferential disclosure) and PS2 above. Regarding singleton disclosure, Hypercube even satisfies the extended standard PS2*. However, simplifications of the heuristic approach of Hypercube cause a certain tendency for oversuppression. This evaluation therefore includes a relaxed variant that, instead of PS1*, satisfies only the reduced standard PS1, <em>i.e.</em> zero protection against inferential disclosure. We therefore refer to this method as Hyper0 in the following. Hyper0 processing can be achieved simply by deactivating the option “Protection against inferential disclosure required” when running Hypercube out of <span class="math inline">\(\tau\)</span>‑ARGUS.</p>
-<div id="tbl-algorithms" class="quarto-float anchored">
+<div id="tbl-algorithms" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-algorithms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1011,7 +1011,7 @@ Table&nbsp;4.5: Algorithms for practical use
 <p>For study A, we used a variety of hierarchical tables generated from the synthetic micro‑data set supplied as CASC deliverable 3-D3. In particular, we generated 2- and 3-dimensional tables, where one of the dimensions had a hierarchical structure. Manipulation of the depth of this hierarchy resulted in 7 different tables, with a total number of cells varying between 460 and 150,000 cells. Note that the Hyper0 method was not included in study A.</p>
 <p>For study B, which was carried out on behalf of the German federal and state statistical offices, we used 2-dimensional tables of the German turnover tax statistics. Results have been derived for tables with 7-level hierarchical structure (given by the NACE economy classification) of the first dimension, and 4‑level structure of the second dimension given by the variable Region.</p>
 <p>We compare the loss of information due to secondary suppression in terms of the number and cell values of secondary suppression, and analyze the disclosure risk of the protected tables. <a href="#tbl-results-study-A" class="quarto-xref">Table&nbsp;<span>4.6</span></a> reports the results regarding the loss of information obtained in study A.</p>
-<div id="tbl-results-study-A" class="quarto-float anchored">
+<div id="tbl-results-study-A" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-results-study-A-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1117,7 +1117,7 @@ Table&nbsp;4.6: Results of study A - Number and value of secondary suppressions
 </figure>
 </div>
 <p><a href="#tbl-res-B" class="quarto-xref">Table&nbsp;<span>4.7</span></a> presents information loss results from study B on the two topmost levels of the second dimension variable Region, <em>e.g.</em> on the national, and state level.</p>
-<div id="tbl-res-B" class="quarto-float anchored">
+<div id="tbl-res-B" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-res-B-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -1536,18 +1536,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1579,7 +1568,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1614,7 +1643,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1890,12 +1923,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-microdata.html" class="pagination-link  aria-label=" &lt;span="">
+      <a href="./03-microdata.html" class="pagination-link" aria-label="Microdata">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microdata</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-frequency-tables.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Frequency tables</span>">
+      <a href="./05-frequency-tables.html" class="pagination-link" aria-label="Frequency tables">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency tables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
