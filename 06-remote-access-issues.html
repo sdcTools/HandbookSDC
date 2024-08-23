@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.545">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Handbook on Statistical Disclosure Control - 6&nbsp; Remote access issues</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-glossary.html" rel="next">
+<link href="./05-frequency-tables.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-remote-access-issues.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Remote access issues</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Handbook on Statistical Disclosure Control</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/julienjamme/handbook_sdc_from_doc_to_md" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface to the second edition</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-regulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Confidentiality in legal acts and ethical codes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-microdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microdata</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-magnitude-tabular-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Magnitude tabular data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-frequency-tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-remote-access-issues.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Remote access issues</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6.1</span> Introduction</a></li>
+  <li><a href="#research-data-centres-rdcs" id="toc-research-data-centres-rdcs" class="nav-link" data-scroll-target="#research-data-centres-rdcs"><span class="header-section-number">6.2</span> Research Data Centres (RDCs)</a></li>
+  <li><a href="#remote-execution" id="toc-remote-execution" class="nav-link" data-scroll-target="#remote-execution"><span class="header-section-number">6.3</span> Remote execution</a></li>
+  <li><a href="#remote-access" id="toc-remote-access" class="nav-link" data-scroll-target="#remote-access"><span class="header-section-number">6.4</span> Remote access</a></li>
+  <li><a href="#sec-licensing" id="toc-sec-licensing" class="nav-link" data-scroll-target="#sec-licensing"><span class="header-section-number">6.5</span> Licensing</a></li>
+  <li><a href="#confidentiality-protection-of-the-analysis-results" id="toc-confidentiality-protection-of-the-analysis-results" class="nav-link" data-scroll-target="#confidentiality-protection-of-the-analysis-results"><span class="header-section-number">6.6</span> Confidentiality protection of the analysis results</a>
+  <ul class="collapse">
+  <li><a href="#output-checking" id="toc-output-checking" class="nav-link" data-scroll-target="#output-checking"><span class="header-section-number">6.6.1</span> Output checking</a></li>
+  <li><a href="#basic-rules-concerning-the-program-code-example-from-german-oﬀicial-statistics" id="toc-basic-rules-concerning-the-program-code-example-from-german-oﬀicial-statistics" class="nav-link" data-scroll-target="#basic-rules-concerning-the-program-code-example-from-german-oﬀicial-statistics"><span class="header-section-number">6.6.2</span> Basic rules concerning the program code: Example from German oﬀicial statistics</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6.7</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Remote access issues</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">6.1</span> Introduction</h2>
+<p>Although very sophisticated methods have been developed to make safe microdata files, the needs of serious researchers for more detailed data cannot be met by these methods. It is simply impossible to release these very detailed microdata sets to users outside the control of the NSIs without breaching the necessary confidentiality protection. Nevertheless the NSIs recognize the serious and respectable requests by the research community for access to the very rich and valuable microdata sets of the NSIs. Therefore different initiatives have been taken by the NSIs to meet these needs.</p>
+<p>The first step was the creation of Research Data Centres (RDCs), a special room in the NSI, where researchers can analyse the data sets, without the option to export any information without the consent of the NSI. In parallel to this initiative there are options for remote execution. Remote execution facilities are various kinds of systems where researchers can submit scripts for SAS, SPSS etc to the NSI. Remote access, where users can “log in” to a RDC from a remote desktop, has become commonly used.</p>
+<p>As all these options allow the researcher to access unprotected sensitive data in some way, all possible precautions have to be taken. These options are certainly not available to the general public, but only to selected research institutes like universities and similar research institutes. Additionally, strict contracts have to be signed between the NSI and the researcher. Preferably also the research institute itself should sign the contract. This enables the NSI to take action against the institute itself as well as against the researcher, if something might go wrong. A common repercussion for the institute could be a ban for the whole institute to access these facilities. So it will be in the interest of the institute to ensure a correct behaviour of the researcher.</p>
+</section>
+<section id="research-data-centres-rdcs" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="research-data-centres-rdcs"><span class="header-section-number">6.2</span> Research Data Centres (RDCs)</h2>
+<p>In order to meet the needs of the researcher community to analyse the rich datasets compiled by the NSIs, while safeguarding the confidentiality constraints, the first solution was to create special rooms in the premises of the NSIs (RDCs). The NSI makes available special computers for the researchers. On this computer the necessary software for the research will be installed by the NSI together with the necessary datasets. Ideally these computers have no connection whatsoever to the internet and there is no email. Also drives for removable discs are not available and the use of memory sticks has to be blocked. The access to the internal production network of the NSI has to be blocked as well, preventing the possibilities of the researchers to access other sensitive information. Installing a printer is a risk as well as is the use of phones. Supervision of the RDC is always needed.</p>
+<p>The datasets to be used in the RDC have to be anonymised (<em>i.e.</em> at least the name, address etc are removed). It is also advisable to restrict the variables available to the set that is needed for the specific research.</p>
+<p>On these computers the researchers should neverthe­less be able to fully analyse the data files and complete their analysis. When the research is finished the results have to be released to the researchers. Before this can be done, NSI staff has to check the research results. Unfortunately this is not a straightforward, easy task. This will be discussed in section 6.6.</p>
+<p>The concept of RDCs is meeting many research needs and several NSIs have adopted this idea. RDCs have been implemented in the USA, Canada, The Netherlands, Italy, Germany, Denmark, Eurostat and several other countries.</p>
+<p>The concept of RDCs has proved to be very successful. Many good research papers and theses have been completed for which these centres were indispensable. However there are some drawbacks. The most important one is that the researchers have to come physically to the premises of the NSIs. Even in a small country like the Netherlands, this is seen as a serious problem. Also the researcher cannot just try another option when he is back at his normal working place, because he has to travel to the NSI first. Also the fact that he cannot work in his normal working environment is considered a drawback.</p>
+</section>
+<section id="remote-execution" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="remote-execution"><span class="header-section-number">6.3</span> Remote execution</h2>
+<p>As modern communication techniques have become available, the NSIs have investigated the possibilities to use these techniques. The first initiative is remote execution. In this concept the researchers will get a full description of all the metadata of the datasets available for research. However the dataset available will remain on the computers of the NSIs. The researchers will prepare scripts for analysing the datasets (with SPSS, SAS etc) and send them to the NSI (by email or via some internet page). The NSI will then check the script (<em>e.g.</em> for commands like List Cases, but also other unwanted actions like printing the residuals of a regression) before running it and after a second check send back the results to the researcher.</p>
+<p>For the researcher this system has the advantage that he does no longer have to travel to the NSI. He can send a script whenever he wants. On the other hand he cannot directly run the script since this is done by the NSI. Hence correcting errors in a script can take much more time, depending on the turn around time of the NSI. This process could be speeded up if the NSI will make available a fake dataset which corresponds to the original file in terms of structure but not in content. The main objective of this dataset is to avoid all unsuccessful submissions due to syntax errors etc.</p>
+<p>For the researcher remote execution has several advantages (no need for travel) but also some drawbacks (slow turn around time). For the NSIs it is very time-consuming, as they have to check so many scripts and results. It is not uncommon in statistical analysis that several scripts are submitted and executed. But then the outcome proves to be not the optimal model and a new script is submitted. However the NSI does not know in advance which script is successful and has to check everything. This is very time-consuming if the NSI takes this seriously.</p>
+<p>Examples of this kind of systems are the Luxembourg Income Study (Lissy) and the Australian RADL.</p>
+</section>
+<section id="remote-access" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="remote-access"><span class="header-section-number">6.4</span> Remote access</h2>
+<p>Systems for remote access have become common over the years. The aim is to combine the flexibility for researchers to do all their analysis in a RDC while removing the constraints of travelling to the NSIs. Modern developments in the internet make it possible to set up a safe controlled connection, a VPN (virtual private network). A VPN is a technique to setup a secure connection between the server at the NSI and a computer of the researcher. It uses firewalls and encryption techniques. Also additional procedures to control the login procedure like software tokens or biometrics can be used to secure the connection. The most well know product behind this is Citrix, but other systems exist as well. Citrix has been developed to set up safe access to business networks over the internet without giving access to unauthorised persons. This will safeguard the confidentiality of the information on this network.</p>
+<p>Some NSIs are using Citrix to set up a safe connection between the PC of the researcher and a protected server of the NSI. This approach was followed by Denmark, Sweden and the Netherlands. Slovenia is using Windows remote desktop services (similar to Citrix). Statistics Netherlands is currently using VMware Horizon Client (also similar to Citrix).</p>
+<p>The main idea of a remote facility is that it should resemble the ‘traditional’ OnSite RDCs as much as possible, concerning confidentiality aspects.</p>
+<p>The following aspects have to be taken into account:</p>
+<ol type="1">
+<li><p>Only authorized users should be able to make use of this facility,</p></li>
+<li><p>Microdata should remain at the NSI,</p></li>
+<li><p>Desired output of analyses should be checked on confidentiality,</p></li>
+<li><p>Legal measures have to be taken when allowing access.</p></li>
+</ol>
+<p>The key issue is that the microdata set remains in the controlled environment of the NSI, while the researcher can do the analysis in his institute. In fact it is an equivalent of the RDC. The Citrix connection will enable the researcher to run SPSS, SAS etc on the server of the NSI. The researcher will only see the session on his screen. This allows him to see the results on his analysis but also the microdata itself. This is completely equivalent to what he can see, if he would be at the RDC.</p>
+<p>Citrix will only send the pictures of the screens to the PC of the researcher, but no data is send to him. Even copying the data from the screen to the hard disk is not possible. If the researcher is satisfied with some analysis and wants to use the results in his report, he should make a request to the NSI to release these results to him. The NSI has to check the output for disclosure risks and if this is OK the NSI will send the results to the researcher.</p>
+<p>As the researchers will work with very sensitive data, all measures should be taken to ensure the confidentiality of the data. Therefore also legal measures have to be taken, binding not only the researcher himself but also the institute.</p>
+</section>
+<section id="sec-licensing" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="sec-licensing"><span class="header-section-number">6.5</span> Licensing</h2>
+<p>Another access option for microdata releases available to NSIs is to release data under licence or access agreements. A spectrum of different data access arrangements can be provided. A variety of factors should be taken into account when granting approval for access – including the purpose of the access, the status of the user, the legal framework, the status of the data, the availability of facilities and the history of access. The levels of control over use and user applied within the licence should be balanced by the level of detail and/or perturbation in the microdata.</p>
+</section>
+<section id="confidentiality-protection-of-the-analysis-results" class="level2 page-columns page-full" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="confidentiality-protection-of-the-analysis-results"><span class="header-section-number">6.6</span> Confidentiality protection of the analysis results</h2>
+<section id="output-checking" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="output-checking"><span class="header-section-number">6.6.1</span> Output checking</h3>
+<p>Output checking is the process of checking the disclosure risk of research results based on microdata files made available in RDCs. NSIs and other institutions can establish their own rules for output checking.</p>
+<p>In 2009, a document 'Guidelines for the checking of output based on microdata research' was prepared within the European project ESSnet SDC. In 2015, this document was a basis for a document 'Guidelines for Output Checking' prepared within the DwB (Data without Boundaries) project. Both documents provide guidelines and practical advice for output checkers. Principles-based model and rule-of-thumb model are described; the former considers the entire context of the output, while the latter is based on strict rules. The overall rule of thumb is defined and its application to different types of output is described. Organisational aspects of output checking are discussed.</p>
+</section>
+<section id="basic-rules-concerning-the-program-code-example-from-german-oﬀicial-statistics" class="level3 page-columns page-full" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="basic-rules-concerning-the-program-code-example-from-german-oﬀicial-statistics"><span class="header-section-number">6.6.2</span> Basic rules concerning the program code: Example from German oﬀicial statistics</h3>
+<section id="introduction-1" class="level4 page-columns page-full" data-number="6.6.2.1">
+<h4 data-number="6.6.2.1" class="anchored" data-anchor-id="introduction-1"><span class="header-section-number">6.6.2.1</span> Introduction</h4>
+<p>As in many other countries, German oﬀicial microdata are subject to strict data protection regulations. Therefore, results produced on the basis of statistical microdata are checked for confidentiality risks and critical values are suppressed or altered. This applies both to publications of the Statistical Oﬀices and to results that are generated by researchers via the Research Data Centres (RDC) of German oﬀicial statistics.</p>
+<p>The RDC offer the scientific community a wide variety of data from different statistics. Since the RDC were established in Germany in 2001, microdata requests have considerably increased and analyses are getting more and more complex. Thus, the checks for statistical disclosure control, which are mostly done manually<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, became a very time-consuming and labour-intensive part of RDC work. Experience from several hundred research projects has shown that those confidentiality checks can be accomplished easier if the program code and the resulting output structure follow a given set of rules. To make the application of these rules as user friendly as possible, the RDC of German official statics developed sample program codes for different programming languages (see <a href="https://www.forschungsdatenzentrum.de/en/confidentiality">https://www.forschungsdatenzentrum.de/en/confidentiality</a>).</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;A mostly manual handling of the confidentiality check has several disadvantages (inefficient, possible mistakes, …) but, in contrast to automated systems, it does not completely block certain procedures and commands but allows individual decisions: when calling up critical procedures, and depending on the data or the specific analysis, the RDC staff can decide to what extent the analysis results can be transmitted to the user or be retained for confidentiality reasons. Necessary changes can easily be communicated to the user.</p></div><p>The purpose of the rules and the sample program codes is</p>
+<ul>
+<li>to make program code easily and quickly understandable,</li>
+<li>to include all necessary information for the output check,</li>
+<li>to clearly indicate the relations between different sets of output,</li>
+<li>to facilitate readability,</li>
+<li>to differentiate between output for release and output that is only created for the confidentiality check,</li>
+<li>to apply uniform standards to projects performed at different locations of the RDC,</li>
+<li>to thus reduce the time it takes to check an output,</li>
+<li>and, where necessary, to enable a smooth change of the project staff at the RDC without causing delays in the project progress.</li>
+</ul>
+</section>
+<section id="rules-for-program-design" class="level4 page-columns page-full" data-number="6.6.2.2">
+<h4 data-number="6.6.2.2" class="anchored" data-anchor-id="rules-for-program-design"><span class="header-section-number">6.6.2.2</span> Rules for program design</h4>
+<p>The rules that have to be applied by the data users are stated below. They are an outline of the RDC’s “Regulations on the analysis of microdata”.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Research Data Centres of the Federal Statistical Office and the Statistical Offices of the Federal States: Regulations on the analysis of microdata in the Research Data Centres of the Federal Statistical Office and the Statistical Offices of the Federal States (RDC). Düsseldorf, 2022. See <a href="https://www.forschungsdatenzentrum.de/en/confidentiality">https://www.forschungsdatenzentrum.de/en/confidentiality</a></p></div><p><em><strong>Clear Structure</strong></em></p>
+<p>The program code has to be written with a clear structure and all program steps have to be comprehensible. A master program code is to be used if the code is separated into several files. All specifications that have to be adjusted by the RDC to execute the program code (path specification, name of the dataset, …) are to be stated only once and in the header of the (master) program code.</p>
+<p><em><strong>Detailed commentary</strong></em></p>
+<p>All steps for preparation and analysis of the data have to be commented reasonably and in detail. Their content has to be described.</p>
+<p><em><strong>Uniqueness of variable and value labels</strong></em></p>
+<p>Variable and value labels have to be assigned uniquely and with descriptive names. If a new variable is created or if an existing variable is adjusted then all related labels have to be assigned newly and to be stated in the header of the program code.</p>
+<p><em><strong>Reproducibility of the output</strong></em></p>
+<p>All output has to be identically reproducible by the associated program code. The logging has to be switched on at the beginning of the code and may not be switched off at any time.</p>
+<p><em><strong>Specification of the output formats</strong></em></p>
+<p>All tabular and analytical results are to be saved in a processable format so the RDC are able to conduct to the confidentiality check. In contrast, all graphical results have to be saved in a non-processable format to prevent underlying values or numbers of cases to be released.</p>
+<p><em><strong>Marking of output to be released and output for the confidentiality check</strong></em></p>
+<p>The RDC distinguish between output that is to be checked by the RDC staff and released for publication and output that is generated only for the conduction of the confidentiality check. Both output categories and their relations have to be unambiguously marked.</p>
+<p><em><strong>Output of the underlying numbers of cases and marking of the relations</strong></em></p>
+<p>For all output that is to be released, the underlying unweighted number of cases is to be stated. If diagrams and graphics are to be released then additional tables with the depicted values and the underlying unweighted numbers of cases have to be stated and to be marked unambiguously.</p>
+<p><em><strong>Output of difference groups and marking of relations</strong></em></p>
+<p>If results for one or more associated and not overlapping subgroup(s) are created in addition to results for the whole population then the results for the remaining (possibly summarised) subgroup(s) always have to be stated as well. Missing values should preferably be stated separately to avoid difference problems in the following analyses. In case of overlapping sub-groups the number of cases has to be stated for every intersection.</p>
+<p><em><strong>Output of certain values for the check for dominance and marking of relations</strong></em></p>
+<p>If value tables (sums) are created then the number of cases and the highest two individual values have to be stated. [Note: In Germany, this only applies to economic or tax statistics.]</p>
+<p><em><strong>Non-redundancy of statistical results</strong></em></p>
+<p>In the course of a project, identical statistical results may only be marked for release once. If results have to be released again in duly substantiated exceptional cases, an exact reference to the according earlier analysis has to be made.</p>
+</section>
+</section>
+</section>
+<section id="references" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="references"><span class="header-section-number">6.7</span> References</h2>
+<p>John Coder and Marc Cigrang (2003), <em>LISSY: A system for providing Restricted Access to Survey Microdata from Remote Sites</em>, Monographs in Official Statistics, Luxembourg</p>
+<p>Anco Hundepool and Peter-Paul de Wolf(2005), <em>OnSite@Home: Remote Access at Statistics Netherlands</em>, Monographs of Official Statistics, Luxembourg</p>
+<p>Lars-Johan Söderberg (2005), <em>MONA,- Microdata On liNe Access as Statistics Sweden</em>, Monographs of Official Statistics, Luxembourg</p>
+<p>Lars Borchsenius (2005), <em>New developments in the Danish system for access to micro data</em>, Monographs of Official Statistics, Luxembourg</p>
+<p>Dr.&nbsp;Sylvia Zühlke, Markus Zwick, Sebastian Scharnhorst and Thomas Wende (2005), <em>The research data centres of the Federal Statistical Office and the statistical offices of the Länder</em>, Forschungsdatenzentrum, Statistisches Bundesamt.</p>
+<p>Brandt, M. et al.&nbsp;(2009). <em>Guidelines for the checking of output based on microdata research:</em> <a href="https://research.cbs.nl/casc/ESSnet/GuidelinesForOutputChecking_Dec2009.pdf">https://research.cbs.nl/casc/ESSnet/GuidelinesForOutputChecking_Dec2009.pdf</a></p>
+<p>The DwB project, Work Package 11, extracted from the deliverable D11.8 (2015). <em>Guidelines for Output Checking:</em> <a href="https://cros.ec.europa.eu/system/files/2024-02/Output-checking-guidelines.pdf">https://cros.ec.europa.eu/system/files/2024-02/Output-checking-guidelines.pdf</a></p>
+
+
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-frequency-tables.html" class="pagination-link  aria-label=" &lt;span="" tables&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency tables</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-glossary.html" class="pagination-link" aria-label="Glossary">
+        <span class="nav-page-text">Glossary</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

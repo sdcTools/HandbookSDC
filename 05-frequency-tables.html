@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.545">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Handbook on Statistical Disclosure Control - 5&nbsp; Frequency tables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./06-remote-access-issues.html" rel="next">
+<link href="./04-magnitude-tabular-data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-frequency-tables.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency tables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Handbook on Statistical Disclosure Control</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/julienjamme/handbook_sdc_from_doc_to_md" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface to the second edition</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-regulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Confidentiality in legal acts and ethical codes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-microdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microdata</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-magnitude-tabular-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Magnitude tabular data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-frequency-tables.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-remote-access-issues.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Remote access issues</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">5.1</span> Introduction</a></li>
+  <li><a href="#sec-DisclRisks_freq" id="toc-sec-DisclRisks_freq" class="nav-link" data-scroll-target="#sec-DisclRisks_freq"><span class="header-section-number">5.2</span> Disclosure risks</a></li>
+  <li><a href="#sec-Methods_freq" id="toc-sec-Methods_freq" class="nav-link" data-scroll-target="#sec-Methods_freq"><span class="header-section-number">5.3</span> Methods</a></li>
+  <li><a href="#sec-CKM_freq" id="toc-sec-CKM_freq" class="nav-link" data-scroll-target="#sec-CKM_freq"><span class="header-section-number">5.4</span> Cell Perturbation - the Cell Key Method</a>
+  <ul class="collapse">
+  <li><a href="#software-implementing-the-cell-key-method" id="toc-software-implementing-the-cell-key-method" class="nav-link" data-scroll-target="#software-implementing-the-cell-key-method"><span class="header-section-number">5.4.1</span> Software implementing the Cell Key Method</a></li>
+  </ul></li>
+  <li><a href="#sec-Rounding_freq" id="toc-sec-Rounding_freq" class="nav-link" data-scroll-target="#sec-Rounding_freq"><span class="header-section-number">5.5</span> Rounding</a>
+  <ul class="collapse">
+  <li><a href="#sec-Software-Controlled-Rounding" id="toc-sec-Software-Controlled-Rounding" class="nav-link" data-scroll-target="#sec-Software-Controlled-Rounding"><span class="header-section-number">5.5.1</span> Software - How to use Controlled Rounding in <span class="math inline">\(\tau\)</span>‑ARGUS</a></li>
+  </ul></li>
+  <li><a href="#sec-TRS" id="toc-sec-TRS" class="nav-link" data-scroll-target="#sec-TRS"><span class="header-section-number">5.6</span> Targeted Record Swapping</a>
+  <ul class="collapse">
+  <li><a href="#the-trs-noise-mechanism" id="toc-the-trs-noise-mechanism" class="nav-link" data-scroll-target="#the-trs-noise-mechanism"><span class="header-section-number">5.6.1</span> The TRS noise mechanism</a></li>
+  <li><a href="#pros-and-cons-of-targeted-record-swapping" id="toc-pros-and-cons-of-targeted-record-swapping" class="nav-link" data-scroll-target="#pros-and-cons-of-targeted-record-swapping"><span class="header-section-number">5.6.2</span> Pros and cons of targeted record swapping</a></li>
+  </ul></li>
+  <li><a href="#sec-Means_freq" id="toc-sec-Means_freq" class="nav-link" data-scroll-target="#sec-Means_freq"><span class="header-section-number">5.7</span> Publication of mean values</a></li>
+  <li><a href="#sec-InfLoss_freq" id="toc-sec-InfLoss_freq" class="nav-link" data-scroll-target="#sec-InfLoss_freq"><span class="header-section-number">5.8</span> Information loss</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5.9</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency tables</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.1</span> Introduction</h2>
+<p>This chapter discusses disclosure controls for frequency tables, that is tables of counts (or percentages) where each cell value represents the number of respondents in that cell.</p>
+<p>Traditionally frequency tables have been the main method of dissemination for census and social data by NSIs. These tables contain counts of people or households with certain social characteristics. Frequency tables are also used for business data where characteristics are counted, such as the number of businesses. Because of their longer history there has been relatively more research on protecting frequency tables, as compared with newer output methods such as microdata.</p>
+<p><a href="#sec-DisclRisks_freq" class="quarto-xref"><span>Section 5.2</span></a> of the chapter outlines the common types of disclosure risk and how the consideration of these risks leads to the definition of unsafe cells in frequency tables. The process of aggregating individual records into groups to display in tables reduces the risk of disclosure compared with microdata, but usually some additional SDC protection is needed for unsafe cells in tables. Disclosure control methods are used to reduce the disclosure risk by disguising these unsafe cells.</p>
+<p>Advantages and disadvantages of a range of different SDC methods are discussed in <a href="#sec-Methods_freq" class="quarto-xref"><span>Section 5.3</span></a> on a general basis. Well established methods of SDC for frequency tables are the cell key method, introduced in <a href="#sec-CKM_freq" class="quarto-xref"><span>Section 5.4</span></a>, and rounding, discussed in <a href="#sec-Rounding_freq" class="quarto-xref"><span>Section 5.5</span></a> which explains alternative techniques such as conventional and random rounding, small cell adjustment, and the mathematically much more demanding controlled rounding. <a href="#sec-Rounding_freq" class="quarto-xref"><span>Section 5.5</span></a> also provides information on how the software package <span class="math inline">\(\tau\)</span>‑ARGUS can be used to apply this method to frequency tables. <a href="#sec-TRS" class="quarto-xref"><span>Section 5.6</span></a> introduces the targeted record swapping which is a pre-tabular method, <em>e.g.</em> applied on the micro data before generating the table, and is intended to be used as protection method for tables instead of micro data.</p>
+<p><a href="#sec-Means_freq" class="quarto-xref"><span>Section 5.7</span></a> adresses a special kind of disclosure risk that can be connected to the release of means based on original data, when the underlying frequencies are protected by a perturbative, non-additive SDC method.</p>
+<p>The final section of the chapter, <a href="#sec-InfLoss_freq" class="quarto-xref"><span>Section 5.8</span></a>, describes different information loss measures that can be used to evaluate the impact that different disclosure control methods have on the utility of frequency tables.</p>
+</section>
+<section id="sec-DisclRisks_freq" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-DisclRisks_freq"><span class="header-section-number">5.2</span> Disclosure risks</h2>
+<p>Disclosure risks for frequency tables primarily relate to ‘unsafe cells’; that is cells in a table which could lead to a statistical disclosure. There are several types of disclosure risk and the associated unsafe cells can vary in terms of their impact. A risk assessment should be undertaken to evaluate the expected outcomes of a disclosure. In order to be explicit about the disclosure risks to be managed one should also consider a range of potentially disclosive situations and use these to develop appropriate confidentiality rules to protect any unsafe cells.</p>
+<p>The disclosure risk situations described in this section primarily apply to tables produced from registration processes, administrative sources or censuses, <em>e.g.</em> data sources with a complete coverage of the population or sub-population. Where frequency tables are derived from sample surveys, <em>e.g.</em> the counts in the table are weighted, some protection is provided by the sampling process. The sample a priori introduces uncertainty into the zero counts and other counts through sample error.</p>
+<p>It should be noted that when determining unsafe cells one should take into account the variables that define the population within the table, as well as the variables defining the table. For example, a frequency table may display income by region for males. Although sex does not define a row or column it defines the eligible population for the table and therefore must be considered as an identifying variable when thinking about these disclosive situations.</p>
+<p>Disclosure risks are categorised based on how information is revealed. The most common types of disclosure risk in frequency tables are described below.</p>
+<p><em>Identification</em> as a disclosure risk involves finding yourself or another individual or group within a table. Many NSIs will not consider that self-identification alone poses a disclosure risk. An individual that can recall their circumstances at the time of data collection will likely be able to deduct which cell in a published table their information contributes to. In other words, they will be able to identify themselves but only because they know what attributes were provided in the data collection, along with any other information about themselves which may assist in this detection.</p>
+<p>However, identification or self-identification can lead to the discovery of rareness, or even uniqueness, in the population of the statistic, which is something an individual might not have known about themselves before. This is most likely to occur where a cell has a small value, <em>e.g.</em> a 1, or where it becomes in effect a population of 1 through subtraction or deduction using other available information. For certain types of information, rareness or uniqueness may encourage others to seek out the individual. The threat or reality of such a situation could cause harm or distress to the individual, or may lead them to claim that the statistics offer inadequate disclosure protection for them, and therefore others.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> Identification or self-identification may occur from any cells with a count of 1, <em>i.e.</em> representing one statistical unit. <a href="#tbl-mar-by-sex" class="quarto-xref">Table&nbsp;<span>5.1</span></a> presents an example of a low-dimensional table in a particular area where identification may occur.</p>
+<div id="tbl-mar-by-sex" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-mar-by-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Marital Status</th>
+<th style="text-align: center;">Male</th>
+<th style="text-align: center;">Female</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Married</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Divorced</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Single</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">70</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-mar-by-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: Marital status by sex
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The existence of a 1 in the highlighted cell indicates that the female who is single is at risk of being identified from the table.</p>
+<p>Identification itself poses a relatively low disclosure risk, but its tendency to lead to other types of disclosure, together with the perception issues it raises means several NSIs choose to protect against identification disclosure. Section 5.3 discusses protection methods which tend to focus on reducing the number of small cells in tables.</p>
+<p><em>Attribute disclosure</em> involves the uncovering of new information about a person through the use of published data. An individual attribute disclosure occurs when someone who has some information about an individual could, with the help of data from the table (or from a different table with a common attribute), discover details that were not previously known to them. This is most likely to occur where there is a cell containing a 1 in the margin of the table and the corresponding row or column is dominated by zeros. The individual is identified on the basis of some of the variables spanning the table and a new attribute is then revealed about the individual from other variables. Note that identification is a necessary precondition for individual attribute disclosure to occur, and should therefore be avoided.</p>
+<p>This type of disclosure is a particular problem when many tables are released from one data set. If an intruder can identify an individual then additional tables provide more detail about that person. In continuation of the example shown in <a href="#tbl-mar-by-sex" class="quarto-xref">Table&nbsp;<span>5.1</span></a>, the cell disclosing the single female as unique will ultimately turn into a marginal cell in a higher dimensional table such as <a href="#tbl-mar-sex-hours" class="quarto-xref">Table&nbsp;<span>5.2</span></a> below and her number of hours worked is revealed.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong></p>
+<div id="tbl-mar-sex-hours" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-mar-sex-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 8%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td rowspan="2" style="text-align: left;"><strong>Marital status /</strong> <strong>Hours worked</strong></td>
+<td colspan="3" style="text-align: center;"><strong>Male</strong></td>
+<td colspan="3"><strong>Female</strong></td>
+<td><strong>Total</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>More than 30</strong></td>
+<td style="text-align: center;"><strong>16-30</strong></td>
+<td style="text-align: center;"><strong>15 or less</strong></td>
+<td><strong>More than 30</strong></td>
+<td><strong>16-30</strong></td>
+<td><strong>15 or less</strong></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Married</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2</td>
+<td>14</td>
+<td>3</td>
+<td><strong>0</strong></td>
+<td>55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Divorced</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0</td>
+<td>2</td>
+<td>2</td>
+<td><strong>0</strong></td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Single</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td>0</td>
+<td>0</td>
+<td><strong>1</strong></td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">3</td>
+<td>16</td>
+<td>5</td>
+<td><strong>1</strong></td>
+<td>70</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-mar-sex-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: Marital status and sex by hours worked
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The table shows how attribute disclosure arises due to the zeros dominating the column of the single female, and it is learned that she is in the lowest hours-worked band.</p>
+<p>The occurrence of a 2 in the table could also lead to identification if one individual contributed to the cell and therefore could identify the other individual in the cell.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> An example of potential attribute disclosure from the 2001 UK Census data, involves 184 persons living in a particular area in the UK. Uniques (frequency counts of 1) were found for males aged 50-59, males aged 85+, and females aged 60-64. An additional table showed these individuals further disseminated by health variables, and it was learned that the single male aged 50-59 and the single female aged 60-64 had good or fairly good health and no limiting long-term illness, while the single male aged 85+ had poor health and a limiting long-term illness. Without disclosure control, anyone living in this particular area had the potential to learn these health attributes about the unique individuals. Full coverage sources – like the Census – are a particular concern for disclosure control, because they are compulsory, so there is an expectation to find all individuals in the output. Although there may be some missing data and coding errors etc., NSIs work to minimise these, and the data issues are unlikely to be randomly distributed in the output. Certain SDC techniques can be adjusted to target particular variables (or tables) with more or less inherent data error. For example, providing more cell suppression for variables which are known to be better quality and have fewer data issues.</p>
+</div>
+</div>
+</div>
+<p>Another disclosure risk involves learning a new attribute about an identifiable group, or learning a group does not have a particular attribute. This is termed <em>group attribute disclosure</em>, and it can occur when all respondents fall into a subset of categories for a particular variable, <em>i.e.</em> where a row or column contains mostly zeros and a small number of cells that are non-zero. This type of disclosure is a much neglected threat to the disclosure protection of frequency tables, and in contrast to individual attribute disclosure, it does not require individual identification. In order to protect against group attribute disclosure it is essential to introduce ambiguity in the zeros and ensure that all respondents do not fall into just one or a few categories.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> <a href="#tbl-mar-hours" class="quarto-xref">Table&nbsp;<span>5.3</span></a> shows respondents in a particular area broken down by hours worked and marital status.</p>
+<div id="tbl-mar-hours" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-mar-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 23%">
+<col style="width: 22%">
+<col style="width: 16%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td colspan="3" style="text-align: center;"><strong>Hours worked</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Marital status</strong></td>
+<td style="text-align: center;"><strong>Full time</strong></td>
+<td><strong>Part time</strong></td>
+<td><strong>Total</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Married</td>
+<td style="text-align: center;"><strong>6</strong></td>
+<td><strong>0</strong></td>
+<td><strong>6</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Divorced</td>
+<td style="text-align: center;">5</td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Single</td>
+<td style="text-align: center;">2</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">13</td>
+<td>3</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-mar-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.3: Marital status by hours worked
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>From the table we can see that all married individuals work full time, therefore any individual in that area who is married will have their hours worked disclosed.</p>
+<p>The table also highlights another type of group attribute disclosure referred to as ‘within-group disclosure’. This occurs for the divorced group and results from all respondents falling into two response categories for a particular variable, where one of these response categories has a cell value of 1. In this case, the divorced person who works part time knows that all other divorced individuals work full time.</p>
+<p><em>Differencing</em> involves an intruder using multiple overlapping tables and subtraction to gather additional information about the differences between them. A disclosure by differencing occurs when this comparison of two or more tables enables a small cell (0, 1, or 2) to be calculated. Disclosures by differencing can result from three different scenarios which will be explained in turn:</p>
+<p><strong>Disclosure by <em>geographical differencing</em></strong> may result when there are several published tables from the same dataset and they relate to similar geographical areas. If these tables are compared, they can reveal a new, previously unpublished table for the differenced area. For instance, 2001 Output Areas (OA) are similar in geographical size to 1991 Enumeration Districts (ED), and a new differenced table may be created for the remaining area.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> A fictitious example of differencing is presented below in <a href="#tbl-single-hh-hours" class="quarto-xref">Table&nbsp;<span>5.4</span></a>, <a href="#tbl-single-hh-income" class="quarto-xref">Table&nbsp;<span>5.5</span></a> and <a href="#tbl-differenced-table" class="quarto-xref">Table&nbsp;<span>5.6</span></a>.</p>
+<div id="tbl-single-hh-hours" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-single-hh-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Single Person Household Male</th>
+<th style="text-align: center;">Single Person Household Female</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">More than 30</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16-30</td>
+<td style="text-align: center;">128</td>
+<td style="text-align: center;">140</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15 or less</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">49</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-single-hh-hours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.4: Single Person households and hours worked in Area A (2001 OA definition)
+</figcaption>
+</figure>
+</div>
+<div id="tbl-single-hh-income" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-single-hh-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Single Person Household Male</th>
+<th style="text-align: center;">Single Person Household Female</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">More than 30</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16-30</td>
+<td style="text-align: center;">130</td>
+<td style="text-align: center;">140</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15 or less</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">49</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-single-hh-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.5: Single Person households and hours worked in Area A (1991 ED definition)
+</figcaption>
+</figure>
+</div>
+<div id="tbl-differenced-table" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-differenced-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Single Person Household Male</th>
+<th style="text-align: center;">Single Person Household Female</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">More than 30</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16-30</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15 or less</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-differenced-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.6: New differenced table (via geographical differencing)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The above example demonstrates how simple subtraction of the geographical data in <a href="#tbl-single-hh-hours" class="quarto-xref">Table&nbsp;<span>5.4</span></a> from <a href="#tbl-single-hh-income" class="quarto-xref">Table&nbsp;<span>5.5</span></a> can produce disclosive information for the area in <a href="#tbl-differenced-table" class="quarto-xref">Table&nbsp;<span>5.6</span></a>.</p>
+<p><strong>Disclosure by <em>linking</em></strong> can occur when published tables relating to the same base population are linked by common variables. These new linked tables were not published by the NSI and therefore may reveal the statistical disclosure control methods applied and/or unsafe cell counts.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> A fictitious example of disclosure by linking is provided below in <a href="#tbl-employment-status" class="quarto-xref">Table&nbsp;<span>5.7</span></a> to <a href="#tbl-differenced-table-linking" class="quarto-xref">Table&nbsp;<span>5.10</span></a>, which are linked by employment status and whether or not the respondents live in the area.</p>
+<div id="tbl-employment-status" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-employment-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Number of Persons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Employed</td>
+<td style="text-align: center;">85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Not employed</td>
+<td style="text-align: center;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">102</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-employment-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.7: Employment status in Area A
+</figcaption>
+</figure>
+</div>
+<p><br>
+</p>
+<div id="tbl-residence-workplace" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-residence-workplace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 29%">
+<col style="width: 28%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th>Number working in area</th>
+<th>Number living in area</th>
+<th>Living and working in area</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Area A</td>
+<td>49</td>
+<td>102</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-residence-workplace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.8: Area of Residence or Workplace
+</figcaption>
+</figure>
+</div>
+<p><br>
+</p>
+<div id="tbl-males-work-live-A" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-males-work-live-A-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 26%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Living and working in Area A</th>
+<th style="text-align: center;">Living in Area A and working elsewhere</th>
+<th style="text-align: center;">Working in Area A and living elsewhere</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Males</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">58</td>
+<td style="text-align: center;">23</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-males-work-live-A-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.9: Males working and living in Area A
+</figcaption>
+</figure>
+</div>
+<p><br>
+<a href="#tbl-differenced-table-linking" class="quarto-xref">Table&nbsp;<span>5.10</span></a> shows the new data which can be derived by combining and differencing the totals from the existing tables. The linked table discloses the female living and working in Area A as a unique.</p>
+<div id="tbl-differenced-table-linking" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-differenced-table-linking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Living and working in Area A</th>
+<th style="text-align: center;">Living in Area A and working elsewhere</th>
+<th style="text-align: center;">Working in Area A and living elsewhere</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Males</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">58</td>
+<td style="text-align: center;">23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Females</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">27</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-differenced-table-linking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.10: New differenced table (via linking)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Importantly, when linked tables are produced from the same dataset it is not sufficient to consider the protection for each table separately. If a cell requires protection in one table then it will require protection in all tables, otherwise the protection in the first table could be undone.</p>
+<p>The last type of disclosure by differencing involves <strong>differencing of <em>sub-population tables</em></strong><em>.</em> Sub-populations are specific groups which data may be subset into before a table is produced (<em>e.g.</em> a table of fertility may use a sub-population of females). Differencing can occur when a published table definition corresponds to a sub-population of another published table, resulting in the production of a new, previously unpublished table. If the total population is known and the subpopulation of females is gathered from another table, the number of males can be deduced.</p>
+<p>Tables based on categorical variables which have been recoded in different ways may also result in this kind of differencing. To reduce the disclosure risk resulting from having many different versions of variables, most NSIs have a set of standard classifications which they use to release data.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> An example using the number of hours worked is shown below in Tables <a href="#tbl-hours-sex-A" class="quarto-xref">Table&nbsp;<span>5.11</span></a> to <a href="#tbl-differenced-table-subpop" class="quarto-xref">Table&nbsp;<span>5.13</span></a>.</p>
+<div id="tbl-hours-sex-A" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-hours-sex-A-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th>&lt;20</th>
+<th>20 - 39</th>
+<th>40 - 59</th>
+<th>60 - 69</th>
+<th>70 or more</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Male</td>
+<td>6</td>
+<td>9</td>
+<td>5</td>
+<td>8</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Female</td>
+<td>10</td>
+<td>38</td>
+<td>51</td>
+<td>42</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-hours-sex-A-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.11: Hours worked by sex in Area A
+</figcaption>
+</figure>
+</div>
+<p><br>
+</p>
+<div id="tbl-hours-sex-A-2" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-hours-sex-A-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th>&lt;25</th>
+<th>25 - 39</th>
+<th>40 - 59</th>
+<th>60 - 69</th>
+<th>70 or more</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Male</td>
+<td>7</td>
+<td>8</td>
+<td>5</td>
+<td>8</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Female</td>
+<td>10</td>
+<td>38</td>
+<td>51</td>
+<td>42</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-hours-sex-A-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.12: Hours worked by sex in Area A
+</figcaption>
+</figure>
+</div>
+<p><br>
+</p>
+<div id="tbl-differenced-table-subpop" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-differenced-table-subpop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th>&lt;20</th>
+<th>20 - 24</th>
+<th>25 - 39</th>
+<th>40 - 59</th>
+<th>60 - 69</th>
+<th>70 or more</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Male</td>
+<td>6</td>
+<td><strong>1</strong></td>
+<td>8</td>
+<td>5</td>
+<td>8</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Female</td>
+<td>10</td>
+<td>0</td>
+<td>38</td>
+<td>51</td>
+<td>42</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-differenced-table-subpop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.13: New differenced table (via sub-populations)
+</figcaption>
+</figure>
+</div>
+<p><br>
+</p>
+<p>The example indicates how a new table can be differenced from the original tables, in particular a new hours worked group (for 20-24 hours) which reveals that the male falling into this derived hours worked group is unique.</p>
+</div>
+</div>
+</div>
+<p>More information on disclosure by differencing can be obtained from Brown (2003) and Duke-Williams and Rees (1998).</p>
+<!-- Niet geneste hierarchieen -->
+<p>In addition to providing actual disclosure control protection for sensitive information, NSIs need to be seen to be providing this protection. The public may have a different understanding of disclosure control risks and their perception is likely to be influenced by what they see in tables. If many small cells appear in frequency tables users may perceive that either no SDC, or insufficient SDC methods have been applied to the data. Section 5.3 discusses SDC methods, but generally some methods are more obvious in the output tables than others. To protect against negative perceptions, NSIs should be transparent about the SDC methods applied. Managing perceptions is important to maintain credibility and responsibility towards respondents. Negative perceptions may impact response rates for censuses and surveys if respondents perceive that there is little concern about protecting their confidentiality. More emphasis has been placed on this type of disclosure risk in recent years due to declining response rates and data quality considerations. It is important to provide clear explanations to the public about the protection afforded by the SDC method, as well as guidance on the impact of the SDC methods on the quality and utility of the outputs. Explanations should provide details of the methods used but avoid stating the exact parameters as this may allow intruders to unpick the protection.</p>
+<div id="tbl-summary-risks-freq-table" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-summary-risks-freq-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Disclosure Risk</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Identification</td>
+<td style="text-align: left;">Identifying an individual in a table</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attribute disclosure (individual and group)</td>
+<td style="text-align: left;">Finding out previously unknown information about an individual (or group) from a table</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Disclosure by differencing</td>
+<td style="text-align: left;">Uncovering new information by comparing more than one table</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Perception of disclosure</td>
+<td style="text-align: left;">The public’s feeling of risk based on what is seen in released tables</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-summary-risks-freq-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.14: Summary of disclosure risks associated with frequency tables
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-Methods_freq" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-Methods_freq"><span class="header-section-number">5.3</span> Methods</h2>
+<p>There are a variety of disclosure control methods which can be applied to tabular data to provide confidentiality protection. The choice of which method to use needs to balance the how the data is used, the operational feasibility of the method, and the disclosure control protection it offers. SDC methods can be divided into three categories which will be discussed in turn below: those that adjust the data before tables are designed (pre-tabular), those that determine the design of the table (table redesign) and those that modify the values in the table (post-tabular). Further information on SDC methods for frequency tables can also be found in Willenborg &amp; Ton de Waal (2001) and Doyle et al (2001).</p>
+<p><strong><em>Pre-tabular</em></strong><br>
+Pre-tabular disclosure control methods are applied to microdata before it is aggregated and output in frequency tables. These methods include: record swapping, over imputation, data switching PRAM, sampling and synthetic mircrodata (see <a href="03-microdata.html#sec-microdata-protection-methods" class="quarto-xref"><span>Section 3.4</span></a> or <a href="#sec-TRS" class="quarto-xref"><span>Section 5.6</span></a>, for details of the methods). A key advantage of pre-tabular methods is that the output tables are consistent and additive since all outputs are created from protected microdata. Pre-tabular methods by definition only need to be applied once to the microdata and after they are implemented for a microdata set (often in conjunction with threshold or sparsity rules) they can be used to allow flexible table generation. This is because pre-tabular methods provide some protection against disclosure by differencing and any uncovered slivers will have already had SDC protection applied.</p>
+<p>Disadvantages of pre-tabular techniques are that one must have access to the original microdata. Also, a high level of perturbation may be required in order to disguise all unsafe cells. Pre-tabular methods have the potential to distort distributions in the data, but the actual impact of this will depend on which method is used and how it is applied. It may be possible to target pre-tabular methods towards particular areas or sensitive variables. Generally pre-tabular methods are not as transparent to users of the frequency tables and there is no clear guidance that can be given in order to make adjustments in their statistical analysis for this type of perturbation.</p>
+<p><strong><em>Table redesign</em></strong><br>
+Table redesign is recommended as a simple method that can minimise the number of unsafe cells in a table and preserve original counts. It can be applied alongside post-tabular or pre-tabular disclosure control methods, as well as being applied on its own. As an additional method of protection it has been used in many NSI’s including the UK and New Zealand. As table redesign alone provides relatively less disclosure control protection than other methods, it is often used to protect sample data, which already contains some protection from the sampling process.</p>
+<p>Table redesign methods used to reduce the risk of disclosure include;</p>
+<ul>
+<li>aggregating to a higher level geography or to a larger population subgroup</li>
+<li>applying table thresholds</li>
+<li>collapsing or grouping categories of variables (reducing the level of detail)</li>
+<li>applying a minimum average cell size to released tables.</li>
+</ul>
+<p>The advantages of table redesign methods are that original counts in the data are not damaged and the tables are additive with consistent totals. In addition, the method is simple to implement and easy to explain to users. However, the detail in the table will be greatly reduced, and if many tables do not pass the release criteria it may lead to user discontent.</p>
+<p><strong><em>Post-tabular</em></strong><br>
+Statistical disclosure control methods that modify cell values within tabular outputs are referred to as post-tabular methods. Such methods are generally clear and transparent to users, and are easier to understand and account for in analyses, than pre-tabular methods. However, post-tabular methods suffer the problem that each table must be individually protected, and it is necessary to ensure that the new protected table cannot be compared against any other existing outputs in such a way which may undo the protection that has been applied. In addition post-tabular methods can be cumbersome to apply to large tables. The main post-tabular methods include cell suppression, the cell key method, and rounding.</p>
+<div id="tbl-summary-sdc-freq-table" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-summary-sdc-freq-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Pre-Tabular</th>
+<th style="text-align: left;">Table Redesign</th>
+<th style="text-align: left;">Post-Tabular</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Methods applied before tables are created</td>
+<td style="text-align: left;">Methods applied as tables are created</td>
+<td style="text-align: left;">Methods applied after tables are created</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tables and totals will be additive and consistent</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Methods are visible to users and can be accounted for in analysis</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Methods need to be applied to each table individually</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Flexible table generation is possible</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No (for Cell suppression)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-summary-sdc-freq-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.15: Summary of Tabular Disclosure Control Methods
+</figcaption>
+</figure>
+</div>
+<p>The main perturbative post-tabular methods of disclosure control are discussed in the two subsequent sections.</p>
+<p><strong>Cell suppression</strong> Cell suppression is a non-perturbative method of disclosure control, (it is described in detail in <a href="04-magnitude-tabular-data.html">Chapter 4</a>), but the method essentially removes sensitive values and denotes them as missing. Protecting the unsafe cells is called primary suppression, and to ensure these cannot be derived by subtractions from published marginal totals, additional cells are selected for secondary suppression.</p>
+<p>Cell suppression cannot be unpicked provided secondary cell suppression is adequate and the same cells in any linked tables are also suppressed. Other advantages are that the method is easy to implement on unlinked tables and it is highly visible to users. The original counts in the data that are not selected for suppression are left unadjusted.</p>
+<p>However cell suppression has several disadvantages as a protection method for frequency tables, in particular information loss can be high if more than a few suppressions are required. Secondary suppression removes cell values which are not necessarily a disclosure risk, in order to protect other cells which are a risk. Disclosive zeros need to be suppressed and this method does not protect against disclosure by differencing. This can be a serious problem if more than one table is produced from the same data source (<em>e.g.</em> flexible table generation). When disseminating a large number of tables it is much harder to ensure the consistency of suppressed cells, and care must be taken to ensure that same cells in linked tables are always suppressed.</p>
+<p>A simple instance of a Cell Perturbation method is Barnardisation. Barnardisation modifies each internal cell of every table by +1, 0 or -1, according to probabilities <span class="math inline">\(p/2\)</span>, <span class="math inline">\(1-p\)</span> and <span class="math inline">\(p/2\)</span> respectively for a fixed <span class="math inline">\(p\in(0,1)\)</span>. Zeros are not adjusted. The method offers some protection against disclosure by differencing, however table totals are added up from the perturbed internal cells, resulting in inconsistent totals between tables. Typically, the probability <span class="math inline">\(p\)</span> is quite small and therefore a high proportion of risky cells are not modified. The exact proportion of cells modified is not revealed to the user. This is generally a difficult method to implement for flexible output.</p>
+<p>The Cell Key Method (CKM, described in <a href="#sec-CKM_freq" class="quarto-xref"><span>Section 5.4</span></a>) is a much more advanced cell perturbation method which was developed by the Australian Bureau of Statistics (hence it used to be known as ABS Cell Perturbation method) to protect the outputs from their 2006 Census. The method is designed to protect tables by altering potentially all cells by small amounts. The cells are adjusted in such a way that the same cell is perturbed in the same way even when it appears across different tables. This method adds sufficient ‘noise’ to each cell so if an intruder tried to gather information by differencing, they would not be able to obtain the real data. When integrated into the table generation process, the method provides protection for flexible tables and can be used to produce perturbations for multiple large high dimensional hierarchical tables. It is one of the methods recommended by Eurostat for protection of the Census 2022 output data.</p>
+<p>The method is less transparent than other methods, such as, for example, conventional rounding.</p>
+<p>Rounding (discussed in <a href="#sec-Rounding_freq" class="quarto-xref"><span>Section 5.5</span></a>) involves adjusting the values in all cells in a table to a specified rounding base so as to create uncertainty about the real value for any cell. There are several alternative rounding methods including: conventional rounding, random rounding and controlled rounding. Properties of the different alternative methods (as compared in the summary table <a href="#tbl-summary-sdc-freq-table" class="quarto-xref">Table&nbsp;<span>5.15</span></a>) vary widely between those variants.</p>
+</section>
+<section id="sec-CKM_freq" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-CKM_freq"><span class="header-section-number">5.4</span> Cell Perturbation - the Cell Key Method</h2>
+<p>The Cell Key Method is a post tabular perturbative disclosure control method, that adds noise to the original table cell values. Since the individual table cells are equipped with a noise independently, please note that this implies that the resulting table is no longer additive. For example, after perturbation, a population table could show that 1000 males, 1100 females and 16 non-binary persons live in an area, while the total count is 2109 persons. This non-additivity is part of the protective mechanism of this method and at the same time offers the advantage that the deviation from the original value can be kept as small as possible. It is not recommended, generally, to form such aggregates subsequently from perturbed values, because this would also add the sum of all noise terms to the aggregate, which can make the deviation undesirably large.</p>
+<p>The Cell Key Method is a more informed post-tabular method of disclosure control since it utilizes pre-tabular microdata information during the perturbation stage. This is to achieve that cells are adjusted in such a way that the same cell is perturbed in the same way even when it appears across different tables. The method is highly dependent on the so-caleld ‘lookup table’ that is used to determine the noise to be added to each particular cell before dissemination, but is flexible in that lookup tables can be specifically designed to meet needs, and different lookup tables could potentially be used for different tables. Furthermore, the lookup table can be designed to reflect other post-tabular methods (<em>e.g.</em> small cell adjustments or random rounding). The method provides protection for flexible tables and can be used to produce perturbations for large high dimensional hierarchical tables. As noted above, since perturbation is applied to each table cell independently, additivity gets lost. This is similar to the case of rounding but due to the complexity of the method, those inconsistencies in the data are harder to communicate. Theoretically one might add a post-processing stage to restore additivity, using, for example, an iterative fitting algorithm which may attempt to balance and minimise absolute distances to the stage one table (although not necessarily producing an optimal solution). However, restoring additivity tends to increase the noise, and may cause different perturbation for the same cell when it appears across different tables. It is therefore not generally recommended.</p>
+<p>Please note that there is not one ultimate way of how to define the Record Key, the Cell Key and the lookup table. The Australian Bureau of Statistics for example relies on integer values for their Record Keys whereas the Center of Excellence (CoE) on SDC presented an approach where the Record Keys are uniformly distributed between 0 and 1, which should allow for more flexibility regarding noise design. We will focus on the latter approach here, which is also implemented in the software <span class="math inline">\(\tau\)</span>-ARGUS and the R-package <code>cellKey</code>. In the variant suggested by the CoE on SDC all digits before the decimal point are removed from the Cell Key (being the sum of the Record Keys within a table cell), which makes it another random number that is uniformly distributed between 0 and 1. The lookup table now can be interpreted as the tabular representation of a piecewise constant inverse distribution function. By looking up values that are uniformly distributed, we thus obtain realizations of a random variable with the corresponding coded distribution.</p>
+<p>It is possible to create lookup tables, which are also known as perturbation tables or p-tables, that are tailored to your needs, by using the freely accesible R-package <code>ptable</code>. The package allows, among other things, to specify a maximum for the noise you want to add and the probability for the noise to be zero, which is equivalent to retaining the original value. You also have the option to generate the distribution, coded inside the perturbation table, in such a way, that certain values, such as ones or twos, do not occur in the perturbed output at all. The method for creating such tables, implemented in the <code>ptable</code> package, is based on a maximum entropy approach as described, for example, in Giessing (2016) and yields a distribution with zero mean. Therefore, the distribution of the data will not get biased by adding the noise. For more information about the <code>ptable</code> package, please see the vignette or the reference manual on CRAN (<a href="https://cran.r-project.org/web/packages/ptable">https://cran.r-project.org/web/packages/ptable</a>).</p>
+<p>The protection effect arises from the uncertainty of a data attacker about whether and, if so, how much a value has been changed. Therefore, all published figures must be perturbed with the Cell Key Method, even those that do not pose a disclosure risk per se. Before the Cell Key Method can be applied, one has to consider which maximum deviation is still acceptable and how large the variance of the noise should be. But one should always keep in mind that a low maximum deviation also leads to less protection and hence one cannot focus on information loss alone. It is especially risky to publish the maximum deviation, since a data attacker can use this information to draw further conclusions.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> To illustrate how the Cell Key Method is used, <a href="#tbl-ckm_p_table" class="quarto-xref">Table&nbsp;<span>5.16</span></a> shows a purely fictional manually created perturbation table with a maximum deviation of 1 and without ones in the results after perturbation.</p>
+<div id="tbl-ckm_p_table" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-ckm_p_table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">original value</th>
+<th style="text-align: right;">perturbed value</th>
+<th style="text-align: right;">probability of occurrence</th>
+<th style="text-align: right;">noise</th>
+<th style="text-align: right;">lower bound</th>
+<th style="text-align: right;">upper bound</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-ckm_p_table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.16: Fictional example of a p-table
+</figcaption>
+</figure>
+</div>
+<p>As you can see the values in the colum ‘original value’ range from 0 to 3. This is because a different distribution is stored in the p-table for each of these values. Otherwise, negative values could arise, for example. This means that within a p-table several probability distributions for the noise are stored, which are used depending on the original value. In the given example for an original value of 1 the noise <span class="math inline">\(\textit{v}\)</span> is defined as a uniform distribution on the set <span class="math inline">\(\lbrace -1,1\rbrace\)</span>, whereas for an original value of 2 with a probability of 80% the noise is 0 and with a probability of 20% it is 1. For every original value which is at least 3 the lowest lines in the p table will be used to define the noise <span class="math inline">\(\textit{v}\)</span>, which encode a symmetric distribution on <span class="math inline">\(\lbrace -1,0,1\rbrace\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="tbl-ckm_respondents" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-ckm_respondents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">ID</th>
+<th style="text-align: right;">Sex</th>
+<th style="text-align: right;">Record Key</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">0.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">0.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-ckm_respondents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.17: Exemplary Microdata
+</figcaption>
+</figure>
+</div>
+<p>Now if we have a set of microdata which contains three male respondents with Record Keys 0.5, 0.3 and 0.6 respectively, as shown in <a href="#tbl-ckm_respondents" class="quarto-xref">Table&nbsp;<span>5.17</span></a>, then in a table cell that aggregates those three respondents the corresponding sum of Record Keys is 0.9+0.3+0.6=1.8. Since for the Cell Key the digits before the decimal point are irrelevant, we get a corresponding Cell Key of 0.8. Now to identify the noise <span class="math inline">\(\textit{v}\)</span> that has to be added to the original count of 3, we have to concentrate on those lines of the p-table, for which the original value is 3 and identify that line for which <span class="math inline">\(\textit{'lower bound'} &lt; 0.8 \leq \textit{'upper bound'}\)</span>. This is the last row of our exemplary table, in which the value 1 is given for the noise. Hence the perturbed count for this cell computes as <span class="math inline">\(\hat{n} = n + v = 3 + 1 = 4\)</span>. At this point, it should be noted that if, in addition to frequencies, magnitudes and mean values are also published, the mean values should rather not be shown as original values, since otherwise there is a risk that the corresponding original frequency values can be disclosed. See the discussion in <a href="#sec-Means_freq" class="quarto-xref"><span>Section 5.7</span></a>.</p>
+</div>
+</div>
+</div>
+<section id="software-implementing-the-cell-key-method" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="software-implementing-the-cell-key-method"><span class="header-section-number">5.4.1</span> Software implementing the Cell Key Method</h3>
+<p>For application of the Cell Key Method, so called <span class="math inline">\(p\)</span>-tables describing the distribution of the noise are needed. They should be specified in a certain format. The R-package <code>ptable</code>, available on CRAN, can be used to produce such p-tables for use in the method specific R-package <code>cellKey</code> as well as for use in the general purpose software <span class="math inline">\(\tau\)</span>‑ARGUS. For information how to use the software, we refer to the vignettes of the respective R-packages on CRAN (<a href="https://cran.r-project.org/">https://cran.r-project.org/</a>) and to the manual of <span class="math inline">\(\tau\)</span>-ARGUS and to the quick references for CKM in <span class="math inline">\(\tau\)</span>‑ARGUS on GitHub (<a href="https://github.com/sdcTools/tauargus/releases">https://github.com/sdcTools/tauargus/releases</a>).</p>
+</section>
+</section>
+<section id="sec-Rounding_freq" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-Rounding_freq"><span class="header-section-number">5.5</span> Rounding</h2>
+<p>Rounding involves adjusting the values in all cells in a table to a specified base so as to create uncertainty about the real value for any cell. It adds a small, but acceptable, amount of distortion to the original data. Rounding is considered to be an effective method for protecting frequency tables, especially when there are many tables produced from one dataset. It provides protection to small frequencies and zero values (<em>e.g.</em> empty cells). The method is simple to implement, and for the user it is easy to understand as the data is visibly perturbed.</p>
+<p>Care must be taken when combining rounded tables to create user-defined areas. Cells can be significantly altered by the rounding process and aggregation compounds these rounding differences. Furthermore, the level of association between variables is affected by rounding, and the variance of the cell counts is increased.</p>
+<p>There are several alternative rounding methods including; conventional rounding, random rounding, controlled rounding, and semi-controlled rounding, which are outlined below. Each method is flexible in terms of the choice of the base for rounding, although common choices are 3 and 5. All rounded values (other than zeros) will then be integer multiples of 3 or 5, respectively.</p>
+<p><strong><em>Conventional rounding</em></strong><br>
+When using conventional rounding, each cell is rounded to the nearest multiple of the base. The marginal totals and table totals are rounded independently from the internal cells.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> <a href="#tbl-counts-sex-area" class="quarto-xref">Table&nbsp;<span>5.18</span></a> shows counts of males and females in different areas, while <a href="#tbl-counts-sex-area-round" class="quarto-xref">Table&nbsp;<span>5.19</span></a> shows the same information rounded to a base of 5.</p>
+<div id="tbl-counts-sex-area" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-counts-sex-area-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Male</th>
+<th style="text-align: center;">Female</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Area A</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td>Area B</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td>Area C</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">32</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">39</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-counts-sex-area-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.18: Population counts by sex
+</figcaption>
+</figure>
+</div>
+<p><br>
+</p>
+<div id="tbl-counts-sex-area-round" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-counts-sex-area-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Male</th>
+<th style="text-align: center;">Female</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Area A</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td>Area B</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td>Area C</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">35</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-counts-sex-area-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.19: Population counts by sex (conventional rounding)
+</figcaption>
+</figure>
+</div>
+<p>The example shows the Males unsafe cell in Area A in <a href="#tbl-counts-sex-area" class="quarto-xref">Table&nbsp;<span>5.18</span></a> is protected by the rounding process in <a href="#tbl-counts-sex-area-round" class="quarto-xref">Table&nbsp;<span>5.19</span></a>.</p>
+</div>
+</div>
+</div>
+<p>The advantages of this method are that the table totals are rounded independently from the internal cells, and therefore consistent table totals will exist within the rounding base. Cells in different tables which represent the same records will always be the same. While this method does provide some confidentiality protection, it is considered less effective than controlled or random rounding. Tables are not additive (<em>e.g.</em> row 3 of <a href="#tbl-counts-sex-area-round" class="quarto-xref">Table&nbsp;<span>5.19</span></a> does not sum to 35) and the level of information is poor if there are many values of 1 and 2. The method is not suitable for flexible table generation as it can be easily ‘unpicked’ when differencing and linking tables. For these reasons conventional rounding is not recommended as a disclosure control method for frequency tables. Conventional rounding is sometimes used by NSIs for quality reasons (<em>e.g.</em> rounding data from small sample surveys to emphasize the uncertain nature of the data). The distinction between rounding performed for disclosure control reasons and rounding performed for quality reasons should always be made clear to users.</p>
+<p><strong><em>Random rounding</em></strong><br>
+Random rounding shifts each cell to one of the two nearest base values in a random manner. Each cell value is rounded independently of other cells, and has a greater probability of being rounded to the nearest multiple of the rounding base. For example, with a base of 5, cell values of 6, 7, 8, or 9 could be rounded to either 5 or 10. Marginal totals are typically rounded separately from the internal cells of the table (<em>i.e.</em> they are not created by adding rounding cell counts) and this means tables are not necessarily additive. Various probability schemes are possible, but an important characteristic is that they should be unbiased. This means there should be no net tendency to round up or down and the average difference from the original counts should be zero.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> If we are rounding to base 3 the residual of the cell value after dividing by 3 can be either 0, 1 or 2.</p>
+<ul>
+<li>If the residual is zero no change is made to the original cell value.</li>
+<li>If the residual is 1, then with a probability of <span class="math inline">\(2/3\)</span> the cell value is rounded down to the lower multiple of 3 and with a probability of <span class="math inline">\(1/3\)</span> the cell value is rounded up to the higher multiple of 3.</li>
+<li>If the residual is 2, the probabilities are <span class="math inline">\(2/3\)</span> to round up and <span class="math inline">\(1/3\)</span> to round down.</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Original Value</th>
+<th style="text-align: center;">Rounded Value (probability)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0 (<span class="math inline">\(1\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0 (<span class="math inline">\(2/3\)</span>) or 3 (<span class="math inline">\(1/3\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3(<span class="math inline">\(2/3\)</span>) or 0(<span class="math inline">\(1/3\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3 (<span class="math inline">\(1\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3(<span class="math inline">\(2/3\)</span>) or 6(<span class="math inline">\(1/3\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6(<span class="math inline">\(2/3\)</span>) or 3(<span class="math inline">\(1/3\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">6 (<span class="math inline">\(1\)</span>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> As another example, <a href="#tbl-counts-sex-round" class="quarto-xref">Table&nbsp;<span>5.20</span></a> shows a possible solution for <a href="#tbl-counts-sex-area" class="quarto-xref">Table&nbsp;<span>5.18</span></a> using random rounding to base 5.</p>
+<div id="tbl-counts-sex-round" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-counts-sex-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Male</th>
+<th style="text-align: center;">Female</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Area A</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td>Area B</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td>Area C</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">35</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-counts-sex-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.20: Population counts by sex (with random rounding)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The main advantages of random rounding are that it is relatively easy to implement, it is unbiased, and it is clear and transparent to users. Table totals are consistent within the rounding base because the totals are rounded independently from the internal cells. All values of 1 and 2 are removed from the table by rounding, which prevents cases of perceived disclosure as well as actual disclosure. The method may also provide some protection against disclosure by differencing as rounding should obscure most of the exact differences between tables.</p>
+<p>However, random rounding has disadvantages including the increased information loss which results from the fact that all cells (even safe cells) are rounded. In some instances the protection can be ‘unpicked’ and in order to ensure adequate protection, the resulting rounded tables need to be audited. Although the method is unbiased, after applying random rounding there may be inconsistencies in data within tables (<em>e.g.</em> rows or columns which do not add up like row 3 of <a href="#tbl-counts-sex-round" class="quarto-xref">Table&nbsp;<span>5.20</span></a> does not sum to 35) and between tables (<em>e.g.</em> the same cell may be rounded to a different number in different tables).</p>
+<p><strong><em>Controlled rounding</em></strong><br>
+Unlike other rounding methods, controlled rounding yields additive rounded tables. It is the statistical disclosure control method that is generally most effective for frequency tables. The method uses linear programming techniques to round cell values up or down by small amounts, and its strength over other methods is that additivity is maintained in the rounded table, (<em>i.e.</em> it ensures that the rounded values add up to the rounded totals and sub-totals shown in the table). This property not only permits the release of realistic tables which are as close as possible to the original table, but it also makes it impossible to reduce the protection by ‘unpicking’ the original values by exploiting the differences in the sums of the rounded values. Another useful feature is that controlled rounding can achieve specified levels of protection. In other words, the user can specify the degree of ambiguity added to the cells, for example, they may not want a rounded value within 10% of the true value. Controlled rounding can be used to protect flexible tables although the time taken to implement the method may make it unsuitable for this purpose.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Example</strong> <a href="#tbl-counts-sex-control-round" class="quarto-xref">Table&nbsp;<span>5.21</span></a> shows a possible rounding solution for <a href="#tbl-counts-sex-area" class="quarto-xref">Table&nbsp;<span>5.18</span></a>, using controlled rounding to base 5.</p>
+<div id="tbl-counts-sex-control-round" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-counts-sex-control-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Male</th>
+<th style="text-align: center;">Female</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Area A</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="even">
+<td>Area B</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td>Area C</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-counts-sex-control-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.21: Population counts by sex (controlled rounding)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The disadvantages of controlled rounding are that it is a complicated method to implement, and it has difficulty coping with the size, scope and magnitude of the census tabular outputs. Controlled rounding is implemented in the software package <span class="math inline">\(\tau\)</span>‑ARGUS, see <a href="#sec-Software-Controlled-Rounding" class="quarto-xref"><span>Section 5.5.1</span></a> below for detailed information. Nevertheless, it is hard to find control-rounded solutions for sets of linked tables, and in order to find a solution cells may be rounded beyond the nearest rounding base. In this case users will know less about exactly how the table was rounded and it is also likely to result in differing values for the same internal cells across different tables.</p>
+<p><strong><em>Semi-controlled rounding</em></strong><br>
+Semi-controlled rounding also uses linear programming to round table entries up or down but in this case it controls for the overall total in the table, or it controls for each separate output area total. Other marginal and sub totals will not necessarily be additive. This ensures that either the overall total of the table is preserved (or the output area totals are all preserved), and the utility of this method is increased compared with conventional and random rounding. Consistent totals are provided across linked tables, and therefore the method can be used to protect flexible tables, although the time it takes to implement may make it unsuitable. Disadvantages of semi-controlled rounding relate to the fact that tables are not fully additive, and finding an optimal solution can prove difficult.</p>
+<div id="tbl-summary-rounding-methods" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-summary-rounding-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Conventional Rounding</th>
+<th style="text-align: left;">Controlled (and semi-controlled) Rounding</th>
+<th style="text-align: left;">Random rounding</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Internal cells add to table totals (additvity)</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Method provides enough SDC protection (and cannot be unpicked)</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">In some situations this method can be unpicked</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Method is quick and easy to implement</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">It can take time for this method to find a solution</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-summary-rounding-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.22: Summary of SDC rounding methods
+</figcaption>
+</figure>
+</div>
+<p>There are some more specialised rounding methods which have been used at various times by NSIs to protect census data, one of these methods is described below.</p>
+<p>Small cell adjustment was used (in addition to random swapping (a pre-tabular method)) to protect 2001 Census tabular outputs for England, Wales and Northern Ireland. This method was also used by the ABS to protect their tabular outputs from the 2001 Census.</p>
+<p>Applying small cell adjustments involves randomly adjusting small cells within tables upwards or downwards to a base using an unbiased prescribed probability scheme. During the process:</p>
+<ul>
+<li>small counts appearing in a table cells are adjusted</li>
+<li>totals and sub totals are calculated as the sum of the adjusted counts. This means all tables are internally additive.</li>
+<li>tables are independently adjusted so counts of the same population which appear in two different tables, may not necessarily have the same value.</li>
+<li>tables for higher geographical levels are independently adjusted, and therefore will not necessarily be the sum of the lower component geographical units.</li>
+<li>output is produced from one database which has been adjusted for estimated undercount so the tables produced from this one database provide a consistent picture of this one population.</li>
+</ul>
+<p>Advantages of this method are that tables are additive, and the elimination of small cells in the table removes cases of perceived as well as actual identity disclosure. In addition, loss of information is lower for standard tables as all other cells remain the same, however information loss will be high for sparse tables. Other disadvantages include inconsistency of margins between linked tables since margins are calculated using perturbed internal cells, and this increases the risk of tables being unpicked. Furthermore, this method provides little protection against disclosure by differencing, and is not suitable for flexible table generation.</p>
+<section id="sec-Software-Controlled-Rounding" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="sec-Software-Controlled-Rounding"><span class="header-section-number">5.5.1</span> Software - How to use Controlled Rounding in <span class="math inline">\(\tau\)</span>‑ARGUS</h3>
+<p><span class="math inline">\(\tau\)</span>-ARGUS (Hunderpool et al, 2014) is a software package which provides tools to protect tables against the risk of statistical disclosure (<span class="math inline">\(\tau\)</span>-ARGUS is also discussed in <a href="04-magnitude-tabular-data.html">Chapter 4</a>). Controlled rounding is easy to use in <span class="math inline">\(\tau\)</span>-ARGUS and the controlled rounding procedure (CRP) was developed by JJ Salazar. This procedure is based on optimisation techniques similar to the procedure developed for cell suppression. The CRP yields additive rounded tables, where the rounded values add up to the rounded totals and sub-totals shown in the table. This means realistic tables are produced and it makes it impossible to reduce the protection by “unpicking” the original values by exploiting the differences in the sums of the rounded values. The CRP implemented in <span class="math inline">\(\tau\)</span>-ARGUS also allows the specification of hierarchical structures within the table variables.</p>
+<p>Controlled rounding gives sufficient protection to small frequencies and creates uncertainty about the zero values (<em>i.e.</em> empty cells). (This is not the case for suppression in terms of how it is now implemented in <span class="math inline">\(\tau\)</span>-ARGUS).</p>
+<p>In Zero-restricted Controlled Rounding cell counts are left unchanged if they are multiples of the rounding base or shifted to one of the adjacent multiples of the rounding base. The modified values are chosen so that the sum of the absolute differences between the original values and the rounded ones are minimized (under an additivity constraint). Therefore, some values will be rounded up or down to the most distant multiple of the base in order to help satisfy these constraints. In most cases a solution can be found, but in some cases it cannot and the zero-restriction constraint in CRP can be relaxed to allow the cell values to be rounded to a nonadjacent multiple of the base. This relaxation is controlled by allowing the procedure to take a maximum number of <em>steps</em>.</p>
+<p>For example, consider rounding a cell value of 7 when the rounding base equals 5. In zero-restricted rounding, the solution can be either 5 or 10. If 1 step is allowed, the solution can be 0, 5, 10 or 15. In general, let <span class="math inline">\(z\)</span> be the integer to be rounded in base <span class="math inline">\(b\)</span>, then this number can be written as</p>
+<p><span class="math inline">\(z = u b + r\)</span>,</p>
+<p>where <span class="math inline">\(ub\)</span> is the lower adjacent multiple of <span class="math inline">\(b\)</span> (hence <span class="math inline">\(u\)</span> is the floor value of <span class="math inline">\(z/b\)</span>) and <span class="math inline">\(r\)</span> is the remainder. In the zero-restricted solution the rounded value, <span class="math inline">\(a\)</span>, can take values:</p>
+<p><span class="math display">\[\begin{align}
+a =
+\begin{cases}
+  a = ub &amp;\text{if}\quad r=0
+  \\
+  a=
+  \begin{cases}
+    ub  \\
+    (u+1)b
+  \end{cases} &amp;\text{if}\quad r\neq0.
+\end{cases}
+\end{align}\]</span></p>
+<p>If <span class="math inline">\(K\)</span> steps are allowed, then <span class="math inline">\(a\)</span>, can take values:</p>
+<p><span class="math display">\[\begin{align}
+a = \begin{cases}
+\max_{j\in\{-K,\ldots,K\}}(0,(u+j)) b   &amp;\text{if}\quad r=0\\
+\max_{j\in\{-K,\ldots,K+1\}}(0,(u+j)) b &amp;\text{if}\quad r\neq0
+\end{cases}
+\end{align}\]</span></p>
+<section id="optimal-first-feasible-and-rapid-solutions" class="level4" data-number="5.5.1.1">
+<h4 data-number="5.5.1.1" class="anchored" data-anchor-id="optimal-first-feasible-and-rapid-solutions"><span class="header-section-number">5.5.1.1</span> Optimal, first feasible and RAPID solutions</h4>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expert level
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For a given table there can exist more than one controlled rounded solution, and any of these solutions is a <em>feasible</em> solution. The Controlled Rounding Program embedded in <span class="math inline">\(\tau\)</span>‑ARGUS determines the <em>optimal</em> solution by minimising the sum of the absolute distances of the rounded values, from the original ones. Denoting the cell values, including the totals and sub-totals, with <em>z</em><sub>i</sub> and the corresponding rounded values with <em>a</em><sub>i</sub>, the function that is minimised is</p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{N} \left| z_{i}-a_{i} \right| ,
+\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the number of cells in a table (including the marginal ones). The optimisation procedure for controlled rounding is a rather complex one (<em>NP</em>-complete program), so finding the optimal solution may take a long time for large tables. In fact, the algorithm iteratively builds different rounded tables until it finds the optimal solution. In order to limit the time required to obtain a solution, the algorithm can be stopped when the first feasible solution is found. In many cases, this solution is quite close to the optimal one and it can be found in significantly less time.</p>
+<p>The RAPID solution is produced by CRP as an approximated solution when a feasible one cannot be found. This solution is obtained by rounding the internal cells to the closest multiple of the base and then computing the marginal cells by addition. This means that the computed marginal values can be many jumps away from the original value. However, a RAPID solution is produced at each iteration of the search for an optimal solution, and it will improve (in terms of the loss function) over time. <span class="math inline">\(\tau\)</span>‑ARGUS allows the user to stop CRP after the first RAPID solution is produced, but this is likely to be very far away from the optimal one.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="protection-provided-by-controlled-rounding" class="level4" data-number="5.5.1.2">
+<h4 data-number="5.5.1.2" class="anchored" data-anchor-id="protection-provided-by-controlled-rounding"><span class="header-section-number">5.5.1.2</span> Protection provided by controlled rounding</h4>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expert level
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The protection provided by controlled rounding can be assessed by considering the uncertainty (about the true values achieved) when releasing rounded values; that is the existence interval that an intruder can compute for a rounded value. We assume that the values of the rounding base, <span class="math inline">\(b\)</span>, and the number of steps allowed, <span class="math inline">\(K\)</span>, are known by the user together with the output rounded table. Furthermore, we assume that it is known that the original values are positive frequencies (hence nonnegative integers).</p>
+<p><strong>Zero-restricted rounding</strong><br>
+Given a rounded value, <em>a</em>, an intruder can compute the following existence intervals for the true value, <em>z</em>:</p>
+<p><span class="math display">\[\begin{align}
+z \in \begin{cases}
+[0,b-1]       &amp;\text{if} \quad a = 0 \\
+[a-b+1,a+b-1] &amp;\text{if} \quad a \neq 0
+\end{cases}
+\end{align}\]</span></p>
+<p>For example, if the rounding base is <span class="math inline">\(b=5\)</span> and the rounded value is <span class="math inline">\(a=0\)</span>, a user can determine that the original value is between <span class="math inline">\(0\)</span> and <span class="math inline">\(4\)</span>. If the rounded value is not <span class="math inline">\(0\)</span>, then users can determine that the true value is between <span class="math inline">\(\pm 4\)</span> units from the published value.</p>
+<p><strong>K-step rounding</strong><br>
+As mentioned above, it is assumed that the number of steps allowed is released together with the rounded table. Let <span class="math inline">\(K\)</span>* be the number of steps allowed, then an intruder can compute the following existence intervals for the true value <span class="math inline">\(z\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+z \in \begin{cases}
+[0,(K+1)b-1]            &amp;\text{if} \quad a &lt; (K+1)b \\
+[a-(K+1)b+1,a+(K+1)b-1] &amp;\text{if} \quad a \geq (K+1)b
+\end{cases}
+\end{align}\]</span></p>
+<p>For example, assume that for controlled rounding with <span class="math inline">\(b=5\)</span> and <span class="math inline">\(K=1\)</span>, <span class="math inline">\(a=15\)</span>, then a user can determine that <span class="math inline">\(z \in [ 6,24 ]\)</span>.</p>
+<p><strong>Very large tables</strong><br>
+The procedure implemented in <span class="math inline">\(\tau\)</span>‑ARGUS is capable of rounding tables up to 150K cells on an average computer. However for larger tables a partitioning procedure is available, which allows much larger tables to be rounded. Tables with over six&nbsp;million cells have been successfully rounded this way.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="sec-TRS" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-TRS"><span class="header-section-number">5.6</span> Targeted Record Swapping</h2>
+<p>Targeted Records Swapping (TRS) is a pre-tabular perturbation method. It’s intended use is to apply a swapping procedure to the micro data before generating a table. Although it is applied solely on micro data it is generally considered a protection method used for tabular data and not recommended for protecting micro data. TRS can be used for tables with and without spatial characteristics, with the prior case containing also grid data products or tables created by cross-tabulating with grid cells.<br>
+During the TRS the spatial character of the data can be taken into account to some degree.</p>
+<section id="the-trs-noise-mechanism" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="the-trs-noise-mechanism"><span class="header-section-number">5.6.1</span> The TRS noise mechanism</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expert level
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Regardless of the table, be it count data or a magnitude table, the methodology of the TRS does not change. This is a direct consequence of the fact that the method is applied to the underlying micro data before generating any table.</p>
+<p>Consider population units <span class="math inline">\(i = 1, \ldots, N\)</span> where each unit <span class="math inline">\(i\)</span> has <span class="math inline">\(p\)</span> characteristics or variables <span class="math inline">\(\{\mathbf{x}_{1},\ldots,\mathbf{x}_{n}\} = \mathbf{X} \in \mathbb{R}^{n\times p}\)</span>. Furthermore there exists a geographic hierarchy <span class="math inline">\(\mathcal{G}^{1} \succ \mathcal{G}^{2} \succ \ldots \succ \mathcal{G}^{K}\)</span> where each <span class="math inline">\(\mathcal{G}^{k}\)</span> is the set of disjointly split areas <span class="math inline">\(g_m^{k}\)</span>, <span class="math inline">\(m=1,\ldots,M_k\)</span> and each <span class="math inline">\(g_m^{k}\)</span> is further disjointly subdivided into smaller areas <span class="math inline">\(g_m^{k+1}\)</span>,<span class="math inline">\(m=1,\ldots,M_{k+1}\)</span>:</p>
+<p><span class="math display">\[
+\mathcal{G}^{k} = \{g_m^{k} \mid g_i^{k}\cap g_j^{k} = \varnothing \text{ for }i\neq j \} \quad \forall k = 1,\ldots,K
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+g_m^{k} = \dot{\bigcup}_{m=1}^{M_{k+1}}g_m^{k+1} \quad \forall k = 1,\ldots,K-1 \quad .
+\]</span></p>
+<p>The notation <span class="math inline">\(a\dot{\cup}b\)</span> refers to the disjoint union meaning that <span class="math inline">\(a\cap b = \varnothing\)</span>.</p>
+<p>With the above definition each unit <span class="math inline">\(i\)</span> in the population can be assigned to a single area <span class="math inline">\(g_{m_i}^{k}\)</span> for each geographic hierarchy level <span class="math inline">\(\mathcal{G}^{k}\)</span>, <span class="math inline">\(k = 1,\ldots,K\)</span>. Consider as geographic hierarchy for example the NUTS regions, NUTS1 <span class="math inline">\(\succ\)</span> NUTS2 <span class="math inline">\(\succ\)</span> NUTS3, or grid cells, 1000m grid cells <span class="math inline">\(\succ\)</span> 500m grid cells <span class="math inline">\(\succ\)</span> 250m grid cells.</p>
+<p>Given the geographic hierarchy levels <span class="math inline">\(\mathcal{G}^{k}\)</span>, <span class="math inline">\(k = 1,\ldots,K\)</span> calculate for each unit <span class="math inline">\(i = 1, \ldots, N\)</span> risk values <span class="math inline">\(r_{i,k}\)</span>. As an example one can choose <span class="math inline">\(k\)</span>-anonymity as risk measure and a subset of <span class="math inline">\(Q\)</span> variables <span class="math inline">\(\mathbf{x}_{q_1},\ldots,\mathbf{x}_{q_Q}\)</span> to derive risk values <span class="math inline">\(r_{i,k}\)</span>. They can be defined by calculating the number of units <span class="math inline">\(j\)</span> which have the same values for variables <span class="math inline">\(\mathbf{x}_{q_1},\ldots,\mathbf{x}_{q_Q}\)</span> as unit <span class="math inline">\(i\)</span> and taking the inverse.</p>
+<p><span class="math display">\[
+c_{i,k} = \sum\limits_{j=1}^N \mathbf{1}[x_{i,q_1} = x_{j,q_1}, x_{i,q_2} = x_{j,q_2}, \ldots, x_{i,q_Q} = x_{j,q_Q}]
+\]</span></p>
+<p><span class="math display">\[
+r_{i,k} = \frac{1}{c_{i,k}}
+\]</span></p>
+<p>Having the risk values <span class="math inline">\(r_{i,k}\)</span> for each unit <span class="math inline">\(i\)</span> and each geographic hierarchy level calculated the TRS can be defined as follows:</p>
+<ol type="1">
+<li>Define initial, use-case specific, parameter.
+<ul>
+<li>A global swap rate <span class="math inline">\(p\)</span>;</li>
+<li>Define a risk value <span class="math inline">\(r_{high}\)</span> beyond which all units with <span class="math inline">\(r_{i,k}\)</span> are considered for the geographic hierarchy level <span class="math inline">\(k\)</span>;</li>
+<li>A subset of <span class="math inline">\(T\)</span> variables <span class="math inline">\(\mathbf{x}_{t_1},\ldots,\mathbf{x}_{t_T}\)</span> which are considered while swapping units;</li>
+</ul></li>
+<li>Begin at the first hierarchy level <span class="math inline">\(\mathcal{G}^{1}\)</span> and select all units <span class="math inline">\(j\)</span> for which <span class="math inline">\(r_{i,1} \geq r_{high}\)</span>.</li>
+<li>For each <span class="math inline">\(j\)</span> select all units <span class="math inline">\(l_1,\ldots,l_L\)</span>, which do not belong to the same area <span class="math inline">\(g_{m_j}^{1}\)</span> and have the same values for variables <span class="math inline">\(\mathbf{x}_{t_1},\ldots,\mathbf{x}_{t_T}\)</span> as unit <span class="math inline">\(j\)</span>. In addition units <span class="math inline">\(l_1,\ldots,l_L\)</span> cannot have been swapped already. <span class="math display">\[
+g_{m_j}^{1} \neq g_{m_l}^{1}
+\]</span> <span class="math display">\[
+x_{j,t_1} = x_{l,t_1}, x_{j,t_2} = x_{l,t_2}, \ldots, x_{j,t_T} = x_{l,t_T}
+\]</span></li>
+<li>Sample for each <span class="math inline">\(j\)</span> one unit from the set <span class="math inline">\(\{l \mid g_{m_j}^{1} \neq g_{m_l}^{1} \land x_{j,t_1} = x_{l,t_1} \land, \ldots, \land x_{j,t_T} = x_{l,t_T}\}\)</span> by normalising corresponding risk value <span class="math inline">\(r_{l,1}\)</span> and using them as sampling probabilities.
+<ul>
+<li>Previously swapped units should be excuded from this set.</li>
+</ul></li>
+<li>Swap all variables, holding geographic information in <span class="math inline">\(\mathbf{X}\)</span>, between unit <span class="math inline">\(j\)</span> and the sampled unit.
+<ul>
+<li>Some implementation of targeted record swapping consider only swapping specific variable values from <span class="math inline">\(\mathbf{X}\)</span> between <span class="math inline">\(j\)</span> and the sampled unit.</li>
+</ul></li>
+<li>Iterate through the geographic hierarchies <span class="math inline">\(k=2,\ldots,K\)</span> and repeat in each of them steps 3. - 5.</li>
+<li>At the final geographic hierarchy <span class="math inline">\(k=K\)</span> if the number of already swapped units is less than <span class="math inline">\(p\times N\)</span> additional units are swapped to reach <span class="math inline">\(p\times N\)</span> overall swaps.</li>
+</ol>
+<p>If the population units refer to people living in dwellings and the aim is to swap only full dwellings with each other and not only individuals it can be useful to set</p>
+<p><span class="math display">\[
+r_{i,k} = \max_{j \text{ living in same dwelling as }i}r_{j,k}
+\]</span></p>
+<p>prior to applying the swapping procedure. In addition <span class="math inline">\(\mathbf{x}_{1(q)},\ldots,\mathbf{x}_q\)</span> should be defined such that they refer to variables holding dwelling information.</p>
+<p>The above described procedure is implemented in the R package <code>sdcMicro</code> as well as in the software <code>muArgus</code>, alongside a multitude of parameters to fine tune the procedure.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="pros-and-cons-of-targeted-record-swapping" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="pros-and-cons-of-targeted-record-swapping"><span class="header-section-number">5.6.2</span> Pros and cons of targeted record swapping</h3>
+<p>Indicated by the name of the method the TRS aims to swap micro data records prior to building a table and specifically targeting records during the swapping procedure which have a higher risk of disclosure with respect to the final tables. The protection of the TRS itself is considered to be the uncertainty that an identified unit <span class="math inline">\(i\)</span> has a considerable chance of actually being a swapped unit and that the information derived from this unit does not contain the information of the original unit <span class="math inline">\(i\)</span>. In general it is recommended to apply the TRS on the micro data set only once and afterwards build various tables from the same perturbed micro data. This creates a more drastic trade off between the number of records to swap and the utility of the final tables. The swapping procedure can indirectly take into account the structure of the final tables through the risk value derived from the subest of variables <span class="math inline">\(\mathbf{x}_{q_1},\ldots,\mathbf{x}_{q_Q}\)</span> and choice of the geographic hierarchy. However a large number of variables <span class="math inline">\(\mathbf{x}_{q_1},\ldots,\mathbf{x}_{q_Q}\)</span> and a high resolution in the geographic hierarchy can result in a high share of units with high risk values and consequently many potential swaps. A high swap rate, for instance beyond 10%, can quickly lead to high information loss, because the noise introduced through the swapping is not controlled for while drawing the swapped units. Thus it is not feasible to both address all possible disclosure risk scenarios while maintaining high utility in the final tables.</p>
+<p>As with any method it is advised to thoroughly tune parameters to balance information loss and disclosure risk. Possible tuning parameters are:</p>
+<ul>
+<li>The geographic hierarchy and its depth of granularity.</li>
+<li>The construction of the risk values <span class="math inline">\(r_{i,k}\)</span> and <span class="math inline">\(r_{high}\)</span></li>
+<li>The choice of <span class="math inline">\(\mathbf{x}_{t_1},\ldots,\mathbf{x}_{t_T}\)</span></li>
+<li>The global swap rate <span class="math inline">\(p\)</span></li>
+</ul>
+<p>Because the noise is applied to the microdata before building any tables the additivity between inner and marginal aggregates will always be preserved.</p>
+</section>
+</section>
+<section id="sec-Means_freq" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="sec-Means_freq"><span class="header-section-number">5.7</span> Publication of mean values</h2>
+<p>In this section, we will explain why original means should rather not be published when the Cell Key Method (or any other non-additive, perturbative SDC method, such as, <em>e.g.</em> Rounding) is applied to frequency counts. We will illustrate this with an example and show ways to publish the mean values in a safer variant. For this purpose we consider a certain population group of size <span class="math inline">\(n\)</span> and for every person <span class="math inline">\(i\in {1,\ldots ,n}\)</span> of this population we denote their corresponding age with <span class="math inline">\(x_i\)</span>. So the average age of this population group can be written as <span class="math inline">\((\sum_{i=1\ldots n} x_i)/n\)</span>. We now consider the following example scenario, in which both (perturbed) frequencies and (original) mean values are published. <a href="#tbl-ckm_mean" class="quarto-xref">Table&nbsp;<span>5.23</span></a> shows both the perturbed and the original frequency counts, as well as information about the age.</p>
+<div class="callout-not" data-appearance="simple">
+<p><strong>Example</strong></p>
+<div id="tbl-ckm_mean" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-ckm_mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Cell 1</th>
+<th style="text-align: right;">Cell 2</th>
+<th style="text-align: right;">Marginal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Original Count (<span class="math inline">\(n\)</span>)</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Perturbed Count (<span class="math inline">\(\hat{n}\)</span>)</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Original Sum of Ages (<span class="math inline">\(x\)</span>)</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">185</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Original Mean of Ages (<span class="math inline">\(x/n\)</span>)</td>
+<td style="text-align: right;">11.25</td>
+<td style="text-align: right;">7.9167</td>
+<td style="text-align: right;">9.25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-ckm_mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.23: An example table with (perturbed) ages and counts
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Attackers now have the perturbed frequencies as well as the original mean values at their disposal. In our attack scenario, we also assume that attackers know that the maximum deviation of the frequency count is 2. Attackers can therefore conclude that the original case numbers of the inner cells must be between 7 and 11 and between 12 and 16, respectively, and that the marginal must have originally had a value between 17 and 21. For an attacker, this results in the following possible combinations:</p>
+<ul>
+<li>The marginal is originally 19 and the inner cells are
+<ul>
+<li>7 and 12</li>
+</ul></li>
+<li>The marginal is originally 20 and the inner cells are
+<ul>
+<li>7 and 13</li>
+<li>8 and 12</li>
+</ul></li>
+<li>The marginal is originally 21 and the inner cells are
+<ul>
+<li>7 and 14</li>
+<li>8 and 13</li>
+<li>9 and 12</li>
+</ul></li>
+</ul>
+<p>The attackers can now multiply the original mean values of the table cells known to them with the thus calculated candidates for the associated frequencies. In this way, they obtain estimates for the original magnitude value for each cell. If now for each of those estimates, they sum up those values for the inner cells, they obtain another estimated value for the marginal value. This can now be used to identify the correct combination of frequency values, since for the correct ones the sum over the inner cell values is identical to the marginal value, as shown in <a href="#tbl-ckm_attacker" class="quarto-xref">Table&nbsp;<span>5.24</span></a>.</p>
+<div class="callout-not" data-appearance="simple">
+<p><strong>Example</strong></p>
+<div id="tbl-ckm_attacker" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-ckm_attacker-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Cell 1</th>
+<th style="text-align: right;">Cell 2</th>
+<th style="text-align: right;">Marginal</th>
+<th style="text-align: right;">Est. Cell 1</th>
+<th style="text-align: right;">Est. Cell 2</th>
+<th style="text-align: right;">Sum of Estimates</th>
+<th style="text-align: right;">Est. Marginal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">78.75</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">173.75</td>
+<td style="text-align: right;">175.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">78.75</td>
+<td style="text-align: right;">102.917</td>
+<td style="text-align: right;">181.667</td>
+<td style="text-align: right;">185</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">185</td>
+<td style="text-align: right;">185</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">78.75</td>
+<td style="text-align: right;">110.833</td>
+<td style="text-align: right;">189.583</td>
+<td style="text-align: right;">194.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">102.917</td>
+<td style="text-align: right;">192.917</td>
+<td style="text-align: right;">194.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">101.25</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">196.25</td>
+<td style="text-align: right;">194.25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-ckm_attacker-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.24: Sample calculation for an attacker
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Additionally, through this calculation, the associated magnitude values are now known as well. If these are confidential, a further problem arises. The publication of original mean values is therefore not recommended.</p>
+<p>So, when using the Cell Key Method for frequency tables we recommend to use those perturbed counts also when generating mean values, <em>i.e.</em> if <span class="math inline">\(n\)</span> is an original count, <span class="math inline">\(\hat{n}\)</span> is the corresponding perturbed count and <span class="math inline">\(m\)</span> is the corresponding magnitude value, as it gets published, then, in order to avoid the disclosure risk described here, it is better to calculate the mean as <span class="math inline">\(m/\hat{n}\)</span>.</p>
+</section>
+<section id="sec-InfLoss_freq" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="sec-InfLoss_freq"><span class="header-section-number">5.8</span> Information loss</h2>
+<p>As described in <a href="#sec-Methods_freq" class="quarto-xref">Sections&nbsp;<span>5.3</span></a> to [-@#sec-TRS] there are a number of different disclosure control methods used to protect frequency tables. Each of these methods modifies the original data in the table in order to reduce the disclosure risk from small cells (0’s, 1’s and 2’s). However, the process of reducing disclosure risk results in information loss. Some quantitative information loss measures have been developed by Shlomo and Young (2005 &amp; 2006) to determine the impact various statistical disclosure control (SDC) methods have on the original tables.</p>
+<p>Information loss measures can be split into two classes: measures for data suppliers, used to make informed decisions about optimal SDC methods depending on the characteristics of the tables; and measures for users in order to facilitate adjustments to be made when carrying out statistical analysis on protected tables. Here we focus on measures for data suppliers. Measuring utility and quality for SDC methods is subjective. It depends on the users, the purpose of the statistical analysis, and on the type and format of the data itself. Therefore it is useful to have a range of information loss measures for assessing the impact of the SDC methods.</p>
+<p>The focus here is information loss measures for tables containing frequency counts; however, some of these measures can easily be adapted to microdata. Magnitude or weighted sample tables will have the additional element of the number of contributors to each cell of the table.</p>
+<p>When evaluating information loss measures for tables protected using cell suppression, one needs to decide on an imputation method for replacing the suppressed cells similar to what one would expect a user to do prior to analysing the data (<em>i.e.</em> we need to measure the difference between the observed and actual values, and for suppressed cells the observed values will be based on user inference about the possible cell values). A naive user might use zeros in place of the suppressed cells whereas a more sophisticated user might replace suppressed cells by some form of averaging of the total information that was suppressed, or by calculating feasibility intervals.</p>
+<p>A number of different information loss measures are described below, and more technical details can be found in Shlomo and Young (2005 &amp; 2006).</p>
+<ul>
+<li>An exact Binomial Hypothesis Test can be used to check if the realization of a random stochastic perturbation scheme, such as random rounding, follows the expected probabilities (<em>i.e.</em> the parameters of the method). For other SDC methods, a non-parametric signed rank test can be used to check whether the location of the empirical distribution has changed after the application of the SDC method.</li>
+<li>Information loss measures that measure distortion of distributions are based on <em>distance metrics</em> between the original and perturbed cells. Some useful metrics are also presented in Gomatam and Karr (2003). A distance metric can be calculated for internal cells of a table. When combining several tables one may want to calculate an overall average across the tables as the information loss measure. These distance metrics can also be calculated for totals or sub-totals of the tables.</li>
+<li>SDC methods will have an impact on the variance of the average cell size for the rows, columns or the entire table. The variance of the average cell size is examined before and after the SDC method has been applied. Another important variance to examine is the “between”-variance when carrying out a one-way ANOVA test based on the table. In ANOVA, we examine the means of a specific target variable within groupings defined by independent categorical variables. The goodness of fit statistic R<sup>2</sup> for testing the null hypothesis that the means are equal across the groupings is based on the variance of the means between the groupings divided by the total variance. The information loss measure therefore examines the impact of the “between”-variance and whether the means of the groupings have become more homogenized or spread apart as a result of the SDC method.</li>
+<li>Another statistical analysis tool that is frequently carried out on tabular data are tests for independence between categorical variables that span the table. The test for independence for a two-way table is based on a Pearson Chi-squared statistic and the measure of association is the Cramer’s V statistic. For multi-way tables, one can examine conditional dependencies and calculate expected cell frequencies based on the theory of log-linear models. The test statistic for the fit of the model is also based on a Pearson Chi-squared statistic. SDC methods applied to tables may change the results of statistical inferences. Therefore we examine the impact to the test statistics before and after the application of the SDC method.</li>
+<li>Another statistical tool for inference is the Spearman’s rank correlation. This is a technique that tests the direction and strength of the relationship between two variables. The statistic is based on ranking both sets of data from the highest to the lowest. Therefore, one important assessment of the impact of the SDC method on statistical data is whether we are distorting the rankings of the cell counts.</li>
+</ul>
+<p>In order to allow data suppliers to make informed decisions about optimal disclosure control methods, ONS has developed a user-friendly software application that calculates both disclosure risk measures based on small counts in tables and a wide range of information loss measures (as described above) for disclosure controlled statistical data, Shlomo and Young (2006). The software application also outputs R-U Confidentiality maps.</p>
+</section>
+<section id="references" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="references"><span class="header-section-number">5.9</span> References</h2>
+<p>Brown, D., (2003) <em>Different approaches to disclosure control problems associated with geography, ONS</em>, United Nations Statistical Commission and Economic Commission for Europe Conference of European Statisticians, Working Paper No.&nbsp;14.</p>
+<p>Doyle, P., Lane, J.I., Theeuwes, J.J.M. and Zayatz, (2001). <em>Confidentiality, Disclosure and Data Access: Theory and Practical Application for Statistical Agencies</em>. Elsevier Science BV.</p>
+<p>Duke-Williams, O. and Rees, P., (1998) <em>Can Census Offices publish statistics for more than one small area geography? An analysis of the differencing problem in statistical disclosure</em>, International Journal of Geographical Information Science 12, 579-605</p>
+<p>Enderle, T., Giessing, S., Tent, R., (2020) <em>Calculation of Risk Probabilities for the Cell Key Method. In: Domingo-Ferrer, J., Muralidhar, K. (eds) Privacy in Statistical Databases</em>, Lecture Notes in Computer Science, vol 12276. Springer, Cham. <a href="https://doi.org/10.1007/978-3-030-57521-2_11">https://doi.org/10.1007/978-3-030-57521-2_11</a></p>
+<p>Gomatam, S. and A. Karr (2003), <em>Distortion Measures for Categorical Data Swapping,</em> Technical Report Number 131, National Institute of Statistical Sciences.</p>
+<p>Salazar, JJ, Staggermeier, A and Bycroft, C, (2005) <em>Controlled rounding implementation</em>, Proceeding of the Joint UNECE/Eurostat Work Session on Statistical Data Confidentiality, Geneva</p>
+<p>Shlomo, N. (2007) Statistical Disclosure Control Methods for Census Frequency Tables. International Statistical Review, Volume 75,&nbsp;Number 2, August 2007 , pp.&nbsp;199-217(19) Blackwell Publishing.</p>
+<p>Shlomo, N. and Young, C. (2005) <em>Information Loss Measures for Frequency Tables,</em> Proceeding of the Joint UNECE/Eurostat Work Session on Statistical Data Confidentiality, Geneva.</p>
+<p>Shlomo, N. and Young, C. (2006) <em>Statistical Disclosure Control Methods Through a Risk-Utility Framework,</em> PSD'2006 Privacy in Statistical Databases, Springer LNCS proceedings, to appear.</p>
+<p>Willenborg, L., and Ton de Waal. (1996) <em>Statistical Disclosure Control in Practice.</em> Lecture Notes in Statistics no 111 Springer-Verlag. New York.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-magnitude-tabular-data.html" class="pagination-link  aria-label=" &lt;span="" tabular="" data&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Magnitude tabular data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./06-remote-access-issues.html" class="pagination-link" aria-label="<span class='chapter-number'>6</span>&nbsp; <span class='chapter-title'>Remote access issues</span>">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Remote access issues</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

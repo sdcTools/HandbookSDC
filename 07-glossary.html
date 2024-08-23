@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.545">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Handbook on Statistical Disclosure Control - Glossary</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./06-remote-access-issues.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-glossary.html">Glossary</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Handbook on Statistical Disclosure Control</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/julienjamme/handbook_sdc_from_doc_to_md" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface to the second edition</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-regulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Confidentiality in legal acts and ethical codes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-microdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microdata</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-magnitude-tabular-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Magnitude tabular data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-frequency-tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-remote-access-issues.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Remote access issues</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-glossary.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Glossary</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Glossary</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In 2005 Mark Elliot (University of Manchester), Anco Hundepool (Statistics Netherlands), Eric Schulte Nordholt (Statistics Netherlands), Jean-Louis Tambay (Statistics Canada) and Thomas Wende (Destatis, Germany) took the initiative to compile a Glossary on Statistical Disclosure Control. A first version of the Glossary was presented at the UNECE worksession on SDC in Geneva in November 2005. This glossary can also be found via <a href="https://research.cbs.nl/casc/glossary.htm">https://research.cbs.nl/casc/glossary.htm</a>.</p>
+<p>The underlined links in this glossary refer to other term in this glossary. This handbook contains also an index, but to avoid misleading cross references we have not indexed this glossary.</p>
+<section id="a" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="a">A</h2>
+<p><strong>Analysis server:</strong> A form of <a href="#Remote_data_laboratory"><u>remote data laboratory</u></a> designed to run analysis on data stored on a safe server. The user sees the results of their analysis but not the data.</p>
+<p><span id="Anonymised_data" class="anchor"></span><strong>Anonymised data:</strong> Data containing only <a href="#Anonymised_record"><u>anonymised record</u></a>s.</p>
+<p><span id="Anonymised_record" class="anchor"></span><strong>Anonymised record:</strong> A record from which direct identifiers have been removed.</p>
+<p><span id="Approximate_disclosure" class="anchor"></span><strong>Approximate disclosure:</strong> Approximate disclosure happens if a user is able to determine an estimate of a respondent value that is close to the real value. If the estimator is exactly the real value the disclosure is exact.</p>
+<p><strong>Argus:</strong> Two software packages for <a href="#Statistical_Disclosure_Control"><u>Statistical Disclosure Control</u></a> are called Argus. <span class="math inline">\(\mu\)</span>-ARGUS is a specialized software tool for the protection of <a href="#Microdata"><u>microdata</u></a>. The two main techniques used for this are <a href="#Global_recoding"><u>global recoding</u></a> and <a href="#Local_suppression"><u>local suppression</u></a>. In the case of <a href="#Global_recoding"><u>global recoding</u></a> several categories of a variable are collapsed into a single one. The effect of <a href="#Local_suppression"><u>local suppression</u></a> is that one or more values in an unsafe combination are suppressed, i.e.&nbsp;replaced by a missing value. Both <a href="#Global_recoding"><u>global recoding</u></a> and <a href="#Local_suppression"><u>local suppression</u></a> lead to a loss of information, because either less detailed information is provided or some information is not given at all. <span class="math inline">\(\tau\)</span>-ARGUS is a specialized software tool for the protection of <a href="#Tabular_data"><u>tabular data</u></a>. <span class="math inline">\(\tau\)</span>‑ARGUS is used to produce safe tables. <span class="math inline">\(\tau\)</span>-ARGUS uses the same two main techniques as <span class="math inline">\(\mu\)</span>-ARGUS: <a href="#Global_recoding"><u>global recoding</u></a> and <a href="#Local_suppression"><u>local suppression</u></a>. For <span class="math inline">\(\tau\)</span>‑ARGUS the latter consists of <a href="#Suppression"><u>suppression</u></a> of cells in a table.</p>
+<p><span id="Attribute_disclosure" class="anchor"></span><strong>Attribute disclosure:</strong> Attribute disclosure is <a href="#Attribution"><u>attribution</u></a> independent of <a href="#Identification"><u>identification</u></a>. This form of disclosure is of primary concern to <a href="#NSI"><u>NSI</u></a>s involved in <a href="#Tabular_data"><u>tabular data</u></a> release and arises from the presence of empty cells either in a released table or linkable set of tables after any <a href="#Subtraction"><u>subtraction</u></a> has taken place. Minimally, the presence of an empty cell within a table means that an <a href="#Intruder"><u>intruder</u></a> may infer from mere knowledge that a population unit is represented in the table and that the <a href="#Intruder"><u>intruder</u></a> does not possess the combination of attributes within the empty cell.</p>
+<p><span id="Attribution" class="anchor"></span><strong>Attribution:</strong> Attribution is the association or disassociation of a particular attribute with a particular population unit.</p>
+</section>
+<section id="b" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="b">B</h2>
+<p><strong>Barnardisation:</strong> A method of disclosure control for tables of counts that involves randomly adding or subtracting 1 from some cells in the table.</p>
+<p><strong>Blurring:</strong> Blurring replaces a reported value by an average. There are many possible ways to implement blurring. Groups of records for averaging may be formed by matching on other variables or by sorting on the variable of interest. The number of records in a group (whose data will be averaged) may be fixed or random. The average associated with a particular group may be assigned to all members of a group, or to the "middle" member (as in a moving average). It may be performed on more than one variable with different groupings for each variable.</p>
+<p><strong>Bottom coding:</strong> See <a href="#Top_and_bottom_coding"><u>top and bottom coding</u></a>.</p>
+<p><span id="Bounds" class="anchor"></span><strong>Bounds:</strong> The range of possible values of a cell in a table of frequency counts where the cell value has been perturbed or suppressed. Where only margins of tables are released it is possible to infer bounds for the unreleased joint distribution. One method for inferring the bounds across a table is known as the <a href="#Shuttle_algorithm"><u>Shuttle algorithm</u></a>.</p>
+</section>
+<section id="c" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="c">C</h2>
+<p><span id="Cell_Key_Method" class="anchor"></span><strong>Cell Key Method (CKM):</strong> A post-tabular perturbative SDC method that adds noise to the original cell values. The tables are protected consistently, but they are no longer additive.</p>
+<p><span id="Cell_suppression" class="anchor"></span><strong>Cell suppression:</strong> In <a href="#Tabular_data"><u>tabular data</u></a> the cell suppression SDC method consists of <a href="#Primary_suppression"><u>primary</u></a> and <a href="#Secondary_suppression"><u>complementary (secondary)</u></a> suppression. <a href="#Primary_suppression"><u>Primary suppression</u></a> can be characterised as withholding the values of all <a href="#Risky_cells"><u>risky cells</u></a> from publication, which means that their value is not shown in the table but replaced by a symbol such as ‘×’ to indicate the suppression. According to the definition of <a href="#Risky_cells"><u>risky cells</u></a>, in frequency count tables all cells containing small counts and in tables of magnitudes all cells containing small counts or presenting a case of <a href="#Dominance_rule"><u>dominance</u></a> have to be primary suppressed. To reach the desired protection for <a href="#Risky_cells"><u>risky cells</u></a>, it is necessary to suppress additional non- <a href="#Risky_cells"><u>risky cells</u></a>, which is called <a href="#Secondary_suppression"><u>complementary (secondary) suppression.</u></a> The pattern of complementary suppressed cells has to be carefully chosen to provide the desired level of ambiguity for the <a href="#Risky_cells"><u>risky cells</u></a> with the least amount of suppressed information.</p>
+<p><span id="Complementary_suppression" class="anchor"></span><strong>Complementary suppression:</strong> Synonym of <a href="#Secondary_suppression"><u>secondary suppression</u></a>.</p>
+<p><strong>Complete disclosure:</strong> Synonym of <a href="#Exact_disclosure"><u>exact disclosure</u></a>.</p>
+<p><strong>Concentration rule:</strong> Synonym of <a href="#nk_rule"><u>(n,k) rule</u></a>.</p>
+<p><span id="Controlled_rounding" class="anchor"></span><strong>Controlled rounding:</strong> To solve the additivity problem, a procedure called controlled rounding was developed. It is a form of <a href="#Random_rounding"><u>random rounding</u></a>, but it is constrained to have the sum of the published entries in each row and column equal to the appropriate published marginal totals. Linear programming methods are used to identify a controlled rounding pattern for a table.</p>
+<p><span id="Controlled_Tabular_Adjustment" class="anchor"></span><strong>Controlled Tabular Adjustment (CTA):</strong> A method to protect <a href="#Tabular_data"><u>tabular data</u></a> based on the selective adjustment of cell values. <a href="#Sensitive_cell"><u>Sensitive cell</u></a> values are replaced by either of their closest safe values and small adjustments are made to other cells to restore the table additivity. Controlled tabular adjustment has been developed as an alternative to <a href="#Cell_suppression"><u>cell suppression</u></a>.</p>
+<p><span id="Conventional_rounding" class="anchor"></span><strong>Conventional rounding:</strong> A disclosure control method for tables of counts. When using conventional rounding, each count is rounded to the nearest multiple of a fixed base. For example, using a base of 5, counts ending in 1 or 2 are rounded down and replaced by counts ending in 0 and counts ending in 3 or 4 are rounded up and replaced by counts ending in 5. Counts ending between 6 and 9 are treated similarly. Counts with a last digit of 0 or 5 are kept unchanged. When rounding to base 10, a count ending in 5 may always be rounded up, or it may be rounded up or down based on a rounding convention.</p>
+</section>
+<section id="d" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="d">D</h2>
+<p><span id="Data_intruder" class="anchor"></span><strong>Data intruder:</strong> A data user who attempts to disclose information about a population unit through <a href="#Identification"><u>identification</u></a> or <a href="#Attribution"><u>attribution</u></a>.</p>
+<p><strong>Data intrusion detection:</strong> The detection of a <a href="#Data_intruder"><u>data intruder</u></a> through their behaviour. This is most likely to occur through analysis of a pattern of requests submitted to a <a href="#Remote_data_laboratory"><u>remote data laboratory</u></a>. At present this is only a theoretical possibility, but it is likely to become more relevant as <a href="#Virtual_safe_setting"><u>virtual safe setting</u></a>s become more prevalent.</p>
+<p><strong>Data Intrusion Simulation (DIS):</strong> A method of estimating the probability that a <a href="#Data_intruder"><u>data intruder</u></a> who has matched an arbitrary population unit against a <a href="#Sample_unique"><u>sample unique</u></a> in a target <a href="#Microdata"><u>microdata</u></a> file has done so correctly.</p>
+<p><strong>Data protection:</strong> Data protection refers to the set of <a href="#Privacy"><u>privacy</u></a>-motivated laws, policies and procedures that aim to minimise intrusion into respondents’ <a href="#Privacy"><u>privacy</u></a> caused by the collection, storage and <a href="#Dissemination"><u>dissemination</u></a> of <a href="#Personal_data"><u>personal data</u></a>.</p>
+<p><span id="Data_swapping" class="anchor"></span><strong>Data swapping:</strong> A disclosure control method for <a href="#Microdata"><u>microdata</u></a> that involves swapping the values of variables for records that match on a representative <a href="#Key"><u>key</u></a>. In the literature this technique is also sometimes referred to as “multidimensional transformation”. It is a transformation technique that guarantees (under certain conditions) the maintenance of a set of statistics, such as means, variances and univariate distributions.</p>
+<p><span id="Data_utility" class="anchor"></span><strong>Data utility:</strong> A summary term describing the value of a given data release as an analytical resource. This comprises the data’s analytical completeness and its analytical validity. <a href="#Disclosure_control_methods"><u>Disclosure control methods</u></a> usually have an adverse effect on data utility. Ideally, the goal of any disclosure control regime should be to maximise data utility whilst minimising <a href="#Disclosure_risk"><u>disclosure risk</u></a>. In practice disclosure control decisions are a trade-off between utility and <a href="#Disclosure_risk"><u>disclosure risk</u></a>.</p>
+<p><strong>Deterministic rounding:</strong> Synonym of <a href="#Conventional_rounding"><u>conventional rounding</u></a>.</p>
+<p><span id="Direct_identification" class="anchor"></span><strong>Direct identification:</strong> Identification of a statistical unit from its <a href="#Formal_identifier"><u>formal identifier</u></a>s.</p>
+<p><span id="Disclosive_cells" class="anchor"></span><strong>Disclosive cells:</strong> Synonym of <a href="#Risky_cells"><u>risky cells</u></a>.</p>
+<p><strong>Disclosure:</strong> Disclosure relates to the inappropriate <a href="#Attribution"><u>attribution</u></a> of information to a data subject, whether an individual or an organisation. Disclosure has two components: <a href="#Identification"><u>identification</u></a> and <a href="#Attribution"><u>attribution</u></a>.</p>
+<p><strong>Disclosure by fishing:</strong> This is an attack method where an <a href="#Intruder"><u>intruder</u></a> identifies risky records within a target data set and then attempts to find population units corresponding to those records. It is the type of disclosure that can be assessed through a <a href="#Special_uniques_analysis"><u>special uniques analysis</u></a>.</p>
+<p><span id="Disclosure_by_matching" class="anchor"></span><strong>Disclosure by matching:</strong> Disclosure by the linking of records within an <a href="#Identification_dataset"><u>identification dataset</u></a> with those in an <a href="#Anonymised_data"><u>anonymised data</u></a>set.</p>
+<p><span id="Disclosure_by_response_knowledge" class="anchor"></span><strong>Disclosure by response knowledge:</strong> This is disclosure resulting from the knowledge that a person was participating in a particular survey. If an <a href="#Intruder"><u>intruder</u></a> knows that a specific individual has participated in the survey, and that consequently his or her data are in the data set, <a href="#Identification"><u>identification</u></a> and disclosure can be accomplished more easily.</p>
+<p><span id="Disclosure_by_spontaneous_recognition" class="anchor"></span><strong>Disclosure by spontaneous recognition:</strong> This means the recognition of an individual within the dataset. This may occur by accident or because a <a href="#Data_intruder"><u>data intruder</u></a> is searching for a particular individual. This is more likely to be successful if the individual has a rare combination of characteristics which is known to the <a href="#Intruder"><u>intruder</u></a>.</p>
+<p><span id="Disclosure_control_methods" class="anchor"></span><strong>Disclosure control methods:</strong> There are two main approaches to control the disclosure of confidential data. The first is to reduce the information content of the data provided to the external user. For the release of <a href="#Tabular_data"><u>tabular data</u></a> this type of technique is called <a href="#Restriction_based_disclosure_control_me"><u>restriction based disclosure control method</u></a> and for the release of <a href="#Microdata"><u>microdata</u></a> the expression disclosure control by data reduction is used. The second is to change the data before the <a href="#Dissemination"><u>dissemination</u></a> in such a way that the <a href="#Disclosure_risk"><u>disclosure risk</u></a> for the confidential data is decreased, but the information content is retained as much as possible. These are called <a href="#Perturbation_based_disclosure_control_m"><u>perturbation based disclosure control methods</u></a>.</p>
+<p><strong>Disclosure from analytical outputs:</strong> The use of output to make <a href="#Attribution"><u>attribution</u></a>s about individual population units. This situation might arise to users that can interrogate data but do not have direct access to them such as in a <a href="#Remote_data_laboratory"><u>remote data laboratory</u></a>. One particular concern is the publication of residuals.</p>
+<p><strong>Disclosure limitation methods:</strong> Synonym of <a href="#Disclosure_control_methods"><u>disclosure control methods</u></a>.</p>
+<p><span id="Disclosure_risk" class="anchor"></span><strong>Disclosure risk:</strong> A disclosure risk occurs if an unacceptably narrow estimation of a respondent’s confidential information is possible or if <a href="#Exact_disclosure"><u>exact disclosure</u></a> is possible with a high level of confidence.</p>
+<p><strong>Disclosure scenarios:</strong> Depending on the intention of the <a href="#Intruder"><u>intruder</u></a>, his or her type of a priori knowledge and the <a href="#Microdata"><u>microdata</u></a> available, three different types of disclosure or disclosure scenarios are possible for <a href="#Microdata"><u>microdata</u></a>: <a href="#Disclosure_by_matching"><u>disclosure by matching</u></a>, <a href="#Disclosure_by_response_knowledge"><u>disclosure by response knowledge</u></a> and <a href="#Disclosure_by_spontaneous_recognition"><u>disclosure by spontaneous recognition</u></a>.</p>
+<p><span id="Dissemination" class="anchor"></span><strong>Dissemination:</strong> Supply of data in any form whatever: publications, access to databases, microfiches, telephone communications, etc.</p>
+<p><strong>Disturbing the data:</strong> This process involves changing the data in some systematic fashion, with the result that the figures are insufficiently precise to disclose information about individual cases.</p>
+<p><span id="Dominance_rule" class="anchor"></span><strong>Dominance rule:</strong> Synonym of <a href="#nk_rule"><u>(n,k) rule</u></a>.</p>
+</section>
+<section id="e" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="e">E</h2>
+<p><span id="Exact_disclosure" class="anchor"></span><strong>Exact disclosure:</strong> Exact disclosure occurs if a user is able to determine the exact attribute for an individual entity from released information.</p>
+</section>
+<section id="f" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="f">F</h2>
+<p><span id="Feasibility_interval" class="anchor"></span><strong>Feasibility interval:</strong> The interval containing possible values for a suppressed cell in a table, given the table structure and the values published.</p>
+<p><span id="Formal_identifier" class="anchor"></span><strong>Formal identifier:</strong> Any variable or set of variables which is structurally unique for every population unit, for example a population registration number. If the formal identifier is known to the <a href="#Intruder"><u>intruder</u></a>, <a href="#Identification"><u>identification</u></a> of a target individual is directly possible for him or her, without the necessity to have additional knowledge before studying the <a href="#Microdata"><u>microdata</u></a>. Some combinations of variables such as name and address are pragmatic formal identifiers, where non-unique instances are empirically possible, but with negligible probability.</p>
+</section>
+<section id="g" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="g">G</h2>
+<p><span id="Global_recoding" class="anchor"></span><strong>Global recoding:</strong> Problems of confidentiality can be tackled by changing the structure of data. Thus, rows or columns in tables can be combined into larger class intervals or new groupings of characteristics. This may be a simpler solution than the <a href="#Suppression"><u>suppression</u></a> of individual items, but it tends to reduce the descriptive and analytical value of the table. This protection technique may also be used to protect <a href="#Microdata"><u>microdata</u></a>.</p>
+</section>
+<section id="h" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="h">H</h2>
+<p><strong>HITAS:</strong> A heuristic approach to <a href="#Cell_suppression"><u>cell suppression</u></a> in hierarchical tables.</p>
+</section>
+<section id="i" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="i">I</h2>
+<p><span id="Identification" class="anchor"></span><strong>Identification:</strong> Identification is the association of a particular record within a set of data with a particular population unit.</p>
+<p><span id="Identification_dataset" class="anchor"></span><strong>Identification dataset:</strong> A dataset that contains <a href="#Formal_identifier"><u>formal identifier</u></a>s.</p>
+<p><strong>Identification data:</strong> Those <a href="#Personal_data"><u>personal data</u></a> that allow <a href="#Direct_identification"><u>direct identification</u></a> of the data subject, and which are needed for the collection, checking and matching of the data, but are not subsequently used for drawing up statistical results.</p>
+<p><strong>Identification key:</strong> Synonym of key.</p>
+<p><strong>Identification risk:</strong> This risk is defined as the probability that an <a href="#Intruder"><u>intruder</u></a> identifies at least one respondent in the disseminated <a href="#Microdata"><u>microdata</u></a>. This identification may lead to the disclosure of (sensitive) information about the respondent. The risk of identification depends on the number and nature of <a href="#Quasi-identifier"><u>quasi-identifier</u></a>s in the <a href="#Microdata"><u>microdata</u></a> and in the a priori knowledge of the <a href="#Intruder"><u>intruder</u></a>.</p>
+<p><span id="Identifying_variable" class="anchor"></span><strong>Identifying variable:</strong> A variable that either is a <a href="#Formal_identifier"><u>formal identifier</u></a> or forms part of a <a href="#Formal_identifier"><u>formal identifier</u></a>.</p>
+<p><strong>Indirect identification:</strong> Inferring the identity of a population unit within a <a href="#Microdata"><u>microdata</u></a> release other than from <a href="#Direct_identification"><u>direct identification</u></a>.</p>
+<p><strong>Inferential disclosure:</strong> Inferential disclosure occurs when information can be inferred with high confidence from statistical properties of the released data. For example, the data may show a high correlation between income and purchase price of home. As the purchase price of a home is typically public information, a third party might use this information to infer the income of a data subject. In general, <a href="#NSI"><u>NSI</u></a>s are not concerned with inferential disclosure for two reasons. First, a major purpose of statistical data is to enable users to infer and understand relationships between variables. If <a href="#NSI"><u>NSI</u></a>s equated disclosure with inference, no data could be released. Second, inferences are designed to predict aggregate behaviour, not individual attributes, and thus often poor predictors of individual data values.</p>
+<p><strong>Informed consent:</strong> Basic ethical tenet of scientific research on human populations. Sociologists do not involve a human being as a subject in research without the informed consent of the subject or the subject’s legally authorized representative, except as otherwise specified. Informed consent refers to a person’s agreement to allow <a href="#Personal_data"><u>personal data</u></a> to be provided for research and statistical purposes. Agreement is based on full exposure of the facts the person needs to make the decision intelligently, including awareness of any risks involved, of uses and users of the data, and of alternatives to providing the data.</p>
+<p><span id="Intruder" class="anchor"></span><strong>Intruder:</strong> Synonym of <a href="#Data_intruder"><u>data intruder</u></a>.</p>
+</section>
+<section id="j" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="j">J</h2>
+</section>
+<section id="k" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="k">K</h2>
+<p><span id="Key" class="anchor"></span><strong>Key:</strong> A set of <a href="#Key_variable"><u>key variable</u></a>s.</p>
+<p><span id="Key_variable" class="anchor"></span><strong>Key variable:</strong> A variable in common between two datasets, which may therefore be used for linking records between them. A key variable can either be a <a href="#Formal_identifier"><u>formal identifier</u></a> or a <a href="#Quasi-identifier"><u>quasi-identifier</u></a>.</p>
+</section>
+<section id="l" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="l">L</h2>
+<p><strong>Licensing agreement:</strong> A permit, issued under certain conditions, for researchers to use confidential data for specific purposes and for specific periods of time. This agreement consists of contractual and ethical obligations, as well as penalties for improper disclosure or use of identifiable information. These penalties can vary from withdrawal of the license and denial of access to additional data sets to the forfeiting of a deposit paid prior to the release of a <a href="#Microdata"><u>microdata</u></a> file. A licensing agreement is almost always combined with the signing of a contract. This contract includes a number of requirements: specification of the intended use of the data; instruction not to release the <a href="#Microdata"><u>microdata</u></a> file to another recipient; prior review and approval by the releasing agency for all user outputs to be published or disseminated; terms and location of access and enforceable penalties.</p>
+<p><strong>Local recoding:</strong> A disclosure control technique for <a href="#Microdata"><u>microdata</u></a> where two (or more) different versions of a variable are used dependent on some other variable. The different versions will have different levels of coding. This will depend on the distribution of the first variable conditional on the second. A typical example occurs where the distribution of a variable is heavily skewed in some geographical areas. In the areas where the distribution is skewed minor categories may be combined to produce a courser variable.</p>
+<p><span id="Local_suppression" class="anchor"></span><strong>Local suppression:</strong> Protection technique that diminishes the risk of recognition of information about individuals or enterprises by suppressing individual scores on <a href="#Identifying_variable"><u>identifying variable</u></a>s.</p>
+<p><strong>Lower bound:</strong> The lowest possible value of a cell in a table of frequency counts where the cell value has been perturbed or suppressed.</p>
+</section>
+<section id="m" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="m">M</h2>
+<p><span id="Macrodata" class="anchor"></span><strong>Macrodata:</strong> Synonym of <a href="#Tabular_data"><u>tabular data</u></a>.</p>
+<p><strong>Microaggregation:</strong> Records are grouped based on a proximity measure of variables of interest, and the same small groups of records are used in calculating aggregates for those variables. The aggregates are released instead of the individual record values.</p>
+<p><span id="Microdata" class="anchor"></span><strong>Microdata:</strong> A microdata set consists of a set of records containing information on individual respondents or on economic entities.</p>
+<p><strong>Minimal unique:</strong> A combination of variable values that are unique in the <a href="#Microdata"><u>microdata</u></a> set at hand and contain no proper subset with this property (so it is a minimal set with the <a href="#Uniqueness"><u>uniqueness</u></a> property).</p>
+</section>
+<section id="n" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="n">N</h2>
+<p><span id="NSI" class="anchor"></span><strong>NSI(s):</strong> Abbreviation for National Statistical Institute(s).</p>
+<p><span id="nk_rule" class="anchor"></span><strong>(n,k) rule:</strong> A cell is regarded as confidential, if the n largest units contribute more than k % to the cell total, e.g.&nbsp;n=2 and k=85 means that a cell is defined as risky if the two largest units contribute more than 85% to the cell total. The n and k are given by the statistical authority. In some <a href="#NSI"><u>NSI</u></a>s the values of n and k are confidential.</p>
+</section>
+<section id="o" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="o">O</h2>
+<p><strong>On-site facility:</strong> A facility that has been established on the premises of several <a href="#NSI"><u>NSI</u></a>s. It is a place where external researchers can be permitted access to potentially disclosive data under contractual agreements which cover the maintenance of confidentiality, and which place strict controls on the uses to which the data can be put. The on-site facility can be seen as a '<a href="#Safe_setting"><u>safe setting</u></a>' in which confidential data can be analysed. The on-site facility itself would co<a href="#NSI"><u>nsi</u></a>st of a secure hermetic working and data storage environment in which the confidentiality of the data for research can be ensured. Both the physical and the IT aspects of <a href="#Security"><u>security</u></a> would be considered here. The on-site facility also includes administrative and support facilities to external users, and ensures that the agreed conditions for access to the data were complied with.</p>
+<p><strong>Ordinary rounding:</strong> Synonym of <a href="#Conventional_rounding"><u>conventional rounding</u></a>.</p>
+<p><strong>Oversuppression:</strong> A situation that may occur during the application of the technique of <a href="#Cell_suppression"><u>cell suppression</u></a>. This denotes the fact that more information has been suppressed than strictly necessary to maintain confidentiality.</p>
+</section>
+<section id="p" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="p">P</h2>
+<p><span id="Partial_disclosure" class="anchor"></span><strong>Partial disclosure:</strong> Synonym of <a href="#Approximate_disclosure"><u>approximate disclosure</u></a>.</p>
+<p><strong>Passive confidentiality:</strong> For foreign trade statistics, EU countries generally apply the principle of “passive confidentiality”, that is they take appropriate measures only at the request of importers or exporters who feel that their interests would be harmed by the <a href="#Dissemination"><u>dissemination</u></a> of data.</p>
+<p><span id="Personal_data" class="anchor"></span><strong>Personal data:</strong> Any information relating to an identified or identifiable natural person (‘data subject’). An identifiable person is one who can be identified, directly or indirectly. Where an individual is not identifiable, data are said to be anonymous.</p>
+<p><strong>Perturbation based disclosure control methods:</strong> Techniques for the release of data that change the data before the <a href="#Dissemination"><u>dissemination</u></a> in such a way that the <a href="#Disclosure_risk"><u>disclosure risk</u></a> for the confidential data is decreased but the information content is retained as far as possible. Perturbation based methods falsify the data before publication by introducing an element of error purposely for confidentiality reasons. For example, an error can be inserted in the cell values after a table is created, which means that the error is introduced to the output of the data and will therefore be referred to as output perturbation. The error can also be inserted in the original data on the <a href="#Microdata"><u>microdata</u></a> level, which is the input of the tables one wants to create; the method will then be referred to as data perturbation - input perturbation being the better but uncommonly used expression. Possible perturbation methods are:<br>
+- <a href="#Rounding"><u>rounding</u></a>;<br>
+- perturbation, for example, by the addition of random noise or by the <a href="#Post_Randomisation_Method"><u>Post Randomisation Method</u></a>;<br>
+- <a href="#Disclosure_control_methods"><u>disclosure control methods</u></a> for <a href="#Microdata"><u>microdata</u></a> applied to <a href="#Tabular_data"><u>tabular data</u></a>.</p>
+<p><span id="Population_unique" class="anchor"></span><strong>Population unique:</strong> A record within a dataset which is unique within the population on a given <a href="#Key"><u>key</u></a>.</p>
+<p><strong>P-percent rule:</strong> A <a href="#pq_rule"><u>(p,q) rule</u></a> where q is 100%, meaning that from general knowledge any respondent can estimate the contribution of another respondent to within 100% (i.e., knows the value to be nonnegative and less than a certain value which can be up to twice the actual value).</p>
+<p><span id="pq_rule" class="anchor"></span><strong>(p,q) rule:</strong> It is assumed that out of publicly available information the contribution of one individual to the cell total can be estimated to within q per cent (q=error before publication); after the publication of the statistic the value can be estimated to within p percent (p=error after publication). In the (p,q) rule the ratio p/q represents the information gain through publication. If the information gain is unacceptable the cell is declared as confidential. The parameter values p and q are determined by the statistical authority and thus define the acceptable level of information gain. In some <a href="#NSI"><u>NSI</u></a>s the values of p and q are confidential.</p>
+<p><span id="Post_Randomisation_Method" class="anchor"></span><strong>Post Randomisation Method (PRAM):</strong> Protection method for <a href="#Microdata"><u>microdata</u></a> in which the scores of a categorical variable are changed with certain probabilities into other scores. It is thus intentional misclassification with known misclassification probabilities.</p>
+<p><strong>Primary confidentiality:</strong> It concerns tabular cell data, whose <a href="#Dissemination"><u>dissemination</u></a> would permit <a href="#Attribute_disclosure"><u>attribute disclosure</u></a>. The two main reasons for declaring data to be primary confidential are:<br>
+- too few units in a cell;<br>
+- dominance of one or two units in a cell.<br>
+The limits of what constitutes "too few" or "dominance" vary among statistical domains.</p>
+<p><strong>Primary protection:</strong> Protection using <a href="#Disclosure_control_methods"><u>disclosure control methods</u></a> for all cells containing small counts or cases of dominance.</p>
+<p><span id="Primary_suppression" class="anchor"></span><strong>Primary suppression:</strong> This technique can be characterized as withholding all <a href="#Disclosive_cells"><u>disclosive cells</u></a> from publication, which means that their value is not shown in the table, but replaced by a symbol such as ‘×’ to indicate the suppression. According to the definition of <a href="#Disclosive_cells"><u>disclosive cells</u></a>, in frequency count tables all cells containing small counts and in tables of magnitudes all cells containing small counts or representing cases of dominance have to be primary suppressed.</p>
+<p><strong>Prior-posterior rule:</strong> Synonym of the <a href="#pq_rule"><u>(p,q) rule</u></a>.</p>
+<p><span id="Privacy" class="anchor"></span><strong>Privacy:</strong> Privacy is a concept that applies to data subjects while confidentiality applies to data. The concept is defined as follows: "It is the status accorded to data which has been agreed upon between the person or organisation furnishing the data and the organisation receiving it and which describes the degree of protection which will be provided." There is a definite relationship between confidentiality and privacy. Breach of confidentiality can result in disclosure of data which harms the individual. This is an attack on privacy because it is an intrusion into a person’s self-determination on the way his or her <a href="#Personal_data"><u>personal data</u></a> are used. Informational privacy encompasses an individual’s freedom from excessive intrusion in the quest for information and an individual’s ability to choose the extent and circumstances under which his or her beliefs, behaviours, opinions and attitudes will be shared with or withheld from others.</p>
+<p><strong>Probability based disclosures (approximate or exact):</strong> Sometimes although a fact is not disclosed with certainty, the published data can be used to make a statement that has a high probability of being correct.</p>
+</section>
+<section id="q" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="q">Q</h2>
+<p><span id="Quasi-identifier" class="anchor"></span><strong>Quasi-identifier:</strong> Variable values or combinations of variable values within a dataset that are not structural uniques but might be empirically unique and therefore in principle uniquely identify a population unit.</p>
+</section>
+<section id="r" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="r">R</h2>
+<p><strong>Random perturbation:</strong> This is a disclosure control method according to which a noise, in the form of a random value is added to the true value or, in the case of categorical variables, where another value is randomly substituted for the true value.</p>
+<p><span id="Random_rounding" class="anchor"></span><strong>Random rounding:</strong> In order to reduce the amount of data loss that occurs with <a href="#Suppression"><u>suppression</u></a>, alternative methods have been investigated to protect <a href="#Sensitive_cell"><u>sensitive cell</u></a>s in tables of frequencies. Perturbation methods such as random rounding and <a href="#Controlled_rounding"><u>controlled rounding</u></a> are examples of such alternatives. In random rounding cell values are rounded, but instead of using standard rounding conventions a random decision is made as to whether they will be rounded up or down. The rounding mechanism can be set up to produce unbiased rounded results.</p>
+<p><strong>Rank swapping:</strong> Rank swapping provides a way of using continuous variables to define pairs of records for swapping. Instead of insisting that variables match (agree exactly), they are defined to be close based on their proximity to each other on a list sorted on the continuous variable. Records which are close in rank on the sorted variable are designated as pairs for swapping. Frequently in rank swapping the variable used in the sort is the one that will be swapped.</p>
+<p><strong>Record linkage process:</strong> Process attempting to classify pairs of matches in a product space A×B from two files A and B into M, the set of true links, and U, the set of non-true links.</p>
+<p><strong>Record swapping:</strong> A special case of <a href="#Data_swapping"><u>data swapping</u></a>, where the geographical codes of records are swapped.</p>
+<p><strong>Remote access:</strong> On-line access to protected <a href="#Microdata"><u>microdata</u></a>.</p>
+<p><span id="Remote_data_laboratory" class="anchor"></span><strong>Remote data laboratory:</strong> A virtual environment providing <a href="#Remote_execution"><u>remote execution</u></a> facilities.</p>
+<p><span id="Remote_execution" class="anchor"></span><strong>Remote execution:</strong> Submitting scripts on-line for execution on disclosive <a href="#Microdata"><u>microdata</u></a> stored within an institute’s protected network. If the results are regarded as <a href="#Safe_data"><u>safe data</u></a>, they are sent to the submitter of the script. Otherwise, the submitter is informed that the request cannot be acquiesced. Remote execution may either work through submitting scripts for a particular statistical package such as SAS, SPSS or STATA which runs on the remote server or via a tailor made client system which sits on the user’s desk top.</p>
+<p><strong>Residual disclosure:</strong> Disclosure that occurs by combining released information with previously released or publicly available information. For example, tables for nonoverlapping areas can be subtracted from a larger region, leaving confidential residual information for small areas.</p>
+<p><strong>Restricted access:</strong> Imposing conditions on access to the <a href="#Microdata"><u>microdata</u></a>. Users can either have access to the whole range of raw protected data and process individually the information they are interested in - which is the ideal situation for them - or their access to the protected data is restricted and they can only have a certain number of outputs (e.g.&nbsp;tables) or maybe only outputs of a certain structure. Restricted access is sometimes necessary to ensure that linkage between tables cannot happen.</p>
+<p><strong>Restriction based disclosure control method:</strong> Method for the release of <a href="#Tabular_data"><u>tabular data</u></a>, which consists in reducing access to the data provided to the external user. This method reduces the content of information provided to the user of the <a href="#Tabular_data"><u>tabular data</u></a>. This is implemented by not publishing all the figures derived from the collected data or by not publishing the information in as detailed a form as would be possible.</p>
+<p><span id="Risky_cells" class="anchor"></span><strong>Risky cells:</strong> The cells of a table which are non-publishable due to the risk of <a href="#Statistical_disclosure"><u>statistical disclosure</u></a> are referred to as risky cells. By definition there are three types of risky cells: small counts, dominance and <a href="#Complementary_suppression"><u>complementary suppression</u></a> cells.</p>
+<p><strong>Risky data:</strong> Data are considered to be disclosive when they allow statistical units to be identified, either directly or indirectly, thereby disclosing individual information. To determine whether a statistical unit is identifiable, account shall be taken of all the means that might reasonably be used by a third party to identify the said statistical unit.</p>
+<p><span id="Rounding" class="anchor"></span><strong>Rounding:</strong> Rounding belongs to the group of <a href="#Disclosure_control_methods"><u>disclosure control methods</u></a> based on output-perturbation. It is used to protect small counts in <a href="#Tabular_data"><u>tabular data</u></a> against disclosure. The basic idea behind this disclosure control method is to round each count up or down either deterministically or probabilistically to the nearest integer multiple of a rounding base. The additive nature of the table is generally destroyed by this process. Rounding can also serve as a recoding method for <a href="#Microdata"><u>microdata</u></a>.</p>
+<p><strong>R-U confidentiality map:</strong> A graphical representation of the trade off between <a href="#Disclosure_risk"><u>disclosure risk</u></a> and <a href="#Data_utility"><u>data utility</u></a>.</p>
+</section>
+<section id="s" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="s">S</h2>
+<p><span id="Safe_data" class="anchor"></span><strong>Safe data:</strong> <a href="#Microdata"><u>Microdata</u></a> or <a href="#Macrodata"><u>macrodata</u></a> that have been protected by suitable <a href="#Statistical_Disclosure_Control"><u>Statistical Disclosure Control</u></a> methods.</p>
+<p><span id="Safe_setting" class="anchor"></span><strong>Safe setting:</strong> An environment such as a <a href="#Microdata"><u>microdata</u></a> lab whereby access to a disclosive dataset can be controlled.</p>
+<p><strong>Safety interval:</strong> The minimal <a href="#Feasibility_interval"><u>feasibility interval</u></a> that is required for the value of a cell that does not satisfy the <a href="#Primary_suppression"><u>primary suppression</u></a> rule.</p>
+<p><span id="Sample_unique" class="anchor"></span><strong>Sample unique:</strong> A record within a dataset which is unique within that dataset on a given <a href="#Key"><u>key</u></a>.</p>
+<p><span id="Sampling" class="anchor"></span><strong>Sampling:</strong> In the context of disclosure control, this refers to releasing only a proportion of the original data records on a <a href="#Microdata"><u>microdata</u></a> file.</p>
+<p><span id="Sampling_fraction" class="anchor"></span><strong>Sampling fraction:</strong> The proportion of the population contained within a data release. With simple random sampling, the sample fraction represents the proportion of population units that are selected in the sample. With more complex sampling methods, this is usually the ratio of the number of units in the sample to the number of units in the population from which the sample is selected.</p>
+<p><strong>Scenario analysis:</strong> A set of pseudo-criminological methods for analysing and classifying the plausible risk channels for a data intrusion. The methods are based around first delineating the means, motives and opportunity that an <a href="#Intruder"><u>intruder</u></a> may have for conducting the attack. The output of such an analysis is a specification of a set of <a href="#Key"><u>key</u></a>s likely to be held by <a href="#Data_intruder"><u>data intruder</u></a>s.</p>
+<p><strong>Secondary data intrusion:</strong> After an attempt to match between <a href="#Identification"><u>identification</u></a> and <a href="#Target_dataset"><u>target dataset</u></a>s an <a href="#Intruder"><u>intruder</u></a> may discriminate between non-unique matches by further direct investigations using additional variables.</p>
+<p><strong>Secondary disclosure risk:</strong> It concerns data which is not primary disclosive, but whose <a href="#Dissemination"><u>dissemination</u></a>, when combined with other data permits the <a href="#Identification"><u>identification</u></a> of a <a href="#Microdata"><u>microdata</u></a> unit or the disclosure of a unit’s attribute.</p>
+<p><span id="Secondary_suppression" class="anchor"></span><strong>Secondary suppression:</strong> To reach the desired protection for <a href="#Risky_cells"><u>risky cells</u></a>, it is necessary to suppress additional non-<a href="#Risky_cells"><u>risky cells</u></a>, which is called secondary suppression or <a href="#Complementary_suppression"><u>complementary suppression</u></a>. The pattern of complementary suppressed cells has to be carefully chosen to provide the desired level of ambiguity for the <a href="#Disclosive_cells"><u>disclosive cells</u></a> at the highest level of information contained in the released statistics.</p>
+<p><span id="Security" class="anchor"></span><strong>Security:</strong> An efficient disclosure control method provides protection against <a href="#Exact_disclosure"><u>exact disclosure</u></a> or unwanted narrow estimation of the attributes of an individual entity, in other words, a useful technique prevents exact or <a href="#Partial_disclosure"><u>partial disclosure</u></a>. The security level is accordingly high. In the case of <a href="#Disclosure_control_methods"><u>disclosure control methods</u></a> for the release of <a href="#Microdata"><u>microdata</u></a> this protection is ensured if the <a href="#Identification"><u>identification</u></a> of a respondent is not possible, because the <a href="#Identification"><u>identification</u></a> is the prerequisite for disclosure.</p>
+<p><span id="Sensitive_cell" class="anchor"></span><strong>Sensitive cell:</strong> Cell for which knowledge of the value would permit an unduly accurate estimate of the contribution of an individual respondent. Sensitive cells are identified by the application of a <a href="#Dominance_rule"><u>dominance rule</u></a> such as the <a href="#nk_rule"><u>(n,k) rule</u></a> or the <a href="#pq_rule"><u>(p,q) rule</u></a> to their <a href="#Microdata"><u>microdata</u></a>.</p>
+<p><strong>Sensitive variables:</strong> Variables contained in a data record apart from the <a href="#Key_variable"><u>key variable</u></a>s, that belong to the private domain of respondents who would not like them to be disclosed. There is no exact definition given for what a ‘sensitive variable’ is and therefore, the division into <a href="#Key"><u>key</u></a> and sensitive variables is somehow arbitrary. Some data are clearly sensitive such as the possession of a criminal record, one’s medical condition or credit record, but there are other cases where the distinction depends on the circumstances, e.g.&nbsp;the income of a person might be regarded as a sensitive variable in some countries and as <a href="#Quasi-identifier"><u>quasi-identifier</u></a> in others, or in some societies the religion of an individual might count as a <a href="#Key"><u>key</u></a> and a sensitive variable at the same time. All variables that contain one or more sensitive categories, i.e.&nbsp;categories that contain sensitive information about an individual or enterprise, are called sensitive variables.</p>
+<p><span id="Shuttle_algorithm" class="anchor"></span><strong>Shuttle algorithm:</strong> A method for finding lower and upper cell <a href="#Bounds"><u>bounds</u></a> by iterating through dependencies between cell counts. There exist many dependencies between individual counts and aggregations of counts in contingency tables. Where not all individual counts are known, but some aggregated counts are known, the dependencies can be used to make inferences about the missing counts. The Shuttle algorithm constructs a specific subset of the many possible dependencies and recursively iterates through them in order to find <a href="#Bounds"><u>bounds</u></a> on missing counts. As many dependencies will involve unknown counts, the dependencies need to be expressed in terms of inequalities involving lower and <a href="#Upper_bound"><u>upper bound</u></a>s, rather than simple equalities. The algorithm ends when a complete iteration fails to tighten the <a href="#Bounds"><u>bounds</u></a> on any cell counts.</p>
+<p><span id="Special_uniques_analysis" class="anchor"></span><strong>Special uniques analysis:</strong> A method of analysing the per-record risk of <a href="#Microdata"><u>microdata</u></a>.</p>
+<p><strong>Statistical confidentiality:</strong> The protection of data that relate to single statistical units and are obtained directly for statistical purposes or indirectly from administrative or other sources against any breach of the right to confidentiality. It implies the prevention of unlawful disclosure.</p>
+<p><strong>Statistical Data Protection (SDP):</strong> Statistical Data Protection is a more general concept which takes into account all steps of production. SDP is multidisciplinary and draws on computer science (data <a href="#Security"><u>security</u></a>), statistics and operations research.</p>
+<p><span id="Statistical_disclosure" class="anchor"></span><strong>Statistical disclosure:</strong> Statistical disclosure is said to take place if the <a href="#Dissemination"><u>dissemination</u></a> of a statistic enables the external user of the data to obtain a better estimate for a confidential piece of information than would be possible without it.</p>
+<p><span id="Statistical_Disclosure_Control" class="anchor"></span><strong>Statistical Disclosure Control (SDC):</strong> Statistical Disclosure Control techniques can be defined as the set of methods to reduce the risk of disclosing information on individuals, businesses or other organisations. Such methods are only related to the <a href="#Dissemination"><u>dissemination</u></a> step and are usually based on restricting the amount of or modifying the data released.</p>
+<p><span id="Statistical_Disclosure_Limitation" class="anchor"></span><strong>Statistical Disclosure Limitation (SDL):</strong> Synonym of <a href="#Statistical_Disclosure_Control"><u>Statistical Disclosure Control</u></a>.</p>
+<p><strong>Subadditivity:</strong> One of the properties of the <a href="#nk_rule"><u>(n,k) rule</u></a> or <a href="#pq_rule"><u>(p,q) rule</u></a> that assists in the search for complementary cells. The property means that the sensitivity of a union of disjoint cells cannot be greater than the sum of the cells’ individual sensitivities (triangle inequality). Subadditivity is an important property because it means that aggregates of cells that are not sensitive are not sensitive either and do not need to be tested.</p>
+<p><span id="Subtraction" class="anchor"></span><strong>Subtraction:</strong> The principle whereby an <a href="#Intruder"><u>intruder</u></a> may attack a table of population counts by removing known individuals from the table. If this leads to the presence of certain zeroes in the table then that table is vulnerable to <a href="#Attribute_disclosure"><u>attribute disclosure</u></a>.</p>
+<p><span id="Suppression" class="anchor"></span><strong>Suppression:</strong> One of the most commonly used ways of protecting <a href="#Sensitive_cell"><u>sensitive cell</u></a>s in a table is via suppression. It is obvious that in a row or column with a suppressed <a href="#Sensitive_cell"><u>sensitive cell</u></a>, at least one additional cell must be suppressed, or the value in the <a href="#Sensitive_cell"><u>sensitive cell</u></a> could be calculated exactly by <a href="#Subtraction"><u>subtraction</u></a> from the marginal total. For this reason, certain other cells must also be suppressed. These are referred to as <a href="#Secondary_suppression"><u>secondary suppression</u></a>s. While it is possible to select cells for <a href="#Secondary_suppression"><u>secondary suppression</u></a> manually, it is difficult to guarantee that the result provides adequate protection.</p>
+<p><strong>SUDA:</strong> A software system for conducting analyses on <a href="#Population_unique"><u>population unique</u></a>s and special <a href="#Sample_unique"><u>sample unique</u></a>s. The <a href="#Special_uniques_analysis"><u>special uniques analysis</u></a> method implemented in SUDA for measuring and assessing <a href="#Disclosure_risk"><u>disclosure risk</u></a> is based on resampling methods and used by the ONS.</p>
+<p><strong>Swapping (or switching):</strong> Swapping (or switching) involves selecting a sample of the records, finding a match in the data base on a set of predetermined variables and swapping all or some of the other variables between the matched records.</p>
+<p><strong>Synthetic data:</strong> An approach to confidentiality where instead of disseminating real data, synthetic data that have been generated from one or more population models are released.</p>
+</section>
+<section id="t" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="t">T</h2>
+<p><strong>Table server:</strong> A form of <a href="#Remote_data_laboratory"><u>remote data laboratory</u></a> designed to release safe tables.</p>
+<p><strong>Tables of frequency (count) data:</strong> These tables present the number of units of analysis in a cell. When data are from a sample, the cells may contain weighted counts, where weights are used to bring sample results to the population levels. Frequencies may also be represented as percentages.</p>
+<p><strong>Tables of magnitude data:</strong> Tables of magnitude data present the aggregate of a “quantity of interest” over all units of analysis in the cell. When data are from a sample, the cells may contain weighted aggregates, where quantities are multiplied by units’ weights to bring sample results up to population levels. The data may be presented as averages by dividing the aggregates by the number of units in their cells.</p>
+<p><span id="Tabular_data" class="anchor"></span><strong>Tabular data:</strong> Aggregate information on entities presented in tables.</p>
+<p><span id="Target_dataset" class="anchor"></span><strong>Target dataset:</strong> An <a href="#Anonymised_data"><u>anonymised data</u></a>set in which an <a href="#Intruder"><u>intruder</u></a> attempts to identify particular population units.</p>
+<p><span id="Targeted_Record_Swapping" class="anchor"></span><strong>Targeted Record Swapping (TRS):</strong> A pre-tabular perturbative SDC method that applies a swapping procedure to the microdata before generating a table. The tables are additive and protected consistently.</p>
+<p><strong>Threshold (rule):</strong> Usually, with the threshold rule, a cell in a table of frequencies is defined to be sensitive if the number of respondents is less than some specified number. Some agencies require at least five respondents in a cell, others require three. When thresholds are not respected, an agency may restructure tables and combine categories or use <a href="#Cell_suppression"><u>cell suppression</u></a> or <a href="#Rounding"><u>rounding</u></a>, or provide other additional protection in order to satisfy the rule.</p>
+<p><span id="Top_and_bottom_coding" class="anchor"></span><strong>Top and bottom coding:</strong> It consists in setting top-codes or bottom-codes on quantitative variables. A top-code for a variable is an upper limit on all published values of that variable. Any value greater than this upper limit is replaced by the upper limit or is not published on the <a href="#Microdata"><u>microdata</u></a> file at all. Similarly, a bottom-code is a lower limit on all published values for a variable. Different limits may be used for different quantitative variables, or for different subpopulations.</p>
+<p><strong>Top coding:</strong> See <a href="#Top_and_bottom_coding"><u>top and bottom coding</u></a>.</p>
+</section>
+<section id="u" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="u">U</h2>
+<p><strong>Union unique:</strong> A <a href="#Sample_unique"><u>sample unique</u></a> that is also <a href="#Population_unique"><u>population unique</u></a>. The proportion of <a href="#Sample_unique"><u>sample unique</u></a>s that are union uniques is one measure of file level <a href="#Disclosure_risk"><u>disclosure risk</u></a>.</p>
+<p><span id="Uniqueness" class="anchor"></span><strong>Uniqueness:</strong> The term is used to characterise the situation where an individual can be distinguished from all other members in a population or sample in terms of information available on <a href="#Microdata"><u>microdata</u></a> records (or within a given <a href="#Key"><u>key</u></a>). The existence of uniqueness is determined by the size of the population or sample and the degree to which it is segmented by geographic information and the number and detail of characteristics provided for each unit in the dataset (or within the <a href="#Key"><u>key</u></a>).</p>
+<p><span id="Upper_bound" class="anchor"></span><strong>Upper bound:</strong> The highest possible value of a cell in a table of frequency counts where the cell value has been perturbed or suppressed.</p>
+</section>
+<section id="v" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="v">V</h2>
+<p><span id="Virtual_safe_setting" class="anchor"></span><strong>Virtual safe setting:</strong> Synonym of <a href="#Remote_data_laboratory"><u>remote data laboratory</u></a>.</p>
+</section>
+<section id="w" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="w">W</h2>
+<p><strong>Waiver approach:</strong> Instead of suppressing <a href="#Tabular_data"><u>tabular data</u></a>, some agencies ask respondents for permission to publish cells even though doing so may cause these respondents’ sensitive information to be estimated accurately. This is referred to as the waiver approach. Waivers are signed records of the respondents’ granting permission to publish such cells. This method is most useful with small surveys or sets of tables involving only a few cases of dominance, where only a few waivers are needed. Of course, respondents must believe that their data are not particularly sensitive before they will sign waivers.</p>
+</section>
+<section id="x" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="x">X</h2>
+</section>
+<section id="y" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="y">Y</h2>
+</section>
+<section id="z" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="z">Z</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06-remote-access-issues.html" class="pagination-link  aria-label=" &lt;span="" access="" issues&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Remote access issues</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
