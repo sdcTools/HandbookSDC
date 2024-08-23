@@ -1,0 +1,4 @@
+## Licensing {#sec-licensing}
+
+Another access option for microdata releases available to NSIs is to release data under licence or access agreements. A spectrum of different data access arrangements can be provided. A variety of factors should be taken into account when granting approval for access -- including the purpose of the access, the status of the user, the legal framework, the status of the data, the availability of facilities and the history of access. The levels of control over use and user applied within the licence should be balanced by the level of detail and/or perturbation in the microdata.
+

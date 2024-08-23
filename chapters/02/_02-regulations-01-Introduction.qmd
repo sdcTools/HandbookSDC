@@ -1,0 +1,24 @@
+## Confidentiality in European statistical laws
+
+Up to the late 1980's microdata were rarely sent to Eurostat, the statistical office of the European Union. There was a general reliance on submission by National Statistical Institutes (NSIs) of agreed tabular data. National confidentiality rules in some of the European countries made it impossible to harmonise European statistics. This was an unwanted situation for all NSIs, and especially for Eurostat. Therefore, a regulation on the transmission of confidential data to Eurostat has been prepared and was finally adopted by the Council in June 1990 as Regulation 1588/90.
+
+*Committee on Statistical Confidentiality*\
+In January 1994, these measures have been defined and formally adopted by the Member States through the Committee on Statistical Confidentiality (CSC). This Committee met at least once a year at the Eurostat office in Luxembourg. This Committee discussed the implementation and evaluation of European Regulations on the dissemination of microdata and tabular data. Also revisions to the basic statistical legal framework were considered. The last meeting of the CSC was held in 2008.
+
+Another relevant Council Regulation is No 322/97 of February 1997. This Regulation defined the general principles governing Community statistics, the processes for the production of these statistics and established detailed rules on confidentiality. This Regulation was considered as the general statistical law of the European Union until 2009 when the Regulation on European statistics entered into force and replaced Council Regulation 322/97.
+
+*EU Regulation on European statistics*\
+A new statistical legal framework at the European level was introduced in 2009. One of the new aspects concerns statistical confidentiality: the need to enhance the role of the NSIs and Eurostat for organisational, co-ordination and representation purposes was noted. In this context the former Statistical Programme Committee was replaced by a new Committee, the European Statistical System Committee (ESSC). This new Committee is also entrusted with the functions of the CSC, which thus ceased to exist.
+
+The European Statistical System (ESS) is defined by Regulation 223/2009 on European statistics on 1 April 2009 as the partnership between the Community statistical authority (the Commission (Eurostat)) and all national authorities responsible for the development, production and dissemination of European Statistics (ES). Regulation 223/2009 was amended by Regulation 2015/759 of the European Parliament and the Council in order to further strengthen the governance of the ESS, in particular its professional independence.
+
+Currently, Regulation 223/2009 is being ammended by a more modern version that gives, among others, better possibilities for the NSIs to use privately held data. However, the new regulation will not include substantial changes regarding the situation of Statistical Disclosure Control in the European Union.
+
+The availability of confidential data for the needs of the ESS is of particular importance in order to maximise the benefits of the data with the aim of increasing the quality of European statistics and to ensure a flexible response to the newly emerging EU statistical needs.
+
+The transmission of confidential data between ESS partners is allowed if necessary for the production, development and dissemination of ES and also for increasing the quality of these statistics. The conditions for their further transmission, in particular for scientific purposes, are also strictly defined.
+
+The ESSC is consulted on all draft comitology measures submitted by the Commission in the domain of statistical confidentiality.
+
+The next section gives some background by discussing a few ethical codes and laws. It does not contain any national specialities.
+

@@ -1,0 +1,35 @@
+## Introductory example: rules at Statistics Netherlands {#sec-intro-example}
+
+As has been shown in the previous sections there are many sophisticated ways of making a safe protected microdata set. And it is far from a simple straightforward task to select the most appropriate method for the Disclosure Protection of a microdata set. This requires a solid knowledge of the survey in question as well as a good overview of all the methods described in the previous sections.
+
+However as an introduction we will describe here a method/set of rules inspired by those currently applied at Statistics Netherlands for making both microdata files for researchers as well as public use files. This approach can be easily applied, as it is readily available in $\mu$-ARGUS. These rules are based on the ARGUS threshold-rule in combination with global recoding and local suppression (see @sec-global-recoding and [-@sec-local-suppression]). This rule only concentrates on the identifying variables or key-variables, as these are the starting point for an intrusion. There rules have primarily been developed for microdata about persons.
+
+*Microdata for researchers*\
+For the microdata for researchers one could use the following set of rules:
+
+1.  Direct identifiers should not be released and therefore should be removed from the microdata set.
+2. The indirect identifiers are subdivided into extremely identifying variables, very identifying variables and identifying variables. Only direct regional variables are considered to be extremely identifying. Very identifying variable are very visible variables like gender, ethnicity etc. Each combination of values of an extremely identifying variable, a very identifying variable and an identifying variable should occur at least 100 times in the population.
+3. The maximum level of detail for occupation, firm and level of education is determined by the most detailed direct regional variable. This rule does not replace rule 2, but is instead a practical extension of that rule.
+4. A region that can be distinguished in the microdata should contain at least 10 000 inhabitants.
+5. If the microdata concern panel data direct regional data should not be released. This rule prevents the disclosure of individual information by using the panel character of the microdata.
+
+If these rules are violated, global recoding and local suppression are applied to achieve a safe file. Both global recoding and local suppression lead to information loss, because either less detailed information is provided or some information is not given at all. A balance between global recoding and local suppression should always be found in order to make the information loss due to the statistical disclosure control measures as low as possible. It is recommended to start by recoding some variables globally until the number of unsafe combinations that has to be protected is sufficiently low. Then the remaining unsafe combinations have to be protected by local suppressions.
+
+For business microdata these rules are not appropriate. Opposite to personal microdata business data tends to be much more skewed. Each business is much more visible in a microdata set. This makes it very hard to make a safe business micro dataset.
+
+*Microdata for the general public*\
+The software package $\mu$-ARGUS (see *e.g.* Hundepool et al, 2014) is also of help in producing public use microdata files. For public use microdata files one could use the following set of rules:
+
+1. The microdata must be at least one year old before they may be released.
+2. Direct identifiers should not be released. Also direct regional variables, nationality, country of birth and ethnicity should not be released.
+3. Only one kind of indirect regional variables (*e.g.* the size class of the place of residence) may be released. The combinations of values of the indirect regional variables should be sufficiently scattered, *i.e.* each area that can be distinguished should contain at least 200 000 persons in the target population and, moreover, should consist of municipalities from at least six of the twelve provinces in the Netherlands. The number of inhabitants of a municipality in an area that can be distinguished should be less than 50 % of the total number of inhabitants in that area.
+4. The number of identifying variables in the microdata is at most 15.
+5. Sensitive variables should not be released.
+6. It should be impossible to derive additional identifying information from the sampling weights.
+7. At least 200 000 persons in the population should score on each value of an identifying variable.
+8. At least 1 000 persons in the population should score on each value of the crossing of two identifying variables.
+9. For each household from which more than one person participated in the survey we demand that the total number of households that correspond to any particular combination of values of household variables is at least five in the microdata.
+10. The records of the microdata should be released in random order.
+
+According to this set of rules the public use files are protected much more severely than the microdata for research. Note that for the microdata for research it is necessary to check certain trivariate combinations of values of identifying variables and for the public use files it is sufficient to check bivariate combinations, but the thresholds are much higher. However, for public use files it is not allowed to release direct regional variables. When no direct regional variable is released in a microdata set for research, then only some bivariate combinations of values of identifying variables should be checked according to the statistical disclosure control rules. For the corresponding public use files all the bivariate combinations of values of identifying variables should be checked.
+

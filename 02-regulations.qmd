@@ -1,0 +1,11 @@
+# Confidentiality in legal acts and ethical codes
+
+{{< include chapters/02/_02-regulations-01-Introduction.qmd >}}
+
+{{< include chapters/02/_02-regulations-02-Ethical-codes.qmd >}}
+
+{{< include chapters/02/_02-regulations-03-Laws.qmd >}}
+
+{{< include chapters/02/_02-regulations-04-References.qmd >}}
+
+

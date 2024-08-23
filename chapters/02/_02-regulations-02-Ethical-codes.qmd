@@ -1,0 +1,75 @@
+## Ethical codes
+
+Many Member States have an ethical code that forms the basis of the production of official statistics. Additionally, there are internationally recognised ethical codes that are discussed in this section.
+
+*ISI Declaration on Professional Ethics*\
+After an intense preparation process taking place from 1979 to 1985, the International Statistical Institute (ISI) adopted the ISI Declaration on Professional Ethics in 1985. A newer version was adopted in 2010 by the ISI Council. Finally, an updated version was endorsed by the ISI Executive Committee. Whilst the 2010 Declaration content remains largely valid, the increasing use of a diversity of data sources, linked data sets and computationally heavy statistical methods has required updates introduced in 2023.
+
+*European Statistics Code of Practice*\
+On 24 February 2005 the Statistical Programme Committee adopted the European Statistics Code of Practice. On 17 November 2017 a renewed version of this Code was adopted by the European Statistical System Committee (ESSC). This Code of Practice has the dual purpose of:
+
+-   Improving trust and confidence in the independence, integrity and accountability of both National Statistical Authorities and Eurostat, and in the credibility and quality of the statistics they produce and disseminate (*i.e.* an external focus);
+-   Promoting the application of best international statistical principles, methods and practices by all producers of European Statistics to enhance their quality (*i.e.* an internal focus).
+
+The Code of Practice is based on 15 Principles. Governance authorities and statistical authorities in the European Union commit themselves to adhering to the principles fixed in this code and to reviewing its implementation periodically by the use of Indicators of Good Practice for each of the 15 Principles, which are to be used as references. Principle 5 concerns statistical confidentiality and is cited below.
+
+> Principle 5: Statistical Confidentiality
+> 
+> *The privacy of data providers, the confidentiality of the information they provide, its use only for statistical purposes and the security of the data are absolutely guaranteed.*
+
+Indicators
+
+- 5.1 Statistical confidentiality is guaranteed in law.
+- 5.2 Staff sign legal confidentiality commitments on appointment.
+- 5.3 Penalties are prescribed for any wilful breaches of statistical confidentiality.
+- 5.4 Guidelines and instructions are provided to staff on the protection of statistical confidentiality throughout the statistical processes. The confidentiality policy is made known to the public.
+- 5.5 The necessary regulatory, administrative, technical and organisational measures are in place to protect the security and integrity of statistical data and their transmission, in accordance with best practices, international standards, as well as European and national legislation.
+- 5.6 Strict protocols apply to external users accessing statistical microdata for research purposes.
+
+*UNECE principles and Guidelines of Good Practice for Managing Statistical Confidentiality and Microdata Access*\
+The 2003 Conference of European Statisticians (CES) of the United Nations Statistical Commission for Europe installed a Task Force, chaired by Dennis Trewin (at that time the Australian Statistician), to draft Principles and Guidelines of Good Practice for Managing Statistical Confidentiality and Microdata Access. In their final report of 2007 the following two key objectives in these guidelines are mentioned:
+
+-   To foster greater uniformity of approach by countries whilst facilitating better access to microdata by the research community for worthwhile papers;
+-   Through these guidelines and supporting case studies, to enable countries to improve their arrangements for providing access to microdata.
+
+The sixth United Nations Fundamental Principle of Official Statistics, which was mentioned in @sec-5-stages of this handbook, is very clear on statistical confidentiality: "Individual data collected by statistical agencies for statistical compilation, whether they refer to natural or legal persons, are to be strictly confidential and used exclusively for statistical purposes". Any principles for microdata access must be consistent with this Fundamental Principle.
+
+According to the report by Trewin c.s. the following principles should be used for managing the confidentiality of microdata. Each is discussed in the following paragraphs.
+
+> Principle 1: It is appropriate for microdata collected for official statistical purposes to be used for statistical analysis to support research as long as confidentiality is protected.
+>
+> Principle 2: Microdata should only be made available for statistical purposes.
+>
+> Principle 3: Provision of microdata should be consistent with legal and other necessary arrangements that ensure that confidentiality of the released microdata is protected.
+>
+> Principle 4: The procedures for researcher access to microdata, as well as the uses and users of microdata, should be transparent and publicly available.
+
+Making microdata available for research is not in contradiction with the sixth UN Fundamental Principle as long as it is not possible to identify data referring to an individual. Principle 1 does not constitute an obligation to provide microdata. The National Statistical Office should be the one to decide whether to provide microdata or not. There may be other concerns (for example, quality) that make it inappropriate to provide access to microdata. Or there may be specific persons or institutions to which it would be inappropriate to provide microdata.
+
+For Principle 2, a distinction has to be made between statistical or analytical uses and administrative uses. In the case of statistical or analytical use, the aim is to derive statistics that refer to a group (be it of persons or legal entities). In the case of administrative use, the aim is to derive information about a particular person or legal entity to make a decision that may bring benefit or harm to the individual. For example, some requests for data may be legal (a court order) but inconsistent with this principle. It is in the interest of public confidence in the official statistical system that these requests are refused. If the use of the microdata is incompatible with statistical or analytical purposes, then microdata access should not be provided. Ethics committees or a similar arrangement may assist in situations where there is uncertainty whether to provide access or not.
+
+Researchers are accessing microdata for research purposes but to support this research they may need to compile statistical aggregations of various forms, compile statistical distributions, fit statistical models, or analyse statistical differences between sub-populations. These uses would be consistent with statistical purposes. To the extent that this is how the microdata are being used, it could also be said to support research purposes.
+
+With respect to Principle 3, legal arrangements to protect confidentiality should be in place before any microdata are released. However, the legal arrangements have to be complemented with administrative and technical measures to regulate the access to microdata and to ensure that individual data cannot be disclosed. The existence and visibility of such arrangements (whether in law or supplementary regulations, ordinances, etc.) are necessary to increase public confidence that microdata will be used appropriately. Legal arrangements are clearly preferable but in some countries this may not be possible and some other form of administrative arrangement should be put in place. The legal (or other arrangements) should also be cleared with the privacy authorities of countries where they exist before they are established by law. If such authorities do not exist, there may be NGOs who have a "watchdog" role on privacy matters. It would be sensible to get their support for any legal or other arrangements, or at least to address any serious concerns they might have.
+
+In some countries, authorising legislation does not exist. At a minimum, release of microdata should be supported by some form of authority. However, an authorising legislation is a preferable approach.
+
+Principle 4 is important to increase public confidence that microdata are being used appropriately and to show that decisions about microdata release are taken on an objective basis. It is up to the NSO to decide whether, how and to whom microdata can be released. But their decisions should be transparent. The NSO web site is an effective way of ensuring compliance and also for providing information on how to access research reports based on released microdata.
+
+The guidelines of the report were endorsed by the CES plenary session in 2006. They addressed the need to unify the approaches internationally and to agree on core principles for dissemination of microdata. They also suggested moving towards a risk management rather than a risk avoidance approach in the provision of microdata.
+
+The report originally contained an annex with 22 case studies describing good practices in different countries. It is a dynamic document that is updated from time to time.
+
+*UNECE Principles and Guidelines on Confidentiality Aspects of Data Integration*\
+In 2007 and 2008 a CES Task Force chaired by Brian Pink, at that time the Australian Statistician, drafted Principles and Guidelines on Confidentiality Aspects of Data Integration.
+
+Data integration is concerned with integrating unit record data from different administrative and/or survey sources to compile new official statistics which can then be released in their own right. In addition these integrated data sets may be used to support a range of economic and social research not possible using traditional sources.
+
+The drafted principles and associated guidelines expand on the sixth UN Fundamental Principle by providing a common framework for assessing and mitigating legislative and other confidentiality aspects of the creation and use of integrated datasets for statistical and associated research purposes. In particular they recognise that the fundamental principles of official statistics apply equally to integrated data sets as to any other source of official statistics.
+
+In developing these principles, it is recognised that integration of statistical data sets has become a normal part of the operations of a number of statistical offices and is generally most advanced in those countries where a heavy reliance is placed on obtaining statistical information from administrative registers. Countries that regularly undertake statistical integration usually already have a strong legislative basis and clear rules about protection of the confidentiality of personal and individual business data irrespective of whether the data has been integrated from different sources or not.
+
+However, for many other countries the notion of integrating data from different sources for statistical and related research purposes is relatively new. The drafted principles and associated guidelines are designed to provide some clarity and consistency of application.
+
+These Principles and Guidelines were endorsed by the CES at their June 2009 meeting.
+

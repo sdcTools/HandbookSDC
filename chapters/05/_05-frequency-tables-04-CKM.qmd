@@ -1,0 +1,54 @@
+
+## Cell Perturbation - the Cell Key Method {#sec-CKM_freq}
+
+The Cell Key Method is a post tabular perturbative disclosure control method, that adds noise to the original table cell values. Since the individual table cells are equipped with a noise independently, please note that this implies that the resulting table is no longer additive. For example, after perturbation, a population table could show that 1000 males, 1100 females and 16 non-binary persons live in an area, while the total count is 2109 persons. This non-additivity is part of the protective mechanism of this method and at the same time offers the advantage that the deviation from the original value can be kept as small as possible. It is not recommended, generally, to form such aggregates subsequently from perturbed values, because this would also add the sum of all noise terms to the aggregate, which can make the deviation undesirably large.
+
+The Cell Key Method is a more informed post-tabular method of disclosure control since it utilizes pre-tabular microdata information during the perturbation stage. This is to achieve that cells are adjusted in such a way that the same cell is perturbed in the same way even when it appears across different tables. The method is highly dependent on the so-caleld 'lookup table' that is used to determine the noise to be added to each particular cell before dissemination, but is flexible in that lookup tables can be specifically designed to meet needs, and different lookup tables could potentially be used for different tables. Furthermore, the lookup table can be designed to reflect other post-tabular methods (*e.g.* small cell adjustments or random rounding). The method provides protection for flexible tables and can be used to produce perturbations for large high dimensional hierarchical tables. 
+As noted above, since perturbation is applied to each table cell independently, additivity gets lost. This is similar to the case of rounding but due to the complexity of the method, those inconsistencies in the data are harder to communicate. Theoretically one might add a post-processing stage to restore additivity, using, for example, an iterative fitting algorithm which may attempt to balance and minimise absolute distances to the stage one table (although not necessarily producing an optimal solution). However, restoring additivity tends to increase the noise, and may cause different perturbation for the same cell when it appears across different tables. It is therefore not generally recommended.
+
+Please note that there is not one ultimate way of how to define the Record Key, the Cell Key and the lookup table. The Australian Bureau of Statistics for example relies on integer values for their Record Keys whereas the Center of Excellence (CoE) on SDC presented an approach where the Record Keys are uniformly distributed between 0 and 1, which should allow for more flexibility regarding noise design. We will focus on the latter approach here, which is also implemented in the software $\tau$-ARGUS and the R-package `cellKey`.
+In the variant suggested by the CoE on SDC all digits before the decimal point are removed from the Cell Key (being the sum of the Record Keys within a table cell), which makes it another random number that is uniformly distributed between 0 and 1. The lookup table now can be interpreted as the tabular representation of a piecewise constant inverse distribution function. By looking up values that are uniformly distributed, we thus obtain realizations of a random variable with the corresponding coded distribution.
+
+It is possible to create lookup tables, which are also known as perturbation tables or p-tables, that are tailored to your needs, by using the freely accesible R-package `ptable`. The package allows, among other things, to specify a maximum for the noise you want to add and the probability for the noise to be zero, which is equivalent to retaining the original value. You also have the option to generate the distribution, coded inside the perturbation table, in such a way, that certain values, such as ones or twos, do not occur in the perturbed output at all. The method for creating such tables, implemented in the `ptable` package, is based on a maximum entropy approach as described, for example, in Giessing (2016) and yields a distribution with zero mean. Therefore, the distribution of the data will not get biased by adding the noise. 
+For more information about the `ptable` package, please see the vignette or the reference manual on CRAN ([https://cran.r-project.org/web/packages/ptable](https://cran.r-project.org/web/packages/ptable)). 
+
+The protection effect arises from the uncertainty of a data attacker about whether and, if so, how much a value has been changed. Therefore, all published figures must be perturbed with the Cell Key Method, even those that do not pose a disclosure risk\index{disclosure risk} per se. 
+Before the Cell Key Method can be applied, one has to consider which maximum deviation is still acceptable and how large the variance of the noise should be. But one should always keep in mind that a low maximum deviation also leads to less protection and hence one cannot focus on information loss alone. It is especially risky to publish the maximum deviation, since a data attacker can use this information to draw further conclusions.
+
+:::{.callout-note appearance="simple"}
+**Example**
+To illustrate how the Cell Key Method is used, @tbl-ckm_p_table shows a purely fictional manually created perturbation table with a maximum deviation of 1 and without ones in the results after perturbation.
+
+| original value | perturbed value | probability of occurrence | noise | lower bound | upper bound |
+|------------:|------------:|------------:|------------:|------------:|------------:|
+|           0 |           0 |           1 |           0 |           0 |           1 |
+| 1 | 0 | 0.5 | -1 | 0 | 0.5 |
+| 1 | 2 | 0.5 | 1 | 0.5 | 1 |
+| 2 | 2 | 0.8 | 0 | 0 | 0.8 |
+| 2 | 3 | 0.2 | 1 | 0.8 | 1 |
+| 3 | 2 | 0.3 | -1 | 0 | 0.3 |
+| 3 | 3 | 0.4 | 0 | 0.3 | 0.7 |
+| 3 | 4 | 0.3 | 1 | 0.7 | 1 |
+
+: Fictional example of a p-table {#tbl-ckm_p_table}
+
+ As you can see the values in the colum ‘original value’ range from 0 to 3. This is because a different distribution is stored in the p-table for each of these values. Otherwise, negative values could arise, for example. This means that within a p-table several probability distributions for the noise are stored, which are used depending on the original value. In the given example for an original value of 1 the noise $\textit{v}$ is defined as a uniform distribution on the set $\lbrace -1,1\rbrace$, whereas for an original value of 2 with a probability of 80\% the noise is 0 and with a probability of 20\% it is 1. For every original value which is at least 3 the lowest lines in the p table  will be used to define the noise $\textit{v}$, which encode a symmetric distribution on $\lbrace -1,0,1\rbrace$.
+:::
+
+:::{.callout-note appearance="minimal"}
+| ID | Sex | Record Key |
+|:---|----:|-----------:|
+| A | male | 0.9 |
+| B | male | 0.3 |
+| C | male | 0.6 |
+
+: Exemplary Microdata {#tbl-ckm_respondents}
+
+Now if we have a set of microdata which contains three male respondents with Record Keys 0.5, 0.3 and 0.6 respectively, as shown in @tbl-ckm_respondents, then in a table cell that aggregates those three respondents the corresponding sum of Record Keys is 0.9+0.3+0.6=1.8. Since for the Cell Key the digits before the decimal point are irrelevant, we get a corresponding Cell Key of 0.8. Now to identify the noise $\textit{v}$ that has to be added to the original count of 3, we have to concentrate on those lines of the p-table, for which the original value is 3 and identify that line for which $\textit{'lower bound'} < 0.8 \leq \textit{'upper bound'}$. This is the last row of our exemplary table, in which the value 1 is given for the noise. Hence the perturbed count for this cell computes as $\hat{n} = n + v = 3 + 1 = 4$.
+At this point, it should be noted that if, in addition to frequencies, magnitudes and mean values are also published, the mean values should rather not be shown as original values, since otherwise there is a risk that the corresponding original frequency values can be disclosed. See the discussion in @sec-Means_freq.
+:::
+
+### Software implementing the Cell Key Method
+For application of the Cell Key Method, so called $p$-tables describing the distribution of the noise are needed. They should be specified in a certain format. The R-package `ptable`, available on CRAN, can be used to produce such p-tables for use in the method specific R-package `cellKey` as well as for use in the general purpose software $\tau$‑ARGUS.
+For information how to use the software, we refer to the vignettes of the respective R-packages on CRAN ([https://cran.r-project.org/](https://cran.r-project.org/)) and to the manual of  $\tau$-ARGUS and to the quick references for CKM in $\tau$‑ARGUS on GitHub ([https://github.com/sdcTools/tauargus/releases](https://github.com/sdcTools/tauargus/releases)).
+

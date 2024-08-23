@@ -1,0 +1,216 @@
+## Rounding {#sec-Rounding_freq}
+
+Rounding involves adjusting the values in all cells in a table to a specified base so as to create uncertainty about the real value for any cell. It adds a small, but acceptable, amount of distortion to the original data. Rounding is considered to be an effective method for protecting frequency tables, especially when there are many tables produced from one dataset. It provides protection to small frequencies and zero values (*e.g.* empty cells). The method is simple to implement, and for the user it is easy to understand as the data is visibly perturbed.
+
+Care must be taken when combining rounded tables to create user-defined areas. Cells can be significantly altered by the rounding process and aggregation compounds these rounding differences. Furthermore, the level of association between variables is affected by rounding, and the variance of the cell counts is increased.
+
+There are several alternative rounding methods including; conventional rounding, random rounding, controlled rounding, and semi-controlled rounding, which are outlined below. Each method is flexible in terms of the choice of the base for rounding, although common choices are 3 and 5. All rounded values (other than zeros) will then be integer multiples of 3 or 5, respectively.
+
+***Conventional rounding***\
+When using conventional rounding, each cell is rounded to the nearest multiple of the base. The marginal totals and table totals are rounded independently from the internal cells. 
+
+:::{.callout-note appearance="simple"}
+**Example** 
+@tbl-counts-sex-area shows counts of males and females in different areas, while @tbl-counts-sex-area-round shows the same information rounded to a base of 5.
+
+| | Male | Female | Total	|
+|-|:-:|:-:|:-:|
+| Area A 	|     1    	|      0     	|     1     	|
+| Area B 	|     3    	|      3     	|     6     	|
+| Area C 	|    12    	|     20     	|     32    	|
+| Total  	|    16    	|     23     	|     39    	|
+
+: Population counts by sex {#tbl-counts-sex-area}
+
+\
+
+| | Male | Female | Total	|
+|-|:-:|:-:|:-:|
+| Area A 	|     0    	|      0     	|     0     	|
+| Area B 	|     5    	|      5     	|     5     	|
+| Area C 	|    10    	|     20     	|     35    	|
+| Total  	|    15    	|     25     	|     40    	|
+
+: Population counts by sex (conventional rounding) {#tbl-counts-sex-area-round}
+
+The example shows the Males unsafe cell in Area A in @tbl-counts-sex-area is protected by the rounding process in @tbl-counts-sex-area-round.
+
+:::
+
+The advantages of this method are that the table totals are rounded independently from the internal cells, and therefore consistent table totals will exist within the rounding base. Cells in different tables which represent the same records will always be the same. While this method does provide some confidentiality protection, it is considered less effective than controlled or random rounding. Tables are not additive (*e.g.* row 3 of @tbl-counts-sex-area-round does not sum to 35) and the level of information is poor if there are many values of 1 and 2. The method is not suitable for flexible table generation as it can be easily 'unpicked' when differencing and linking tables. For these reasons conventional rounding is not recommended as a disclosure control method for frequency tables. Conventional rounding is sometimes used by NSIs for quality reasons (*e.g.* rounding data from small sample surveys to emphasize the uncertain nature of the data). The distinction between rounding performed for disclosure control reasons and rounding performed for quality reasons should always be made clear to users.
+
+***Random rounding***\
+Random rounding shifts each cell to one of the two nearest base values in a random manner. Each cell value is rounded independently of other cells, and has a greater probability of being rounded to the nearest multiple of the rounding base. For example, with a base of 5, cell values of 6, 7, 8, or 9 could be rounded to either 5 or 10. Marginal totals are typically rounded separately from the internal cells of the table (*i.e.* they are not created by adding rounding cell counts) and this means tables are not necessarily additive. Various probability schemes are possible, but an important characteristic is that they should be unbiased. This means there should be no net tendency to round up or down and the average difference from the original counts should be zero.
+
+:::{.callout-note appearance="simple"}
+**Example**
+If we are rounding to base 3 the residual of the cell value after dividing by 3 can be either 0, 1 or 2.
+
+-   If the residual is zero no change is made to the original cell value.
+-   If the residual is 1, then with a probability of $2/3$ the cell value is rounded down to the lower multiple of 3 and with a probability of $1/3$ the cell value is rounded up to the higher multiple of 3.
+-   If the residual is 2, the probabilities are $2/3$ to round up and $1/3$ to round down.
+  
+| Original Value | Rounded Value (probability)
+|:-:|:-:|
+|  0  |  0 ($1$) |
+|  1  |  0 ($2/3$) or 3 ($1/3$) |
+|  2  |  3($2/3$) or 0($1/3$) |
+|  3  |  3 ($1$) |
+|  4  |  3($2/3$) or 6($1/3$) |
+|  5  |  6($2/3$) or 3($1/3$) |
+|  6  |  6 ($1$) |
+:::
+
+:::{.callout-note appearance="simple"}
+**Example**
+As another example, @tbl-counts-sex-round shows a possible solution for @tbl-counts-sex-area using random rounding to base 5.
+
+| | Male | Female | Total	|
+|-|:-:|:-:|:-:|
+| Area A | 0 | 0 | 0 |
+| Area B | 5 | 0 | 5 |
+| Area C | 10 | 20 | 35 |
+| Total | 15 | 20 | 40 |
+
+: Population counts by sex (with random rounding) {#tbl-counts-sex-round}
+
+:::
+
+The main advantages of random rounding are that it is relatively easy to implement, it is unbiased, and it is clear and transparent to users. Table totals are consistent within the rounding base because the totals are rounded independently from the internal cells. All values of 1 and 2 are removed from the table by rounding, which prevents cases of perceived disclosure as well as actual disclosure. The method may also provide some protection against disclosure by differencing as rounding should obscure most of the exact differences between tables.
+
+However, random rounding has disadvantages including the increased information loss which results from the fact that all cells (even safe cells) are rounded. In some instances the protection can be 'unpicked' and in order to ensure adequate protection, the resulting rounded tables need to be audited. Although the method is unbiased, after applying random rounding there may be inconsistencies in data within tables (*e.g.* rows or columns which do not add up like row 3 of @tbl-counts-sex-round does not sum to 35) and between tables (*e.g.* the same cell may be rounded to a different number in different tables).
+
+***Controlled rounding***\
+Unlike other rounding methods, controlled rounding yields additive rounded tables. It is the statistical disclosure control method that is generally most effective for frequency tables. The method uses linear programming techniques to round cell values up or down by small amounts, and its strength over other methods is that additivity is maintained in the rounded table, (*i.e.* it ensures that the rounded values add up to the rounded totals and sub-totals shown in the table). This property not only permits the release of realistic tables which are as close as possible to the original table, but it also makes it impossible to reduce the protection by 'unpicking' the original values by exploiting the differences in the sums of the rounded values. Another useful feature is that controlled rounding can achieve specified levels of protection. In other words, the user can specify the degree of ambiguity added to the cells, for example, they may not want a rounded value within 10% of the true value. Controlled rounding can be used to protect flexible tables although the time taken to implement the method may make it unsuitable for this purpose.
+
+:::{.callout-note appearance="simple"}
+**Example**
+@tbl-counts-sex-control-round shows a possible rounding solution for @tbl-counts-sex-area, using controlled rounding to base 5.
+
+| | Male | Female | Total	|
+|-|:-:|:-:|:-:|
+| Area A | 5 | 0 | 5 |
+| Area B | 0 | 5 | 5 |
+| Area C | 10 | 20 | 30 |
+| Total | 15 | 25 | 40 |
+
+: Population counts by sex (controlled rounding) {#tbl-counts-sex-control-round}
+
+:::
+
+The disadvantages of controlled rounding are that it is a complicated method to implement, and it has difficulty coping with the size, scope and magnitude of the census tabular outputs. Controlled rounding is implemented in the software package $\tau$‑ARGUS, see @Sec-Software-Controlled-Rounding below for detailed information. Nevertheless, it is hard to find control-rounded solutions for sets of linked tables, and in order to find a solution cells may be rounded beyond the nearest rounding base. In this case users will know less about exactly how the table was rounded and it is also likely to result in differing values for the same internal cells across different tables.
+
+***Semi-controlled rounding***\
+Semi-controlled rounding also uses linear programming to round table entries up or down but in this case it controls for the overall total in the table, or it controls for each separate output area total. Other marginal and sub totals will not necessarily be additive. This ensures that either the overall total of the table is preserved (or the output area totals are all preserved), and the utility of this method is increased compared with conventional and random rounding. Consistent totals are provided across linked tables, and therefore the method can be used to protect flexible tables, although the time it takes to implement may make it unsuitable. Disadvantages of semi-controlled rounding relate to the fact that tables are not fully additive, and finding an optimal solution can prove difficult.
+
+|     | Conventional Rounding | Controlled (and semi-controlled) Rounding |  Random rounding |
+|:-|:-|:-|:-|
+| Internal cells add to table totals (additvity) | No | Yes | No |
+| Method provides enough SDC protection (and cannot be unpicked) | No |Yes| In some situations this method can be unpicked |
+| Method is quick and easy to implement | Yes | It can take time for this method to find a solution | Yes |
+  
+: Summary of SDC rounding methods {#tbl-summary-rounding-methods}
+
+There are some more specialised rounding methods which have been used at various times by NSIs to protect census data, one of these methods is described below.
+
+Small cell adjustment was used (in addition to random swapping (a pre-tabular method)) to protect 2001 Census tabular outputs for England, Wales and Northern Ireland. This method was also used by the ABS to protect their tabular outputs from the 2001 Census.
+
+Applying small cell adjustments involves randomly adjusting small cells within tables upwards or downwards to a base using an unbiased prescribed probability scheme. During the process:
+
+-   small counts appearing in a table cells are adjusted
+-   totals and sub totals are calculated as the sum of the adjusted counts. This means all tables are internally additive.
+-   tables are independently adjusted so counts of the same population which appear in two different tables, may not necessarily have the same value.
+-   tables for higher geographical levels are independently adjusted, and therefore will not necessarily be the sum of the lower component geographical units.
+-   output is produced from one database which has been adjusted for estimated undercount so the tables produced from this one database provide a consistent picture of this one population.
+
+Advantages of this method are that tables are additive, and the elimination of small cells in the table removes cases of perceived as well as actual identity disclosure. In addition, loss of information is lower for standard tables as all other cells remain the same, however information loss will be high for sparse tables. Other disadvantages include inconsistency of margins between linked tables since margins are calculated using perturbed internal cells, and this increases the risk of tables being unpicked. Furthermore, this method provides little protection against disclosure by differencing, and is not suitable for flexible table generation.
+
+### Software - How to use Controlled Rounding in $\tau$‑ARGUS {#sec-Software-Controlled-Rounding}
+
+$\tau$-ARGUS (Hunderpool et al, 2014) is a software package which provides tools to protect tables against the risk of statistical disclosure ($\tau$-ARGUS is also discussed in [Chapter 4](04-magnitude-tabular-data.html)). Controlled rounding is easy to use in $\tau$-ARGUS and the controlled rounding procedure (CRP) was developed by JJ Salazar. This procedure is based on optimisation techniques similar to the procedure developed for cell suppression\index{cell suppression}. The CRP yields additive rounded tables, where the rounded values add up to the rounded totals and sub-totals shown in the table. This means realistic tables are produced and it makes it impossible to reduce the protection by "unpicking" the original values by exploiting the differences in the sums of the rounded values. The CRP implemented in $\tau$-ARGUS also allows the specification of hierarchical structures within the table variables.
+
+Controlled rounding gives sufficient protection to small frequencies and creates uncertainty about the zero values (*i.e.* empty cells). (This is not the case for suppression in terms of how it is now implemented in $\tau$-ARGUS).
+
+In Zero-restricted Controlled Rounding cell counts are left unchanged if they are multiples of the rounding base or shifted to one of the adjacent multiples of the rounding base. The modified values are chosen so that the sum of the absolute differences between the original values and the rounded ones are minimized (under an additivity constraint). Therefore, some values will be rounded up or down to the most distant multiple of the base in order to help satisfy these constraints. In most cases a solution can be found, but in some cases it cannot and the zero-restriction constraint in CRP can be relaxed to allow the cell values to be rounded to a nonadjacent multiple of the base. This relaxation is controlled by allowing the procedure to take a maximum number of *steps*.
+
+For example, consider rounding a cell value of 7 when the rounding base equals 5. In zero-restricted rounding, the solution can be either 5 or 10. If 1 step is allowed, the solution can be 0, 5, 10 or 15. In general, let $z$ be the integer to be rounded in base $b$, then this number can be written as
+
+$z = u b + r$,
+
+where $ub$ is the lower adjacent multiple of $b$ (hence $u$ is the floor value of $z/b$) and $r$ is the remainder. In the zero-restricted solution the rounded value, $a$, can take values:
+
+\begin{align}
+a = 
+\begin{cases}
+  a = ub &\text{if}\quad r=0 
+  \\
+  a=
+  \begin{cases}
+    ub  \\
+    (u+1)b
+  \end{cases} &\text{if}\quad r\neq0.
+\end{cases}
+\end{align}
+
+If $K$ steps are allowed, then $a$, can take values:
+
+\begin{align}
+a = \begin{cases}
+\max_{j\in\{-K,\ldots,K\}}(0,(u+j)) b   &\text{if}\quad r=0\\
+\max_{j\in\{-K,\ldots,K+1\}}(0,(u+j)) b &\text{if}\quad r\neq0
+\end{cases}
+\end{align}
+
+#### Optimal, first feasible and RAPID solutions
+:::{.callout-warning collapse="true"}
+## Expert level
+
+For a given table there can exist more than one controlled rounded solution, and any of these solutions is a *feasible* solution. The Controlled Rounding Program embedded in $\tau$‑ARGUS determines the *optimal* solution by minimising the sum of the absolute distances of the rounded values, from the original ones. Denoting the cell values, including the totals and sub-totals, with *z*~i~ and the corresponding rounded values with *a*~i~, the function that is minimised is
+
+$$
+\sum\limits_{i = 1}^{N} \left| z_{i}-a_{i} \right| ,
+$$
+
+where $N$ is the number of cells in a table (including the marginal ones). The optimisation procedure for controlled rounding is a rather complex one (*NP*-complete program), so finding the optimal solution may take a long time for large tables. In fact, the algorithm iteratively builds different rounded tables until it finds the optimal solution. In order to limit the time required to obtain a solution, the algorithm can be stopped when the first feasible solution is found. In many cases, this solution is quite close to the optimal one and it can be found in significantly less time.
+
+The RAPID solution is produced by CRP as an approximated solution when a feasible one cannot be found. This solution is obtained by rounding the internal cells to the closest multiple of the base and then computing the marginal cells by addition. This means that the computed marginal values can be many jumps away from the original value. However, a RAPID solution is produced at each iteration of the search for an optimal solution, and it will improve (in terms of the loss function) over time. $\tau$‑ARGUS allows the user to stop CRP after the first RAPID solution is produced, but this is likely to be very far away from the optimal one.
+:::
+
+#### Protection provided by controlled rounding
+
+:::{.callout-warning collapse="true"}
+## Expert level
+
+The protection provided by controlled rounding can be assessed by considering the uncertainty (about the true values achieved) when releasing rounded values; that is the existence interval that an intruder can compute for a rounded value. We assume that the values of the rounding base, $b$, and the number of steps allowed, $K$, are known by the user together with the output rounded table. Furthermore, we assume that it is known that the original values are positive frequencies (hence nonnegative integers).
+
+**Zero-restricted rounding**\
+Given a rounded value, *a*, an intruder can compute the following existence intervals for the true value, *z*:
+
+\begin{align}
+z \in \begin{cases}
+[0,b-1]       &\text{if} \quad a = 0 \\
+[a-b+1,a+b-1] &\text{if} \quad a \neq 0
+\end{cases}
+\end{align}
+
+For example, if the rounding base is $b=5$ and the rounded value is $a=0$, a user can determine that the original value is between $0$ and $4$. If the rounded value is not $0$, then users can determine that the true value is between $\pm 4$ units from the published value.
+
+**K-step rounding**\
+As mentioned above, it is assumed that the number of steps allowed is released together with the rounded table. Let $K$* be the number of steps allowed, then an intruder can compute the following existence intervals for the true value $z$:
+
+
+\begin{align}
+z \in \begin{cases}
+[0,(K+1)b-1]            &\text{if} \quad a < (K+1)b \\
+[a-(K+1)b+1,a+(K+1)b-1] &\text{if} \quad a \geq (K+1)b
+\end{cases}
+\end{align}
+
+
+
+For example, assume that for controlled rounding with $b=5$ and $K=1$, $a=15$, then a user can determine that $z \in [ 6,24 ]$.
+
+**Very large tables**\
+The procedure implemented in $\tau$‑ARGUS is capable of rounding tables up to 150K cells on an average computer. However for larger tables a partitioning procedure is available, which allows much larger tables to be rounded. Tables with over six million cells have been successfully rounded this way.
+
+:::

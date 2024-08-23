@@ -1,0 +1,251 @@
+## Disclosure risks {#sec-DisclRisks_freq}
+
+Disclosure risks for frequency tables primarily relate to 'unsafe cells'; that is cells in a table which could lead to a statistical disclosure. There are several types of disclosure risk\index{disclosure risk} and the associated unsafe cells can vary in terms of their impact. A risk assessment should be undertaken to evaluate the expected outcomes of a disclosure. In order to be explicit about the disclosure risks to be managed one should also consider a range of potentially disclosive situations and use these to develop appropriate confidentiality rules to protect any unsafe cells.
+
+The disclosure risk\index{disclosure risk} situations described in this section primarily apply to tables produced from registration processes, administrative sources or censuses, *e.g.* data sources with a complete coverage of the population or sub-population. Where frequency tables are derived from sample surveys, *e.g.* the counts in the table are weighted, some protection is provided by the sampling process. The sample a priori introduces uncertainty into the zero counts and other counts through sample error.
+
+It should be noted that when determining unsafe cells one should take into account the variables that define the population within the table, as well as the variables defining the table. For example, a frequency table may display income by region for males. Although sex does not define a row or column it defines the eligible population for the table and therefore must be considered as an identifying variable when thinking about these disclosive situations.
+
+Disclosure risks are categorised based on how information is revealed. The most common types of disclosure risk\index{disclosure risk} in frequency tables are described below.
+
+*Identification* as a disclosure risk\index{disclosure risk} involves finding yourself or another individual or group within a table. Many NSIs will not consider that self-identification alone poses a disclosure risk\index{disclosure risk}. An individual that can recall their circumstances at the time of data collection will likely be able to deduct which cell in a published table their information contributes to. In other words, they will be able to identify themselves but only because they know what attributes were provided in the data collection, along with any other information about themselves which may assist in this detection.
+
+However, identification or self-identification can lead to the discovery of rareness, or even uniqueness, in the population of the statistic, which is something an individual might not have known about themselves before. This is most likely to occur where a cell has a small value, *e.g.* a 1, or where it becomes in effect a population of 1 through subtraction or deduction using other available information. For certain types of information, rareness or uniqueness may encourage others to seek out the individual. The threat or reality of such a situation could cause harm or distress to the individual, or may lead them to claim that the statistics offer inadequate disclosure protection for them, and therefore others.
+
+:::{.callout-note appearance="simple"}
+**Example** 
+Identification or self-identification may occur from any cells with a count of 1, *i.e.* representing one statistical unit. @tbl-mar-by-sex presents an example of a low-dimensional table in a particular area where identification may occur.
+
+  | Marital Status | Male | Female | Total |
+  |:---------------|:----:|:------:|:-----:|
+  | Married | 38 | 17 | 55 |
+  | Divorced | 7 |  4 | 11 |
+  | Single   | 3 | **1** |  4|
+  | Total   | 48 | 22 | 70 |
+  
+: Marital status by sex {#tbl-mar-by-sex}
+
+:::
+
+The existence of a 1 in the highlighted cell indicates that the female who is single is at risk of being identified from the table.
+
+Identification itself poses a relatively low disclosure risk\index{disclosure risk}, but its tendency to lead to other types of disclosure, together with the perception issues it raises means several NSIs choose to protect against identification disclosure. Section 5.3 discusses protection methods which tend to focus on reducing the number of small cells in tables.
+
+*Attribute disclosure* involves the uncovering of new information about a person through the use of published data. An individual attribute disclosure occurs when someone who has some information about an individual could, with the help of data from the table (or from a different table with a common attribute), discover details that were not previously known to them. This is most likely to occur where there is a cell containing a 1 in the margin of the table and the corresponding row or column is dominated by zeros. The individual is identified on the basis of some of the variables spanning the table and a new attribute is then revealed about the individual from other variables. Note that identification is a necessary precondition for individual attribute disclosure to occur, and should therefore be avoided.
+
+This type of disclosure is a particular problem when many tables are released from one data set. If an intruder can identify an individual then additional tables provide more detail about that person. In continuation of the example shown in @tbl-mar-by-sex, the cell disclosing the single female as unique will ultimately turn into a marginal cell in a higher dimensional table such as @tbl-mar-sex-hours below and her number of hours worked is revealed.
+
+:::{.callout-note appearance="simple"}
+**Example**
+
+::: {.content-visible unless-format="pdf"}
++:----------------------+:--------------------------------------------:+:---------------------------------------------:+:---------:+
+| **Marital status /**  | **Male**                                     | **Female**                                    | **Total** |
+|   **Hours worked**    +-----------------+-----------+----------------+------------------+-----------+----------------+-----------+
+|                       |**More than 30** | **16-30** | **15 or less** | **More than 30** | **16-30** | **15 or less** |           |
++-----------------------+-----------------+-----------+----------------+------------------+-----------+----------------+-----------+
+| Married               | 30              |  6        |  2             | 14               | 3         |  **0**         | 55        |
++-----------------------+-----------------+-----------+----------------+------------------+-----------+----------------+-----------+
+| Divorced              |  3              |  4        |  0             |  2               | 2         |  **0**         | 11        |
++-----------------------+-----------------+-----------+----------------+------------------+-----------+----------------+-----------+
+| Single                |  2              |  0        |  1             |  0               | 0         |  **1**         |  4        |
++-----------------------+-----------------+-----------+----------------+------------------+-----------+----------------+-----------+
+| Total                 | 35              | 10        |  3             | 16               | 5         |  **1**         | 70        |
++-----------------------+-----------------+-----------+----------------+------------------+-----------+----------------+-----------+
+  
+: Marital status and sex by hours worked {#tbl-mar-sex-hours}
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+\begin{table}
+\begin{tabular}{lccccccc}
+\multirow{2}{*}{\shortstack[l]{\bfseries{Marital status /} \\ \bfseries{Hours worked}}} & \multicolumn{3}{|c}{\bfseries{Male}} & \multicolumn{3}{c}{\bfseries{Female}} & \multicolumn{1}{c}{\bfseries{Total}} \\\cline{2-8}
+& \multicolumn{1}{|c}{$\mathbf{>30}$} & $\mathbf{16-30}$ & $\mathbf{\leq 15}$ & $\mathbf{>30}$ & $\mathbf{16-30}$ & $\mathbf{\leq 15}$ & \\\hline
+Married  & 30 &  6 & 2 & 14 & 3 & \bfseries{0} & 55\\
+Divorced &  3 &  4 & 0 &  2 & 2 & \bfseries{0} & 11\\
+Single   &  2 &  0 & 1 &  0 & 0 & \bfseries{1} &  4\\
+Total    & 35 & 10 & 3 & 16 & 5 & \bfseries{1} & 70\\
+\end{tabular}
+\caption{Marital status and sex by hours worked}
+\label{tbl-mar-sex-hours}
+\end{table}
+
+:::
+
+:::
+
+The table shows how attribute disclosure arises due to the zeros dominating the column of the single female, and it is learned that she is in the lowest hours-worked band.
+
+The occurrence of a 2 in the table could also lead to identification if one individual contributed to the cell and therefore could identify the other individual in the cell.
+
+:::{.callout-note appearance="simple"}
+**Example** 
+An example of potential attribute disclosure from the 2001 UK Census data, involves 184 persons living in a particular area in the UK. Uniques (frequency counts of 1) were found for males aged 50-59, males aged 85+, and females aged 60-64. An additional table showed these individuals further disseminated by health variables, and it was learned that the single male aged 50-59 and the single female aged 60-64 had good or fairly good health and no limiting long-term illness, while the single male aged 85+ had poor health and a limiting long-term illness. Without disclosure control, anyone living in this particular area had the potential to learn these health attributes about the unique individuals. Full coverage sources -- like the Census -- are a particular concern for disclosure control, because they are compulsory, so there is an expectation to find all individuals in the output. Although there may be some missing data and coding errors etc., NSIs work to minimise these, and the data issues are unlikely to be randomly distributed in the output. Certain SDC techniques can be adjusted to target particular variables (or tables) with more or less inherent data error. For example, providing more cell suppression\index{cell suppression} for variables which are known to be better quality and have fewer data issues.
+:::
+
+Another disclosure risk\index{disclosure risk} involves learning a new attribute about an identifiable group, or learning a group does not have a particular attribute. This is termed *group attribute disclosure*, and it can occur when all respondents fall into a subset of categories for a particular variable, *i.e.* where a row or column contains mostly zeros and a small number of cells that are non-zero. This type of disclosure is a much neglected threat to the disclosure protection of frequency tables, and in contrast to individual attribute disclosure, it does not require individual identification. In order to protect against group attribute disclosure it is essential to introduce ambiguity in the zeros and ensure that all respondents do not fall into just one or a few categories.
+
+:::{.callout-note appearance="simple"}
+**Example**
+@tbl-mar-hours shows respondents in a particular area broken down by hours worked and marital status.
+
++:---------------------+:------------------------------------------:+
+|                      | **Hours worked**                           |
++----------------------+----------------+---------------+-----------+
+|  **Marital status**  | **Full time**  | **Part time** | **Total** |
++----------------------+----------------+---------------+-----------+
+|  Married             | **6**          | **0**         | **6**     |
++----------------------+----------------+---------------+-----------+
+|  Divorced            | 5              | 1             | 6         |
++----------------------+----------------+---------------+-----------+
+|  Single              | 2              | 2             | 4         |
++----------------------+----------------+---------------+-----------+
+|  Total               | 13             | 3             | 16        |
++----------------------+----------------+---------------+-----------+
+
+: Marital status by hours worked {#tbl-mar-hours}
+
+:::
+
+From the table we can see that all married individuals work full time, therefore any individual in that area who is married will have their hours worked disclosed.
+
+The table also highlights another type of group attribute disclosure referred to as 'within-group disclosure'. This occurs for the divorced group and results from all respondents falling into two response categories for a particular variable, where one of these response categories has a cell value of 1. In this case, the divorced person who works part time knows that all other divorced individuals work full time.
+
+*Differencing* involves an intruder using multiple overlapping tables and subtraction to gather additional information about the differences between them. A disclosure by differencing occurs when this comparison of two or more tables enables a small cell (0, 1, or 2) to be calculated. Disclosures by differencing can result from three different scenarios which will be explained in turn:
+
+**Disclosure by *geographical differencing*** may result when there are several published tables from the same dataset and they relate to similar geographical areas. If these tables are compared, they can reveal a new, previously unpublished table for the differenced area. For instance, 2001 Output Areas (OA) are similar in geographical size to 1991 Enumeration Districts (ED), and a new differenced table may be created for the remaining area. 
+
+:::{.callout-note appearance="simple"}
+**Example** 
+A fictitious example of differencing is presented below in @tbl-single-hh-hours, @tbl-single-hh-income and @tbl-differenced-table.
+
+  |      | Single Person Household Male | Single Person Household Female |
+  |:-----|:----:|:----:|
+  | More than 30 | 50 | 54 |
+  | 16-30       | 128 | 140 |
+  | 15 or less  |  39 |  49 |
+  
+: Single Person households and hours worked in Area A (2001 OA definition) {#tbl-single-hh-hours}
+
+  |      | Single Person Household Male | Single Person Household Female |
+  |:-----|:----:|:----:|
+  | More than 30 | 52 | 55 |
+  | 16-30       | 130 | 140 |
+  | 15 or less  |  39 |  49 |
+  
+: Single Person households and hours worked in Area A (1991 ED definition) {#tbl-single-hh-income}
+
+  |      | Single Person Household Male | Single Person Household Female |
+  |:-----|:----:|:----:|
+  | More than 30 | 2 | 1 |
+  | 16-30       | 2 | 0 |
+  | 15 or less  |  0 |  0 |
+  
+: New differenced table (via geographical differencing) {#tbl-differenced-table}
+
+:::
+
+The above example demonstrates how simple subtraction of the geographical data in @tbl-single-hh-hours from @tbl-single-hh-income can produce disclosive information for the area in @tbl-differenced-table.
+
+**Disclosure by *linking*** can occur when published tables relating to the same base population are linked by common variables. These new linked tables were not published by the NSI and therefore may reveal the statistical disclosure control methods applied and/or unsafe cell counts.
+
+:::{.callout-note appearance="simple"}
+**Example** 
+A fictitious example of disclosure by linking is provided below in @tbl-employment-status to @tbl-differenced-table-linking, which are linked by employment status and whether or not the respondents live in the area.
+
+|              | Number of Persons |
+|:--------------|:-----------------:|
+| Employed     |   85      |
+| Not employed |   17      |
+| Total        |  102      |
+
+: Employment status in Area A {#tbl-employment-status}
+
+\
+
+|         | Number working in area | Number living in area | Living and working in area |
+|:---------|------------------------|-----------------------|-------------------------|
+| Area A  | 49                     | 102            	     |              22         |
+
+: Area of Residence or Workplace {#tbl-residence-workplace}
+
+\
+
+|       | Living and working in Area A  | Living in Area A and working elsewhere | Working in Area A and living elsewhere |
+|:-------|:-----------------------------:|:--------------------------------------:|:--------------------------------------:|
+| Males |  21              	            |  58                   	               |  23                             	      |
+
+: Males working and living in Area A {#tbl-males-work-live-A}
+
+\
+@tbl-differenced-table-linking shows the new data which can be derived by combining and differencing the totals from the existing tables. The linked table discloses the female living and working in Area A as a unique.
+
+|         | Living and working in Area A | Living in Area A and working elsewhere | Working in Area A and living elsewhere |
+|:---------|:----------------------------:|:--------------------------------------:|:--------------------------------------:|
+| Males   |  21                	         |  58                     	              |  23                     	             |
+| Females |   **1**            	         |   5                     	              |   4                      	             |
+| Total	  |  22                	         |  63                     	              |  27                     	             |
+
+: New differenced table (via linking) {#tbl-differenced-table-linking}
+
+:::
+
+Importantly, when linked tables are produced from the same dataset it is not sufficient to consider the protection for each table separately. If a cell requires protection in one table then it will require protection in all tables, otherwise the protection in the first table could be undone.
+
+The last type of disclosure by differencing involves **differencing of *sub-population tables****.* Sub-populations are specific groups which data may be subset into before a table is produced (*e.g.* a table of fertility may use a sub-population of females). Differencing can occur when a published table definition corresponds to a sub-population of another published table, resulting in the production of a new, previously unpublished table. If the total population is known and the subpopulation of females is gathered from another table, the number of males can be deduced.
+
+Tables based on categorical variables which have been recoded in different ways may also result in this kind of differencing. To reduce the disclosure risk\index{disclosure risk} resulting from having many different versions of variables, most NSIs have a set of standard classifications which they use to release data. 
+
+:::{.callout-note appearance="simple"}
+**Example** 
+An example using the number of hours worked is shown below in Tables @tbl-hours-sex-A to @tbl-differenced-table-subpop.
+
+  
+|  |  \<20 | 20 - 39 | 40 - 59 | 60 - 69 | 70 or more |
+|:------|------|------|------|------|------|
+|  Male    |  6    |  9      |  5      |  8      |  4         |
+|  Female  | 10    | 38      | 51      | 42      | 32         |
+  
+: Hours worked by sex in Area A {#tbl-hours-sex-A}
+
+\
+
+|  | \<25 | 25 - 39 | 40 - 59 | 60 - 69 | 70 or more |
+|:------|------|------|------|------|------|
+|  Male    |  7   |  8      |  5      |  8      |  4         |
+|  Female  | 10   | 38      | 51      | 42      | 32         |
+  
+: Hours worked by sex in Area A {#tbl-hours-sex-A-2}
+
+\
+
+|  | \<20 | 20 - 24 | 25 - 39 | 40 - 59 | 60 - 69 | 70 or more |
+|:------|------|------|------|------|------|------|
+|  Male    |  6   | **1**   |  8      |  5      |  8      |  4         |
+|  Female  | 10   |  0      | 38      | 51      | 42      | 32         |
+  
+  : New differenced table (via sub-populations) {#tbl-differenced-table-subpop}
+
+\
+
+The example indicates how a new table can be differenced from the original tables, in particular a new hours worked group (for 20-24 hours) which reveals that the male falling into this derived hours worked group is unique.
+
+:::
+
+More information on disclosure by differencing can be obtained from Brown (2003) and Duke-Williams and Rees (1998).
+
+<!-- Niet geneste hierarchieen -->
+
+In addition to providing actual disclosure control protection for sensitive information, NSIs need to be seen to be providing this protection. The public may have a different understanding of disclosure control risks and their perception is likely to be influenced by what they see in tables. If many small cells appear in frequency tables users may perceive that either no SDC, or insufficient SDC methods have been applied to the data. Section 5.3 discusses SDC methods, but generally some methods are more obvious in the output tables than others. To protect against negative perceptions, NSIs should be transparent about the SDC methods applied. Managing perceptions is important to maintain credibility and responsibility towards respondents. Negative perceptions may impact response rates for censuses and surveys if respondents perceive that there is little concern about protecting their confidentiality. More emphasis has been placed on this type of disclosure risk\index{disclosure risk} in recent years due to declining response rates and data quality considerations. It is important to provide clear explanations to the public about the protection afforded by the SDC method, as well as guidance on the impact of the SDC methods on the quality and utility of the outputs. Explanations should provide details of the methods used but avoid stating the exact parameters as this may allow intruders to unpick the protection.
+  
+| Disclosure Risk  |  Description |
+|:--------------|:--------------|
+| Identification              | Identifying an individual in a table |
+| Attribute disclosure (individual and group) | Finding out previously unknown information about an individual (or group) from a table |
+| Disclosure by differencing  | Uncovering new information by comparing more than one table |
+| Perception of disclosure    | The public's feeling of risk based on what is seen in released tables |
+  
+  : Summary of disclosure risks associated with frequency tables {#tbl-summary-risks-freq-table}
+

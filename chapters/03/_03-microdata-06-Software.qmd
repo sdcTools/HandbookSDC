@@ -1,0 +1,74 @@
+## Software {#sec-software}
+
+### $\mu$-ARGUS {#sec-mu-argus}
+
+The $\mu$-ARGUS software has been developed to facilitate statisticians, mainly in the NSI's, to apply the SDC-methods described above to create safe micro data files. It is a tool to apply the SDC-methodology, not a black-box that will create a safe file without knowing the background of the SDC-methodology. The development of $\mu$‑ARGUS has started at Statistics Netherlands by implementing the Dutch methods and rules. With this software as a starting point many other methods have been added. Several of these methods have been developed and/or actually implemented during the CASC-project.
+
+In this section we will just a short overview of $\mu$-ARGUS, as an extensive manual is available, fully describing the software.
+
+The starting point of $\mu$-ARGUS has been implementation of the threshold rules for identifying unsafe records and procedures for global recoding and local suppression.
+
+**Data:** $\mu$-ARGUS can both protect fixed and free format ASCII files. 
+
+![Overview of $\mu$-ARGUS](Images/media/mu_argus_overview.png){#fig-mu-argus-overview}
+
+Many of the methods described previously in the methodology section can be applied with $\mu$-ARGUS to a dataset. It is our aim to include other methods as well in the near future, if time permits
+
+$\mu$-ARGUS is a flexible interactive program that will guide you through the process of data protection. In a typically $\mu$-ARGUS run you will typically go through the following steps, given that the microdata set is ready.
+
+1.  **Meta data**. $\mu$-ARGUS needs to know the structure of the data set. Not only the general aspects but also additional SDC-specific information. As there is till now no suitable flexible standard for meta data allowing us to specify also the SDC-specific parts of the meta data, we have to rely on the ARGUS meta data format.\
+This can be prepared (partially) externally or it can be specified interactively during a $\mu$-ARGUS session.
+2. **Threshold-rule/risk models.** Selection and computation of frequency tables on which several SDC-methods (like risk models, threshold rule) are based
+3. **Global recoding.** Selection of possible recodings and inspection of the results.
+4. Selection and application of **other protection methods** like:
+    -  Microaggregation ([-@sec-microaggregation])
+    -  PRAM\index{PRAM} ([-@sec-PRAM])
+    -  Rounding ([-@sec-rounding])
+    -  Top and bottom coding ([-@sec-top-and-bottom-coding])
+    -  Rank swapping ([-@sec-data-rank-swapping])
+    -  Noise addition ([-@sec-noise-addition])
+5. **Risk model:** selection of the risk-level
+6. **Generate the safe micro file.** During this process all data transformations specified above. This is also the moment that all remaining unsafe combinations will be protected by local suppressions. Also an extensive report will be generated.
+
+When the above scheme has been followed a safe microdata file has been generated. $\mu$‑ARGUS is capable of handling very large datasets. Only during the first phase, when the datafile is explored and the frequency tables are computed some heavy computations are performed. This might take some time depending on the size of the datafile. However all the real SDC-work (global recoding and the other methods named under 4 and 5 above) are done at the level of the information prepared during this first phase. This will be done very quickly. Only in the final phase when the protected datafile is made, the operation might be time consuming depending on the size of the datafile.
+
+This architecture of $\mu$‑ARGUS has the advantage that all real SDC-work, that will be done interactively, will have a very quick response time. Inspecting the results of various recodings is easy and simple.
+
+The most recent release of $\mu$-ARGUS can be found on GitHub ([https://github.com/sdcTools/muargus/releases](https://github.com/sdcTools/muargus/releases)).
+
+### sdcMicro {#sec-sdcmicro}
+`sdcMicro` ([https://github.com/sdcTools/sdcMicro](https://github.com/sdcTools/sdcMicro)) is an [R](https://r-project.org) package implementing almost all methods discussed in @sec-microdata-protection-methods. 
+The required steps to use the package are essentially the same as outlined in @sec-mu-argus and are quickly summarized below as well.
+
+1.  **Definition of a problem**
+The first step is always to create an object that defines the current sdc problem. This task can be achieved by calling function `createSdcObj()`. In this function, quite a few parameters can be set. The most important ones are:
+
+    -   **Data**: the input data set needs to be a `data.frame` / `data.table` but it should be noted that any functionality from `R` can be used to create such objects from a variety of files exported or generated from other tools such as SAS, SPSS or STATA among using plain text-files (such as `.csv)` or other structured formats like .`json` or `.xml` as long those can be converted to a rectangular data structures. It is of course also possible to use queries to database systems in order to create suitable input objects.
+    -   **Key variables for risk assessment**: the user is required to specify a set of categorical key variables. These variables are automatically used when computing risk measures (see also @sec-concepts).
+    -   **Numerical key variables**: It is also possible (but optional) to specify a set of numerical variables that are deemed important. Such variables can (automatically) be used to apply suitable perturbation methods (such as e.g masking by noise) to it.
+    -   **Weights**: In case the underlying microdata step from a survey sample, a variable holding suitable weights can be specified. This is required in order to make sure that risk measures are computed correctly.
+    -   **Strata**: Sometimes it is useful if a specific anonymization approach is applied independently to specific strata of the underlying population. In `sdcMicro` this can be achieved by defining a variable that holds different values for different groups of the population.
+    -   **Ghost-variables**: This allows to link variables to (categorical key) variables in a sense that modifications to the relevant key-variable (e.g suppression) are transferred and applied to the dependent variables that are referred to as *"ghost"* variables
+    -   **Excluding direct identifiers**: In statistical practice microdata files often contain direct identifiers which can be identified already on creation of an input object. If such variables have been defined, they will be removed prior to any computations.
+
+    It should be noted that while it is very convenient to work with an object created with `createSdcObj()`, it is perfectly possible to apply all implemented methods of the package also to simpler data-structures like a `data.frame`.
+
+2.  **Application of SDC-methods**
+Once a problem instance has been created, some helpful summary statistics such as the number of observations violating $k$-anonymity or (global) risk measures such as the expected number of re-identifications given the defined risk-scenario, are readily available and are shown by simply printing out the object.
+
+    The next step is then to interactively apply SDC techniques to the object and re-assess the impact of its application both on risk-measures as well as on data-utility. 
+    If the application yields unexpected or bad results, the implemented `undo()`-method can be used to revert to the state before application of the specific methods. 
+    This allows to quickly try out different parameter settings and makes the process of applying SDC methods quite interactive.
+
+    The package allows to (for example) add stochastic noise to numerical variables ([-@sec-noise-addition]) using `addNoise()`, post-randomize values in categorically scaled variables ([-@sec-PRAM]) with function `pram()`, create synthetic microdata ([-@sec-synthetic-data]) with method `dataGen()` or perform global recoding ([-@sec-global-recoding]) by using `globalRecode()`. 
+    Furthermore it is possible to apply rank-swapping ([-@sec-data-rank-swapping]) with function `rankSwap()`, compute SUDA-scores ([-@sec-SUDA]) using `suda2()`, compute individual risk estimates ([-@sec-argus-individual-risk]) with `indivRisk()` and `freqCalc()` as well as make a set of categorical key variables fulfill $k$-anonymity using `kAnon()`. 
+    In the current versions of the package, TRS (targeted record swapping, [-@sec-TRS]) is implemented and can be called using the `recordSwap()` function. 
+    A detailed discussion and overview is available in a custom vignette ([https://sdctools.github.io/sdcMicro/articles/recordSwapping.html](https://sdctools.github.io/sdcMicro/articles/recordSwapping.html)).
+
+3.  **Exporting Results**
+Once the interactive process has been finished, the package allows to quickly write out a safe dataset that contains all applied techniques also respecting any settings defined when initializing the object itself such as *"ghost-variables"* using function `writeSafeFile()`. 
+
+    Further more there is a `report()` functionality available that can be applied to an sdc-object at any time. This method can be called to either generate an internal or external report summarizing the process. The difference between the internal and the external report is the level of detail. While the external report is targeted for public consumption and does not contain any (sensitive) values such as specific parameter settings, the internal report lists any techniques that have been applied to protect the microdata in great detail. Both variants result in a `html` file that can easily be shared.
+
+4.  **Graphical User-Interface**
+Creating safe, protected microdata files is often a challenging task. Also having to dive into `R` and write code to perform several steps of the procedure can be a hurdle for non-experts in `R`. In order to mitigate this problem and to facilitate the use of `sdcMicro`, the package comes with an interactive, shiny-based graphical user-interface (Meindl, 2019). The interface can be started using the `sdcApp` function and its functionality is explained in detail in a custom vignette ([https://sdctools.github.io/sdcMicro/articles/sdcMicro.html](https://sdctools.github.io/sdcMicro/articles/sdcMicro.html)).

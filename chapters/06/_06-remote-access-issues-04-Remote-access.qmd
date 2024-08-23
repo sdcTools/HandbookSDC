@@ -1,0 +1,24 @@
+## Remote access
+
+Systems for remote access have become common over the years. The aim is to combine the flexibility for researchers to do all their analysis in a RDC while removing the constraints of travelling to the NSIs. Modern developments in the internet make it possible to set up a safe controlled connection, a VPN (virtual private network). A VPN is a technique to setup a secure connection between the server at the NSI and a computer of the researcher. It uses firewalls and encryption techniques. Also additional procedures to control the login procedure like software tokens or biometrics can be used to secure the connection. The most well know product behind this is Citrix, but other systems exist as well. Citrix has been developed to set up safe access to business networks over the internet without giving access to unauthorised persons. This will safeguard the confidentiality of the information on this network.
+
+Some NSIs are using Citrix to set up a safe connection between the PC of the researcher and a protected server of the NSI. This approach was followed by Denmark, Sweden and the Netherlands. Slovenia is using Windows remote desktop services (similar to Citrix). Statistics Netherlands is currently using VMware Horizon Client (also similar to Citrix).
+
+The main idea of a remote facility is that it should resemble the 'traditional' OnSite RDCs as much as possible, concerning confidentiality aspects.
+
+The following aspects have to be taken into account:
+
+1. Only authorized users should be able to make use of this facility,
+
+2. Microdata should remain at the NSI,
+
+3. Desired output of analyses should be checked on confidentiality,
+
+4. Legal measures have to be taken when allowing access.
+
+The key issue is that the microdata set remains in the controlled environment of the NSI, while the researcher can do the analysis in his institute. In fact it is an equivalent of the RDC. The Citrix connection will enable the researcher to run SPSS, SAS etc on the server of the NSI. The researcher will only see the session on his screen. This allows him to see the results on his analysis but also the microdata itself. This is completely equivalent to what he can see, if he would be at the RDC.
+
+Citrix will only send the pictures of the screens to the PC of the researcher, but no data is send to him. Even copying the data from the screen to the hard disk is not possible. If the researcher is satisfied with some analysis and wants to use the results in his report, he should make a request to the NSI to release these results to him. The NSI has to check the output for disclosure risks and if this is OK the NSI will send the results to the researcher.
+
+As the researchers will work with very sensitive data, all measures should be taken to ensure the confidentiality of the data. Therefore also legal measures have to be taken, binding not only the researcher himself but also the institute.
+

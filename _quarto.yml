@@ -1,0 +1,92 @@
+project:
+  type: book
+
+book:
+  title: "Handbook on Statistical Disclosure Control"
+  subtitle: "Second Edition"
+  author: 
+    - name: Anco Hundepool
+    - name: Josep Domingo-Ferrer
+    - name: Luisa Franconi
+    - name: Sarah Giessing
+    - name: Rainer Lenz
+    - name: Jane Naylor
+    - name: Eric Schulte Nordholt
+    - name: Giovanni Seri
+    - name: Peter-Paul De Wolf
+    - name: Reinhard Tent
+    - name: Andrzej Młodak
+    - name: Johannes Gussenbauer
+    - name: Kamil Wilak
+  date: today
+  date-format: YYYY, MMMM
+  repo-url: https://sdcTools.github.io/HandbookSDC
+  chapters:
+    - index.qmd
+    - 01-Introduction.qmd
+    - 02-regulations.qmd
+    - 03-microdata.qmd
+    - 04-magnitude-tabular-data.qmd
+    - 05-frequency-tables.qmd
+    - 06-remote-access-issues.qmd
+    - 07-glossary.qmd
+  page-navigation: true
+
+# bibliography: references.bib
+
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - custom.scss
+    reference-location: margin
+    citation-location: margin
+    cap-location: bottom
+    code-link: true
+  pdf:
+    # pdf-engine: xelatex
+    # fig-pos: 'h'
+    # latex-tinytex: false
+    latex-tinytex: true # for github pages
+    documentclass: scrbook
+    classoption: ["oneside", "open=any"]
+    papersize: a4
+    toc: true
+    keep-tex: true
+    geometry:
+      - left=3cm
+      - right=3cm
+      # - textwidth=4.5in
+      # - marginparsep=.25in
+      # - marginparwidth=2.25in
+    template-partials:
+      - "before-body.tex"
+      - "_titlepage.tex" 
+    include-in-header: 
+      text: |
+        \usepackage[english]{babel}
+        \usepackage[utf8]{inputenc}
+        \usepackage{float}
+        \usepackage{multirow}
+        \usepackage{hyperref}
+        \usepackage{setspace}
+        \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+        \usepackage{ragged2e}
+        \usepackage{datetime}
+        \makeatletter
+        \renewenvironment{table}
+          {\@float{table}[H]}
+          {\end@float}
+        \makeatother
+        \counterwithout{footnote}{chapter}
+        \usepackage{makeidx}
+        \makeindex
+        \newdateformat{monthyeardate}{%
+          \monthname[\THEMONTH], \THEYEAR}
+    include-after-body: 
+      text: |
+        \printindex
+
+execute:
+  freeze: auto

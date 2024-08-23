@@ -1,0 +1,21 @@
+# Frequency tables
+
+{{< include chapters/05/_05-frequency-tables-01-Introduction.qmd >}}
+
+{{< include chapters/05/_05-frequency-tables-02-Disclosure-risks.qmd >}}
+
+{{< include chapters/05/_05-frequency-tables-03-Methods.qmd >}}
+
+{{< include chapters/05/_05-frequency-tables-04-CKM.qmd >}}
+
+{{< include chapters/05/_05-frequency-tables-05-Rounding.qmd >}}
+
+{{< include chapters/05/_05-frequency-tables-06-TRS.qmd >}}
+
+{{< include chapters/05/_05-frequency-tables-07-Means.qmd >}}
+
+{{< include chapters/05/_05-frequency-tables-08-Information-loss.qmd >}}
+
+{{< include chapters/05/_05-frequency-tables-09-References.qmd >}}
+
+

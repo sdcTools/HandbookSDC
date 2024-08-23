@@ -1,0 +1,54 @@
+## Methods {#sec-Methods_freq}
+
+There are a variety of disclosure control methods which can be applied to tabular data to provide confidentiality protection. The choice of which method to use needs to balance the how the data is used, the operational feasibility of the method, and the disclosure control protection it offers. SDC methods can be divided into three categories which will be discussed in turn below: those that adjust the data before tables are designed (pre-tabular), those that determine the design of the table (table redesign) and those that modify the values in the table (post-tabular). Further information on SDC methods for frequency tables can also be found in Willenborg & Ton de Waal (2001) and Doyle et al (2001).
+
+***Pre-tabular***\
+Pre-tabular disclosure control methods are applied to microdata before it is aggregated and output in frequency tables. These methods include: record swapping, over imputation, data switching PRAM\index{PRAM}, sampling and synthetic mircrodata (see @sec-microdata-protection-methods or @sec-TRS, for details of the methods). A key advantage of pre-tabular methods is that the output tables are consistent and additive since all outputs are created from protected microdata. Pre-tabular methods by definition only need to be applied once to the microdata and after they are implemented for a microdata set (often in conjunction with threshold or sparsity rules) they can be used to allow flexible table generation. This is because pre-tabular methods provide some protection against disclosure by differencing and any uncovered slivers will have already had SDC protection applied.
+
+Disadvantages of pre-tabular techniques are that one must have access to the original microdata. Also, a high level of perturbation may be required in order to disguise all unsafe cells. Pre-tabular methods have the potential to distort distributions in the data, but the actual impact of this will depend on which method is used and how it is applied. It may be possible to target pre-tabular methods towards particular areas or sensitive variables. Generally pre-tabular methods are not as transparent to users of the frequency tables and there is no clear guidance that can be given in order to make adjustments in their statistical analysis for this type of perturbation.
+
+***Table redesign***\
+Table redesign is recommended as a simple method that can minimise the number of unsafe cells in a table and preserve original counts. It can be applied alongside post-tabular or pre-tabular disclosure control methods, as well as being applied on its own. As an additional method of protection it has been used in many NSI's including the UK and New Zealand. As table redesign alone provides relatively less disclosure control protection than other methods, it is often used to protect sample data, which already contains some protection from the sampling process.
+
+Table redesign methods used to reduce the risk of disclosure include;
+
+-   aggregating to a higher level geography or to a larger population subgroup
+-   applying table thresholds
+-   collapsing or grouping categories of variables (reducing the level of detail)
+-   applying a minimum average cell size to released tables.
+
+The advantages of table redesign methods are that original counts in the data are not damaged and the tables are additive with consistent totals. In addition, the method is simple to implement and easy to explain to users. However, the detail in the table will be greatly reduced, and if many tables do not pass the release criteria it may lead to user discontent.
+
+***Post-tabular***\
+Statistical disclosure control methods that modify cell values within tabular outputs are referred to as post-tabular methods. Such methods are generally clear and transparent to users, and are easier to understand and account for in analyses, than pre-tabular methods. However, post-tabular methods suffer the problem that each table must be individually protected, and it is necessary to ensure that the new protected table cannot be compared against any other existing outputs in such a way which may undo the protection that has been applied. In addition post-tabular methods can be cumbersome to apply to large tables. The main post-tabular methods include cell suppression\index{cell suppression}, the cell key method, and rounding.
+
+
+
+|  | Pre-Tabular | Table Redesign | Post-Tabular |
+|:---|:--|:--|:--|
+| |Methods applied before tables are created | Methods applied as tables are created | Methods applied after tables are created |
+| Tables and totals will be additive and consistent | Yes | Yes | No |
+| Methods are visible to users and can be accounted for in analysis | No  | Yes | Yes |
+| Methods need to be applied to each table individually | No  | Yes | Yes
+| Flexible table generation is possible  | Yes | No | No (for Cell suppression) |
+
+: Summary of Tabular Disclosure Control Methods {#tbl-summary-sdc-freq-table}
+
+The main perturbative post-tabular methods of disclosure control are discussed in the two subsequent sections.
+
+**Cell suppression**
+Cell suppression is a non-perturbative method of disclosure control, (it is described in detail in [Chapter 4](04-magnitude-tabular-data.html)), but the method essentially removes sensitive values and denotes them as missing. Protecting the unsafe cells is called primary suppression, and to ensure these cannot be derived by subtractions from published marginal totals, additional cells are selected for secondary suppression.
+
+Cell suppression cannot be unpicked provided secondary cell suppression\index{cell suppression} is adequate and the same cells in any linked tables are also suppressed. Other advantages are that the method is easy to implement on unlinked tables and it is highly visible to users. The original counts in the data that are not selected for suppression are left unadjusted.
+
+However cell suppression\index{cell suppression} has several disadvantages as a protection method for frequency tables, in particular information loss can be high if more than a few suppressions are required. Secondary suppression removes cell values which are not necessarily a disclosure risk\index{disclosure risk}, in order to protect other cells which are a risk. Disclosive zeros need to be suppressed and this method does not protect against disclosure by differencing. This can be a serious problem if more than one table is produced from the same data source (*e.g.* flexible table generation). When disseminating a large number of tables it is much harder to ensure the consistency of suppressed cells, and care must be taken to ensure that same cells in linked tables are always suppressed.
+
+A simple instance of a Cell Perturbation method is Barnardisation. Barnardisation modifies each internal cell of every table by +1, 0 or -1, according to probabilities $p/2$, $1-p$ and $p/2$ respectively for a fixed $p\in(0,1)$. Zeros are not adjusted. The method offers some protection against disclosure by differencing, however table totals are added up from the perturbed internal cells, resulting in inconsistent totals between tables. Typically, the probability $p$ is quite small and therefore a high proportion of risky cells are not modified. The exact proportion of cells modified is not revealed to the user. This is generally a difficult method to implement for flexible output.
+
+The Cell Key Method (CKM, described in @sec-CKM_freq) is a much more advanced cell perturbation method which was developed by the Australian Bureau of Statistics (hence it used to be known as ABS Cell Perturbation method) to protect the outputs from their 2006 Census. The method is designed to protect tables by altering potentially all cells by small amounts. The cells are adjusted in such a way that the same cell is perturbed in the same way even when it appears across different tables. This method adds sufficient 'noise' to each cell so if an intruder tried to gather information by differencing, they would not be able to obtain the real data. When integrated into the table generation process, the method provides protection for flexible tables and can be used to produce perturbations for multiple large high dimensional hierarchical tables. It is one of the methods recommended by Eurostat for protection of the Census 2022 output data.
+
+The method is less transparent than other methods, such as, for example, conventional rounding.
+
+Rounding (discussed in @sec-Rounding_freq) involves adjusting the values in all cells in a table to a specified rounding base so as to create uncertainty about the real value for any cell. There are several alternative rounding methods including: conventional rounding,
+random rounding and controlled rounding. Properties of the different alternative methods (as compared in the summary table @tbl-summary-sdc-freq-table) vary widely between those variants.
+

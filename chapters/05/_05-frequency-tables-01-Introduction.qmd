@@ -1,0 +1,14 @@
+## Introduction
+
+This chapter discusses disclosure controls for frequency tables, that is tables of counts (or percentages) where each cell value represents the number of respondents in that cell.
+
+Traditionally frequency tables have been the main method of dissemination for census and social data by NSIs. These tables contain counts of people or households with certain social characteristics. Frequency tables are also used for business data where characteristics are counted, such as the number of businesses. Because of their longer history there has been relatively more research on protecting frequency tables, as compared with newer output methods such as microdata.
+
+@sec-DisclRisks_freq of the chapter outlines the common types of disclosure risk\index{disclosure risk} and how the consideration of these risks leads to the definition of unsafe cells in frequency tables. The process of aggregating individual records into groups to display in tables reduces the risk of disclosure compared with microdata, but usually some additional SDC protection is needed for unsafe cells in tables. Disclosure control methods are used to reduce the disclosure risk\index{disclosure risk} by disguising these unsafe cells.
+
+Advantages and disadvantages of a range of different SDC methods are discussed in @sec-Methods_freq on a general basis. Well established methods of SDC for frequency tables are the cell key method, introduced in @sec-CKM_freq, and rounding, discussed in @sec-Rounding_freq which explains alternative techniques such as conventional and random rounding, small cell adjustment, and the mathematically much more demanding controlled rounding. @sec-Rounding_freq also provides information on how the software package $\tau$‑ARGUS can be used to apply this method to frequency tables. @sec-TRS introduces the targeted record swapping which is a pre-tabular method, *e.g.* applied on the micro data before generating the table, and is intended to be used as protection method for tables instead of micro data. 
+
+@sec-Means_freq adresses a special kind of disclosure risk that can be connected to the release of means based on original data, when the underlying frequencies are protected by a perturbative, non-additive SDC method.
+
+The final section of the chapter, @sec-InfLoss_freq, describes different information loss measures that can be used to evaluate the impact that different disclosure control methods have on the utility of frequency tables. 
+

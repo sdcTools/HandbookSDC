@@ -1,0 +1,54 @@
+## Publication of mean values {#sec-Means_freq}
+
+In this section, we will explain why original means should rather not be published when the Cell Key Method (or any other non-additive, perturbative SDC method, such as, *e.g.* Rounding) is applied to frequency counts. We will illustrate this with an example and show ways to publish the mean values in a safer variant.
+For this purpose we consider a certain population group of size $n$ and for every person $i\in {1,\ldots ,n}$ of this population we denote their corresponding age with $x_i$. So the average age of this population group can be written as $(\sum_{i=1\ldots n} x_i)/n$.
+We now consider the following example scenario, in which both (perturbed) frequencies and (original) mean values are published. @tbl-ckm_mean shows both the perturbed and the original frequency counts, as well as information about the age.
+
+:::{.callout-not appearance="simple"}
+**Example**
+
+|  | Cell 1 | Cell 2 | Marginal |
+|:-|-:|-:|-:|
+| Original Count ($n$) | 8 | 12 | 20 |
+| Perturbed Count ($\hat{n}$) | 9 | 14 | 19 |
+| Original Sum of Ages ($x$) | 90 | 95 | 185 |
+| Original Mean of Ages ($x/n$) | 11.25 | 7.9167 | 9.25 |
+
+: An example table with (perturbed) ages and counts {#tbl-ckm_mean}
+
+:::
+
+Attackers now have the perturbed frequencies as well as the original mean values at their disposal. In our attack scenario, we also assume that attackers know that the maximum deviation of the frequency count is 2. Attackers can therefore conclude that the original case numbers of the inner cells must be between 7 and 11 and between 12 and 16, respectively, and that the marginal must have originally had a value between 17 and 21. For an attacker, this results in the following possible combinations:
+
+* The marginal is originally 19 and the inner cells are
+    + 7 and 12
+* The marginal is originally 20 and the inner cells are
+    + 7 and 13
+    + 8 and 12
+* The marginal is originally 21 and the inner cells are
+    + 7 and 14
+    + 8 and 13
+    + 9 and 12
+
+The attackers can now multiply the original mean values of the table cells known to them with the thus calculated candidates for the associated frequencies. In this way, they obtain estimates for the original magnitude value for each cell. If now for each of those estimates, they sum up those values for the inner cells, they obtain another estimated value for the marginal value. This can now be used to identify the correct combination of frequency values, since for the correct ones the sum over the inner cell values is identical to the marginal value, as shown in @tbl-ckm_attacker.
+
+:::{.callout-not appearance="simple"}
+**Example**
+
+| Cell 1 | Cell 2 | Marginal | Est. Cell 1 | Est. Cell 2 | Sum of Estimates | Est. Marginal |
+|-:|-:|-:|-:|-:|-:|-:|
+| 7 | 12 | 19 | 78.75 | 95 | 173.75 | 175.75 |
+| 7 | 13 | 20 | 78.75 | 102.917 | 181.667 | 185 |
+| 8 | 12 | 20 | 90 | 95 | 185 | 185 |
+| 7 | 14 | 21 | 78.75 | 110.833 | 189.583 | 194.25 |
+| 8 | 13 | 21 | 90 | 102.917 | 192.917 | 194.25 |
+| 9 | 12 | 21 | 101.25 | 95 | 196.25 | 194.25 |
+
+: Sample calculation for an attacker {#tbl-ckm_attacker}
+
+:::
+
+Additionally, through this calculation, the associated magnitude values are now known as well. If these are confidential, a further problem arises. The publication of original mean values is therefore not recommended.
+
+So, when using the Cell Key Method for frequency tables we recommend to use those perturbed counts also when generating mean values, *i.e.* if $n$ is an original count, $\hat{n}$ is the corresponding perturbed count and $m$ is the corresponding magnitude value, as it gets published, then, in order to avoid the disclosure risk described here, it is better to calculate the mean as $m/\hat{n}$.
+

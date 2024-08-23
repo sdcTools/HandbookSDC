@@ -1,0 +1,87 @@
+## Introduction {#sec-tabular-introduction}
+
+Statistical magnitude tables display sums of observations of a quantitative variable where each sum relates to a group of observations defined by categorical variables observed for a set of respondents.
+
+Respondents are typically companies but can also be individuals or households, etc. Grouping variables typically give information on geography or economic activity or size, etc. of the respondents. The *"cells"* of a table are defined by cross-combinations of the grouping variables.
+
+Each *"table cell"* presents a sum of a quantitative variable such as income, turnover, expenditure, sales, number of employees, number of animals owned by farms, etc. These sums are the *"cell values"* (sometimes also referred to as *"cell totals"*) of a magnitude table. The individual observations of the variable (for each individual respondent) are the *"contributions"* to the cell value.
+
+::: {.content-visible when-format="pdf"}
+
+\begin{table}
+\begin{tabular}{l|rrrr}
+& Industry A & Industry B & $\cdots$ & Total \\ \hline
+Region 1 & 540 (12) & 231 (15) & $\cdots$ & \\
+Region 2 & 48 (2) & 125 (8) & $\cdots$ & \\
+$\cdots$  & $\cdots$ & $\cdots$ & $\cdots$ & 
+\end{tabular}
+\caption{Example: Turnover (number of respondents) by Region and Industry}
+\label{tbl-example-intro-4}
+\end{table}
+
+:::
+
+::: {.content-visible unless-format="pdf"}
+
++--------------+----------------:+----------------:+-----+-------:+
+|              | Industry A      | Industry B      | ... | Total  |
++--------------+-----------------+-----------------+-----+--------+
+| Region 1     | 540 \(12\)      | 231 \(15\)      | ... |        |
++--------------+-----------------+-----------------+-----+--------+
+| Region 2     | 48 \(2\)        | 125 \(8\)       | ... |        |
++--------------+-----------------+-----------------+-----+--------+
+| ...          | ...             | ...             | ... |        |
++--------------+-----------------+-----------------+-----+--------+
+| Total        |                 |                 |     |        |
++--------------+-----------------+-----------------+-----+--------+
+
+: Example: Turnover (number of respondents) by Region and Industry {#tbl-example-intro-4}
+
+:::
+
+The *"dimension"* of a table is given by the number of grouping variables used to specify the table. We say that a table contains *"margins"* or *"marginal cells"*, if not all cells of a table are specified by the same number of grouping variables. The smaller the number of grouping variables, the higher the *"level"* of a marginal cell. A two-dimensional table of some business survey may for instance provide sums of observations grouped by economic activity and company size classes. At the same time it may also display the sums of observations grouped by only economic activity or by only size classes. These are then margins/marginal cells of this table. If a sum across all observations is provided, we refer to it as the *"total"* or *"overall total"*.
+
+At first sight, one might find it difficult to understand how the kind of summary information published in magnitude tables presents a disclosure risk\index{disclosure risk} at all. However, it often occurs that cells of a table relate to a single or to only a few respondents. The number of this kind of small cells in a table will increase, the more grouping variables are used to specify the table, the higher the amount of detail provided by the grouping variables, and the more uneven the distributions of respondents over the categories of the grouping variables.
+
+If a table cell relates to a small group of respondents (or even only one), then publication of the cell value may imply a disclosure risk\index{disclosure risk}. This is the case if these respondents could be identified by an intruder using information displayed in the table.
+
+::: {.callout-note appearance="simple"}
+**Example 1**
+Let a table cell display the turnover of companies in the mining sector for a particular region X. Let us assume that company A is the only mining company in this region. This is a fact that will be known to certain intruders (think, for instance, of another mining company B in a neighbouring region Y). So, if that table cell is published, company B would be able to disclose the turnover of company A.
+:::
+
+In order to establish if a disclosure risk\index{disclosure risk} is connected to the publication of a cell value in a table, and in order to protect against this risk, data providers (like, *e.g.* National Statistical Institutes) should apply tabular data protection methods. In many countries this is a legal obligation to official statistical agencies. It may also be regarded as a necessary requirement in order to maintain the trust of respondents: After all, if in the instance above company A realizes that company B might, by looking into the published table, disclose the value of turnover it has reported, and if it considers this value as confidential information, it may refuse to respond to that survey in the next period, or (if the survey is compulsory) it may choose to provide incorrect or inaccurate information.
+
+Especially for business statistics, the most popular method for tabular data protection is *cell suppression\index{cell suppression}* . In tables protected by cell suppression\index{cell suppression}, all values of cells for which a disclosure risk\index{disclosure risk} has been established are eliminated from the publication. Alternatively, other methods based on cell perturbation etc. may also be used to protect tabular data. While we focus in this chapter on cell suppression\index{cell suppression}, we will also mention alternatives.
+
+@sec-disclosure-control-concepts-tables introduces into the methodological concepts of tabular data protection. In @sec-sensitive-cells-magnitude-tables we present the most common methods for disclosure risk\index{disclosure risk} assessment for each individual cell of a table (and for special combinations of individual cells). These methods are called *"primary"* disclosure control methods. Table cells for which a disclosure risk\index{disclosure risk} has been established are called *"sensitive"*, *"confidential"*, or *"unsafe"* cells. Primary disclosure risk\index{disclosure risk} is usually assessed by applying certain sensitivity rules. @sec-sensitive-cells-magnitude-tables explains the concept of sensitivity rules and the most common rules.
+
+While detailed tabulated summary information also on smaller groups of statistical objects (companies by subgroups of subsectors at the district level, households by size and income at the neighbourhood level, etc.) might be of interest to certain user groups, it is also a responsibility (maybe the most important one) of official statistics to provide summary information at a high aggregate level by producing summary statistics on large groups of a population (*e.g.* for *all* companies of an economy sector). Because of this, it is not enough to have methodologies to protect individual cells. It implies a need for the so-called *"secondary"* tabular data protection methodologies.
+
+Assume that a table displays the sum of a variable "Production" by three subsectors of an economy sector. Assume that this sum is sensitive for one of the subsectors and that the table is protected by cell suppression\index{cell suppression}, meaning that the confidential cell value is suppressed.
+
+:::{.callout-note appearance="simple"}
+**Example 1a**
+Production (in mill. Euro)
+
++------------+-----------------+-----------------+-----------------+
+| Sector     | Subsector I     | Subsector II    | Subsector III   |
++------------+-----------------+-----------------+-----------------+
+| 56,600     | suppressed\     | 47,600\         | 8,002\          |
+|            | (sensitive)     | (non-sensitive) | (non-sensitive) |
++------------+-----------------+-----------------+-----------------+
+
+With respect to the total production for this sector we distinguish two cases: Either it is foreseen to be published -- we then consider it as a cell of the table (*e.g.* the "total"). If the cell values of the two non-sensitive subsectors and the "total" are displayed, then users of the publication can disclose the cell value for the sensitive subsector by taking the difference between the "total" and the subsector values for the two non-sensitive sectors (56,600 -- 47,600 -- 8,002 = 998). 
+In order to avoid this, a secondary protection measure for this table has to be taken, *e.g.* selecting one of the two non-sensitive subsector cells and suppressing it as well. This would be called a "secondary suppression".
+
+The other option is that the "total" is not foreseen to be displayed / published. Then no secondary protection measure would be needed. In this instance, because the production for one subsector is suppressed, interested users of the table cannot compute the production for the sector on their own -- and so the sector-level information is completely lost!
+:::
+
+From a general perspective, the purpose of secondary tabular data protection methodologies is chiefly to avoid undesirable effects such as this, ensuring that -- while some "small", primary confidential cells within detailed tables may have to be protected (by cell suppression\index{cell suppression} or by some perturbative method) -- sums for larger groups, *i.e.* the margins of those detailed tables, are preserved to some extent. For cell suppression\index{cell suppression} this means that suppression of marginal cells should be avoided as far as possible. For perturbative methods it means that high level margins should try to be preserved exactly (more or less).
+
+Considering this as the basic idea of secondary protection, after @sec-sensitive-cells-magnitude-tables we assume for the remainder of the chapter margins and overall totals always to be part of a table.
+
+In @sec-secondary-protection-methods we introduce the concepts of secondary tabular data protection methodologies. The focus will be on cell suppression\index{cell suppression}, but we will also mention other methodologies.
+
+The software package $\tau$‑ARGUS (see *e.g.* Hundepool et al., 2014) provides software tools for disclosure protection methods for tabular data. The latest version of $\tau$-ARGUS can be found on GitHub ([https://github.com/sdcTools/tauargus/releases](https://github.com/sdcTools/tauargus/releases)). @sec-tau-argus-suppression is concerned with the practical implementation of secondary cell suppression\index{cell suppression} as offered by $\tau$‑ARGUS. In @sec-setting-up-a-tabular-data-protection-problem-in-practice we discuss information loss concepts as well as table structures considered by $\tau$‑ARGUS. We compare the performance of different algorithms for secondary cell suppression\index{cell suppression} in @sec-evaluation-of-secondary-cell-suppression-algorithms-offered-by-tau-argus and give software recommendations. In @sec-efficient-protection-process we explain how to set up procedures for tabular data protection in a practical way and give an introductive example in @sec-introductive-example. In @sec-methodology-secondary-suppression-tau-argus we briefly introduce the methodological concepts of the secondary cell suppression\index{cell suppression} algorithms provided by $\tau$-ARGUS. The chapter ends with @sec-CTA, introducing Controlled Tabular Adjustment as new emerging protection technique for magnitude tables which could become an alternative to the well-established cell suppression\index{cell suppression} methodologies.
+

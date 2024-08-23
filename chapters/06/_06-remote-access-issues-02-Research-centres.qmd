@@ -1,0 +1,12 @@
+## Research Data Centres (RDCs)
+
+In order to meet the needs of the researcher community to analyse the rich datasets compiled by the NSIs, while safeguarding the confidentiality constraints, the first solution was to create special rooms in the premises of the NSIs (RDCs). The NSI makes available special computers for the researchers. On this computer the necessary software for the research will be installed by the NSI together with the necessary datasets. Ideally these computers have no connection whatsoever to the internet and there is no email. Also drives for removable discs are not available and the use of memory sticks has to be blocked. The access to the internal production network of the NSI has to be blocked as well, preventing the possibilities of the researchers to access other sensitive information. Installing a printer is a risk as well as is the use of phones. Supervision of the RDC is always needed.
+
+The datasets to be used in the RDC have to be anonymised (*i.e.* at least the name, address etc are removed). It is also advisable to restrict the variables available to the set that is needed for the specific research.
+
+On these computers the researchers should neverthe­less be able to fully analyse the data files and complete their analysis. When the research is finished the results have to be released to the researchers. Before this can be done, NSI staff has to check the research results. Unfortunately this is not a straightforward, easy task. This will be discussed in section 6.6.
+
+The concept of RDCs is meeting many research needs and several NSIs have adopted this idea. RDCs have been implemented in the USA, Canada, The Netherlands, Italy, Germany, Denmark, Eurostat and several other countries.
+
+The concept of RDCs has proved to be very successful. Many good research papers and theses have been completed for which these centres were indispensable. However there are some drawbacks. The most important one is that the researchers have to come physically to the premises of the NSIs. Even in a small country like the Netherlands, this is seen as a serious problem. Also the researcher cannot just try another option when he is back at his normal working place, because he has to travel to the NSI first. Also the fact that he cannot work in his normal working environment is considered a drawback.
+

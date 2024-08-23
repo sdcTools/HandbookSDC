@@ -1,0 +1,29 @@
+## European laws {#sec-laws}
+
+For statistical disclosure control the following two laws are of importance.
+
+
+**Commission Regulation (EC) No 223/2009 of the European Parliament and Council of 11 March 2009 on European statistics.** This regulation has entered into force on the 1 April 2009 and amended Regulation 322/97 on Community Statistics and Regulation 1101/2008 (previously 1588/90) on the transmission of data subject to statistical confidentiality.
+
+This Regulation establishes the legal framework for the development, production and dissemination of European statistics, including the rules on confidentiality.
+
+Article 2, clause 1(e) defines statistical confidentiality as \"the protection of confidential data related to single statistical units which are obtained directly for statistical purposes or indirectly from administrative or other sources and implying the prohibition of use for non-statistical purposes of the data obtained and of their unlawful disclosure\".
+
+Confidential data are defined as \"data which allow statistical units to be identified, either directly or indirectly, thereby disclosing individual information. To determine whether a statistical unit is identifiable, account shall be taken of all relevant means that might reasonably be used by a third party to identify the statistical unit\".
+
+Chapter V \'Statistical Confidentiality\' describes in detail rules and measures that shall apply to ensure that confidential data are exclusively used for statistical purposes and how their unlawful disclosure shall be prevented (Articles 20-26). Article 23, in particular, makes provision for the access to confidential data for scientific purposes.
+
+**Commission Regulation (EC) No 557/2013 of 17 June 2013 implementing Regulation (EC) No 223/2009 of the European Parliament and the Council on European Statistics as regards access to confidential data for scientific purposes and repealing Commission Regulation (EC) No 831/2002.** This Regulation establishes the conditions under which access to confidential data transmitted to the Commission (Eurostat) may be granted for enabling statistical analyses for scientific purposes, and the rules of cooperation between the Commission (Eurostat) and national statistical authorities in order to facilitate such access.
+
+In Article 3 general principles are described. The Commission (Eurostat) may grant access to confidential data for scientific purposes held by it for the development, production or dissemination of European statistics as referred to in Article 1 of Regulation (EC) No 223/2009, provided that the following conditions are satisfied:
+
+-	access is requested by a recognized research entity;
+-	an appropriate research proposal has been submitted;
+-	the requested type of confidential data for scientific purposes has been submitted;
+-	access is provided either by the Commission (Eurostat) or by another access facility accredited by the Commission (Eurostat);
+-	the relevant national statistical authority which provided the data has given its approval.
+
+The original Regulation 831/2002 covered four surveys: Labour Force Survey (LFS), Continuing Vocational Training Survey (CVTS), European Community Household Panel (ECHP) and Community Innovation Survey (CIS). Later other surveys were added and the European Union Statistics on Income and Living Conditions (EU-SILC) replaced the ECHP.
+
+Discussions about the level of detail for the microdata (to which the researchers get access) take place in the relevant Working Groups. Currently, the task to approve this level of detail is delegated to the Directors’ Group on Methodology (DIME). In addition to the DIME two Expert Groups in the ESS exist that deal with Statistical Disclosure Control (SDC): the Expert Group on SDC and the Microdata Access Network Group (MANG).
+

@@ -1,0 +1,30 @@
+## References
+
+Commission Regulation (EC) No 831/2002 concerning access to confidential data for scientific purposes\
+[https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32002R0831](https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32002R0831)
+
+Commission Regulation (EC) No 223/2009 on European statistics\
+[https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=celex%3A32009R0223](https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=celex%3A32009R0223)
+
+Commission Regulation (EC) No 557/2013\
+[https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32013R0557](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32013R0557)
+
+Council Regulation 1588/90\
+[https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A31990R1588](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A31990R1588)
+
+Council Regulation 322/97\
+[https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A31997R0322](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A31997R0322)
+
+European Statistics Code of Practice\
+[https://ec.europa.eu/eurostat/web/products-catalogues/-/european-statistics-code-of-practice-revised-edition-2017](https://ec.europa.eu/eurostat/web/products-catalogues/-/european-statistics-code-of-practice-revised-edition-2017)
+
+ISI (1985) *Declaration on Professional Ethics*\
+[https://isi-web.org/declaration-professional-ethics](https://isi-web.org/declaration-professional-ethics)
+
+Pink, B et al. (2009) *Principles and Guidelines on Confidentiality Aspects of Data Integration* UNECE United Nations Economic commission for Europe\
+[https://digitallibrary.un.org/record/651518?v=pdf](https://digitallibrary.un.org/record/651518?v=pdf)
+
+Trewin, D et al. (2007) *Principles and Guidelines of Good Practice for Managing Statistical Confidentiality and Microdata Access* UNECE United Nations Economic commission for Europe\
+[https://unece.org/fileadmin/DAM/stats/publications/Managing.statistical.confidentiality.and.microdata.access.pdf](https://unece.org/fileadmin/DAM/stats/publications/Managing.statistical.confidentiality.and.microdata.access.pdf)
+
+

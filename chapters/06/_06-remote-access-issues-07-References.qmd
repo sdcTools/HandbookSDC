@@ -1,0 +1,16 @@
+## References
+
+John Coder and Marc Cigrang (2003), *LISSY: A system for providing Restricted Access to Survey Microdata from Remote Sites*, Monographs in Official Statistics, Luxembourg
+
+Anco Hundepool and Peter-Paul de Wolf(2005), *OnSite\@Home: Remote Access at Statistics Netherlands*, Monographs of Official Statistics, Luxembourg
+
+Lars-Johan Söderberg (2005), *MONA,- Microdata On liNe Access as Statistics Sweden*, Monographs of Official Statistics, Luxembourg
+
+Lars Borchsenius (2005), *New developments in the Danish system for access to micro data*, Monographs of Official Statistics, Luxembourg
+
+Dr. Sylvia Zühlke, Markus Zwick, Sebastian Scharnhorst and Thomas Wende (2005), *The research data centres of the Federal Statistical Office and the statistical offices of the Länder*, Forschungsdatenzentrum, Statistisches Bundesamt.
+
+Brandt, M. et al. (2009). *Guidelines for the checking of output based on microdata research:* [https://research.cbs.nl/casc/ESSnet/GuidelinesForOutputChecking_Dec2009.pdf](https://research.cbs.nl/casc/ESSnet/GuidelinesForOutputChecking_Dec2009.pdf)
+
+The DwB project, Work Package 11, extracted from the deliverable D11.8 (2015). *Guidelines for Output Checking:* [https://cros.ec.europa.eu/system/files/2024-02/Output-checking-guidelines.pdf](https://cros.ec.europa.eu/system/files/2024-02/Output-checking-guidelines.pdf)
+

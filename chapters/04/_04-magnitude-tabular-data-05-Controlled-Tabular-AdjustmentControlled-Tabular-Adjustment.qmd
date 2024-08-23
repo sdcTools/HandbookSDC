@@ -1,0 +1,21 @@
+## Controlled Tabular Adjustment {#sec-CTA}
+
+*'Controlled Tabular Adjustment'* (CTA) suggested for instance in Cox and Dandekar (2002), Castro (2003), or Castro and Giessing (2006). CTA is a new emerging protection method for magnitude tabular data. Unlike cell suppression\index{cell suppression}, it is a perturbative method.
+
+The starting point of the cell suppression\index{cell suppression} methodology presented in 4.3 is that suppressing cells in a table results in theory in replacing the confidential cell value by a feasibility interval that could principally be computed by any user of a table published with suppressions. As explained in 4.2.2., in case the proper protection is given to the cells, the feasibility interval covers the protection interval (*i.e.* the interval that is needed to protect the individual contribution). CTA methodology on the other hand aims at finding the closest additive table to the original table ensuring that adjusted values of all confidential cells are safely away from their original value (considering the protection intervals) and that the adjusted values are within a certain range of the real values.\
+
+***CTA variants***\
+Several variants of CTA have been discussed in the literature (Dandekar and Cox, 2002), (Cox et al., 2004), (Castro, 2006) etc., suggesting to obtain CTA by using (mixed integer) linear programming methodology. The main differences between those alternatives are on one hand the way in which the deviation sense of the primary suppressions is determined (heuristically vs. optimal, *i.e.* through solution of integer programming problems). On the other hand, the definition of constraints matters (forcing the adjusted values to be within a "certain range" of the real values). And finally there is the issue of information loss/cell costs, *e.g.* the distance metric used to determine what is "close" to the original table. Typically, weighted metrics are used. Implementations usually offer a choice of cost functions.
+
+As an alternative to the above linear programming based approaches, (Cox et al., 2006) and (Ichim and Franconi, 2006) suggest methology to achieve CTA using statistical methods like Iterative Proportional Fitting or Calibration techniques.\
+
+***Information loss measures***\
+While for cell suppression\index{cell suppression}, the effect of SDC on the data is obvious to the users of the data, for CTA this is not the case. Many information loss measures proposed in the literature that should help -- eventually both parties: data providers and data users -- to judge the quality of an adjusted table are global measures. A typical global measure would be statistics on the relative deviations between true and adjusted cell values. (Cox et al., 2004) hint at measuring the preservation of univariate properties like mean, variance, correlation, etc. in subsets of cells. (Cox et al., 2006) employ Goodness-of-fit statistics like the Kolmogorov Smirnov test to compare adjusted vs. original data.
+
+In contrast to a global measure, a local measure will inform the data user on the reliability of each particular (adjusted) cell value. (Castro and Giessing, 2006b) discuss criteria that could be used by data providers to decide whether an adjustment is so small that there is no need for the cell to be flagged as "adjusted".
+
+In order to be able to publish a single value in the tables whilst at the same time clarifying to the users that these values are not the original values, (Giessing, Hundepool and Castro, 2007) suggest to round the values resulting from CTA. The basis for rounding would be chosen in a way that the rounding interval includes both the true and the adjusted value. This strategy requires however some occasional post-processing to ensure that the protection of the sensitive cells is sufficient.\
+
+***Software***\
+An implementation based on a simple heuristic to fix deviation senses for the adjustment of sensitive cells is available in the R-package *sdcTable* (Meindl, 2009). An algorithm for optimal CTA has been implemented on behalf of Eurostat by (Castro and Gonzalez, 2009).
+

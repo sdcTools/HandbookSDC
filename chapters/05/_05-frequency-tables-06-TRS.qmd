@@ -1,0 +1,96 @@
+## Targeted Record Swapping {#sec-TRS}
+
+Targeted Records Swapping (TRS) is a pre-tabular perturbation method. It's intended use is to apply a swapping procedure to the micro data before generating a table.
+Although it is applied solely on micro data it is generally considered a protection method used for tabular data and not recommended for protecting micro data.
+TRS can be used for tables with and without spatial characteristics, with the prior case containing also grid data products or tables created by cross-tabulating with grid cells.   
+During the TRS the spatial character of the data can be taken into account to some degree. 
+
+
+### The TRS noise mechanism
+:::{.callout-warning collapse=true}
+## Expert level
+
+Regardless of the table, be it count data or a magnitude table, the methodology of the TRS does not change. 
+This is a direct consequence of the fact that the method is applied to the underlying micro data before generating any table.
+
+Consider population units $i = 1, \ldots, N$ where each unit $i$ has $p$ characteristics or variables $\{\mathbf{x}_{1},\ldots,\mathbf{x}_{n}\} = \mathbf{X} \in \mathbb{R}^{n\times p}$. Furthermore there exists a geographic hierarchy $\mathcal{G}^{1} \succ \mathcal{G}^{2} \succ \ldots \succ \mathcal{G}^{K}$ where each $\mathcal{G}^{k}$ is the set of disjointly split areas $g_m^{k}$, $m=1,\ldots,M_k$ and each $g_m^{k}$ is further disjointly subdivided into smaller areas $g_m^{k+1}$,$m=1,\ldots,M_{k+1}$:
+
+$$
+\mathcal{G}^{k} = \{g_m^{k} \mid g_i^{k}\cap g_j^{k} = \varnothing \text{ for }i\neq j \} \quad \forall k = 1,\ldots,K
+$$
+
+where
+
+$$
+g_m^{k} = \dot{\bigcup}_{m=1}^{M_{k+1}}g_m^{k+1} \quad \forall k = 1,\ldots,K-1 \quad .
+$$
+
+The notation $a\dot{\cup}b$ refers to the disjoint union meaning that $a\cap b = \varnothing$.
+
+With the above definition each unit $i$ in the population can be assigned to a single area $g_{m_i}^{k}$ for each geographic hierarchy level $\mathcal{G}^{k}$, $k = 1,\ldots,K$.
+Consider as geographic hierarchy for example the NUTS regions, NUTS1 $\succ$ NUTS2 $\succ$ NUTS3, or grid cells, 1000m grid cells $\succ$ 500m grid cells $\succ$ 250m grid cells.
+
+Given the geographic hierarchy levels $\mathcal{G}^{k}$, $k = 1,\ldots,K$ calculate for each unit $i = 1, \ldots, N$ risk values $r_{i,k}$.
+As an example one can choose $k$-anonymity as risk measure and a subset of $Q$ variables $\mathbf{x}_{q_1},\ldots,\mathbf{x}_{q_Q}$ to derive risk values $r_{i,k}$. 
+They can be defined by calculating the number of units $j$ which have the same values for variables $\mathbf{x}_{q_1},\ldots,\mathbf{x}_{q_Q}$ as unit $i$ and taking the inverse.
+
+$$
+c_{i,k} = \sum\limits_{j=1}^N \mathbf{1}[x_{i,q_1} = x_{j,q_1}, x_{i,q_2} = x_{j,q_2}, \ldots, x_{i,q_Q} = x_{j,q_Q}]
+$$
+
+$$
+r_{i,k} = \frac{1}{c_{i,k}}
+$$
+
+Having the risk values $r_{i,k}$ for each unit $i$ and each geographic hierarchy level calculated the TRS can be defined as follows:
+
+1. Define initial, use-case specific, parameter.
+    - A global swap rate $p$;
+    - Define a risk value $r_{high}$ beyond which all units with $r_{i,k}$ are considered \textbf{high risk} for the geographic hierarchy level $k$;
+    - A subset of $T$ variables $\mathbf{x}_{t_1},\ldots,\mathbf{x}_{t_T}$ which are considered while swapping units;
+2. Begin at the first hierarchy level $\mathcal{G}^{1}$ and select all units $j$ for which $r_{i,1} \geq r_{high}$.
+3. For each $j$ select all units $l_1,\ldots,l_L$, which do not belong to the same area $g_{m_j}^{1}$ and have the same values for variables $\mathbf{x}_{t_1},\ldots,\mathbf{x}_{t_T}$
+as unit $j$. In addition units $l_1,\ldots,l_L$ cannot have been swapped already. 
+$$
+g_{m_j}^{1} \neq g_{m_l}^{1}
+$$
+$$
+x_{j,t_1} = x_{l,t_1}, x_{j,t_2} = x_{l,t_2}, \ldots, x_{j,t_T} = x_{l,t_T}
+$$
+4. Sample for each $j$ one unit from the set $\{l \mid g_{m_j}^{1} \neq g_{m_l}^{1} \land x_{j,t_1} = x_{l,t_1} \land, \ldots, \land x_{j,t_T} = x_{l,t_T}\}$ by normalising corresponding risk value $r_{l,1}$ and using them as sampling probabilities.
+    - Previously swapped units should be excuded from this set. 
+5. Swap all variables, holding geographic information in $\mathbf{X}$, between unit $j$ and the sampled unit.
+    - Some implementation of targeted record swapping consider only swapping specific variable values from $\mathbf{X}$ between $j$ and the sampled unit.
+6. Iterate through the geographic hierarchies $k=2,\ldots,K$ and repeat in each of them steps 3. - 5.
+7. At the final geographic hierarchy $k=K$ if the number of already swapped units is less than $p\times N$ additional units are swapped to reach $p\times N$ overall swaps. 
+
+If the population units refer to people living in dwellings and the aim is to swap only full dwellings with each other and not only individuals it can be useful to set 
+
+$$
+r_{i,k} = \max_{j \text{ living in same dwelling as }i}r_{j,k}
+$$
+
+prior to applying the swapping procedure. In addition $\mathbf{x}_{1(q)},\ldots,\mathbf{x}_q$ should be defined such that they refer to variables holding dwelling information.
+
+The above described procedure is implemented in the R package `sdcMicro` as well as in the software `muArgus`, alongside a multitude of parameters to fine tune the procedure.
+:::
+
+### Pros and cons of targeted record swapping
+
+Indicated by the name of the method the TRS aims to swap micro data records prior to building a table and specifically targeting records during the swapping procedure which have a higher risk of disclosure with respect to the final tables. 
+The protection of the TRS itself is considered to be the uncertainty that an identified unit $i$ has a considerable chance of actually being a swapped unit and that the information derived from this unit does not contain the information of the original unit $i$. 
+In general it is recommended to apply the TRS on the micro data set only once and afterwards build various tables from the same perturbed micro data. 
+This creates a more drastic trade off between the number of records to swap and the utility of the final tables. 
+The swapping procedure can indirectly take into account the structure of the final tables through the risk value derived from the subest of variables $\mathbf{x}_{q_1},\ldots,\mathbf{x}_{q_Q}$ and choice of the geographic hierarchy. 
+However a large number of variables $\mathbf{x}_{q_1},\ldots,\mathbf{x}_{q_Q}$ and a high resolution in the geographic hierarchy can result in a high share of units with high risk values and consequently many potential swaps. 
+A high swap rate, for instance beyond 10%, can quickly lead to high information loss, because the noise introduced through the swapping is not controlled for while drawing the swapped units. 
+Thus it is not feasible to both address all possible disclosure risk\index{disclosure risk} scenarios while maintaining high utility in the final tables.
+
+As with any method it is advised to thoroughly tune parameters to balance information loss and disclosure risk\index{disclosure risk}. Possible tuning parameters are:
+
+- The geographic hierarchy and its depth of granularity.
+- The construction of the risk values $r_{i,k}$ and $r_{high}$ 
+- The choice of $\mathbf{x}_{t_1},\ldots,\mathbf{x}_{t_T}$ 
+- The global swap rate $p$
+
+Because the noise is applied to the microdata before building any tables the additivity between inner and marginal aggregates will always be preserved.

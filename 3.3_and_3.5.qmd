@@ -1,0 +1,777 @@
+## Measurement of disclosure risk and information loss
+
+### Introduction
+
+The key aim of the Statistical Disclosure Control is to achieve optimal balance between minimization of disclosure risk and simultaneous minimization of the information loss arising from the SDC process (what is equivalent to maximization of data utility for the possible users). So, both aspects of this problem will be described and critically discussed in this subchapter. We will present basic concepts and types of disclosure risk and show how one can measure of disclosure risk for categorical variables and continuous variables. Because usually for each of such types separate measures are applied, we investigate also a possibility of complex measurement of disclosure risk taking them jointly into account. A similar approach was also applied to measures of information loss: types of information loss and its measures for categorical and continuous variables are presented and next complex measures providing synthetic information in this respect are discussed. They are available already in the literature and implemented to the specialized statistical software. Finally, some remarks on the practical realization of trade-off between safety and utility of microdata are collected and illustrated by relevant example.
+
+### General remarks on disclosure risk
+
+Microdata poses serious disclosure issues because of the many variables that are disseminated in one file. For microdata, disclosure occurs when there is a possibility that an individual can be re-identified by an intruder using information contained in the file, and when on the basis of that, confidential information is obtained. Microdata are released only after taking out directly identifying variables, such as names, addresses, and identity numbers. However, other variables in the microdata can be used as indirect identifying variables. For individual microdata this are variables such as gender, age, occupation, place of residence, country of birth, family structure, etc. and for business microdata variables such as economic activity, number of employees, etc. These (indirect) identifying variables are mainly publicly available variables or variables that are present in public databases such as registers.
+
+If the identifying variables are categorical then the compounding (cross-classification) of these variables defines a key. The disclosure risk is a function of such identifying variables/keys either in the sample alone or in both the sample and the population.
+
+To assess the disclosure risk, we first need to make realistic assumptions about what an intruder might know about respondents and what information will be available to him to match against the microdata and potentially make an identification and disclosure. These assumptions are known as disclosure risk scenarios and more details and examples are provided in the next section of this handbook. Based on the disclosure risk scenario, the identifying variables are determined. These variables are then subject to the Statistical Disclosure Control (direct identifiers are usually simply removed from the file to be disclosed). The other variables in the file represent usually the data not to be disclosed. This may be technical data that are useless to users and intended only for the NSIs staff (e.g. indicators of completeness of form completion by respondents) or data that -- due to particular sensitivity -- have been arbitrarily decided not to be disclosed (such data are most often transformed into other, more secure ones -- e.g. by using wider categories in the case of categorical variables or categorization in the case of continuous variables). NSIs usually view all non-publicly available variables as confidential/sensitive variables regardless of their specific content, though there can be some variables, e.g. sexual identity, health conditions, income, that can be more sensitive.
+
+In order to undertake a risk assessment of microdata, NSIs might rely on *ad-hoc* methods, experience and checklists based on assessing the detail and availability of identifying variables. There is a clear need for obtaining quantitative and objective disclosure risk measures for the risk of re-identification in the microdata. For microdata containing censuses or registers, the disclosure risk is known as we have all identifying variables available for the whole population. However, for microdata containing samples the population base is unknown or partially known through marginal distributions. Therefore, probabilistic modelling or heuristics are used to estimate disclosure risk measures at population level, based on the information available in the sample. This section provides an overview of methods and tools that are available in order to estimate quantitative disclosure risk measures.
+
+Intuitively, a unit is at risk if we are able to single it out from the rest. The idea at the base of the definition of risk is a way to measure rareness of a unit either in the sample or in the population.
+
+When the identifying variables are categorical (as it is usually the case in social surveys) the risk is cast in terms of the cells of the contingency table built by cross-tabulating the identifying variables being the keys. Consequently all the records in the same cell have the same value of the risk.
+
+Section 3.5.3 provides an introduction to disclosure risk scenarios. Section 3.5.4 introduces concepts and notation used throughout this chapter whereas Section 3.5.5 discusses the most important classifications of disclosure risk types based on various criterions. Sections from 3.5.6 to 3.5.8 describe different approaches to microdata risk assessment as specified above. However, as microdata risk assessment is a novelty in statistical research there isn't yet agreement on what method is the best, or at least best under given circumstances. In the following sections we comment on various approaches to risk measures and try to give advice on situations where they could or could not be applied. In any case, it has been recognised that research should be undertaken to evaluate these different approaches to microdata risk assessment, see for example Shlomo and Barton (2006).
+
+The focus of these methods and this section of the handbook is for microdata samples from social surveys. For microdata samples from censuses or registers the disclosure risk is known. Business survey microdata are not typically released due to their disclosive nature (skewed distributions or very small number of units sampled from some areas).
+
+In section 1.1 we make some suggestions on practical implementation and in section 3.8 we give examples of real datasets and ways in which risk assessment could be carried out.
+
+### Disclosure risk scenarios
+
+The definition of a disclosure scenario is a first step towards the development of a strategy for producing a "safe" microdata file (MF). A scenario synthetically describes (i) which is the information potentially available to the intruder, and (ii) how the intruder would use such information to identify an individual i.e. the intruder's attack means and strategy. Often, defining more than one scenario might be convenient, because different sources of information might be alternatively or simultaneously available to the intruder. Moreover, re-identification risk can be assessed keeping into account different scenarios at the same time.
+
+We refer to the information available to the intruder as an External Archive (EA), where information is provided at individual level, jointly with directly identifying data, such as name, surname, etc. The disclosure scenario is based on the assumption that the EA available to the intruder is an individual microdata archive. That is, for each individual directly identifying variables, and some other variables are available. Some of these further variables are assumed to be available also in the MF that we want to protect. The intruder's strategy of attack would be to use this overlapping information to match direct identifier to a record in the MF. The matching variables are then the *identifying variables*.
+
+We consider two different types of re-identification, *spontaneous recognition* and *re-*identification *via record matching* (or *linkage*) according to the information we assume to be available to the intruder. In the first case we consider that the intruder might rely on personal knowledge about one or a few target individuals, and spontaneously recognize a surveyed individual (*Nosy Neighbour scenario*). In such a case the External Archive contains one (or a few) records relative to *detailed* personal information. In the second case, we assume that the intruder (who might be an MF user) has access to a *public register* and that he or she tries to match the information provided by this EA, with that provided by the MF, in order to identify surveyed units. In such a case, the intruder's chance of identifying a unit depends on the EA main characteristics, such as completeness, accuracy and data classification. Broadly speaking, we assume that the intruder has a lower chance of correctly identifying an individual when the information provided by the EA is not update, complete, accurate, or is classified according to standards different by those used in the statistical survey.
+
+Moreover, as far as statistical disclosure control is concerned, experts are used to distinguish between social and economic microdata (without loss of generality we can consider respectively individuals and enterprises). In fact, the concept of disclosure risk is mainly based on the idea of rareness with respect to a set of identifying variables. For social survey microdata, because of the characteristics of the population under investigation and the nature of the data collected, identifying variables are mainly (or exclusively) categorical. For much of the information collected on enterprises however the identifying variables often take the form of quantitative variables with asymmetric distributions (Willenborg and de Waal, 2001; Willenborg, Scholtus and van de Laar (eds.) (2014)). Disclosure scenarios are then described according to this statement.
+
+The case study part of the Handbook contains examples of the Nosy Neighbour scenario and the EA scenario for social survey data. The issues involved with hierarchical and longitudinal data are also addressed. Finally, scenarios for business survey data are discussed.
+
+In any case the definition of the scenario is essential as it defines the hypothesis underneath the risk estimation and the subsequent protection of the data.
+
+### Concepts and notation
+
+For microdata, disclosure risk measures quantify the risk of re-identification. Individual per record disclosure risk measures are useful for identifying high-risk records and targeting the SDC methods. These individual risk measures can be aggregated to obtain global file level disclosure risk measures. These global risk measures are particularly useful to NSIs for their decision making process on whether the microdata is safe to be released and allows comparisons across different files.
+
+*Microdata disclosure*
+
+Disclosure in a microdata context means a correct record re-identification operation that is achieved by an intruder when comparing a target individual in a sample with an available list of units (external file) that contains individual identifiers such as name and address plus a set of identifying variables. Re-identification occurs when the unit in the released file and a unit in the external file belong to the same individual in the population. The underlying hypothesis is that the intruder will always try to match a unit in the sample $s$ to be released and a unit in the external file using the identifying variables only. In addition, it is likely that the intruder will be interested in identifying those sample units that are unique on the identifying variables. A re-identification occurs when, based on a comparison of scores on the identifying variables, a unit $i^*$ in the external file is selected as matching to a unit $i$ in the sample and this link is correct and therefore confidential information about the individual is disclosed using the direct identifiers.
+
+To define the disclosure scenario, the following assumptions are made. Most of them are conservative and contribute to the definition of a worst case scenario:
+
+1.  A sample $s$ from a population $P$ is to be released, and sampling design weights are available;
+
+2.  The external file available to the intruder covers the whole population $P$; consequently for each $i \in s$, the matching unit $i^*$ does always exist in $P$;
+
+3.  The external file available to the intruder contains the individual direct identifiers and a set of categorical identifying variables that are also present in the sample;
+
+4.  The intruder tries to match a unit $i$ in the sample with a unit $i^*$ in the population register by comparing the values of the identifying variables in the two files;
+
+5.  The intruder has no extra information other than that contained in the external file;
+
+6.  A re-identification occurs when a link between a sample unit $i$ and a population unit $i^*$ is established and $i^*$ is actually the individual of the population from which the sampled unit $i$ was derived; e.g. the match has to be a correct match before an identification takes place.
+
+Moreover we add the following assumptions:
+
+7.  The intruder tries to match all the records in the sample with a record in the external file;
+
+8.  The identifying variables are consistent in terms of matching, that is no errors, missing values or time-changes occur in recording the identifying variables in the two microdata files.
+
+*Notation*
+The following notation is introduced here and used throughout the chapter when describing different methods for estimating the disclosure risk of microdata.
+
+In general, we will be looking at a contingency table spanned by the identifying variables in the microdata and not a single vector. The contingency table contains the sample counts and is typically very large and very sparse. Such table has then $K$ cells and each cell $k=1,\ldots,K$ is the cross-product of the categories of the identifying variables. Let the population size in cell $k$ of the table be $F_k$ and the sample size $f_k$. Also:
+
+$$
+\sum_{k=1}^{K}F_{k}=N,\quad\sum_{k=1}^{K}f_{k}=n \quad .
+$$
+
+Formally the sample and population sizes in the models introduced in sections 3.5.4 and 3.5.5 are random and their expectations are denoted by $n$ and $N$ respectively. In practice, the sample and population size are usually replaced by their natural estimators; the actual sample and population sizes, assumed to be known.
+
+Observing the values in the table on individual $i \in s$ will classify such individual into one cell. We denote by $k(i)$ the index of the cell into which individual $i\in s$ is classified based on the values of this object.
+
+According to the concept of re-identification disclosure given above, we define the (base) individual risk of disclosure of unit $i$ in the sample as its probability of re-identification under the worst case scenario. Therefore the risk $r_i$ that we get is certainly not smaller than the actual risk, the individual risk is a conservative estimate of the actual risk:
+
+$$
+r_{i}=\operatorname{Pr}\left( i\;\text{correctly linked with}\; i^* \mid s , P \text{, worst case scenario }\right) \qquad\text{(3.5.1)}
+$$
+
+
+All of the methods based on keys in the population described in this chapter aim to estimate this individual per-record disclosure risk measure that can be formulated as $\frac{1}{F_k}$. The population frequencies $F_k$ are unknown parameters and therefore need to be estimated from the sample. A global file-level disclosure risk measure can be calculated by aggregating the individual disclosure risk measures over the sample:
+
+$$
+\tau_{1} = \sum\limits_{k}^{}\frac{1}{F_{k}}
+$$
+
+An alternative global risk measure can be calculated by aggregating the individual disclosure risk measures over the sample uniques of the cross-classified identifying variables. Since the uniques in the population $F_k=1$, are the dominant factor in the disclosure risk measure, we focus our attention on sample uniques $f_k=1$:
+
+$$
+\tau_{2} = \sum\limits_{k}^{}{I(f_{k}=1)\frac{1}{F_{k}}}
+$$
+
+where $I$ represents an indicator function obtaining the value 1 if $f_k=1$ or 0 if not.
+
+Both of these global risk measures can also be presented as rates by dividing by $n$, the sample size or the number of uniques.
+
+We assume that the $f_k$ are observed but the $F_k$ are not observed.
+
+### Types of disclosure risk
+
+The assessment of the risk of re-identification using disclosed data involves identifying unsafe combinations (for categorical variables) or their values in the neighbourhood of relevant original values (for continuous variables) or levels (individual, global or hierarchical). The unsafe combinations of values of categorical variables are recognized using e.g. the $k$-anonymity or $l$-diversity rules. It is possible also when the $t$-closeness criterion is applied: in this case all records - and themselves the combinations of values of categorical variables – belonging to unsafe class are regarded to be unsafe. 
+
+Several definitions of risk and several criteria to classify the risk have been proposed in the literature. Here we focus mainly on those for which tools are available to compute/estimate them easily. The classification of risk depends largely on the assumed criterion. We will present most important types of risk based on data which the intruder has access to or the data structure.
+
+Due to the range of data that can be used to identify the individual one can distinguish two types of disclosure risk for a dataset obtained once the SDC process has been applied (cf. Młodak, Pietrzak and Józefowski (2022)):
+
+    • internal risk -- when there is a threat of identifying units only using modified data (it is worth noting that the measures of internal risk can obviously be used to assess the risk of disclosure in the original data),
+
+    • external risk -- when there is a threat of identifying units by attempting to link data after SDC with information from other sources possibly available to the user.
+
+Internal risk results from the existence of unique combinations of values (exact for categorical variables and -- if possible -- within a certain precision level for continuous variables). External risk depends on the possibility of linking records contained in a statistical dataset (which underwent SDC) with relevant records from other data sources available to the user. 
+
+Internal risk refers to the risk of a user/intruder identifying a given unit only by using information included in the file that has been made available by the data provider (e.g. statistical office). In this case, it is assumed that the user can only rely on information that can be obtained from the dataset made available to to him/her. In contrast, external risk refers to the situation when the user can access alternative data sources and use them in an attempt to identify units by linking relevant data from different sources. As can be seen, these two kinds of risks are rather different.
+
+Internal risk seems to be easier to compute than the external risk. Internal threats for confidentiality can be modelled by violation of the aforementioned rules based on frequency of combinations of values of categorical variables and of observations falling into an re-identification precision interval around a given value of continuous variable. However, the estimation of external risk requires a knowledge about possible alternative data sources available for the user. This knowledge is hard to obtain, but we can (with large probability) suppose which possibilities in this respect he/she can have. For instance, if the user is employed in the labour office, one can suppose the he/she has an access to the basis of unemployed persons, which can be linked by him/her with the database from the Labour Force Survey obtained from the official statistics or similar data holder). The internal and external risk can be combined to obtain a total disclosure risk.   
+
+Another classification of disclosure risk is connected with the reference object. That is, the following types of risk from this point of view are distinguished (cf. Templ (2017)):
+
+    • individual risk - the risk of disclosing data for a single record and thus identifying the corresponding individual,
+
+    • hierarchical risk - the aggregated risk estimated for units of particular levels of a given hierarchy established within a dataset (e.g. according to territorial or economic classification),
+
+    • global risk - the aggregated disclosure risk for the whole dataset.
+
+We can broadly classify disclosure risk measures also into three types: risk measures based on keys in the sample, those based on keys in the population and that make use of statistical models or heuristics to estimate the quantities of interest and those based on the theory of record linkage. Whereas the first two classes in this classification are devoted to risk assessment for categorical identifying variables the third one may be used for categorical and continuous variables. For the first class of measuresof risk in this typology a unit is at risk if its combination of scores on the identifying variables is below a given threshold. The threshold rule used within the software package μ‑ARGUS, as presented in Section 3.6.1, is an example of this class of risk measures. For the second type of approach we are concerned with the risk of a unit as determined by its combination of scores on the identifying variables within the population or its probability of re-identification. The idea then is that a unit is at risk if such quantity is above a given threshold. Because the frequency in the population is generally unknown, it may be estimated through a modelling process. Examples of this reasoning are the individual risk of disclosure based on the Negative Binomial distribution developed by Benedetti and Franconi (1998) and Franconi and Polettini (2004), which is outlined in Section 3.5.6, and the one based on the Poisson distribution and log-linear models developed by Skinner and Holmes (1998) and Elamir and Skinner (2004) which is described in Section 3.5.7 along with current research on other probabilistic methods. Another approach based on keys in the population is the Special Uniques Detection (SUDA) Algorithm developed by Elliot et al. (2002) that uses a heuristic method to estimate the risk; this is outlined in Section 3.5.8.
+
+*Risk based on record linkage*
+
+When identifying variables are continuous we cannot exploit the concept of rareness of the keys and we transform such concept into rareness in the neighbourhood of the record. A way to measure rareness in the neighbourhood is through record linkage techniques. This third class of disclosure risk is covered in Section 3.5.8.
+
+The statistician involved in processing and dissemination of data should estimate disclosure risk at each stage of the SDC process. It allows to track changes and efficiency of data protection made using various SDC methods and taking all relevant data structures into account. Due to the fact, that information on the disclosure risk can contribute to re-identification of individuals, it should be, however, confidential itself and cannot be known by the user.
+
+### Measures of disclosure risk for categorical variables
+
+The key measures of disclosure risk for categorical variables in microdata are, in general, based on the frequency rules in the internal dimension. That is, they are expressed by number or percentage of records violating $k$-anonymity or $l$-diversity rule or being regarded as unsafe according to the $t$-closeness principle. These indicators can be applied, however, only for the raw microdata. However, we have to take also into account the fact that the microdata are usually a sample from some general population, and verify that relevant population values are also safe. Of course, one should take also the specificity of individual and global risk into account. As regards the hierachical risk, Templ (2017) proposes to measure it in any case as $1-\prod_{i\in A}{(1-r_i)}$, where $r_i$ is the individual risk for $i$-th record and $A$ is a given aggregate.
+
+Hundepool et al. (2012) present the measure of individual risk being a probability of correct link between record and unit in a worst case scenario. On the other hand, the global risk is here computed as a sum of inverted frequencies of combinations (also in an option restricted only to limited only to those combinations that have the frequency equal to 1). It is presented also in subchapter 3.3.3. This approach was further developed by Taylor, Zhou, and Rise (2018), who proposed an additional measure: the probability of a correct match given a unique match and probability of correct match. The former is a relation of the number of combinations with frequency 1 in the sample and relevant number in the population, the latter is the average expected value of inverted population frequency of a combination given relevant sample frequency. Moreover, Hundepool et al. (2012) and Taylor et al. (2018) as well as Templ (2017) discuss the use of Benedetti–Franconi and Poisson approaches in this context. Let $f_k$ be frequency of combination of values of categorical variables in $k$-th records in a sample and $F_k$ - the relevant frequency in the population and $\pi_k$ - its inclusion probability. Then the individual risk, $r_k$, is given as a function of these quantities. Templ (2017) provides the complete formula. However, in practice, most risky are situations where $f_k=1$ or $f_k=2$. In the former case the estimate of individual risk as
+$$\hat{r}_k=\frac{\hat{p}_k}{1-\hat{p}_k}\log\left(\frac{1}{\hat{p}_k}\right)$$,
+where 
+$\hat{p}_k=\frac{f_k}{\hat{F}_k}=\frac{f_k}{\sum_{i\in\{j:x_j=x_k\}}{\pi_i}}$ and $x_l$ is the combination of values of categorical variables preset in $l$-th record. In the latter situation,
+$$\hat{r}_k=\frac{\hat{p}_k}{1-\hat{p}_k}-\left(\frac{\hat{p}_k}{1-\hat{p}_k}\right)^2\log\left(\frac{1}{\hat{p}_k}\right)$$
+The parameters of these methods are estimated taking the aforementioned frequencies and dependencies into account. 
+For large samples one can use the following approximation
+$$\hat{r}_k=\frac{\hat{p}_k}{f_k-(1-\hat{p}_k)}=\frac{f_k}{f_k\hat{F}_k-(\hat{F}_k-\hat{f}_k)}$$.
+
+Shlomo (2022) proposes measures disclosure risk in synthetic data based on the comparison of the overall distributions in the original data versus synthetic data and using Kullback–Leibler Total Variation and Hellinger’s Distance formulas. Shlomo and Skinner (2022) introduced a new approach to measure the risk of re-identification for a subpopulation in a register that is not representative of the general population based on the numbers of combinations which frequency equals in the sample in the subpopulation and in the population using the Poisson model.
+
+#### ARGUS threshold rule
+
+The ARGUS threshold rule is based on easily applicable rules and views of safety/unsafety of microdata that is used at Statistics Netherlands. The implementation of these rules was the main reason to start the development of the software package μ‑ARGUS.
+
+In a disclosure scenario, keys a combination of identifying variables, are supposed to be used by an intruder to re-identify a respondent. Re-identification of a respondent can occur when this respondent is rare in the population with respect to a certain key value, i.e. a combination of values of identifying variables. Hence, rarity of respondents in the population with respect to certain key values should be avoided. When a respondent appears to be rare in the population with respect to a key value, then disclosure control measures should be taken to protect this respondent against re-identification.
+
+Following the Nosy Neighbour scenario, the aim of the μ‑ARGUS threshold rule is to avoid the occurrence of combinations of scores that are rare in the population and not only avoiding population-uniques. To define what is meant by rare the data protector has to choose a threshold value for each key. If a key occurs more often than this threshold the key is considered safe, otherwise the key must be protected because of the risk of re-identification.
+
+The level of the threshold and the number and size of the keys to be inspected depend of course on the level of protection you want to achieve. Public use files require much more protection than microdata files under contract that are only available to researchers under a contract. How this rule is used in practice is given in the example of section 3.7
+
+If a key is considered unsafe according to this rule, protection is required. Therefore often global recoding and local suppression are applied. These techniques are described in the sections 3.4.3.2 and 3.4.3.4
+
+#### ARGUS individual risk methodology
+
+If a distinction between units rare in the sample from a unit rare in the population wants to be made then an inferential step may be followed. In the initial proposal by Benedetti and Franconi (1998), further developed in Franconi and Polettini (2004) and implemented in μ‑ARGUS, the uncertainty on $F_k$ is accounted for in a Bayesian fashion by introducing the distribution of the population frequencies given the sample frequencies. The individual risk of disclosure is then measured as the (posterior) mean of $\frac{1}{F_k}$ with respect to the distribution of $F_k|f_k$:![](Images/media/image2.png){width="0.2in" height="0.2in"}
+
+$$
+r_{i} = \mathrm{E} \left( \frac{1}{F_{k}} \mid f_{k} \right) = \sum\limits_{h\geq f_{k}} \frac{1}{h} \operatorname{Pr} \left(F_{k} = h \mid f_{k} \right). \qquad\text{(3.5.2)}
+$$
+
+where the posterior distribution of $F_k|f_k$ is negative binomial with success probability $p_k$ and number of successes $f_k$. As the risk is a function of $f_k$ and $p_k$ its estimate can be obtained by estimating $p_k$. Benedetti and Franconi (1998) propose to use
+
+$$
+{\hat{p}}_{k} = \frac{f_{k}}{\sum\limits_{i:k(i)=k}^{}w_{i}} \qquad \text{(3.5.3)}
+$$ 
+
+where $\sum\limits_{i:k(i)=k}^{}w_{i}$ is an estimate of $F_k$ based on the sampling design weights $w_i$, possibly calibrated (Deville and Särndal, 1992).
+
+*When is it possible to apply the individual risk estimation*
+
+The procedure relies on the assumption that the available data are a sample from a larger population. *If the sampling weights are not available, or if data represent the whole population, the strategy used to estimate the individual risk is not meaningful*.
+
+In the μ‑ARGUS manual (de Wolf *et al.*, 2014) a fully detailed description of the approach is reported. This brief note is based on Polettini and Seri (2004).
+
+*Assessing the risk for the whole file*
+
+The individual risk provides a measure of risk *at the individual level*. A *global* measure of disclosure risk for the whole file can be expressed in terms of the expected number of re-identifications in the file. The *expected number of re*-*identifications* is a measure of disclosure that depends on the number of records. For this reason, μ‑ARGUS evaluates also the *re‑identification rate* that is independent of $n$:
+
+$$
+\xi = \frac{1}{n}\sum\limits_{k=1}^{K}{f_{k}r_{k}} \quad .
+$$
+
+$\xi$ provides a measure of *global risk, i.e.* a measure of disclosure risk for the whole file, which does not depend on the sample size and can be used to assess the risk of the file or to compare different types of release; for the mathematical details see Polettini and Seri (2004).
+
+The *percentage of expected re-identifications*, i.e. the value $\psi=100\cdot\xi\%$ provides an equivalent measure of global risk.
+
+*Application of local suppression within the individual risk methodology*
+
+After the risk has been estimated, protection takes place. One option in protection is the application of *local suppression* (see Section 3.4.3.4).
+
+In μ‑ARGUS the technique of local suppression, when combined with the individual risk, is applied only to unsafe cells or combinations. Therefore, the user must input a *threshold* in terms of risk, e.g. probability of re-identification, to classify these as either safe or unsafe. Local suppression is applied to the unsafe individuals, so as to lower their probability of being re‑identified under the given threshold.
+
+In order to select the risk threshold, that represents a level of *acceptable risk,* i.e. a risk value under which an individual can be considered safe, the *re‑identification rate* can be used. A *release* will be considered *safe* when the expected rate of correct re-identifications is below a level the NSI considers acceptable. As the re-identification rate is cast in terms of the individual risk, a threshold on the re-identification rate can be transformed into a threshold on the individual risk (see below). Under this approach, individuals are at risk because their probability of re-identification contributes a large proportion of expected re-identifications in the file.
+
+In order to reduce the number of local suppressions, the procedure of releasing a safe file considers preliminary steps of protection using techniques such as *global recoding* (see Section 3.4.3.2). Recoding of selected variables will indeed lower the individual risk and therefore the re-identification rate of the file.
+
+*Threshold setting using the re-identification rate*
+
+Consider the re-identification rate $\xi$: a cell $k$ contributes to $\xi$ an amount $r_kf_k$ of expected re‑identifications. Since units belonging to the same cell $k$ have the same individual risk, cells can be arranged in increasing order of risk $r_k$. Let the subscript ($k$) denotes the $k$-th element in this ordering. A threshold $r^*$ on the individual risk can be set. Consequently, unsafe cells are those for which $r_{k} \geq r^*$ that can be indexed by $(k) = k^{*} + 1,\ldots,K$. The cell $k^{*}$ is in a one-to-one correspondence to $r^{*}$. This allows setting an upper bound $\xi^{*}$ on the re‑identification rate of the released file (after data protection) substituting $r_kf_k$ with $r^{*}f_{(k)}$ for each ($k$). For the mathematical details see Polettini and Seri (2004) and the Argus manual (de Wolf *et al.*, 2014).
+
+The approach pursued so far can be reversed. Therefore, selecting a *threshold* $\tau$ *on the re-identification rate* $\xi$ determines a key index $k^{*}$ which corresponds to a value for $r^{*}$. Using $r^{*}$ as a threshold for the individual risk keeps the re‑identification rate $\xi$ of the released file below $\tau$. The search of such a $k^{*}$ is performed by a simple iterative algorithm.
+
+*Releasing hierarchical files*
+
+A relevant characteristic of social microdata is its inherent hierarchical structure, which allows us to recognise groups of individuals in the file, the most typical case being the *household*. When defining the re-identification risk, it is important to take into account this dependence among units: indeed re-identification of an individual in the group may affect the probability of disclosure of all its members. So far, implementation of a hierarchical risk has been performed only with reference to households, i.e. a *household risk*.
+
+Allowing for dependence in estimating the risk enables us to attain a higher level of safety than when merely considering the case of independence.
+
+*The household risk*
+
+The household risk makes use of the same framework defined for the individual risk. In particular, the concept of re-identification holds with the additional assumption that *the intruder attempts a confidentiality breach by re-identification of individuals in households*.
+
+The *household risk* is defined as the probability that *at least* one individual in the household is re-identified. For a given household $g$ of size $|g|$, whose members are labelled $i_1, \ldots, i_{|g|}$, the household risk is:
+
+$$
+r^{h}(g) = \operatorname{Pr} \left(i_{1} \cup i_{2} \cup \ldots \cup i_{|g|} \text { re-identified } \right)
+$$
+
+and is the same for all the individuals in household $g$ and equals $r_{g}^{h}$.
+
+Since all the individuals in a given household have the same household risk, the expected number of re‑identified records in household $g$ equals $|g|r_{g}^{h}$. The re‑identification rate in a hierarchical file can be then defined as $\xi^{h} = \frac{1}{n}\sum\limits_{g=1}^{G}{|g|r_{g}^{h}}$, where $G$ is the total number of households in the file. The re‑identification rate can be used to define a threshold $r^{h^{\ast}}$ on the household risk $r^{h}$, much in the same way as for the individual risk. For the mathematical details see Polettini and Seri (2004) and the Argus manual (de Wolf *et al.*, 2014).
+
+Note that the household risk $r_{g}^{h}$ of household $g$ is computed by the individual risks of its household members. For a given household, it might happen that a household is unsafe ($r_{g}^{h}$ exceeds the threshold) because just one of its members, $i$, say, has a high value $r_{i}$ of the individual risk. To protect the households, the followed approach is therefore to protect individuals in households, first protecting those individuals who contribute most to the household risk. For this reason, inside *unsafe households*, detection of *unsafe individuals* is needed. In other words, the threshold on the household risk $r^{h}$ has to be transformed into a threshold on the individual risk $r_{i}$. To this aim, it can be noticed that the household risk is bounded by the sum of the individual risks of the members of the household: $r_{g}^{h} \leq \sum\limits_{j=1}^{|g|}r_{i_{j}}$.
+
+Consider to apply a threshold $r^{h^{\ast}}$ on the household risk. In order for household $g$ to be classified safe (i.e. $r_{g}^{h} < r^{h^{\ast}}$) it is *sufficient* that all of its components have individual risk less than $\delta_{g} = \frac{r^{h ^{\ast}}}{|g|}$.
+
+This is clearly an approach possibly leading to overprotection, as we check whether a *bound* on the household risk is below a given threshold.
+
+It is important to remark that the threshold $δ_g$ just defined depends on the size of the household to which individual $i$ belongs. This implies that for two individuals that are classified in the same key $k$ (and therefore have the same individual risk $r_{k}$), but belong to different households with different sizes, it might happen that one is classified safe, while the other unsafe (unless the household size is included in the set of identifying variables).
+
+In practice, denoting by $g(i)$ the household to which record $i$ belongs, the approach pursued so far consists in turning a threshold $r^{h^{\ast}}$ on the household risk into a *vector of thresholds* on the *individual risks* $r_{i} = 1,\ldots,n$:
+
+$$
+\delta_{g} = \delta_{g(i)} = \frac{r^{h^{\ast}}}{|g(i)|} \quad .
+$$
+
+*Individuals* are finally set to unsafe whenever $r_{i} \geq \delta_{g(i)}$; local suppression is then applied to those records, if requested. Suppression of these records ensures that after protection the household risk is below the threshold $\delta_{g}$.
+
+*Choice of identifying variables in hierarchical files*
+
+For household data it is important to include in the identifying variables that are used to estimate the household risks also the available information on the household, such as the number of components or the household type.
+
+Suppose one computes the risk using the household size as the only identifying variable in a household data file, and that such file contains households whose risk is above a fixed threshold. Since information on the number of components in the household cannot be removed from a file with household structure, these records cannot be safely released, and no suppression can make them safe. This permits to check for presence of very peculiar households (usually, the very large ones) that can be easily recognised in the population just by their size and whose main characteristic, namely their size, can be immediately computed from the file. For a discussion on this issue see Polettini and Seri (2004).
+
+#### The Poisson model with log-linear modelling
+
+As defined in Elamir and Skinner (2004), assuming that the $F_{k}$ are independently Poisson distributed with means $\left\{\lambda_{k} \right\}$ and assuming a Bernoulli sampling scheme with equal selection probably $\pi$, then $f_{k}$ and $F_{k} - f_{k}$ are independently Poisson distributed as: $f_{k} \mid \lambda_{k} \sim \operatorname{Pois} \left(\pi\lambda_{k} \right)$ and $F_{k} - f_{k} \mid \lambda_{k} \sim \operatorname{Pois} \left( ( 1 - \pi ) \lambda_{k} \right)$ . The individual risk measure for a sample unique is defined as $r_{k} = E_{\lambda_{k}} \left( \frac{1}{F_{k}} \mid f_{k} = 1 \right)$ which is equal to: ![](Images/media/image18.png){width="0.2in" height="0.2in"}
+
+$$
+r_{k} = \frac{1}{\lambda_{k} (1 - \pi) } \left[ 1 - e^{ - \lambda_{k} (1 - \pi) } \right]
+$$
+
+In this approach the parameters $\left\{ \lambda_{k} \right\}$ are estimated by taking into account the structure and dependencies in the data through log-linear modelling. Assuming that the sample frequencies $f_{k}$ are independently Poisson distributed with a mean of $u_{k} = \pi\lambda_{k}$, a log-linear model for the $u_{k}$ can be expressed as: $\text{log}(u_{k}) = x_{k}^{'}\beta$ where $x_{k}$ is a design vector denoting the main effects and interactions of the model for the key variables. Using standard procedures, such as iterative proportional fitting, we obtain the Poisson maximum-likelihood estimates for the vector $\beta$ and calculate the fitted values: ${\hat{u}}_{k} = \text{exp}(x_{k}^{'}\hat{\beta})$. The estimate for ${\hat{\lambda}}_{k}$ is equal to $\frac{{\hat{u}}_{k}}{\pi}$ which is substituted for $\lambda_{k}$ in the above formula for $r_{k}$. The individual disclosure risk measures can be aggregated to obtain a global (file-level) measure:
+
+$$
+{\hat{\tau}}_{2} = \sum\limits_{k \in \text{SU}}^{}{\hat{r_k} =}\sum\limits_{k \in \text{SU}}^{}{\frac{1}{{\hat{\lambda}}_{k}(1 - \pi)}\lbrack 1 - e^{- {\hat{\lambda}}_{k}(1 - \pi)}\rbrack}
+$$
+
+where $\text{SU}$ is the set of all sample uniques.
+
+More details on this method are available from Skinner and Shlomo (2005, 2006) and Shlomo and Barton (2006).
+
+Skinner and Shlomo (2005, 2006) have developed goodness-of-fit criteria for selecting the most robust log-linear model that will provide accurate estimates for the global disclosure risk measure detailed above. The method begins with a log-linear model where a high test statistic indicates under-fitting (i.e., the disclosure risk measures will be over-estimated). Then a forward search algorithm is employed by gradually adding in higher order interaction terms into the model until the test statistic approaches the level (based on a Normal distribution approximation) where the fit of the log-linear model is accepted.
+
+This method is still under development. At present there is a need to develop clear and user-friendly software to implement the method. However, the Office for National Statistics in the UK has used it to inform microdata release decisions. The method is based on theoretical well-defined disclosure risk measures and goodness of fit criteria which ensure the fit of the log-linear model and the accuracy of the disclosure risk measures. It requires a model search algorithm which takes some computer time and requires intervention.
+
+New methods for probabilistic risk assessment are under development based on a generalized Negative Binomial smoothing model for sample disclosure risk estimation which subsumes both the model used in μ‑ARGUS and the Poisson log-linear model above. The method is useful for key variables that are ordinal where local neighbourhoods can be defined for inference on cell $k$.
+The Bayesian assumption of $\lambda_{k} \sim \text{Gamma}(\alpha_{k},\beta_{k})$ is added independently to the Poisson model above which then transforms the marginal distribution to the generalized Negative Binomial Distribution: 
+$$
+f_{k} \sim \text{NB}(\alpha_{k},p_{k} = \frac{1}{1 + \text{N}\pi_{k}\beta_{k}})
+$$ 
+and
+
+$$
+F_{k}|f_{k} \sim \text{NB}(\alpha_{k} + f_{k},\rho_{k} = \frac{1 + \text{N}\pi_{k}\beta_{k}}{1 + \text{N}\beta_{k}})
+$$
+
+where $\pi_{k}$ is the sampling fraction.
+In each local neighbourhood of cell *k* a smoothing polynomial regression model is carried out to estimate $\alpha_{k}$ and $\beta_{k}$, and disclosure risk measures are estimated based on the Negative Binomial Distribution, ${\hat{\tau}}_{2} = \sum_{k \in \text{SU}}^{}{\hat{r_k} =}\sum_{k \in \text{SU}}^{}\frac{{\hat{\rho}}_{k}(1 - {\hat{\rho}}_{k})^{{\hat{\alpha}}_{k}}}{{\hat{\alpha}}_{k}(1 - {\hat{\rho}}_{k})}$ , see: Rinott and Shlomo (2005, 2006).
+
+#### SUDA
+
+The Special Uniques Detection Algorithm (SUDA) (Elliot *et.al.*, 2005) is a software system (windows application available as freeware under restricted licence) that provides disclosure risk broken down by record, variable, variable value and by interactions of those. It is based on the concept of a "special unique". A special unique is a record that is a sample unique on a set of variables and that is also unique on a subset of those variables. Empirical work has shown that special uniques are more likely to be population unique than random uniques. Special uniques can be classified according to the size and number of the smallest subset of key variables that defines the record as unique, known as minimal sample uniques (MSU). In the algorithm, all MSUs are found for each record on all possible subsets of the key variables where the maximum size of the subsets *m* is specified by the user. ![](Images/media/image20.png){width="0.2in" height="0.2in"}. For each MSU of size $k$ contained in a given observation the following score is computed (cf. Templ (2017)):
+$$
+s_k=\begin{cases}
+\frac{1}{m!}\prod_{i=k}^q{(m-i)}&\text{if}\quad k\le q,\\
+0&\text{if}\quad k>q,
+\end{cases}
+$$
+where $q$ is the total number of key categorical variables in the dataset and $q$ -- arbitrarily defined maximum size of MSU. Thus, the smaller $k$, the larger $s_k$ and higher the risk. The SUDA score for the observation is the product of scores for all MSUs contained in it. The final SUDA score is obtained by normalizing $s_k$ by $q!$.   
+
+SUDA grades and orders records within a microdata file according to the level of risk. The method assigns a per record matching probability to a sample unique based on the number and size of minimal uniques. The DIS Measure (Elliot, 2000) is the conditional probability of a correct match given a unique match:
+
+$$
+p(cm \mid um) = \frac{\sum\limits_{k=1}^{K} I\left(f_{k}=1 \right)}{\sum\limits_{k=1}^{K} F_{k} I \left(f_{k}=1 \right) }
+$$
+
+(where $cm$ denotes correct match and $um$ -- unique match) and is estimated by a simple sample-based measure which is approximately unbiased without modelling assumptions. Elliot *et al.* (2005) describe a heuristic which combines the DIS measure with scores resulting from the algorithm (i.e., SUDA scores). This method known as DIS-SUDA produces estimates of intruder confidence in a match against a given record being correct. This is closely related to the probability that the match is correct and is heuristically linked to the estimate of
+
+$$
+\tau_2 = \sum\limits_k{I(f_k=1)\frac{1}{F_k}}
+$$
+
+The advantage of this method is that it relates to a practical model of data intrusion, and it is possible to compare different values directly. The disadvantages are that it is sensitive to level of the max MSU parameter and is calculated in a heuristic manner. In addition it is difficult to compare disclosure risk across different files. However, the method has been extensively tested and was used successfully for the detection of high-risk records in the UK Sample of Anonymized Records (SAR) drawn from the 2001 Census (Bycroft and Merrett, 2005). The assessment showed that the DIS-SUDA measure calculated from the algorithm provided a good estimate for the individual disclosure risk measure, especially for the case when the number of key variables, $m = 6$. The algorithm also identifies the variables and value of variables that are contributing most to the disclosure risk of the record.
+
+A new algorithm, SUDA2 has been developed, Elliot *et al.*, (2005), that improves SUDA using several methods. The development provides a much faster tool that can handle larger datasets.
+
+
+### Measures of disclosure risk for continuous variables
+
+For continuous variables the situation is much more complicated. They are measured on the interval or ratio scale and have continuous distributions. Hence, we cannot use frequency of occurrence of individual values as a basis for measurement of the dislosure risk in this case. Therefore, different solutions for measurement of disclosure risk have to be be applied. The famous approach in this context is used in the sdcMicro package of the R environment dedicated to carry out the SDC process on microdata (cf. R Development Core Team (2008), Templ, Kowarik, and Meindl (2023)) and described by Templ (2017). It reports the percentage of observations falling within an interval centered on its masked value whereas the upper bound corresponds to a worst case scenario where an intruder is sure that each nearest neighbour is indeed the true link. More precisely, for a given variable $X$ a minimal level of re-identificaion error can be established (say, $p\in (0,1)$ and as the basis of measurement of the risk the number of records for which the values of $X$ belong to the interval $(x(1-p),x(1+p))$ (where $x$ is the actual value of $X$). If this number is too low (e.g. smaller than 3) then the value $x$ is regarded as unsafe. 
+
+However, the variant of this approach applied in the sdcMicro can be used only in comparative terms, i.e. when data before and after SDC process are compared. For raw data the result is always that the risk lies between 0% and 100%, what is not informative. Alfalayleh and Brankovic (2015) presented a solution related in some sense to this idea based on the precision interval of rediscovering a confidential value, the Shannon’s entropy and the dynamic programming algorithm. Another approaches in this context are:
+
+• distance-based linking (Pagliuca and Seri (1999)): based on the distances between records of the original dataset and the dataset modified during the SDC process. For each record in protected dataset its nearest and second nearest neighbour in the original dataset is found (using the assumed distance formula). If the record and its nearest neighbour in original dataset refer to the same respondent, then the former is regarded to be "linked". Similarly, if the second nearest neighbour in the original dataset and the current record in the protected datsaset correspond to the same individual, then the latter is regarded to be "linked to the second nearest". The measure of risk is here the percentage of records in the protected dataset marked as "linked" or "linked to the second nearest", 
+
+• probabilistic record linkage (Jaro (1989)): the disclosure risk is here understood as percentage of "linked" pairs of records from the original and protected datasets, i.e. such that weights (values of likelihood that two paired records refer to the same respondent assigned by a special algorithm) are greater than an arbitrarily established threshold.
+
+One can easily observe that in both cases also original and protected datasets are compared. This makes it impossible to assess the original risk of disclosure, which is usually the basis of any data disclosure control activities. Below we discuss in details these methods.
+
+Roughly speaking, record linkage consists of linking each record $a$ in file $A$ (protected file) to a record $b$ in file $B$ (original file). The pair ($a$,$b$) is a match if $b$ turns out to be the original record corresponding to $a$. ![](Images/media/image22.png){width="0.2in" height="0.2in"}
+
+To apply this method to measure the risk of identity disclosure, it is assumed that an intruder has got an external dataset sharing some (key or outcome) variables with the released protected dataset and containing additionally some identifier variables (*e.g.* passport number, full name, etc.). The intruder is assumed to try to link the protected dataset with the external dataset using the shared variables. The number of matches gives an estimation of the number of protected records whose respondent can be re-identified by the intruder. Accordingly, disclosure risk is defined as the proportion of matches among the total number of records in $A$.
+
+The main types of record linkage used to measure identity disclosure in SDC are discussed below. An illustrative example can be found on the CASC-website as one of the case-studies linked to this handbook (see [[section handbook]{.underline}](https://research.cbs.nl/casc/Software/TauManualV4.1.pdf)).
+
+#### Distance-based record linkage
+
+Distance-based record linkage consists of linking each record $a$ in file $A$ to its nearest record $b$ in file $B$. Therefore, this method requires a definition of a distance function for expressing *nearness* between records. This record-level distance can be constructed from distance functions defined at the level of variables. Construction of record-level distances requires standardizing variables to avoid scaling problems and assigning each variable a weight on the record-level distance.![](Images/media/image23.png){width="0.2in" height="0.2in"}
+
+Distance-based record linkage was first proposed in Pagliuca and Seri (1999) to assess the disclosure risk after microaggregation, see section 3.4.2.3. Those authors used the Euclidean distance and equal weights for all variables. (Domingo-Ferrer and Torra , 2001) later used distance-based record linkage for evaluating other masking methods as well; in their empirical work, distance-based record linkage outperforms probabilistic record linkage (described below). Recently, (Torra and Miyamoto, 2004) have shown that method-specific distance functions might be defined to increase the proportion of matches for particular SDC methods.
+
+The record linkage algorithm introduced in (Bacher, Brand and Bender, 2002) is similar in spirit to distance-based record linkage. This is so because it is based on cluster analysis and, therefore, links records that are near to each other.
+
+The main advantages of using distances for record linkage are simplicity for the implementer and intuitiveness for the user. Another strong point is that subjective information (about individuals or variables) can be included in the re-identification process by properly modifying distances. In fact, the next version of the μ‑ARGUS microdata protection package (de Wolf *et al.*, 2014) will incorporate distance-based record linkage as a disclosure risk assessment method.
+
+The main difficulty of distance-based record linkage consists of coming up with appropriate distances for the variables under consideration. For one thing, the weight of each variable must be decided and this decision is often not obvious. Choosing a suitable distance is also especially thorny in the cases of categorical variables and of masking methods such as local recoding where the masked file contains new labels with respect to the original dataset.
+
+#### Probabilistic record linkage
+
+Like distance-based record linkage, probabilistic record linkage aims at linking pairs of records ($a$,$b$) in datasets $A$ and $B$, respectively. For each pair, an index is computed. Then, two thresholds $LT$ and $NLT$ in the index range are used to label the pair as linked, clerical or non-linked pair: if the index is above $LT$, the pair is linked; if it is below $NLT$, the pair is non-linked; a clerical pair is one that cannot be automatically classified as linked or non-linked and requires human inspection. When independence between variables is assumed, the index can be computed from the following conditional probabilities for each variable: the probability $P\left( 1|M \right)$ of coincidence between the values of the variable in two records $a$ and $b$ given that these records are a real match, and the probability $P\left( 0|U \right)$of non-coincidence between the values of the variable given that $a$ and $b$ are a real unmatch.![](Images/media/image24.png){width="0.2in" height="0.2in"}
+
+Like in the previous section, disclosure risk is defined as the number of matches (linked pairs that are correctly linked) over the number of records in file $A$.
+
+To use probabilistic record linkage in an effective way, we need to set the thresholds $LT$ and $NLT$ and estimate the conditional probabilities $P\left( 1|M \right)$ and $P\left( 0|U \right)$ used in the computation of the indices. In plain words, thresholds are computed from: (i) the probability $P\left( \text{LP}|U \right)$ of linking a pair that is an unmatched pair (a *false positive* or *false linkage*) and (ii) the probability $P\left( \text{NP}|M \right)$of not linking a pair that is a match (a *false negative* or *false unlinkage*). Conditional probabilities $P\left( 1|M \right)$ and $P\left( 0|U \right)$ are usually estimated using the EM algorithm (Dempster, Laird and Rubin 1977).
+
+Original descriptions of this kind of record linkage can be found in Fellegi and Sunter (1969) and Jaro (1989). Torra and Domingo-Ferrer (2003) describe the method in detail (with examples) and Winkler (1993) presents a review of the state of the art on probabilistic record linkage. In particular, this latter paper includes a discussion concerning non-independent variables. A (hierarchical) graphical model has recently been proposed (Ravikumar and Cohen, 2004) that compares favourably with previous approaches.
+
+Probabilistic record linkage methods are less simple than distance-based ones. However, they do not require rescaling or weighting of variables. The user only needs to provide two probabilities as input: the maximum acceptable probability $P\left( \text{LP}|U \right)$of false positive and the maximum acceptable probability $P\left( \text{NP}|M \right)$ of false negative.
+
+#### Other record linkage methods
+
+Recently, the use of other record linkage methods has also been considered for disclosure risk assessment. While in the previous record linkage methods it is assumed that the two files to be linked share a set of variables, other methods have been developed where this constraint is relaxed. Under appropriate conditions, (Torra, 2004) shows that re-identification is still possible when files do not share any variables. Domingo-Ferrer and Torra (2003) propose the use of such methods for disclosure risk assessment. ![](Images/media/image25.png){width="0.2in" height="0.2in"}
+
+### Possibility of complex measurement of disclosure risk
+
+It is worth noting that the classical construction of measures of disclosure risk is focused on the development of separate tools for categorical and continuous variables. As it was indicated earlier it is justified by their different nature. However, using them means that the actual disclosure risk may be underestimated. For instance, assume that (2,6,7,1) is a combination of categories of four categorical variables occurring 12 times in a given microdata set and $Y$ is a continuous variable in the same set for which 10 values is contained in the interval $(43.7(1-0.2),43.7(1+0.2))$, where 0.2 is the minimum allowable level of error during trial of rediscovering of the sensitive value 43.7. So, treating the combinations of categorical variables and the values of $Y$ separately, one can say that both (2,6,7,1) and $Y= 43.7$ are safe. However, imagine that there is only one record for which the categorical variables have the realization of (2,6,7,1) and simultaneously $Y$ takes value from $(43.7(1-0.2),43.7(1+0.2))$. Then the threat of identification of a unit associated with thus record is very high.
+
+On the other hand, the data users (in this case to concerns mainly statisticians involved in data processing and their preparation for dissemination – as the information on the disclosure risk is usually confidential) are interested in obtaining precise, reliable and comprehensive information on the disclosure risk. Too low quality of estimation of such risk can lead to insufficient protection of sensible information and, consequently, to violation of privacy of a respondent.
+
+Taking these premises into account, Młodak, Pietrzak and Józefowski (2022) discussed the possibility of use in this context the distance based on the idea of the Gower’s formula. Recall, that this approach takes all types of variables (according to their measurement scales) into account. In this way, the disclosure risk has been assessed in context of possible re-identification by linking relevant record from a given dataset and record from a related alternative database available for the user. It is in fact the measure of external risk. A similar idea can be used also to complex assessment of internal disclosure risk using the distance-based approach, where application of the analogous concept of distance allows for joint estimation of change of the risk before and after performing SDC process. Also the probabilistic record linkage, where the conditional probability that a pair of records has an agreement pattern $\gamma$, given that it is a true match and the conditional probability that a pair of records has an agreement pattern $\gamma$ given they are true unmatched records (cf. Sayers et al. (2016)) can be computed using using a properly selected categorization of continuous variables. 
+
+However, as one can see, these methods can be also applied only in comparative terms. If we would like to assess the primary individual disclosure risks in the original dataset, we will have to use a combination of risks associated with categorical and continuous variables which are computed on the basis of the frequency rules (in the case of countinuous variables - using the sumber of observations falling into $(x(1-p),x(1+p))$, as it was stated before). The global risk is e.g. the arithmetic mean of individual risks. When it is also possible to use a comprehensive measure of disclosure risk, achieving a balance between minimizing these two quantities will become much easier.
+
+
+### Concepts and types of information loss and its measures
+
+The application of SDC methods entails the loss of some information. It arises as a result e.g. from gaps occurring in data when non-perturbative SDC methods are used, or perturbations when perturbative SDC tools are used. Because of this loss the analytical worth of the disclosed data for the user decreases, which means there is a possibility that results of computations and analyses based on such data will be inadequate (e.g. the precision of estimation could be much worse). 
+
+A strict evaluation of information loss must be based on the data uses to be supported by the protected data. The greater the differences between the results obtained on original and protected data for those uses, the higher the loss of information. However, very often microdata protection cannot be performed in a data use specific manner, for the following reasons:
+
+• potential data uses are very diverse and it may be even hard to identify them all at the moment of data release by the data protector.
+
+• even if all data uses can be identified, issuing several versions of the same original dataset so that the *i*-th version has an information loss optimized for the *i*-th data use may result in unexpected disclosure.
+
+Since that data often must be protected with no specific data use in mind, generic information loss measures are desirable to guide the data protector in assessing how much harm is being inflicted to the data by a particular SDC technique.
+
+Defining what a generic information loss measure is can be a difficult issue. Roughly speaking, it should capture the amount of information loss for a reasonable range of data uses. We will say there is little information loss if the protected dataset is analytically valid and interesting according to the following definitions by Winkler (1998):
+
+1. A protected microdata set is an *analytically valid* microdata set if it approximately preserves the following with respect to the original data (some conditions apply only to continuous variables):
+
+• means and covariances on a small set of subdomains (subsets of records and/or variables),
+
+• marginal values for a few tabulations of the data (the information loss in this approach concerns mainly tables created on the basis of microdata and therefore it will be discussed in chapters 4 and 5),
+
+• at least one distributional characteristic.
+
+2. A microdata set is an *analytically interesting microdata set,* if six variables on important subdomains are provided that can be validly analyzed.
+    
+    More precise conditions of analytical validity and analytical interest cannot be stated without taking specific data uses into account. As imprecise as they may be, the above definitions suggest some possible measures:
+
+1. Compare raw records in the original and the protected dataset. The more similar the SDC method to the identity function, the less the impact (but the higher the disclosure risk!). This requires pairing records in the original dataset and records in the protected dataset. For masking methods, each record in the protected dataset is naturally paired to the record in the original dataset it originates from. For synthetic protected datasets, pairing is more artificial. In Dandekar, Domingo-Ferrer and Sebé (2002) we proposed to pair a synthetic record to the nearest original record according to some distance.
+
+2. Compare some statistics computed on the original and the protected datasets. The above definitions list some statistics which should be preserved as much as possible by an SDC method.
+
+  Taking the aforementioned premises into account, for microdata the information loss can concern the differences in distributions, in diversification and in shape and power of connections between various features. Therefore, the following types of measures of information loss are distinguished:    
+
+1. Measures of distribution disturbance – measures based on distances between original and perturbed values of variables (e.g. mean, mean of relative
+distances, complex distances, etc.),
+
+2. Measures of impact on variance of estimation – computed using distances between variances for averages of continuous variables before and after SDC or multi-factor ANOVA for a selected dependent variable in relation to selected independent categorical variables (in this case, the measure of information loss involves a comparison of components of coefficients of determination $R^2$ - in terms of within-group and inter-group variance - for relevant models based on original and perturbed values (cf. Hundepool et al. (2012)),
+
+3. Measures of impact on the intensity of connections – comparisons of measures of direction and intensity of connections between original continuous variables and between relevant perturbed ones; such measures can be e.g. correlation coefficients or test of independence.
+
+### Information loss measures for categorical data
+
+Straightforward computation of measures based on basic arithmetic opereations (addition, subtraction, multiplication, division) or most descriptive statistics (Euclidean distance, mean, variance, correlation, etc.) on categorical data is not possible. Neither is the use of most descriptive statistics like Euclidean distance, mean, variance, correlation, etc. The following alternatives are considered in Domingo-Ferrer and Torra (2001):
+• direct comparison of categorical values,
+• comparison of contingency tables,
+• entropy-based measures.
+
+Below we will describe each of such types of measures.
+
+*Direct comparison of categorical values*
+
+Comparison of matrices $X$ and $X^'$ for categorical data requires the definition of a distance for categorical variables. Definitions consider only the distances between pairs of categories that can appear when comparing an original record and its protected version (see discussion above on pairing original and protected records).
+
+For a nominal variable $V$ (a categorical variable taking values over an unordered set), the only permitted operation is comparison for equality. This leads to the following distance definition:
+
+$$
+d_V(c,c')=\begin{cases}
+0, & \text{if}\;c=c',\\
+1, & \text{if}\;c\neq c', \quad \text{(3.5.4)}
+\end{cases}
+$$
+where $c$ is a category in an original record and $c^'$ is the category which has replaced *c* in the corresponding protected record.
+
+For an ordinal variable $V$ (a categorical variable taking values over a totally ordered set), let $\leq V$ be the total order operator over the range $D(V)$ of $V$. Define the distance between categories $c$ and $c^'$ as the number of categories between the minimum and the maximum of $c$ and $c^'$ divided by the cardinality of the range:
+
+$$
+\text{dc}\left(c,c^'\right)=\frac{\left|c^{''}\text{:min}\left(c,c^'\right\leq c^{''}<\text{max}\left(c,c^'\right)\right|}{\left|D(V)\right|} \quad (3.5.5)
+$$
+
+*Comparison of contingency tables*
+
+An alternative to directly comparing the values of categorical variables is to compare their contingency tables. Given two datasets $F$ and $G$ (the original and the protected set, respectively) and their corresponding $t$-dimensional contingency tables for $t\leq K$, we can define a contingency table-based information loss measure *CTBIL* for a subset $W$ of variables as follows:
+
+$$
+\text{CTBIL}(F,G;W,K)=\sum_{\{V_{ji}\cdots V_{jt}\} f\subseteq W\atop|\{V_{ji}\cdots V_{jt}\}|\leq K}\sum_{i_1\cdots i_t}|x^F_{i_1\cdots i_t}-x^G_{i_1\cdots i_t} | \quad \text{(3.5.6)}
+$$
+where $x_{\text{subscripts}}^{\text{file}}$ is the entry of the contingency table of *file* at position given by *subscripts*.
+
+Because the number of contingency tables to be considered depends on the number of variables $|W|$, the number of categories for each variable, and the dimension $K$, a normalized version of Expression (3.5.6) may be desirable. This can be obtained by dividing Expression (3.4.2.1) by the total number of cells in all considered tables.
+
+Distance between contingency tables generalizes some of the information loss measures used in the literature. For example, the μ‑ARGUS software (Hundepool et al. (2005)) measures information loss for local suppression by counting the number of suppressions. The distance between two contingency tables of dimension one returns twice the number of suppressions. This is because, when category $A$ is suppressed for one record, two entries of the contingency table are changed: the count of records with category $A$ decreases and the count of records with the "missing" category increases.
+
+*Entropy-based measures*
+
+In De Waal and Willenborg (1999), Kooiman, Willenborg and Gouweleeuw (1998) and Willenborg and De Waal (2001), the use of Shannon's entropy to measure information loss is discussed for the following methods: local suppression, global recoding and PRAM. Entropy is an information-theoretic measure, but can be used in SDC if the protection process is modelled as the noise that would be added to the original dataset in the event of it being transmitted over a noisy channel.
+
+As noted earlier, PRAM is a method that generalizes noise addition, suppression and recoding methods. Therefore, our description of the use of entropy will be limited to PRAM.
+
+Let $V$ be a variable in the original dataset and $V^'$ be the corresponding variable in the PRAM-protected dataset. Let $P_{V,V^'}=\left\{p\left(V^'=j|V=i\right) \right\}$ be the PRAM Markov matrix. Then, the conditional uncertainty of $V$ given that $V^'=j$ is:
+
+$$
+H\left(V|V^'=j\right)=-\sum_{i=1}^n{p\left(V=i|V^'=j\right)\text{log}p}\left(V=i|V^'=j|\right) \quad \text{(3.5.7)}
+$$
+
+The probabilities in Expression (3.5.7) can be derived from $P_{V,V^'}$ using Bayes's formula. Finally, the entropy-based information loss measure *EBIL* is obtained by accumulating Expression (3.5.7) for all individuals $r$ in the protected dataset $G$
+
+$$
+\text{EBIL}\left(P_{V,V^'},G\right)=\sum_{r\in G}{H\left(V|V^'=j_{r}\right)}
+$$
+
+where $j_r$ is the value taken by $V^'$ in record $r$.
+
+The above measure can be generalized for multivariate datasets if $V$ and $V^'$ are taken as being multidimensional variables (*i.e.* representing several one-dimensional variables).
+
+While using entropy to measure information loss is attractive from a theoretical point of view, its interpretation in terms of data utility loss is less obvious than for the previously discussed measures.
+
+### Information loss measures for continuous data
+
+Assume a microdata set with $n$ individuals (records) $I_1,I_2,\cdots,I_n$ and $p$ continuous variables $Z_1,Z_2,\cdots,Z_p$. Let $X$ be the matrix representing the original microdata set (rows are records and columns are variables). Let $X^{'}$ be the matrix representing the protected microdata set. The following tools are useful to characterize the information contained in the dataset:
+• covariance matrices $V$ (on $X$) and $V^'$ (on $X^'$).
+• correlation matrices $R$ and $R^'$.
+• correlation matrices $\text{RF}$ and $RF^'$ between the $p$ variables and the $p$ factors principal components $\text{PC}_1,\text{PC}_2,\cdots,\text{PC}_p$ obtained through principal components analysis.
+• communality between each of the $p$ variables and the first principal component $\text{PC}_{1}$ (or other principal components $\text{PC}_i$*'s*). Communality is the percent of each variable that is explained by $\text{PC}_{1}$ (or $\text{PC}_i$). Let $C$ be the vector of communalities for $X$ and $C^'$ the corresponding vector for $X^'$.
+• matrices $F$ and $F^'$ containing the loadings of each variable in $X$ on each principal component. The i-th variable in $X$ can be expressed as a linear combination of the principal components plus a residual variation, where the $j$-th principal component is multiplied by the loading in $F$ relating the $i$-th variable and the $j$-th principal component (Chatfield and Collins, 1980\]. $F^'$ is the corresponding matrix for $X^'$.
+
+There does not seem to be a single quantitative measure which completely reflects those structural differences. Therefore, we proposed in Domingo-Ferrer, Mateo-Sanz, and Torra (2001) and Domingo-Ferrer and Torra (2001) to measure information loss through the discrepancies between matrices $X$, $V$, $R$, $\text{RF}$, $C$ and $F$ obtained on the original data and the corresponding $X^'$, $V^'$, $R^'$, $RF^'$, $C^'$ and $F^'$ obtained on the protected dataset. In particular, discrepancy between correlations is related to the information loss for data uses such as regressions and cross tabulations.
+
+Matrix discrepancy can be measured in at least three ways:
+• *Mean square error* - sum of squared componentwise differences between pairs of matrices, divided by the number of cells in either matrix,
+• *Mean absolute error* - sum of absolute componentwise differences between pairs of matrices, divided by the number of cells in either matrix,
+• *Mean variation* - sum of absolute percent variation of components in the matrix computed on protected data with respect to components in the matrix computed on original data, divided by the number of cells in either matrix. This approach has the advantage of not being affected by scale changes of variables.
+
+Table 1 summarizes the measures proposed in Domingo-Ferrer, Mateo-Sanz and Torra (2001) and Domingo-Ferrer and V. Torra (2001). In this table, $p$ is the number of variables, $n$ - the number of records, and components of matrices are represented by the corresponding lowercase letters (*e.g.* $x_{\text{ij}}$ is a component of matrix $X$). Regarding $X-X^'$ measures, it makes also sense to compute those on the averages of variables rather than on all data (call this variant $\overline{X} - \overline{X^'}$. Similarly, for $V-V^'$ measures, it would also be sensible to use them to compare only the variances of the variables, *i.e.* to compare the diagonals of the covariance matrices rather than the whole matrices (call this variant $S-S^'$).
+
+Table 1. Examples of measures of information loss for continuous variables.  
+
+|          	|                                  Mean square error                                  	|                                   Mean abs. error                                   	|                                             Mean variation                                             	|
+|:--------:	|:-----------------------------------------------------------------------------------:	|:-----------------------------------------------------------------------------------:	|:------------------------------------------------------------------------------------------------------:	|
+|  $X-X'$  	|            $\frac{\sum_{j=1}^{p}\sum_{i=1}^{n}(x_{ij}-x_{ij}')^2}{np}$            	|            $\frac{\sum_{j=1}^{p}\sum_{i=1}^{n}|x_{ij}-x_{ij}'|}{np}$            	|            $\frac{\sum_{j=1}^{p}\sum_{i=1}^{n}\frac{|x_{ij}-x_{ij}'|}{|x_{ij}|}}{np}$            	|
+|  $V-V'$  	| $\frac{\sum_{j=1}^{p}\sum_{1\leq i\leq j}(v_{ij}-v_{ij}')^2}{\frac{p(p+1)}{2}}$ 	| $\frac{\sum_{j=1}^{p}\sum_{1\leq i\leq j}|v_{ij}-v_{ij}'|}{\frac{p(p+1)}{2}}$ 	| $\frac{\sum_{j=1}^{p}\sum_{1\leq i\leq j}\frac{|v_{ij}-v_{ij}'|}{|v_{ij}|}}{\frac{p(p+1)}{2}}$ 	|
+|  $R-R'$  	| $\frac{\sum_{j=1}^{p}\sum_{1 \leq i\leq j}(r_{ij}-r_{ij}')^2}{\frac{p(p-1)}{2}}$ 	| $\frac{\sum_{j=1}^{p}\sum_{1 \leq i \leq j}|r_{ij}-r_{ij}'|}{\frac{p(p-1)}{2}}$ 	| $\frac{\sum_{j=1}^{p}\sum_{1\leq i \leq j}\frac{|r_{ij}-r_{ij}'|}{|r_{ij}|}}{\frac{p(p-1)}{2}}$ 	|
+| $RF-RF'$ 	|         $\frac{\sum_{j=1}^{p}w_j\sum_{i=1}^{p}(rf_{ij}-rf_{ij}')^2}{p^2}$         	|         $\frac{\sum_{j=1}^{p}w_j\sum_{i=1}^{p}|rf_{ij}-rf_{ij}'|}{p^2}$         	|        $\frac{\sum_{j=1}^{p} w_j\sum_{i=1}^{p}\frac{|rf_{ij}-rf_{ij}'|}{|rf_{ij}|}}{p^2}$       	|
+|  $C-C'$  	|                       $\frac{\sum_{i=1}^{p}(c_i-c_i')^2}{p}$                      	|                       $\frac{\sum_{i=1}^{p}|c_i-c_i'|}{p}$                      	|                       $\frac{\sum_{i=1}^{p}\frac{|c_i-c_{i}'|}{|c_i|}}{p}$                       	|
+|  $F-F'$  	|          $\frac{\sum_{j=1}^{p}w_j\sum_{i=1}^{p}(f_{ij}-f_{ij}')^2}{p^2}$          	|          $\frac{\sum_{j=1}^{p}w_j\sum_{i=1}^{p}|f_{ij}-f_{ij}'|}{p^2}$          	|         $\frac{\sum_{j=1}^{p} w_j\sum_{i=1}^{p}\frac{|f_{ij}-f_{ij}'|}{|f_{ij}|}}{p^2}$         	|
+
+Source: Domingo-Ferrer, Mateo-Sanz and Torra (2001).
+
+In Yancey, Winkler and Creecy (2002), it is observed that dividing by $x_{\text{ij}}$ causes the $X-X^'$ mean variation to rise sharply when the original value $x_{\text{ij}}$ is close to 0. This dependency on the particular original value being undesirable in an information loss measure, Yancey, Winkler and Creecy (2002) propose to replace the mean variation of $X-X^'$ by the more stable measure
+$$IL1=\frac{1}{np}\sum_{j=1}^p{\sum_{i=1}^n{\frac{|x_{ij}-x_{ij}'|}{\sqrt{2}S_j}}},$$
+where $S_j$ is the standard deviation of the $j$-th variable in the original dataset. This measure was incorporated into the sdcMicro R package. The IL1 measure, in turn, is highly sensitive to small disturbances and weak differentiation of feature values - it may take too high values for variables with low differentiation, and too low - when the differentiation is significant. In practice, if $S_j$ is very close to zero, we obtain as a results INF (infinity). In this case, the measure becomes really useless, because it will not allow to compare the loss of information in several microdata sets with statistical confidentiality protected in various ways - if for each of such sets the IL1 measure will be equal to INF.
+
+Trottini (2003) argues that, since information loss is to be traded off for disclosure risk and the latter is bounded ---there is no risk higher than 100%---, upper bounds should be enforced for information loss measures. In practice, the proposal in Trottini (2003) is to limit those measures in @tbl-loss-information based on the mean variation to a predefined maximum value.
+
+Młodak (2020) proposed a new measure of information loss for continuous variables in terms of assesment of impact on the intensity of connections, which was slighthly improved by Młodak, Pietrzak and Józefowski (2022). It is based on on diagonal entries of inversed correlation matrices for continuous variables in the original ($R^{-1}$) and perturbed (${R^'}^{-1}$) datasets, i.e. $\rho_{jj}^{(-1)}$ and ${\rho_{jj}^'}^{(-1)}$), $j=1,2,\ldots,m_c$ (where $m_c$ is the number of continuous variables):
+
+$$
+\gamma=\frac{1}{\sqrt{2}}\sqrt{\sum_{j=1}^{m_c}{\left(\frac{\rho_{jj}^{(-1)}}{\sqrt{\sum_{l=1}^m{\left(\rho_{ll}^{(-1)}\right)^2}}}-\frac{\rho_{jj}^{*(-1)}}{\sqrt{\sum_{l=1}^m{\left(\rho_{ll}^{*(-1)}\right)^2}}}\right)^2}}\in [0,1]. \quad \text{(3.5.8)}
+$$
+
+Values of (3.5.8) are also easily interpretable - it can be understood as the expected loss of information about connections between variables. As one can easily see, the result can be expressed in $\%$. Of course, both matrices - $R$ and $R'$ - must be based on the same correlation coefficient. The most obvious choice in this respect is the Pearson's index. However, when tau-Kendall correlation matrix is used, one can also apply it to ordinal variables. The method will be not applicable if the correlation matrix is singular. The main advantage of the measure $\gamma$ is that it treats all variables as an inseparable whole and takes all connections between analysed variables, even those hard to observe, into account. $\gamma$ can be computed in the sdcMicro R package using the function *IL_correl()*. 
+
+### Complex measures of information loss
+
+The above presented concepts of information loss prompt the question whether it is possible to construct complex measure of information loss taking variables of all measurement scales into account. The relevant proposal was formulated by Młodak (2020) and applied by Młodak, Pietrzak and Józefowski (2022) to the case of microdata from the Polish survey of accidents at work. For categorical variables it is based on the approaches (3.5.3) and (3.5.4), i.e. if the variable $X_j$ is nominal, then (treating NA as a separate level)
+$$
+d(x_{ij}^',x_{ij})=
+\begin{cases}
+1&\text{if}\;x_{ij}^'=x_{ij},\cr
+0&\text{if}\;x_{ij}^'\ne x_{ij}. 
+\end{cases}
+\text{(3.5.9)}
+$$
+
+If $X_j$ is ordinal (assuming for simplification and without loss of generality that categories are numbered from 1 to $\mathfrak{r}_j$, where $\mathfrak{r}_j$ is the number of categories), then (NA is treated as a separate, lowest category)
+$$
+d(x_{ij}^',x_{ij})=\frac{\mathfrak{r}(x_{ij}^',x_{ij})}{\mathfrak{r}_j-1}, \quad \text{(3.5.10)}
+$$
+where $\mathfrak{r}(x_{ij}^',x_{ij})$ is the absolute difference in categories between $x_{ij}^'$ and $x_{ij}$. These partial distances take always values from [0,1]. There are, however, some problems with using them, especially if recoding is applied. The number of categories of a recoded variable in the original set and in the set after SDC will be different. Therefore, in the first place, it should be ensured that the numbers of the categories left unchanged are identical in both variants. For example, if before recoding the variable $X_j$ had $\mathfrak{r}_j$=8 categories marked as 1,2,3,4,5,6,7,8 and as a result of recoding categories 2 and 3 and 6 and 7 were combined, then the new categories should have respectively numbers 1,2,4,5,6,8. Then the option (3.5.10) for categorical variables applies in this case as well.
+
+Much more complicated situation occurs for continuous variables. Młodak (2020) proposed several options is this respect, e.g. normalized absolute value or normalized square of difference between $x_{ij}^'$ and $x_{ij}$, i.e. 
+$$
+d(x_{ij}^',x_{ij})=|x_{ij}^'-x_{ij}|/\max_{k=1,2,\ldots,n}⁡|x_{kj}^'-x_{kj}|, \quad \text{(3.5.11)}
+$$
+or
+$$
+d(x_{ij}^',x_{ij})=(x_{ij}^'-x_{ij})^2/\max_{k=1,2,\lots,n}⁡(x_{kj}^'-x_{kj})^2, \quad \text{(3.5.12)}
+$$
+$i=1,2,\ldots,n$, $j=1,2,\ldots,m_c$, where $n$ is the number of records and $m_c$ - the number of continuous variables.
+
+Measures (3.5.11) and (3.5.12) also have another significant weakness. The measure of information loss should be an increasing function due to individual partial information losses. This means that, for example, if for some $i\in\{1,2,\ldots,n\}$ the value $|x_{ij}^'-x_{ij}|$ will increase and all $|x_{hj}^'-x_{hj}|$ for $h\ne i$ remain the same, the value of the distance should increase. Meanwhile, in the case of formulas (3.5.10) and (3.5.11), this will not be the case. If, for the same, the indicated absolute difference (or the square of the difference, respectively) between the original value and the value after SDC reaches a maximum, then the partial loss of information for $i$ will remain unchanged -- it will be 1, and for the others it will turn out to be smaller. As a result, we get a smaller metric value, while the information loss actually increased.
+
+Taking the aforementioned observations into account Młodak (2020) proposed in the discussed case the distance of the form: 
+$$
+d(x_{ij}^',x_{ij})=\frac{2}{\pi}\arctan|x_{ij}^'-x_{ij}|.\quad \text{(3.5.13)}
+$$
+The arcus tangens (arctan) function was used to ensure that the distance between original and perturbed values takes values from $[0,1]$. To achieve this, an ascending function bounded on both sides (both from the top and from the bottom) should be applied. The arctan seems to be a good solution and is also easy to compute. Of course -- like any function of this type -- it is not perfect: for larger absolute differences between original and perturbed values it tends to be close to $\frac{\pi}{2}$ (and, in consequence, $d(x_{ij}^',x_{ij})$ to be close to 1). On the other hand, owing to this property it exhibits more clearly all information losses due to perturbation.
+
+The complex measure of distribution disturbance is given by (cf. Młodak, Pietrzak and Józefowski (2022)):
+$$
+\lambda=\sum_{j=1}^m{\sum_{i=1}^n{\frac{d(x_{ij}^',x_{ij})}{mn}}}\in [0,1], \quad \text{(3.5.14)}
+$$
+where $d(\cdot,\cdot)\in [0,1]$ is measure of distance according to the formulas (3.5.9), (3.5.10) or (3.5.13) according to the measurement scale of a given value.
+
+Authors of the aforementioned paper indicated also than one can measure the contribution of particular variables $X_j$ to total information loss as follows  
+$$
+\lambda_j=\sum_{i=1}^n{\frac{d(x_{ij}^',x_{ij})}{n}}\in [0,1],    \quad \text{(3.5.15)}
+$$
+$j=1,2,\ldots,m$.
+
+An additional problem occurs if non-perturbative SDC tools are used. In this case the original values are either suppressed or remained unchanged. How to proceed in this case during computation of the measures (3.5.12) and (3.5.13) also depends on the measurement scale of the variables. The used If $X_j$ is nominal, then if $x_{ij}^'$ is hidden then one should assume $d(x_{ij}^',x_{ij})=1$; if $X_j$ is ordinal, then we assign $x_{ij}^':=1$ if $x_{ij}$ is closer to $\mathfrak{r}_j$ or $x_{ij}^':=\mathfrak{r}_j$ if $X_j$ is closer to 1; if $X_j$ is continuous, then
+$$
+x_{ij}^':=\begin{cases}
+\max\limits_{h=1,2,\ldots,n}{x_{hj}}&\text{if}\quad x_{ij}\le\text{med}_{h=1,2,\ldots,n}{x_{hj}},\\
+\min\limits_{h=1,2,\ldots,n}{x_{hj}}&\text{if}\quad x_{ij}>\text{med}_{h=1,2,\ldots,n}{x_{hj}}.
+\end{cases}
+$$
+
+The measures (3.5.12) and (3.5.13) can be expressed as a percentages and show total information loss and contribution of particular variables to it, respectively. the-- the greater the value of $\lambda$/$\lambda_j$, the bigger the loss/contribution. In this way users obtain clear and easily understandable information about expected information loss owing to the application of SDC. These measures were implemented to the sdcMicro R package and are computed by the function *IL_variables*.
+
+### Practical realization of trade-off between safety and utility of microdata
+
+Achieving the optimal balance between minimization of dislosure risk and minimization of the information loss is not easy. It is very hard (if even possible) to take all aspects deciding on level of these quantities (especially in the case of risk) into account. Moreover, both risk and information loss can be assessed from various point of views. Thus, first one should establish the possible factors which may decide on the type and level of dislosure risk and the most preferred direction of data use by the user. In the case of risk, one should assess not only internal risk (including different types of variables and their relationships) but also assess what alternative data sources the interested data user could have access to due to his place of employment and position held (such information is usually provided in official data access request. The priorities in measurement of information loss preferred by the user should be a basis for establishment of used measure in this context. For instance, if the users prefers comparison of distributions of some phenomena, then the measures of distribution disturbance should have much higher priority than others. On the other hand, if the subject of interest of an user are connections between some features, then for categorical variables the information loss should be assessed using the measures for contingency tables (as they are in fact frequency tables, this problem is discussed in chapter 5). For continuous variables the aforementioned measures of impact on the intensity of connections can be, of course, applied.
+
+Similarly as e.g. in the case of significance and loss in testing of statistical hypotheses, the most obvious and easy approach to obtain reasonable compromise between these two expectations is to apply one of two following ways:
+• establishing arbitrarily maximum allowable level of disclosure risk and minimize the information loss in this situation - it defends, first of all, the data confidentiality and trust to data holder in terms of privacy protection,
+• establishing arbitrarily maximum allowable level of information loss and minimize the disclosure risk in this situation - it defends, first of all, the data utility  for users and data provider as a source of reliable, creadible and useful data. 
+
+In practice, the data holder (e.g. official statistics) prefers rather the first approach as the strict protection of data privacy is usually an obligation imposed by valid law regulations. So, assurance of the safety of confidential information is very important.
+
+
+### Example
+  
+  The manner of assessing disclosure risk and information loss owing to the application of SDC methods was demonstrated using data from a case study published on the website of International Household Survey Network (IHSN)[^1] Statistical Disclosure Control for Microdata: A Practice Guide - Case Study Data and R Script, being a supplement to the book by Benschop, Machingauta and Welch (2022). Use was made of part of the code from the first study of this type, in which the authors applied SDC measures to a set of farms using the sdcMicro package.
+  
+  The following categorical variables were selected as key variables: REGION, URBRUR (area of residence), HHSIZE (household size), OWNAGLAND (agricultural land ownership), RELIG (religion of household head). The authors of the case study applied local data suppression to these variables. 
+  
+  SDC was also applied to quantitative variables concerning 1) expenditure: TFOODEXP (total food expenditure), TALCHEXP (total alcohol expenditure), TCLTHEXP (total expenditure on clothing and footwear), THOUSEXP (total expenditure on housing), TFURNEXP (total expenditure on furnishing ), THLTHEXP (total expenditure on health), TTRANSEXP (total expenditure on transport), TCOMMEXP (total expenditure on communications), TRECEXP (total expenditure on recreation), TEDUEXP (total expenditure on education), TRESTHOTEXP (total expenditure on restaurants and hotel ), TMISCEXP (total miscellaneous expenditure); 2) income: INCTOTGROSSHH (total gross household income – annual), INCRMT (total amount of remittances received from remittance sending members), INCWAGE (wage and salaries – annual), INCFARMBSN (gross income from household farm businesses – annual), INCNFARMBSN (gross income from household non-farm businesses – annual), INCRENT (rental income – annual), INCFIN (financial income from savings, loans, tax refunds, maturity payments on insurance), INCPENSN (pension and other social assistance – annual), INCOTHER (other income – annual), and 3) land size: LANDSIZEHA (land size owned by household in ha). 1% noise was added to the variables relating to all components of expenditure and income; 5% noise was added to outliers. Values of the LANDSIZEHA variable were rounded (1 digit for plots smaller than 1 and to no digits for plots larger than 1) and grouped (values in intervals 5-19 to 13, and values in intervals 20-39 to 30, values larger than 40 to 40).
+  
+  In the case study, the PRAM method was applied to variables describing apartment equipment: ROOF (roof type), WATER (main source of water), TOILET (main toilet facility), ELECTCON (electricity), FUELCOOK (main cooking fuel), OWNMOTORCYCLE (ownership of motorcycle), CAR (ownership of car), TV (ownership of television), LIVESTOCK (number of large-sized livestock owned). The data were stratified by REGION variable making sure that variants of the transformed variables were not modified in 80% of cases.
+  
+  The set of data anonymised in the manner described above was used as the starting point for the assessment of the risk of disclosure and information loss. Tables @tbl-example-individual-risk and @tbl-example-global-risk shows descriptive statistics for the risk of disclosure in the case of key variables before and after applying local suppression. While the risk was significantly reduced, one must bear in mind that the risk of disclosure was already relatively low in the original dataset. The maximum value of individual risk dropped from 5.5% in the original dataset to 0.3% after applying local suppression. The global risk in the original set was on average equal to 0.05%, which means that the expected number of disclosed units was 0.99; after applying local suppression, the global risk dropped to less than 0.02, which means that the expected number of disclosed units was 0.35.
+  
+  As regards the assessment of disclosure risk for quantitative variables, an interval of [0.0%, 83.5%] was chosen, where the upper limit represents the worst case scenario in which the intruder is sure that each nearest neighbour is in fact the correct linkage.
+  
+  Several of the measures mentioned above have been developed to assess the loss of information. Based on distances between values of variables that were to be anonymised in the original set and the their values in the anonymised set, $\lambda$ measures were calculated. Table @tbl-example-information-loss shows the general value of $\lambda$ and its values for individual variables ($\lambda_k$). The overall loss  of information for the anonymised variables is 14.3%. The greatest loss is observed for quantitative variables to which noise was added; in the case of INCTOTGROSSHH, the loss of information measured by $\lambda$ reaches 83.4%. The loss of information was much lower in the case of key variables subjected to local suppression and those modified with the PRAM method: the maximum loss was 9.7% and 9.4%, respectively.
+  
+  Overall information loss was determined using two measures described above: $IL1$ and $\lambda$. $IL1$ was equal to 79.4, which indicates relatively large standard deviations of anonymised values of quantitative variables from standard deviations of the original variables. The value of the second measure, which is based on correlation coefficients, is 0.6%, which indicates a slight loss of information regarding correlations between the quantitative variables. Nevertheless, it should be stressed that as a result of to numerous cases of non-response in the quantitative variables, the value of $\lambda$ was calculated on the basis of only 111 observations, i.e. less than 6% of all units.
+  
+  The above assessment was conducted using the R sdcMicro package. Because some of the information loss measures described above are not implemented in this package, they were not used in the assessment.
+  
+  : Descriptive statistics of individual risk measures for quantitative variables {#tbl-example-individual-risk}
+  
+  | **Statistic**                  | **Original values**    | **Values after anonymisation** |
+  | :----------------------------- | ---------------------: | -----------------------------: |
+  | Min                            | 0.0007                 | 0.0007                         |
+  | Q1                             | 0.0021                 | 0.0021                         |
+  | Me                             | 0.0067                 | 0.0059                         |
+  | Q3                             | 0.0213                 | 0.0161                         |
+  | Max                            | 5.5434                 | 0.3225                         |
+  | Mean                           | 0.0502                 | 0.0176                         |
+
+
+  : Global risk measures for quantitative variables {#tbl-example-global-risk}
+  
+  | **Statistic**                  | **Original values**    | **Values after anonymisation** |
+  | :----------------------------- | ---------------------: | -----------------------------: |            
+  | Risk %                         | 0.0502                 | 0.0176                         |
+  | Expected number of disclosures | 0.9895                 | 0.3476                         |
+  
+  
+  : Loss of information due to anonymisation, overall and for individual variables {#tbl-example-information-loss}
+  
+  | **Variable**  |$\lambda$ (%)|
+  | :-----------  | --------:   |
+  | **OVERALL**   | **14.3**    |
+  | URBRUR        | 0.5         |
+  | REGION        | 0.2         |
+  | OWNAGLAND     | 2.5         |
+  | RELIG         | 1.1         |
+  | LANDSIZEHA    | 9.7         |
+  | TANHHEXP      | 50.7        |
+  | TFOODEXP      | 38.3        |
+  | TALCHEXP      | 12.6        |
+  | TCLTHEXP      | 8.4         |
+  | THOUSEXP      | 14.6        |
+  | TFURNEXP      | 6.0         |
+  | THLTHEXP      | 12.3        |
+  | TTRANSEXP     | 18.5        |
+  | TCOMMEXP      | 9.2         |
+  | TRECEXP       | 4.5         |
+  | TEDUEXP       | 41.4        |
+  | TRESTHOTEXP   | 16.6        |
+  | TMISCEXP      | 6.4         |
+  | INCTOTGROSSHH | 73.6        |
+  | INCRMT        | 32.1        |
+  | INCWAGE       | 71.0        |
+  | INCFARMBSN    | 15.1        |
+  | INCNFARMBSN   | 24.0        |
+  | INCRENT       | 10.4        |
+  | INCFIN        | 1.3         |
+  | INCPENSN      | 17.1        |
+  | INCOTHER      | 17.7        |
+  | ROOF          | 6.0         |
+  | TOILET        | 7.6         |
+  | WATER         | 9.4         |
+  | ELECTCON      | 1.7         |
+  | FUELCOOK      | 4.3         |
+  | OWNMOTORCYCLE | 3.3         |
+  | CAR           | 1.5         |
+  | TV            | 7.3         |
+  | LIVESTOCK     | 1.3         |
+
+[^1]: http://www.ihsn.org/software/disclosure-control-toolbox
+
+### References
+
+Bacher J., Brand R., and Bender S. (2002), *Re-identifying register data by survey data using cluster analysis: an empirical study*. International Journal of Uncertainty, Fuzziness and Knowledge Based Systems, 10(5):589--607, 2002.
+
+Benedetti, R., and Franconi, L. (1998). *Statistical and technological solutions for controlled data dissemination,* Pre-proceedings of New Techniques and Technologies for Statistics, 1, 225-232.
+
+Benschop, T., Machingauta, C., and Welch, M. (2022). *Statistical Disclosure Control: A Practice Guide*, [[https://readthedocs.org/projects/sdcpractice/downloads/pdf/latest/]{.underline}](https://readthedocs.org/projects/sdcpractice/downloads/pdf/latest/)
+
+Bycroft, C., and Merrett, K. (2005). *Experience of using a post randomisation method at the office for national statistics*. Monographs of official statistics, 125.
+
+Chatfield, C., and Collins, A. J., (1980). *Introduction to Multivariate Analysis*, Chapman and Hall, London, 1980.
+
+Dandekar, R., Domingo-Ferrer, J., and Sebé, F., (2002). *LHS-based hybrid microdata vs. rank swapping and microaggregation for numeric microdata protection.* In J. Domingo-Ferrer, editor, Inference Control in Statistical Databases, volume 2316 of LNCS, pages 153--162, Berlin Heidelberg, 2002. Springer.
+
+Dempster A. P., Laird N. M., and Rubin D. B. (1977), *Maximum likelihood from incomplete data via the em algorithm.* Journal of the Royal Statistical Society, 39:1--38, 1977.
+
+Deville, J.C. and Särndal, C.E. (1992). *Calibration estimators in survey sampling,* Journal of the American Statistical Association 87, 367--382.
+
+De Waal, A. G., and Willenborg, L. C. R. J. (1999). *Information loss through global recoding and local suppression.* Netherlands Official Statistics, 14:17--20, 1999. special issue on SDC.
+
+De Wolf, P.-P., Hundepool, A., Giessing, S., Salazar, J.-J., and  Castro, J. (2014), *µ-ARGUS version 4.1 User's Manual*. Statistics Netherlands, Voorburg NL, November 2014. [[https://research.cbs.nl/casc/]{.underline}](https://research.cbs.nl/casc/Software/TauManualV4.1.pdf).
+
+Domingo-Ferrer, J., Mateo-Sanz, J. M., and Torra, V. (2001). *Comparing sdc methods for microdata on the basis of information loss and disclosure risk*. In Pre-proceedings of ETK-NTTS'2001 (vol. 2), pages 807--826, Luxemburg, 2001. Eurostat.
+
+Domingo-Ferrer, J., and Torra, V. (2001). *Disclosure protection methods and information loss for microdata.* In P. Doyle, J. I. Lane, J. J. M. Theeuwes, and L. Zayatz, editors, Confidentiality, Disclosure and Data Access: Theory and Practical Applications for Statistical Agencies, pages 91--110, Amsterdam, 2001. North-Holland. [[http://vneumann.etse.urv.es/publications/bcpi]{.underline}](http://vneumann.etse.urv.es/publications/bcpi).
+
+Domingo-Ferrer, J., and Torra, V. (2003), *Disclosure risk assessment in statistical microdata protection via advanced record linkage.* Statistics and Computing, 13:343--354.
+
+Elamir, E., Skinner, C. (2004) *Record-level Measures of Disclosure Risk for Survey Microdata,* Journal of Official Statistics (forthcoming). See also: Southampton Statistical Sciences Research Institute, University of Southampton, methodology working paper:\
+[[http://eprints.soton.ac.uk/8175/01/s3ri-workingpaper-m04-02.pdf]{.underline}](http://eprints.soton.ac.uk/8175/01/s3ri-workingpaper-m04-02.pdf)
+
+Elliot, M. J., (2000). *DIS: A new approach to the Measurement of Statistical Disclosure Risk.* International Journal of Risk Management 2(4), pp 39-48.
+
+Elliot, M. J., Manning, A. M.& Ford, R. W. (2002**).** \'*A Computational Algorithm for Handling the Special Uniques Problem*\'. International Journal of Uncertainty, Fuzziness and Knowledge Based Systems 5(10), pp 493-509.
+
+Elliot, M. J., Manning, A., Mayes, K., Gurd, J. & Bane, M. (2005). '*SUDA: A Program for Detecting Special Uniques'.* Proceedings of the UNECE/Eurostat work session on statistical data confidentiality, Geneva, November 2005.
+
+Fellegi, I. P., and Sunter, A.B. (1969), *A theory for record linkage*. Journal of the American Statistical Association, 64(328):1183--1210.
+
+Franconi, L. and Polettini, S. (2004). *Individual risk estimation in µ-ARGUS: a review.* In: Domingo-Ferrer, J. (Ed.), Privacy in Statistical Databases. Lecture Notes in Computer Science. Springer, 262‑272
+
+Hundepool, A., Van de Wetering, A., Ramaswamy, R., Franconi, L., Capobianchi, A., DeWolf, P.-P., Domingo-Ferrer, J., Torra, V., Brand, R:, and Giessing, S. (2005). *µ-ARGUS version 4.0 Software and User's Manual*. Statistics Netherlands, Voorburg NL, may 2005. [[http://neon.vb.cbs.nl/casc]{.underline}](http://neon.vb.cbs.nl/casc/deliv/MUmanual4.0.pdf).
+
+Hundepool, A., Domingo–Ferrer, J., Franconi, L., Giessing, S., Nordholt, E. S., Spicer, K., & de Wolf, P. (2012). *Statistical Disclosure Control*. John Wiley & Sons, Ltd.
+
+Jaro, M. A. (1989). Advances in record-linkage methodology as applied to matching the 1985 census of Tampa, Florida. *Journal of the American Statistical Association*, 84 (406), 414–420.
+
+Kooiman, P. L., Willenborg, L. and Gouweleeuw, J. (1998). *PRAM: A method for disclosure limitation of microdata.* Technical report, Statistics Netherlands (Voorburg, NL), 1998.
+
+Młodak, A. (2020). Information loss resulting from statistical disclosure control of output data. *Wiadomości Statystyczne. The Polish Statistician*, 65 (9), 7–27. (in Polish)
+
+Młodak, A., Pietrzak, M., & Józefowski, T. (2022). The trade–off between the risk of disclosure and data utility in SDC: A case of data from a survey of accidents at work. *Statistical Journal of the IAOS*, 38 (4), 1503–1511.
+
+Pagliuca, D., & Seri, G. (1999). Some results of individual ranking method on the system of enterprise accounts annual survey. *Esprit SDC Project, Deliverable MI-3 D, 2*.
+
+Polettini, S. and Seri, G (2004). *Revision of "Guidelines for the protection of social microdata using the individual risk methodology*". Deliverable 1.2-D3, available at CASC web site.
+
+*R Development Core Team. (2008). R: A Language and Environment for Statistical Computing [Computer software manual]*. Vienna, Austria. Retrieved from http://www.R-project.org (ISBN 3-900051-07-0)
+
+Sayers, A., Ben-Shlomo, Y., Blom, A. W., & Steele, F. (2016). Probabilistic record linkage. *International Journal of Epidemiology*, 45(3), 954-964.
+
+Shlomo, N. (2022). How to Measure Disclosure Risk in Microdata? *The Survey Statistician*, 86, 13–21.
+
+Shlomo, N., & Skinner, C. (2022). Measuring risk of re-identification in microdata: state-of-the art and new directions. *Journal of the Royal Statistical Society. Series A: Statistics in Society*, 185 (4), 1644–1662.
+
+Skinner, C., Holmes, D. (1998), *Estimating the re-identification risk per record in microdata,* JOS, Vol.14.
+
+Skinner, C., Shlomo, N. (2005), *Assessing disclosure risk in microdata using record-level measures,* proceedings of the UNECE/Eurostat work session on statistical data confidentiality, Geneva, November 2005
+
+Skinner, C., Shlomo, N. (2006) *Assessing Identification Risk in Survey Microdata Using Log-linear Models,* see: <http://eprints.soton.ac.uk/41842/01/s3ri-workingpaper-m06-14.pdf>
+
+Taylor, L., Zhou, X.-H., & Rise, P. (2018). A tutorial in assessing disclosure risk in microdata. *Statistics in Medicine*, 37 (25), 3693–3706.
+
+Templ, M. (2017). *Statistical Disclosure Control for Microdata. Methods and Applications in R.* Springer International Publishing AG, Cham, Switzerland.
+
+Templ, M., Kowarik, A., & Meindl, B. (2023). *sdcMicro: Statistical Disclosure Control Methods for Anonymization of Data and Risk Estimation. Manual and Package.* R package version 5.7.5 [Computer software manual]. (http://CRAN.R-project.org/package=sdcMicro)
+
+Torra, V. (2004), *Owa operators in data modeling and re-identification.* IEEE Trans. on Fuzzy Systems, vol. 12, no. 5, pp. 652-660.
+
+Torra, V., and Miyamoto, S. (2004),. *Evaluating fuzzy clustering algorithms for microdata protection.* In J. Domingo-Ferrer and V. Torra, editors, Privacy in Statistical Databases, volume 3050 of LNCS, pages 175--186, Berlin Heidelberg. Springer.
+
+Trottini, M. (2003) . *Decision models for data disclosure limitation*. PhD thesis, Carnegie Mellon University, 2003. [[http://www.niss.org/dgii/TR/Thesis-Trottini-final.pdf]{.underline}](http://www.niss.org/dgii/TR/Thesis-Trottini-final.pdf).
+
+Willenborg, L., and DeWaal, T., (2001). *Elements of Statistical Disclosure Control*. Springer-Verlag, New York, 2001.
+
+Willenborg, L., Scholtus, S., and van de Laar, R. (eds.) (2014) “Handbook on Metho-dology for Modern Business Statistics”, Collaboration in Research and Methodology for Official Statistics, Luxembourg, [[http://ec.europa.eu/eurostat/cros/content/handbook-methodology-modern-business-statistics_en]{.underline}](http://ec.europa.eu/eurostat/cros/content/handbook-methodology-modern-business-statistics_en) 
+
+Winkler, W. E. (1993),. *Matching and record linkage.* Technical Report RR93/08, Statistical Research Division, U. S. Bureau of the Census (USA), 1993.
+
+Winkler, W. E. (1998). *Re-identification methods for evaluating the confidentiality of analytically valid microdata.* In J. Domingo-Ferrer, editor, Statistical Data Protection, Luxemburg, 1999. Office for Official Publications of the European Communities. (Journal version in Research in Official Statistics, vol. 1, no. 2, pp. 50-69, 1998).
+
+Winkler, W. E. (2004). *Re-identification methods for masked microdata.* In J. Domingo-Ferrer and V. Torra, editors, Privacy in Statistical Databases, volume 3050 of LNCS, pages 216--230, Berlin Heidelberg, 2004. Springer.
+
+Yancey, W. E., Winkler, W. E., and Creecy, R. H. (2002). *Disclosure risk assessment in perturbative microdata protection.* In J. Domingo-Ferrer, editor, Inference Control in Statistical Databases, volume 2316 of LNCS, pages 135--152, Berlin Heidelberg, 2002. Springer.

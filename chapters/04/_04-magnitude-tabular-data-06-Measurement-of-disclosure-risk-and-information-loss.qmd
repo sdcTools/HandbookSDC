@@ -1,0 +1,96 @@
+## Measurement of disclosure risk\index{disclosure risk}  and information loss 
+### Disclosure risk\index{disclosure risk} 
+
+The disclosure risk\index{disclosure risk}  for tabular data (especially magnitude) includes the assessment of:
+
+- primary risk,
+
+- secondary risk.
+
+The primary risk concerns the threat for direct identification of an unit resulting from too low frequency or existence of outliers according to the presented magnitude in the cell. The secondary risk assessment is necessary due to the fact that primary confidential cells in detailed tables may still not ensure sufficient protection against re-identification: together with single cells also sums for larger groups, *i.e.* the margins are computed. Then the protection of the primary sensitive cells can be undone, by some differencing. Therefore the risk of such an event should also be assessed. 
+
+The key measure for assessing primary disclosure risk\index{disclosure risk}  in the case of magnitude tables is based on the $(n,k)$-dominance or $p\%$ rules (c.f. @sec-sensitive-cells-magnitude-tables, @tbl-sensitivity-rules). In some formal regulations or recommendations it is assumed $n=1$ and $k=75$. Hovever, in @sec-sensitive-cells-magnitude-tables, following the reach practical experience, it is recommended to use $n>1$ in this context. Quite commonly the $(n,k)$-dominance is combined with $k$-anonymity: a cell is regarded as unsafe if it violates the $k$-anonymity or the $(n,k)$-dominance. Therefore the dislosure risk can be measured as the share of cells violating the finally assumed principle. A broader discussion on an application of these rules to assess the disclosure risk\index{disclosure risk} is performed in @sec-disclosure-control-concepts-tables. See also Hundepool et al. (2012).
+
+However, this assessment concerns risk at the level of individual table cells. When designing tables, a risk measure at table level might be convenient. For frequncy tables, Antal, Shlomo and Elliot (2014) formulate four fundamental properties for a disclosure risk\index{disclosure risk}  measure at table level: 
+
+- small cell values should have higher disclosure risk\index{disclosure risk}  than larger,
+
+- uniformly distributed frequencies imply low disclosure risk\index{disclosure risk} ,
+
+- the more zero cells in the census table, the higher the disclosure risk\index{disclosure risk} ,
+
+- the risk measure should be bounded by 0 and 1.
+
+In the currently investigated case of magnitude table one should add one more condition concerning the specificity of this type of data presentation. That is, the larger is the share of the largest contributors in a cell the higher is the disclosure risk\index{disclosure risk}.
+
+Shlomo, Antal and Elliot (2015) proposed in this context a measure based on the entropy. According to their approach, a high entropy indicates that the distribution across cells is uniform and a low entropy indicates mainly zeros in a row/column or table with a few non-zero cells. The fewer the number of non-zero cells, the more likely that attribute disclosure occurs. The entropy is given as
+$$
+H=-\sum_{i=1}^{k}{\frac{c_i}{n}\cdot\log{\frac{c_i}{n}}},
+$${#eq-entropy} 
+where $c_i$ is the number of units contained in $i$-th cell, $k$ is the number of cell in the tables and $n$ is the total number of units covered by the table. The measure ([-@eq-entropy]) is next normalized to the form
+$$
+1-\frac{H}{\log n}. 
+$${#eq-entropy-normalized}
+
+This approach, however, doesn't take our fifth condition into account. So, one can extend ([-@eq-entropy-normalized]) to the form combining both aspects, *e.g.* in the following way: 
+$$
+r=1-\frac{1}{2}\left(\frac{H}{\log n}+\frac{1}{n}\sum_{i=1}^n{\frac{x_{i(\text{max})}}{\sum_{j\in C_i}{x_j}}}\right),
+$$
+where $x_{i(\text{max})}$ is the share of the largest contributors to the cell $C_i$ and $x_j$ is the contribution of the $j$-th unit to it. This measure takes value from $[0,1]$ and is easily interpretable. 
+
+The disclosure risk\index{disclosure risk}  assessment can be also adjusted to the specificity of currently used SDC method. For instance, Enderle, Giessing and Tent (2020) have proposed an original risk measure for continous data perturbed using the Cell Key approach. It assumes that an intruder can know the amount of noise and the maximum deviation parameter. Then he/she can determine the feasibility intervals for original internal and margin cells using the noisy values. The risk estimate is then a weighted sum of risk probabilities, *e.g.* risk probabilites computed by summing up certain probabilities defined by the p-table relating to "risky" constellations, weighted by the empirical probability of the respective constellation to occur in a given test dataset. 
+
+### Information loss
+
+The basis of assessment of information loss for tables are differences between values of cells determined using microdata after application of SDC methods (or perturbed/hidden during creation of tables) and relevant values obtained on the basis of the original data. Let $T_0$ denote a table generated using original microdata and $T_1$ - analogous table created on the basis of perturbed relevant microdata (or in which original cell vaules were pretrurbed - post-tabular pertrurbation). Denote by $T_l(c)$ the value of cell $c$ of table $T_l$, $l=0,1$.
+
+The following metrics are commonly recommended for determining measures of information loss due to application of SDC process in magnitude tables:
+
+- absolute deviation: $|T_1(c)-T_0(c)|$,
+
+- relative absolute deviation: $\frac{|T_1(c)-T_0(c)|}{T_0(c)}$, 
+
+- absolute deviation of square roots: $|\sqrt{T_1(c)}-\sqrt{T_0(c)}|$.
+
+for any $c$.
+
+As one can observe, the absolute deviation of square roots has a sense in practice only if the cell values are nonnegative. However, this is the most common situation. Otherwise, $\sqrt{T_l(c)}$ can be replaced with $-\sqrt{|T_l|}$, $l=0,1$. 
+
+Using the metrics given above one can define complex measures of information loss for a given aggregate $A$ (it can be the whole table or a specific subset of table cells, referring to, for example, the same spatial unit - such as population numbers by age groups for a LAU 1 unit). The first of these measures is the average absolute deviation - the mean of absolute differences between cell values in original and modified tables:
+$$
+\text{AD}(A)=\frac{\sum_{c\in A}{|T_1(c)-T_0(c)|}}{n_A},
+$$
+where $n_A$ is the number of cells included in the aggregate $A$.
+
+One can also propose to use in this context the sum of relative absolute deviations, *i.e.* the the sum of relative differences between cell values in both tables:
+$$
+\text{RAD}(A)=\sum_{c\in A}{\frac{|T_1(c)-T_0(c)|}{T_0(c)}}.
+$$
+
+The last - but not least - measure which we would like to present here is the measure based on absolute differences between square roots from cell values in original nad perturbed tables using the formula of Hellinger's distance (proposed in 1909 by German mathematician Ernst Hellinger (1883-1950)):
+$$
+\text{HD}(A)=\sqrt{\frac{1}{2}\sum_{c\in A}{\left(\sqrt{T_1(c)}-\sqrt{T_0(c)}\right)^2}}.
+$$
+
+However, there may be missing data in the tables. When perturbative SDC methods are applied, these gaps will result mainly from missing data occurring in the original microdata being a basis of construction of tables. In this case, during computation of cell values one can omit these gaps or earlier make an imputation of them. The only inconvenience may appear when there are no data concerning the categories defined by the cell. Then one must either resign from a given structure of the table (*e.g.* by combining some of the original categories into another, more coarse one), or the measure of loss should be based on the measurement of loss at the level of microdata corresponding to this cell, performed in the manner described in [Chapter 3](03-microdata.html).
+ 
+More difficult is the situation where non-perturbative post-tabular SDC methods are used. For assessing information loss from the perspective of the data user, one can make a comparison of tables before and after the SDC process. For this, one should simulate a table, in which for missing cells their values are imputed. On the other hand, for controlling the process of selection of secondary cell suppression\index{cell suppression} , information loss will be expressed as the sum of costs incurred due to it. The problem is whether the weight of each cell in the table is the same, or whether cells with a higher value have a higher weight (cf. the discussion in @sec-setting-up-a-tabular-data-protection-problem-in-practice). In practice, suppression of too many cells with high values can significantly decrease the utility of disseminated data. The issue of information loss can be variously expressed, depending on preferences and needs of a user. In this way, it is possible to influence the operation of the algorithm for selecting cells for secondary suppression. In @sec-setting-up-a-tabular-data-protection-problem-in-practice (see also Hundepool et al. (2012)) we indicate the most common criteria taken into account when the cost function for cell suppression\index{cell suppression}  is defined:
+
+- the same weights for all cells - for minimalization of the number of secondary suppressed cells,
+
+- number of units in aggregate represented by a cell - leads to looking for possibilities of suppression of only such cells which will represent jointly as small number of units as possible,
+
+- cell value - an optimal solution is leaving in publication as many cells with higher values as possible. 
+
+For more details, see discussion on cell costs and cost functions in @sec-setting-up-a-tabular-data-protection-problem-in-practice.
+
+### References
+Antal, L., Shlomo, N., & Elliot, M. (2014). Measuring disclosure risk\index{disclosure risk} with entropy in population based frequency tables. In *Privacy in Statistical Databases: UNESCO Chair in Data Privacy, International Conference, PSD 2014, Ibiza, Spain, September 17-19, 2014. Proceedings* (pp. 62-78). Springer International Publishing.
+
+Box, G. E., Cox, D. R. (1964), An analysis of transformations. *Journal of the Royal Statistical Society. Series B (Methodological)*, 26:211–252.
+
+Enderle, T., Giessing, S., & Tent, R. (2020). Calculation of risk probabilities for the cell key method. In: *Privacy in Statistical Databases: UNESCO Chair in Data Privacy, International Conference, PSD 2020, Tarragona, Spain, September 23–25, 2020, Proceedings* (pp. 151-165). Springer International Publishing.
+
+Hundepool. A., Domingo-Ferrer. J., Franconi, L., Giessing S., Nordholt, E.S., Spicer, K. and de Wolf, P-P. (2012), *Statistical Disclosure Control*, series: Wiley Series in Survey Methodology, John Wiley & Sons, Ltd., Chichester.
+
+Shlomo, N., Antal, L., & Elliot, M. (2015). Measuring disclosure risk\index{disclosure risk} and data utility for flexible table generators. *Journal of Official Statistics*, 31(2), 305-324.

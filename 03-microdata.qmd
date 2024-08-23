@@ -1,0 +1,19 @@
+# Microdata
+
+{{< include chapters/03/_03-microdata-01-Introduction.qmd >}}
+
+{{< include chapters/03/_03-microdata-02-A-roadmap-to-the-release-of-a-microdata-file.qmd >}}
+
+{{< include chapters/03/_03-microdata-03-Risk-assessment.qmd >}}
+
+{{< include chapters/03/_03-microdata-04-Microdata-protection-methods.qmd >}}
+
+{{< include chapters/03/_03-microdata-05-Information-loss-in-microdata-protection.qmd >}}
+
+{{< include chapters/03/_03-microdata-06-Software.qmd >}}
+
+{{< include chapters/03/_03-microdata-07-Introductory-example.qmd >}}
+
+{{< include chapters/03/_03-microdata-08-Further-examples.qmd >}}
+
+

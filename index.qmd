@@ -1,0 +1,49 @@
+::: {.content-visible when-format="html"}
+
+::: {.callout-tip appearance="simple"}
+<a href="https://raw.githubusercontent.com/sdcTools/HandbookSDC/gh-pages/Handbook-on-Statistical-Disclosure-Control.pdf" download target="_blank">Export the pdf version</a>
+:::
+
+:::
+
+# Preface to the second edition {.unnumbered}
+
+In 2006 Eurostat took the initiative of setting up Centres of Excellence. The idea behind this scheme is to combine the strengths of the leading National Statistical Institutes (NSIs) in Europe on a certain topic. Often in several NSIs small isolated groups are working on specific topics. Other NSIs even lack the resources to pay enough attention to certain methodological issues. This situation led to the Eurostat initiative on Centres of Excellence. A Centre of Excellence could bring together the knowledge on a certain topic at a higher level by supporting the research in the leading countries and to spread this work to the other NSIs. Statistical Disclosure Control (SDC) was selected as a pilot topic. One of the reasons for selecting SDC was a longer tradition in the field of SDC with respect to European cooperation, like the EU framework projects SDC ([https://cordis.europa.eu/project/id/20462](https://cordis.europa.eu/project/id/20462)) and CASC ([https://research.cbs.nl/casc/CASCIndex.htm](https://research.cbs.nl/casc/CASCIndex.htm)).
+
+One of the tasks of a Centre of Excellence on SDC launched in 2005 (grant agreement No 25200.2005.001-2005.619) was to write a handbook on Statistical Disclosure Control. The writing of the handbook was coordinated by Anco Hundepool, who also wrote parts of the chapter on the software tools ([Sections @sec-software], [-@sec-tau-argus-suppression] and [-@sec-methodology-secondary-suppression-tau-argus]). Jane Longhurst and Luisa Franconi wrote the introduction chapter ([Chapter 1](01-Introduction.html)), while Eric Schulte Nordholt wrote the regulation chapter ([Chapter 2](02-regulations.html)). Josep Domingo-Ferrer was responsible for the microdata chapter ([Chapter 3](03-microdata.html)) with contributions by Anco Hundepool, Luisa Franconi, Jane Longhurst and Peter-Paul de Wolf. Sarah Giessing was responsible for the magnitude chapter ([Chapter 4](04-magnitude-tabular-data.html)) and Jane Longhurst for the frequency chapter ([Chapter 5](05-frequency-tables.html)). The remote access chapter ([Chapter 6](06-remote-access-issues.html)) was written by Anco Hundepool and Jane Longhurst. But various other Centre of Excellence partners contributed smaller parts. Glòria Pujol Crespo and Caroline Tudor did valuable proofreading. Also the work of other partners, who did the cumbersome task of proofreading and helping with valuable comments, is gratefully acknowledged.
+
+One of the tasks of a Centre of Excellence on SDC launched in 2020 (for 4 years), as part of the STACE project (Statistical methods and tools Centers of Excellence, grant agreement 899218–2019-BG-Methodology, 2020–2024), was to update this handbook. With permission of all the original authors, the current second edition was produced by the partners in the STACE project. The format of the handbook was revised to facilitate online as well as offline publication and some new content was added.
+
+The original authors were asked to revise their chapters. In addition to the original authors three additional authors contributed to this second edition of the handbook. Reinhard Tent wrote the new parts on the Cell Key Method for Magnitude Tables and Frequency Tables ([Sections @sec-CKM_mag] and [-@sec-CKM_freq]). Andrzej Młodak contributed to the parts on Risk assessment and Information loss in microdata protection, and Measurement of disclosure risk and information loss in the chapters on Magnitude Tabular Data, and Frequency tables. Johannes Gussenbauer wrote the new part on Targeted Record Swapping (Section @sec-TRS). Julien Jamme led the transfer of the handbook into a new technical set-up.
+
+Some parts of the handbook are considered to contain a bit more advanced information than necessary for a first read. Those sections are marked in this way:
+
+:::{.callout-warning collapse=false}
+## Expert level
+In the online quarto-book version of the handbook these parts can be made hidden or visible by clicking the "$\vee$" sign or the "$>$" sign respectively.
+
+In the pdf version of the handbook these parts will always be visible but marked like this.
+:::
+
+Extended examples are marked in this way:
+
+:::{.callout-note appearance="simple"}
+**Example.** Assume a non-negative continuous variable $X$...
+:::
+
+In spite of all the improvements and additions, the authors still see this version of the handbook as a “live document” that could be updated from time to time. Therefore, we will appreciate your comments and suggestions for further improvements. Please submit your comments or suggestions to the Issues page of the User Support repository on GitHub ([https://github.com/sdctools/UserSupport](https://github.com/sdcTools/UserSupport)).
+
+::: {.content-visible when-format="pdf"}
+
+::: {.callout-tip appearance="simple"}
+An online version of this handbook can be found at [To be decided](ToBeDecided)
+:::
+
+:::
+
+## License {.unnumbered .unlisted}
+![](Images/media/by-sa.png){width="0.8in"}
+
+Handbook on Statistical Disclosure Control © 2024 by Anco Hundepool, Josep Domingo-Ferrer, Luisa Franconi, Sarah Giessing, Rainer Lenz, Jane Naylor, Eric Schulte Nordholt, Giovanni Seri, Peter-Paul De Wolf, Reinhard Tent, Andrzej Młodak, Johannes Gussenbauer, Kamil Wilak, is licensed under CC BY-SA 4.0. To view a copy of this license, visit [https://creativecommons.org/licenses/by-sa/4.0/](https://creativecommons.org/licenses/by-sa/4.0/)
+
+

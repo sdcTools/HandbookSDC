@@ -1,0 +1,10 @@
+## Remote execution
+
+As modern communication techniques have become available, the NSIs have investigated the possibilities to use these techniques. The first initiative is remote execution. In this concept the researchers will get a full description of all the metadata of the datasets available for research. However the dataset available will remain on the computers of the NSIs. The researchers will prepare scripts for analysing the datasets (with SPSS, SAS etc) and send them to the NSI (by email or via some internet page). The NSI will then check the script (*e.g.* for commands like List Cases, but also other unwanted actions like printing the residuals of a regression) before running it and after a second check send back the results to the researcher.
+
+For the researcher this system has the advantage that he does no longer have to travel to the NSI. He can send a script whenever he wants. On the other hand he cannot directly run the script since this is done by the NSI. Hence correcting errors in a script can take much more time, depending on the turn around time of the NSI. This process could be speeded up if the NSI will make available a fake dataset which corresponds to the original file in terms of structure but not in content. The main objective of this dataset is to avoid all unsuccessful submissions due to syntax errors etc.
+
+For the researcher remote execution has several advantages (no need for travel) but also some drawbacks (slow turn around time). For the NSIs it is very time-consuming, as they have to check so many scripts and results. It is not uncommon in statistical analysis that several scripts are submitted and executed. But then the outcome proves to be not the optimal model and a new script is submitted. However the NSI does not know in advance which script is successful and has to check everything. This is very time-consuming if the NSI takes this seriously.
+
+Examples of this kind of systems are the Luxembourg Income Study (Lissy) and the Australian RADL.
+

@@ -1,0 +1,17 @@
+# Remote access issues
+
+{{< include chapters/06/_06-remote-access-issues-01-Introduction.qmd >}}
+
+{{< include chapters/06/_06-remote-access-issues-02-Research-centres.qmd >}}
+
+{{< include chapters/06/_06-remote-access-issues-03-Remote-execution.qmd >}}
+
+{{< include chapters/06/_06-remote-access-issues-04-Remote-access.qmd >}}
+
+{{< include chapters/06/_06-remote-access-issues-05-Licensing.qmd >}}
+
+{{< include chapters/06/_06-remote-access-issues-06-Confidentiality-protection-of-the-analysis-results.qmd >}}
+
+{{< include chapters/06/_06-remote-access-issues-07-References.qmd >}}
+
+
