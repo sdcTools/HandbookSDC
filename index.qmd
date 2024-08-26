@@ -36,7 +36,7 @@ In spite of all the improvements and additions, the authors still see this versi
 ::: {.content-visible when-format="pdf"}
 
 ::: {.callout-tip appearance="simple"}
-An online version of this handbook can be found at [To be decided](ToBeDecided)
+An online version of this handbook can be found at [https://sdctools.github.io/HandbookSDC](https://sdctools.github.io/HandbookSDC)
 :::
 
 :::
