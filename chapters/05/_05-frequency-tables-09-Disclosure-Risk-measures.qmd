@@ -1,0 +1,27 @@
+## Disclosure risk measures
+
+Section 5.2 has introduced two basic concepts of disclosure risk in frequency tables, i.e. risks of identification (resulting from rareness of an attribute combination exhibited by a low frequency in a table cell) on one hand, and, on the other hand, of risks of attribute disclosure, in particular of group attribute disclosure. In 5.2, it has been observed that „…in order to protect against group attribute disclosure it is essential to introduce ambiguity in the zeros and ensure that all respondents do not fall into just one or a few categories.“ These types of risk are measurable, so we take a closer look at them.
+Lupp and Langsrud (2021) suggest a formal definition of group attribute disclosure. Assume that an attacker has knowledge of $k$ (where $k$ is the natural number) contributors to the table (called *a $k$-coalition*), for example if the attacker is one of the individuals contributing to the table and also has knowledge of the attributes of $k-1$ other contributors. In the most basic case, an attacker has no background knowledge whatsoever, i.e., for him/her is $k=0$. Another typical assumption is $k=1$. In that case, attackers can then use their background knowledge to disclose information about other units by removing themselves from the data and analyzing the resulting table. In this formal definition, Lupp and Langsrud (2021) regard a cell $c$ in a frequency table as *directly disclosive with reference to $k^*$, if there exists a published marginal cell $p_c$ within a sensitive variable, such that
+•	$c$ is a cell contributing to $p_c$, and
+•	$|p_c|-k\le |c|$,
+where $|t|$ denotes the number of units belonging to the cell $t$. In other words, if a cell is directly disclosive with reference to $k$ then there exists an attacker with knowledge of $k$ table contributors that can deduce that all other units contributing to pc must be in the cell $c$. Therefore, the share of directly disclosive cells in their total number can be a good measure of primary disclosure risk.
+The disclosure risk of identification (connected to low frequencies) can be measured as the share of cells with small frequencies in the total number of cells in a table.
+Antal, Shlomo and Elliot (2014) have proposed the following measure of risk for population tables, based on the entropy. According to their approach, a high entropy indicates that the distribution across cells is uniform and a low entropy indicates mainly zeros in a row/column or table with a few non-zero cells. The fewer the number of non-zero cells, the more likely that attribute disclosure occurs: Let $F_l$ be population frequency of cell $C_l$, $l=1,2,\ldots,k$ (where $k$ is the total number of cells). Let $N$ be the number of population, $N=\sum_{l=1}^k{F_k}$ and $D=\{l\n\{1,2,\ldots,n\}:F_l=0\}$. The disclosure risk for a population based frequency table is then defined as
+$$
+r=w_1\freq{|D|}{k}+w_2\left(1-\frac{H}{\log k}\right)-w_3\frac{1}{\sqrt{N}}\log\frac{1}{e\cdot\sqrt{N}},
+$$
+where $|A|$ denotes the number of elements of the set $A$, $H$ is the value defined in (4.6.1) but adjusted to the current situation as 
+$$
+H=-\sum_{i=1}^{k}{\frac{F_i}{N}\cdot\log{\frac{F_i}{N}}},
+$$
+and $\mathbf{w}=(w_1,w_2,w_3)$ is the vector of weights ($e$ is, of course, the base of the natural logarithm). This measure has all above mentioned properties.
+
+Assume that the original table was perturbed. The frequency of cell $C_l$ is then $F_l^#$, $l=1,2,\ldots,k$. Because the modified table has more uncertainty, the proposed measure of disclosure risk in this case is as follows: 
+$$
+r^#=w_1\left(\freq{|D|}{k}\right)^{\frac{|D\cup Q|}{|D\cap Q|}}+w_2\left(1-\frac{H}{\log k}\right)\left(1-\frac{H^#}{H}\right)-w_3\frac{1}{\sqrt{N}}\log\frac{1}{e\cdot\sqrt{N}}
+$$
+where $Q$ is the set of zeroes in the perturbed frequency table and $H^#=-\sum_{i=1}^{k}{\frac{F_i^#}{N}\cdot\sum_{j=1}^{k}{\frac{F_{ij}^#}{N\cdot F_j^#}\cdot\log{\frac{F_{ij}^#}{n\cdot F_j^#}}}$, $F_{ij}^#$ is the number of units which belong to $C_i$ before and to $C_j$ after perturbation. The disclosure risk of a perturbed table is expected to be lower than that of the original table. $r^#$ satisfies this requirement.
+
+### References
+Antal, L., Shlomo, N., & Elliot, M. (2014), Measuring disclosure risk with entropy in population based frequency tables. In *Privacy in Statistical Databases: UNESCO Chair in Data Privacy, International Conference, PSD 2014, Ibiza, Spain, September 17-19, 2014. Proceedings* (pp. 62-78). Springer International Publishing.
+Lupp, D. P., & Langsrud, Ø. (2021). Suppression of directly-disclosive cells in frequency tables. In *Joint UNECE/Eurostat Expert Meeting on Statistical Data Confidentiality, Poznań, 1-3 December 2021* (pp. 1-3).
