@@ -1,4 +1,4 @@
-## Information loss  {#sec-InfLoss_freq}
+## Information loss measures  {#sec-InfLoss_freq}
 
 As described in [Sections @sec-Methods_freq] to [-@sec-TRS] there are a number of different disclosure control methods used to protect frequency tables. Each of these methods modifies the original data in the table in order to reduce the disclosure risk\index{disclosure risk} from small cells (0's, 1's and 2's). However, the process of reducing disclosure risk\index{disclosure risk} results in information loss. Some quantitative information loss measures have been developed by Shlomo and Young (2005 & 2006) to determine the impact various statistical disclosure control (SDC) methods have on the original tables.
 
