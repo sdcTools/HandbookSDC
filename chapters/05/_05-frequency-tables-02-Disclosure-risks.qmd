@@ -149,6 +149,8 @@ A fictitious example of differencing is presented below in @tbl-single-hh-hours,
 
 The above example demonstrates how simple subtraction of the geographical data in @tbl-single-hh-hours from @tbl-single-hh-income can produce disclosive information for the area in @tbl-differenced-table.
 
+For the special case of dealing with geographical differencing problems when spatial breakdowns are used, Costemalle (2019) have proposed a method by detecting individuals located in small overlapping areas and whose personal information can therefore be disclosed.  
+
 **Disclosure by *linking*** can occur when published tables relating to the same base population are linked by common variables. These new linked tables were not published by the NSI and therefore may reveal the statistical disclosure control methods applied and/or unsafe cell counts.
 
 :::{.callout-note appearance="simple"}
