@@ -16,6 +16,6 @@
 
 {{< include chapters/05/_05-frequency-tables-08-Information-loss.qmd >}}
 
-{{< include chapters/05/_05-frequency-tables-09-References.qmd >}}
+{{< include chapters/05/_05-frequency-tables-09-Disclosure-Risk-measures.qmd >}}
 
-
+{{< include chapters/05/_05-frequency-tables-10-References.qmd >}}
