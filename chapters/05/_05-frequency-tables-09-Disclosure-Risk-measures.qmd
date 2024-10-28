@@ -1,7 +1,8 @@
 ## Disclosure risk measures {#sec-DiscRisk_measures}
 
-@sec-DisclRisks_freq has introduced two basic concepts of disclosure risk in frequency tables, i.e. risks of identification (resulting from rareness of an attribute combination exhibited by a low frequency in a table cell) on one hand, and, on the other hand, of risks of attribute disclosure, in particular of group attribute disclosure. In 5.2, it has been observed that „…in order to protect against group attribute disclosure it is essential to introduce ambiguity in the zeros and ensure that all respondents do not fall into just one or a few categories.“ These types of risk are measurable, so we take a closer look at them.
-Lupp and Langsrud (2021) suggest a formal definition of group attribute disclosure. Assume that an attacker has knowledge of $k$ (where $k$ is the natural number) contributors to the table (called *a $k$-coalition*), for example if the attacker is one of the individuals contributing to the table and also has knowledge of the attributes of $k-1$ other contributors. In the most basic case, an attacker has no background knowledge whatsoever, i.e., for him/her is $k=0$. Another typical assumption is $k=1$. In that case, attackers can then use their background knowledge to disclose information about other units by removing themselves from the data and analyzing the resulting table. In this formal definition, Lupp and Langsrud (2021) regard a cell $c$ in a frequency table as *directly disclosive with reference to $k^*$, if there exists a published marginal cell $p_c$ within a sensitive variable, such that  
+@sec-DisclRisks_freq has introduced two basic concepts of disclosure risk in frequency tables, i.e. risks of identification (resulting from rareness of an attribute combination exhibited by a low frequency in a table cell) on one hand, and, on the other hand, of risks of attribute disclosure, in particular of group attribute disclosure. In 5.2, it has been observed that „…in order to protect against group attribute disclosure it is essential to introduce ambiguity in the zeros and ensure that all respondents do not fall into just one or a few categories.“
+
+These types of risk are measurable, so we take a closer look at them. Lupp and Langsrud (2021) suggest a formal definition of group attribute disclosure. Assume that an attacker has knowledge of $k$ (where $k$ is the natural number) contributors to the table (called *a $k$-coalition*), for example if the attacker is one of the individuals contributing to the table and also has knowledge of the attributes of $k-1$ other contributors. In the most basic case, an attacker has no background knowledge whatsoever, i.e., for him/her is $k=0$. Another typical assumption is $k=1$. In that case, attackers can then use their background knowledge to disclose information about other units by removing themselves from the data and analyzing the resulting table. In this formal definition, Lupp and Langsrud (2021) regard a cell $c$ in a frequency table as *directly disclosive with reference to $k^*$, if there exists a published marginal cell $p_c$ within a sensitive variable, such that  
 
 - $c$ is a cell contributing to $p_c$, and
 - $|p_c|-k\le |c|$,
@@ -26,7 +27,7 @@ $$
 where :  
 
 - $Q$ is the set of zeroes in the perturbed frequency table
-- $H^{\#}=-\sum_{i=1}^{k}{\frac{F_i^{\#}}{N}\cdot\sum_{j=1}^{k}{\frac{F_{ij}^{\#}}{N\cdot F_j^{\#}}\cdot\log{\frac{F_{ij}^{\#}}{n\cdot F_j^{\#}}}}}$
+- $H^{\#}=-\sum_{i=1}^{k}{\frac{F_i^{\#}}{N}\cdot\sum_{j=1}^{k}{\frac{F_{ij}^{\#}}{N\cdot F_j^{\#}}\cdot\log{\frac{F_{ij}^{\#}}{N\cdot F_j^{\#}}}}}$
 - $F_{ij}^{\#}$ is the number of units which belong to $C_i$ before and to $C_j$ after perturbation. 
 
 The disclosure risk of a perturbed table is expected to be lower than that of the original table. $r^{\#}$ satisfies this requirement.
