@@ -18,14 +18,14 @@ Gomatam, S. and A. Karr (2003), *Distortion Measures for Categorical Data Swappi
 
 Lupp, D. P., & Langsrud, Ø. (2021). *Suppression of directly-disclosive cells in frequency tables*, In Joint UNECE/Eurostat Expert Meeting on Statistical Data Confidentiality, Poznań, 1-3 December 2021 (pp. 1-3)
 
-Möhler, M., Jamme, J., De Jonge, E., Młodak, A., Gussenbauer, J., De Wolf, P.-P. (2024), *Guidelines for Statistical Disclosure Control Methods Applied on Geo-Referenced Data*, EU Grant agreement 899218 – 2019-BG-Methodology, Deliverable D2.9 https://github.com/sdcTools/GeoSpatialGuidelinesSources/releases .
+Möhler, M., Jamme, J., De Jonge, E., Młodak, A., Gussenbauer, J., De Wolf, P.-P. (2024), *Guidelines for Statistical Disclosure Control Methods Applied on Geo-Referenced Data*, EU Grant agreement 899218 – 2019-BG-Methodology *STACE project* , Deliverable D2.9, https://github.com/sdcTools/GeoSpatialGuidelinesSources/releases .
 
 Salazar, JJ, Staggermeier, A and Bycroft, C, (2005) *Controlled rounding implementation*, Proceeding of the Joint UNECE/Eurostat Work Session on Statistical Data Confidentiality, Geneva
 
 Shlomo, N. (2007) Statistical Disclosure Control Methods for Census Frequency Tables. International Statistical Review, Volume 75, Number 2, August 2007 , pp. 199-217(19) Blackwell Publishing.
 
-Shlomo, N. and Young, C. (2005) *Information Loss Measures for Frequency Tables,* Proceeding of the Joint UNECE/Eurostat Work Session on Statistical Data Confidentiality, Geneva.
+Shlomo, N. and Young, C. (2005) *Information Loss Measures for Frequency Tables*, Proceeding of the Joint UNECE/Eurostat Work Session on Statistical Data Confidentiality, Geneva.
 
-Shlomo, N. and Young, C. (2006) *Statistical Disclosure Control Methods Through a Risk-Utility Framework,* PSD\'2006 Privacy in Statistical Databases, Springer LNCS proceedings, to appear.
+Shlomo, N. and Young, C. (2006) *Statistical Disclosure Control Methods Through a Risk-Utility Framework*, PSD\'2006 Privacy in Statistical Databases, Springer LNCS proceedings, to appear.
 
 Willenborg, L., and Ton de Waal. (1996) *Statistical Disclosure Control in Practice.* Lecture Notes in Statistics no 111 Springer-Verlag. New York.
