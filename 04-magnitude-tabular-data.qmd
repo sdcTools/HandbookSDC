@@ -12,7 +12,7 @@
 
 {{< include chapters/04/_04-magnitude-tabular-data-06-CKM.qmd >}}
 
-{{< include chapters/04/_04-magnitude-tabular-data-06-Measurement-of-disclosure-risk-and-information-loss.qmd >}}
+{{< include chapters/04/_04-magnitude-tabular-data-07-Measurement-of-disclosure-risk-and-information-loss.qmd >}}
 
-{{< include chapters/04/_04-magnitude-tabular-data-07-References.qmd >}}
+{{< include chapters/04/_04-magnitude-tabular-data-08-References.qmd >}}
 
