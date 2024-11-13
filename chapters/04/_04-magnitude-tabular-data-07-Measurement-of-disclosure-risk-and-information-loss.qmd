@@ -83,14 +83,3 @@ More difficult is the situation where non-perturbative post-tabular SDC methods 
 - cell value - an optimal solution is leaving in publication as many cells with higher values as possible. 
 
 For more details, see discussion on cell costs and cost functions in @sec-setting-up-a-tabular-data-protection-problem-in-practice.
-
-### References
-Antal, L., Shlomo, N., & Elliot, M. (2014). Measuring disclosure risk\index{disclosure risk} with entropy in population based frequency tables. In *Privacy in Statistical Databases: UNESCO Chair in Data Privacy, International Conference, PSD 2014, Ibiza, Spain, September 17-19, 2014. Proceedings* (pp. 62-78). Springer International Publishing.
-
-Box, G. E., Cox, D. R. (1964), An analysis of transformations. *Journal of the Royal Statistical Society. Series B (Methodological)*, 26:211–252.
-
-Enderle, T., Giessing, S., & Tent, R. (2020). Calculation of risk probabilities for the cell key method. In: *Privacy in Statistical Databases: UNESCO Chair in Data Privacy, International Conference, PSD 2020, Tarragona, Spain, September 23–25, 2020, Proceedings* (pp. 151-165). Springer International Publishing.
-
-Hundepool. A., Domingo-Ferrer. J., Franconi, L., Giessing S., Nordholt, E.S., Spicer, K. and de Wolf, P-P. (2012), *Statistical Disclosure Control*, series: Wiley Series in Survey Methodology, John Wiley & Sons, Ltd., Chichester.
-
-Shlomo, N., Antal, L., & Elliot, M. (2015). Measuring disclosure risk\index{disclosure risk} and data utility for flexible table generators. *Journal of Official Statistics*, 31(2), 305-324.
