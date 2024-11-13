@@ -18,10 +18,11 @@ book:
     - name: Andrzej Młodak
     - name: Johannes Gussenbauer
     - name: Kamil Wilak
-  #date: today
-  date: 2024/08/31  # Temporarily keep date of first release of second edition, change back to "today" for future releases
+  date: today
   date-format: YYYY, MMMM
-  repo-url: https://sdcTools.github.io/HandbookSDC
+  repo-url: https://github.com/sdcTools/HandbookSDC
+  issue-url: https://github.com/sdcTools/HandbookSDC/issues
+  repo-actions: [issue]
   chapters:
     - index.qmd
     - 01-Introduction.qmd
@@ -32,6 +33,7 @@ book:
     - 06-remote-access-issues.qmd
     - 07-glossary.qmd
   page-navigation: true
+  downloads: [pdf]
 
 # bibliography: references.bib
 
