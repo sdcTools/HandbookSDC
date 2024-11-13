@@ -10,5 +10,5 @@ Advantages and disadvantages of a range of different SDC methods are discussed i
 
 @sec-Means_freq adresses a special kind of disclosure risk that can be connected to the release of means based on original data, when the underlying frequencies are protected by a perturbative, non-additive SDC method.
 
-The final section of the chapter, @sec-InfLoss_freq, describes different information loss measures that can be used to evaluate the impact that different disclosure control methods have on the utility of frequency tables. 
+Information loss measures that can be used to evaluate the impact that different disclosure control methods have on the utility of frequency tables are described in @sec-InfLoss_freq. However, when evaluating results of a disclosure control method, it is of course not enough to look at information loss. When designing a disclosure control method, it is also important to condiser residual disclosure risks and to balance risk and utility. The final chapter @sec-DiscRisk_measures offers measures that could be useful in that respect.
 
