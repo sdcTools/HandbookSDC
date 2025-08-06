@@ -14,9 +14,9 @@ Castro, J. (2006). *Minimum-distance controlled perturbation methods for large-s
 
 Castro, J., Giessing S. (2006a). *Testing variants of minimum distance controlled tabular adjustment*, in Monographs of Official Statistics. Work session on Statistical Data Confidentiality, Eurostat-Office for Official Publications of the European Communities, Luxembourg, 2006, pp. 333-343.
 
-Catro, J., Giessing S. (2006b). *Quality issues minimum distance controlled tabular adjustment*, paper presented at the European Conference on Quality in Survey Statistics (Q2006), 24.-26. April 2006 in Cardiff.
+Castro, J., Giessing S. (2006b). *Quality issues minimum distance controlled tabular adjustment*, paper presented at the European Conference on Quality in Survey Statistics (Q2006), 24.-26. April 2006 in Cardiff.
 
-Catro, J., Gonzalez J.A. (2009). *A Package for L1 Controlled Tabular Adjustment*, paper presented at the Joint UNECE/Eurostat Work Session on Statistical Data Confidentiality (Bilbao, 2-4 December 2009).
+Castro, J., Gonzalez J.A. (2009). *A Package for L1 Controlled Tabular Adjustment*, paper presented at the Joint UNECE/Eurostat Work Session on Statistical Data Confidentiality (Bilbao, 2-4 December 2009).
 
 Cox, L. (1981), *Linear Sensitivity Measures in Statistical Disclosure Control*, Journal of Planning and Inference, 5, 153 - 164, 1981.
 
