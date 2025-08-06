@@ -416,7 +416,7 @@ The number of matches gives an estimation of the number of protected records who
  Accordingly, disclosure risk\index{disclosure risk} is defined as the proportion of matches among the total number of records in $A$.
 
 The main types of record linkage\index{record linkage} used to measure identity disclosure in SDC are discussed below. 
-An illustrative example can be found on the CASC-website as one of the case-studies linked to this handbook (see [https://research.cbs.nl/casc/handbook.htm#casestudies](https://research.cbs.nl/casc/handbook.htm#casestudies)).
+An illustrative example can be found on the CASC-website as one of the case-studies linked to this handbook (see [https://research.cbs.nl/casc/handbook.htm#casestudies](https://research.cbs.nl/casc/Handbook.htm#casestudies)).
 
 #### Distance-based record linkage\index{record linkage}
 :::{.callout-warning collapse="true"}
