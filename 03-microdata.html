@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="./02-regulations.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dd3acecc49de2ad3ad9099812f4808c2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fe798efe5cf60beae57f9a7de61bee9e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +85,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -572,12 +573,12 @@ After the risk has been estimated, protection takes place. One option in protect
 <p>In order to select the risk threshold, that represents a level of <em>acceptable risk</em>, <em>i.e.</em> a risk value under which an individual can be considered safe, the <em>re‑identification rate</em> can be used. A <em>release</em> will be considered <em>safe</em> when the expected rate of correct re-identifications is below a level the NSI considers acceptable. As the re-identification rate is cast in terms of the individual risk, a threshold on the re-identification rate can be transformed into a threshold on the individual risk (see below). Under this approach, individuals are at risk because their probability of re-identification contributes a large proportion of expected re-identifications in the file.</p>
 <p>In order to reduce the number of local suppressions, the procedure of releasing a safe file considers preliminary steps of protection using techniques such as <em>global recoding</em> (see <a href="#sec-global-recoding" class="quarto-xref"><span>Section 3.4.3.2</span></a>). Recoding of selected variables will indeed lower the individual risk and therefore the re-identification rate of the file.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -627,12 +628,12 @@ r_{k} = \frac{1}{\lambda_{k} (1 - \pi) } \left[ 1 - e^{ - \lambda_{k} (1 - \pi) 
 <p>where <span class="math inline">\(\text{SU}\)</span> is the set of all sample uniques.</p>
 <p>More details on this method are available from Skinner and Shlomo (2005, 2006) and Shlomo and Barton (2006).</p>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -655,12 +656,12 @@ F_{k}|f_{k} \sim \text{NB}(\alpha_{k} + f_{k},\rho_{k} = \frac{1 + \text{N}\pi_{
 <h3 data-number="3.3.7" class="anchored" data-anchor-id="sec-SUDA"><span class="header-section-number">3.3.7</span> SUDA</h3>
 <p>The Special Uniques Detection Algorithm (SUDA) (Elliot et.al., 2005) is a software system (windows application available as freeware under restricted licence) that provides disclosure risk broken down by record, variable, variable value and by interactions of those. It is based on the concept of a “special unique”. A special unique is a record that is a sample unique on a set of variables and that is also unique on a subset of those variables. Empirical work has shown that special uniques are more likely to be population unique than random uniques. Special uniques can be classified according to the size and number of the smallest subset of key variables that defines the record as unique, known as minimal sample uniques (MSU). In the algorithm, all MSUs are found for each record on all possible subsets of the key variables where the maximum size of the subsets <em>m</em> is specified by the user.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -688,12 +689,12 @@ p(cm \mid um) = \frac{\sum\limits_{k = 1}^{K} I\left(f_{k} = 1 \right)}{\sum\lim
 <section id="distance-based-record-linkage" class="level4" data-number="3.3.8.1">
 <h4 data-number="3.3.8.1" class="anchored" data-anchor-id="distance-based-record-linkage"><span class="header-section-number">3.3.8.1</span> Distance-based record linkage</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -711,12 +712,12 @@ Expert level
 <section id="probabilistic-record-linkage" class="level4" data-number="3.3.8.2">
 <h4 data-number="3.3.8.2" class="anchored" data-anchor-id="probabilistic-record-linkage"><span class="header-section-number">3.3.8.2</span> Probabilistic record linkage</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -734,12 +735,12 @@ Expert level
 <section id="other-record-linkage-methods" class="level4" data-number="3.3.8.3">
 <h4 data-number="3.3.8.3" class="anchored" data-anchor-id="other-record-linkage-methods"><span class="header-section-number">3.3.8.3</span> Other record linkage methods</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -912,12 +913,12 @@ Table&nbsp;3.2: Perturbative methods vs.&nbsp;data types. “X” denotes applic
 <h4 data-number="3.4.2.2" class="anchored" data-anchor-id="multiplicative-noise"><span class="header-section-number">3.4.2.2</span> Multiplicative Noise</h4>
 <p>One main challenge regarding additive noise with constant variance is that on one hand small values are strongly perturbed and on the other large values are weakly perturbed. For instance, in a business microdata set the large enterprises -- which are much easier to re-identify than the smaller ones -- remain still high at risk after noise addition. A possible way out is given by the multiplicative noise approach explained below.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1322,12 +1323,12 @@ Table&nbsp;3.4: Non-perturbative methods vs.&nbsp;data types.
 <section id="masking-by-uncorrelated-noise-addition" class="level4" data-number="3.4.4.1">
 <h4 data-number="3.4.4.1" class="anchored" data-anchor-id="masking-by-uncorrelated-noise-addition"><span class="header-section-number">3.4.4.1</span> Masking by uncorrelated noise addition</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1356,12 +1357,12 @@ Expert level
 <section id="masking-by-correlated-noise-addition" class="level4" data-number="3.4.4.2">
 <h4 data-number="3.4.4.2" class="anchored" data-anchor-id="masking-by-correlated-noise-addition"><span class="header-section-number">3.4.4.2</span> Masking by correlated noise addition</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1385,12 +1386,12 @@ Expert level
 <section id="masking-by-noise-addition-and-linear-transformations" class="level4" data-number="3.4.4.3">
 <h4 data-number="3.4.4.3" class="anchored" data-anchor-id="masking-by-noise-addition-and-linear-transformations"><span class="header-section-number">3.4.4.3</span> Masking by noise addition and linear transformations</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1421,12 +1422,12 @@ G = cZ_{j} + D = c(X + \varepsilon) + D
 <section id="masking-by-noise-addition-and-nonlinear-transformations" class="level4" data-number="3.4.4.4">
 <h4 data-number="3.4.4.4" class="anchored" data-anchor-id="masking-by-noise-addition-and-nonlinear-transformations"><span class="header-section-number">3.4.4.4</span> Masking by noise addition and nonlinear transformations</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1733,12 +1734,12 @@ Figure&nbsp;3.1: Variable-sized groups versus fixed-sized groups
 <section id="sec-Hansen_Mukherjee" class="level4" data-number="3.4.5.3">
 <h4 data-number="3.4.5.3" class="anchored" data-anchor-id="sec-Hansen_Mukherjee"><span class="header-section-number">3.4.5.3</span> Hansen-Mukherjee’s optimal univariate microaggregation</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1761,12 +1762,12 @@ L(i,j) = \sum\limits_{h = i + 1}^{j}\left( \mathbf{X}_{h} - {\overline{\mathbf{X
 <section id="the-mdav-heuristic-for-multivariate-microaggregation" class="level4" data-number="3.4.5.4">
 <h4 data-number="3.4.5.4" class="anchored" data-anchor-id="the-mdav-heuristic-for-multivariate-microaggregation"><span class="header-section-number">3.4.5.4</span> The MDAV heuristic for multivariate microaggregation</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1823,12 +1824,12 @@ Expert level
 <section id="pram-the-method" class="level4 page-columns page-full" data-number="3.4.6.1">
 <h4 data-number="3.4.6.1" class="anchored" data-anchor-id="pram-the-method"><span class="header-section-number">3.4.6.1</span> PRAM, the method</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1923,12 +1924,12 @@ The exact choice of transition probabilities influences both the amount of infor
 <section id="synthetic-data-by-bootstrap" class="level4" data-number="3.4.7.3">
 <h4 data-number="3.4.7.3" class="anchored" data-anchor-id="synthetic-data-by-bootstrap"><span class="header-section-number">3.4.7.3</span> Synthetic data by bootstrap</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1943,12 +1944,12 @@ Expert level
 <section id="synthetic-data-by-latin-hypercube-sampling" class="level4" data-number="3.4.7.4">
 <h4 data-number="3.4.7.4" class="anchored" data-anchor-id="synthetic-data-by-latin-hypercube-sampling"><span class="header-section-number">3.4.7.4</span> Synthetic data by Latin Hypercube Sampling</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1962,12 +1963,12 @@ Expert level
 <section id="sec-IPSO" class="level4" data-number="3.4.7.5">
 <h4 data-number="3.4.7.5" class="anchored" data-anchor-id="sec-IPSO"><span class="header-section-number">3.4.7.5</span> Partially synthetic data by Cholesky decomposition</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2042,12 +2043,12 @@ In&nbsp;Mateo-Sanz, Martínez-Ballesté and Domingo-Ferrer (2004), a non-iterati
 <section id="other-partially-synthetic-microdata-approaches" class="level4" data-number="3.4.7.6">
 <h4 data-number="3.4.7.6" class="anchored" data-anchor-id="other-partially-synthetic-microdata-approaches"><span class="header-section-number">3.4.7.6</span> Other partially synthetic microdata approaches</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2062,12 +2063,12 @@ Expert level
 <section id="muralidhar-sarathy-hybrid-generator" class="level4" data-number="3.4.7.7">
 <h4 data-number="3.4.7.7" class="anchored" data-anchor-id="muralidhar-sarathy-hybrid-generator"><span class="header-section-number">3.4.7.7</span> Muralidhar-Sarathy hybrid generator</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2096,12 +2097,12 @@ X'_j = \gamma + X_j\alpha^t + Y_j\beta^t + e_i, \quad j = 1, \dots, n
 <section id="microaggregation-based-hybrid-data" class="level4" data-number="3.4.7.8">
 <h4 data-number="3.4.7.8" class="anchored" data-anchor-id="microaggregation-based-hybrid-data"><span class="header-section-number">3.4.7.8</span> Microaggregation-based hybrid data</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2143,12 +2144,12 @@ We justify here the role of parameter <span class="math inline">\(k\)</span> in 
 <section id="other-hybrid-microdata-approaches" class="level4" data-number="3.4.7.9">
 <h4 data-number="3.4.7.9" class="anchored" data-anchor-id="other-hybrid-microdata-approaches"><span class="header-section-number">3.4.7.9</span> Other hybrid microdata approaches</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2252,12 +2253,12 @@ More precise conditions of analytical validity and analytical interest cannot be
 <section id="sec-direct-comparison" class="level4" data-number="3.5.2.1">
 <h4 data-number="3.5.2.1" class="anchored" data-anchor-id="sec-direct-comparison"><span class="header-section-number">3.5.2.1</span> Direct comparison of categorical values</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2281,12 +2282,12 @@ d_V(c,c')=\begin{cases}
 <section id="sec-contingency-table" class="level4" data-number="3.5.2.2">
 <h4 data-number="3.5.2.2" class="anchored" data-anchor-id="sec-contingency-table"><span class="header-section-number">3.5.2.2</span> Comparison of contingency tables</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2304,12 +2305,12 @@ CTBIL(F,G;W,K)=\sum_{\{V_{ji}\cdots V_{jt}\} f\subseteq W\atop|\{V_{ji}\cdots V_
 <section id="entropy-based-measures" class="level4" data-number="3.5.2.3">
 <h4 data-number="3.5.2.3" class="anchored" data-anchor-id="entropy-based-measures"><span class="header-section-number">3.5.2.3</span> Entropy-based measures</h4>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2421,12 +2422,12 @@ Table&nbsp;3.7: Information loss measures for continuous microdata. Source: Domi
 <section id="complex-measures-of-information-loss" class="level3" data-number="3.5.4">
 <h3 data-number="3.5.4" class="anchored" data-anchor-id="complex-measures-of-information-loss"><span class="header-section-number">3.5.4</span> Complex measures of information loss</h3>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expert level
+<span class="screen-reader-only">Warning</span>Expert level
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -2965,13 +2966,14 @@ Once the units at risk have been identified, protection should be applied. Sever
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
