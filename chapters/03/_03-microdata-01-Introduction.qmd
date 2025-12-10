@@ -35,5 +35,5 @@ The researcher does not have complete access to the whole data itself; however t
 @sec-roadmap goes through the whole process of creating a microdata file for external users from the original microdata. 
 The aim of such section is to briefly analyse the different stages of the disclosure process providing references to the relevant sections where each step will be described in more details.
 @sec-software is dedicated to the software. [Sections @sec-intro-example] and [-@sec-further-example] provide some examples. 
-Further and more detailed examples can be found in Case studies available on the CASC website ([https://research.cbs.nl/casc/handbook.htm#casestudies](https://research.cbs.nl/casc/handbook.htm#casestudies)). 
+Further and more detailed examples can be found in Case studies available on the CASC website ([https://research.cbs.nl/casc/Handbook.htm#casestudies](https://research.cbs.nl/casc/Handbook.htm#casestudies)). 
 [Chapter 6](06-remote-access-issues.html) of the current handbook provides more details on different microdata access issues such as research centres, remote access/execution and licensing.
