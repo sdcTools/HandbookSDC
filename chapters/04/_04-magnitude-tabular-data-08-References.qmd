@@ -45,13 +45,15 @@ Fraser, B. and Wooton, J. (2005), *A proposed method for confidentialising tabul
 
 Geurts, J. (1992), *Heuristics for Cell Suppression in Tables*, working paper, Netherlands Central Bureau of Statistics.
 
-Giessing, S. and Repsilber, D. (2002), *Tools and Strategies to Protect Multiple Tables with the GHQUAR Cell Suppression Engine*, In: Domingo-Ferrer (Ed.) Inference Control in Statistical Databases, Springer Lecture Notes in Computer Science Vol. 2316.
-
 Giessing, S. (2004), *Survey on methods for tabular protection in ARGUS*, Lecture Notes in Computer Science. Volume Privacy in statistical databases 3050, 1­13, J. Domingo-Ferrer and V. Torra, Springer, Berlin.
 
 Giessing, S., Dittrich, S., Gehrling, D., Krüger, A., Merz, F.J., Wirtz, H. (2006), *Bericht der Arbeitsgruppe „Geheimhaltungskonzept des statistischen Verbundes, Pilotanwen­dung: Umsatzsteuerstatistik"*, document for the meeting of the „Ausschuss für Organisation und Umsetzung", Mai 2006, in German.
 
 Giessing, S., Hundepool, A., Castro, J. (2007) *Rounding Methods for Protecting EU-aggregates*, proceedings of the Joint UNECE/Eurostat Worksession on Statistical Confidentiality in Manchester, December 2007.
+
+Giessing, S. and Repsilber, D. (2002), *Tools and Strategies to Protect Multiple Tables with the GHQUAR Cell Suppression Engine*, In: Domingo-Ferrer (Ed.) Inference Control in Statistical Databases, Springer Lecture Notes in Computer Science Vol. 2316.
+
+Giessing, S. and Tent, R. (2019) *Concepts for generalising tools implementing the cell key method to the case of continuous variables*, Paper presented at the Joint UNECE/Eurostat Worksession on Statistical Data Confidentiality in The Hague, October 2019. See [https://unece.org/fileadmin/DAM/stats/documents/ece/ces/ge.46/2019/mtg1/SDC2019_S2_Germany_Giessing_Tent_AD.pdf](https://unece.org/fileadmin/DAM/stats/documents/ece/ces/ge.46/2019/mtg1/SDC2019_S2_Germany_Giessing_Tent_AD.pdf).
 
 Fischetti, M, Salazar Gonzales, J.J. (2000), *Models and Algorithms for Optimizing Cell Suppression Problem in Tabular Data with Linear Constraints*, in Journal of the American Statistical Association, Vol. 95, pp 916.
 
